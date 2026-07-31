@@ -8,6 +8,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
 ![PySide6](https://img.shields.io/badge/PySide6-Qt-41CD52?style=for-the-badge\&logo=qt\&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?style=for-the-badge&logo=pandas&logoColor=white)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?style=for-the-badge)
 ![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge\&logo=mysql\&logoColor=white)
 ![Estado](https://img.shields.io/badge/Estado-En%20definición-yellow?style=for-the-badge)
