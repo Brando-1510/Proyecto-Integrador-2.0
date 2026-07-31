@@ -2,7 +2,7 @@
 
 #  Sistema de Análisis Financiero
 
-### Aplicación de escritorio para transformar registros de Excel, cuantas bancarias y registros contables pesados en información clara, visual y útil para la toma de decisiones.
+### Desarrollo de una aplicación de escritorio en Python y PySide6 enfocada en la visualización, analisis  y comparación de información financiera de pequeños negocios mediante un modelo predictivo basado en Pandas y  Numpy además de la gestión de datos mediante SQLAlchemy.
 
 <br>
 
