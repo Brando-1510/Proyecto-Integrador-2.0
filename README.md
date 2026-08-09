@@ -20,13 +20,13 @@
 
 ## 📖 Descripción
 
-Este proyecto consiste en una aplicación de escritorio orientada al análisis de información financiera y comercial de pequeños negocios.
+Este proyecto consiste en una aplicación de escritorio de inteligencia financiera operativa para micro y pequeños negocios, diseñada para transformar registros financieros y comerciales en información clara, útil y accionable para la toma de decisiones.
 
-La aplicación permitirá importar registros almacenados en archivos de Microsoft Excel, validar y procesar su contenido, para posteriormente presentar indicadores, estadísticas, gráficos y observaciones que faciliten la comprensión del comportamiento del negocio.
+El sistema estará orientado a responder tres necesidades principales: determinar cuánto puede gastar el negocio sin comprometer su operación, evaluar si realmente está obteniendo rentabilidad de lo que vende e identificar posibles fugas, anomalías o incrementos de costos que estén afectando sus resultados.
 
-El sistema está dirigido principalmente a pequeños comercios, emprendimientos y negocios familiares que actualmente utilizan hojas de cálculo como medio principal para registrar ventas, ingresos y gastos, pero que no cuentan con herramientas accesibles para analizar esa información.
+La aplicación integrará herramientas para importar y procesar información financiera, analizar el comportamiento del negocio y generar proyecciones y alertas relevantes. Los resultados se presentarán de forma clara, visual y explicable, facilitando la comprensión del estado financiero sin requerir conocimientos avanzados de contabilidad o análisis de datos.
 
-> El proyecto no busca reemplazar un sistema contable ni un sistema de gestión empresarial. Su propósito es convertir datos existentes en información comprensible y útil para apoyar la toma de decisiones.
+> El proyecto no busca sustituir un sistema contable, ERP o plataforma de gestión empresarial. Su propósito es proporcionar una herramienta accesible de análisis y apoyo a decisiones para pequeños negocios, enfocada en liquidez, rentabilidad y detección temprana de situaciones que requieran atención.
 
 ---
 
