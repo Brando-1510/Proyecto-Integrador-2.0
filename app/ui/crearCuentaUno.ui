@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Fondo general */
+QWidget {
+    background-color: #F9F9FC;
+}
+
+/* Fondo de la barra lateral */
+QFrame {
+    background-color: #16094C;
+}</string>
+  </property>
+
+  <widget class="QFrame" name="aside">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>432</width>
+     <height>768</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Estilos generales del Aside */
+QLabel {
+    color: #F7F7F7;
+    qproperty-alignment: 'AlignHCenter | AlignVCenter';
+    font-size: 14pt;
+}
+
+QLabel[styleClass="tituloAside"] {
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+QLabel[styleClass="subtituloAside"] {
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+QLabel[styleClass="numeroPaso"] {
+    background-color: #00A86B;
+    border: 0px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    font-size: 14pt;
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    qproperty-alignment: 'AlignCenter';
+}
+
+QLabel[styleClass="descripcionPaso"] {
+    font-size: 14pt;
+}
+
+QWidget {
+    background-color: #16094C;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+
+   <widget class="QWidget" name="headerEmpresa">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>381</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="layoutHeaderEmpresa">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="lblLogoEmpresa">
+       <property name="minimumSize">
+        <size>
+         <width>91</width>
+         <height>81</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>91</width>
+         <height>81</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../resources/images/logo.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="layoutDatosEmpresa">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblNombreEmpresa">
+         <property name="text">
+          <string>Empresa</string>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>tituloAside</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblDescripcionEmpresa">
+         <property name="text">
+          <string>Inteligencia financiera
+para tu negocio</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+
+   <widget class="QWidget" name="introAside">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>150</y>
+      <width>381</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="layoutIntroAside">
+     <item>
+      <widget class="QLabel" name="lblTituloIntro">
+       <property name="text">
+        <string>Configura tu negocio
+en pocos pasos</string>
+       </property>
+       <property name="styleClass" stdset="0">
+        <string>tituloAside</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblSubtituloIntro">
+       <property name="text">
+        <string>Inteligencia Financiera para tu Local</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+
+   <widget class="QWidget" name="pasosContainer">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>290</y>
+      <width>381</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    font-size: 14pt;
+}</string>
+    </property>
+    <layout class="QGridLayout" name="layoutPasos">
+     <property name="horizontalSpacing">
+      <number>25</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>30</number>
+     </property>
+
+     <item row="0" column="0">
+      <widget class="QLabel" name="lblPaso1Numero">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>01</string>
+       </property>
+       <property name="styleClass" stdset="0">
+        <string>numeroPaso</string>
+       </property>
+      </widget>
+     </item>
+
+     <item row="0" column="1">
+      <layout class="QVBoxLayout" name="layoutPaso1">
+       <item>
+        <widget class="QLabel" name="lblPaso1Titulo">
+         <property name="text">
+          <string>Registra tus datos</string>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>subtituloAside</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblPaso1Descripcion">
+         <property name="text">
+          <string>Carga la información financiera de
+tu negocio.</string>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>descripcionPaso</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+     <item row="1" column="0">
+      <widget class="QLabel" name="lblPaso2Numero">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>02</string>
+       </property>
+       <property name="styleClass" stdset="0">
+        <string>numeroPaso</string>
+       </property>
+      </widget>
+     </item>
+
+     <item row="1" column="1">
+      <layout class="QVBoxLayout" name="layoutPaso2">
+       <item>
+        <widget class="QLabel" name="lblPaso2Titulo">
+         <property name="text">
+          <string>Analiza tu información</string>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>subtituloAside</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblPaso2Descripcion">
+         <property name="text">
+          <string>Visualiza indicadores y gráficos para
+entender tu situación.</string>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>descripcionPaso</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblPaso3Numero">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>03</string>
+       </property>
+       <property name="styleClass" stdset="0">
+        <string>numeroPaso</string>
+       </property>
+      </widget>
+     </item>
+
+     <item row="2" column="1">
+      <layout class="QVBoxLayout" name="layoutPaso3">
+       <item>
+        <widget class="QLabel" name="lblPaso3Titulo">
+         <property name="text">
+          <string>Toma mejores decisiones</string>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>subtituloAside</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblPaso3Descripcion">
+         <property name="text">
+          <string>Obtén recomendaciones basadas
+en tus datos.</string>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>descripcionPaso</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
