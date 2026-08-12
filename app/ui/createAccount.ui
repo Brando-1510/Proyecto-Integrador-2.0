@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>paginaRegistro</class>
+ <widget class="QWidget" name="paginaRegistro">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
+    <width>1370</width>
     <height>768</height>
    </rect>
   </property>
@@ -15,17 +15,25 @@
   </property>
   <property name="styleSheet">
    <string notr="true">/* Fondo general */
-QWidget {
+QWidget#paginaRegistro {
     background-color: #F9F9FC;
 }
 
-/* Fondo de la barra lateral */
-QFrame {
+/* Aside */
+QFrame#frameAside {
     background-color: #16094C;
-}</string>
+}
+
+/* Todos los labels normales */
+QLabel {
+    background-color: transparent;
+}
+</string>
   </property>
 
-  <widget class="QFrame" name="aside">
+  <!-- ==================== ASIDE ==================== -->
+
+  <widget class="QFrame" name="frameAside">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -34,6 +42,7 @@ QFrame {
      <height>768</height>
     </rect>
    </property>
+
    <property name="styleSheet">
     <string notr="true">/* Estilos generales del Aside */
 QLabel {
@@ -42,17 +51,17 @@ QLabel {
     font-size: 14pt;
 }
 
-QLabel[styleClass="tituloAside"] {
+QLabel[styleClass=&quot;tituloPrincipal&quot;] {
     font-weight: bold;
     font-size: 20pt;
 }
 
-QLabel[styleClass="subtituloAside"] {
+QLabel[styleClass=&quot;tituloSeccion&quot;] {
     font-weight: bold;
     font-size: 16pt;
 }
 
-QLabel[styleClass="numeroPaso"] {
+QLabel[styleClass=&quot;numeroPaso&quot;] {
     background-color: #00A86B;
     border: 0px;
     border-radius: 25px;
@@ -66,34 +75,37 @@ QLabel[styleClass="numeroPaso"] {
     qproperty-alignment: 'AlignCenter';
 }
 
-QLabel[styleClass="descripcionPaso"] {
+QLabel[styleClass=&quot;textoPaso&quot;] {
     font-size: 14pt;
 }
-
-QWidget {
-    background-color: #16094C;
-}</string>
+</string>
    </property>
+
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
+
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
 
-   <widget class="QWidget" name="headerEmpresa">
+   <!-- ==================== DATOS DE EMPRESA ==================== -->
+
+   <widget class="QWidget" name="containerEmpresa">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>30</y>
       <width>381</width>
-      <height>81</height>
+      <height>83</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="layoutHeaderEmpresa">
+
+    <layout class="QHBoxLayout" name="layoutHEmpresa">
      <property name="spacing">
       <number>0</number>
      </property>
+
      <property name="leftMargin">
       <number>0</number>
      </property>
@@ -106,6 +118,7 @@ QWidget {
      <property name="bottomMargin">
       <number>0</number>
      </property>
+
      <item>
       <widget class="QLabel" name="lblLogoEmpresa">
        <property name="minimumSize">
@@ -114,52 +127,68 @@ QWidget {
          <height>81</height>
         </size>
        </property>
+
        <property name="maximumSize">
         <size>
          <width>91</width>
          <height>81</height>
         </size>
        </property>
+
        <property name="text">
         <string/>
        </property>
+
        <property name="pixmap">
-        <pixmap>../resources/images/logo.png</pixmap>
+        <pixmap resource="../resources/resources.qrc">:/images/logo.png</pixmap>
        </property>
+
        <property name="scaledContents">
         <bool>true</bool>
        </property>
       </widget>
      </item>
+
      <item>
-      <layout class="QVBoxLayout" name="layoutDatosEmpresa">
+      <layout class="QVBoxLayout" name="layoutVEmpresa">
        <property name="spacing">
         <number>0</number>
        </property>
+
        <item>
         <widget class="QLabel" name="lblNombreEmpresa">
          <property name="text">
           <string>Empresa</string>
          </property>
+
          <property name="styleClass" stdset="0">
-          <string>tituloAside</string>
+          <string>tituloPrincipal</string>
          </property>
         </widget>
        </item>
+
        <item>
         <widget class="QLabel" name="lblDescripcionEmpresa">
          <property name="text">
           <string>Inteligencia financiera
 para tu negocio</string>
          </property>
+
+         <property name="styleClass" stdset="0">
+          <string>textoPaso</string>
+         </property>
         </widget>
        </item>
+
       </layout>
      </item>
+
     </layout>
    </widget>
 
-   <widget class="QWidget" name="introAside">
+   <!-- ==================== INTRODUCCIÓN ==================== -->
+
+   <widget class="QWidget" name="containerIntroduccion">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -168,29 +197,40 @@ para tu negocio</string>
       <height>141</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="layoutIntroAside">
+
+    <layout class="QVBoxLayout" name="layoutVIntroduccion">
+
      <item>
-      <widget class="QLabel" name="lblTituloIntro">
+      <widget class="QLabel" name="lblTituloIntroduccion">
        <property name="text">
         <string>Configura tu negocio
 en pocos pasos</string>
        </property>
+
        <property name="styleClass" stdset="0">
-        <string>tituloAside</string>
+        <string>tituloPrincipal</string>
        </property>
       </widget>
      </item>
+
      <item>
-      <widget class="QLabel" name="lblSubtituloIntro">
+      <widget class="QLabel" name="lblSubtituloIntroduccion">
        <property name="text">
         <string>Inteligencia Financiera para tu Local</string>
        </property>
+
+       <property name="styleClass" stdset="0">
+        <string>textoPaso</string>
+       </property>
       </widget>
      </item>
+
     </layout>
    </widget>
 
-   <widget class="QWidget" name="pasosContainer">
+   <!-- ==================== PASOS ==================== -->
+
+   <widget class="QWidget" name="containerPasos">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -199,36 +239,44 @@ en pocos pasos</string>
       <height>411</height>
      </rect>
     </property>
+
     <property name="styleSheet">
      <string notr="true">QLabel {
     font-size: 14pt;
 }</string>
     </property>
-    <layout class="QGridLayout" name="layoutPasos">
+
+    <layout class="QGridLayout" name="layoutGridPasos">
      <property name="horizontalSpacing">
       <number>25</number>
      </property>
+
      <property name="verticalSpacing">
       <number>30</number>
      </property>
 
+     <!-- ==================== PASO 1 ==================== -->
+
      <item row="0" column="0">
-      <widget class="QLabel" name="lblPaso1Numero">
+      <widget class="QLabel" name="lblNumeroPaso1">
        <property name="minimumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
+
        <property name="maximumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
+
        <property name="text">
         <string>01</string>
        </property>
+
        <property name="styleClass" stdset="0">
         <string>numeroPaso</string>
        </property>
@@ -236,48 +284,58 @@ en pocos pasos</string>
      </item>
 
      <item row="0" column="1">
-      <layout class="QVBoxLayout" name="layoutPaso1">
+      <layout class="QVBoxLayout" name="layoutVPaso1">
+
        <item>
-        <widget class="QLabel" name="lblPaso1Titulo">
+        <widget class="QLabel" name="lblTituloPaso1">
          <property name="text">
           <string>Registra tus datos</string>
          </property>
+
          <property name="styleClass" stdset="0">
-          <string>subtituloAside</string>
+          <string>tituloSeccion</string>
          </property>
         </widget>
        </item>
+
        <item>
-        <widget class="QLabel" name="lblPaso1Descripcion">
+        <widget class="QLabel" name="lblDescripcionPaso1">
          <property name="text">
           <string>Carga la información financiera de
 tu negocio.</string>
          </property>
+
          <property name="styleClass" stdset="0">
-          <string>descripcionPaso</string>
+          <string>textoPaso</string>
          </property>
         </widget>
        </item>
+
       </layout>
      </item>
 
+     <!-- ==================== PASO 2 ==================== -->
+
      <item row="1" column="0">
-      <widget class="QLabel" name="lblPaso2Numero">
+      <widget class="QLabel" name="lblNumeroPaso2">
        <property name="minimumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
+
        <property name="maximumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
+
        <property name="text">
         <string>02</string>
        </property>
+
        <property name="styleClass" stdset="0">
         <string>numeroPaso</string>
        </property>
@@ -285,48 +343,58 @@ tu negocio.</string>
      </item>
 
      <item row="1" column="1">
-      <layout class="QVBoxLayout" name="layoutPaso2">
+      <layout class="QVBoxLayout" name="layoutVPaso2">
+
        <item>
-        <widget class="QLabel" name="lblPaso2Titulo">
+        <widget class="QLabel" name="lblTituloPaso2">
          <property name="text">
           <string>Analiza tu información</string>
          </property>
+
          <property name="styleClass" stdset="0">
-          <string>subtituloAside</string>
+          <string>tituloSeccion</string>
          </property>
         </widget>
        </item>
+
        <item>
-        <widget class="QLabel" name="lblPaso2Descripcion">
+        <widget class="QLabel" name="lblDescripcionPaso2">
          <property name="text">
           <string>Visualiza indicadores y gráficos para
 entender tu situación.</string>
          </property>
+
          <property name="styleClass" stdset="0">
-          <string>descripcionPaso</string>
+          <string>textoPaso</string>
          </property>
         </widget>
        </item>
+
       </layout>
      </item>
 
+     <!-- ==================== PASO 3 ==================== -->
+
      <item row="2" column="0">
-      <widget class="QLabel" name="lblPaso3Numero">
+      <widget class="QLabel" name="lblNumeroPaso3">
        <property name="minimumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
+
        <property name="maximumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
+
        <property name="text">
         <string>03</string>
        </property>
+
        <property name="styleClass" stdset="0">
         <string>numeroPaso</string>
        </property>
@@ -334,35 +402,104 @@ entender tu situación.</string>
      </item>
 
      <item row="2" column="1">
-      <layout class="QVBoxLayout" name="layoutPaso3">
+      <layout class="QVBoxLayout" name="layoutVPaso3">
+
        <item>
-        <widget class="QLabel" name="lblPaso3Titulo">
+        <widget class="QLabel" name="lblTituloPaso3">
          <property name="text">
           <string>Toma mejores decisiones</string>
          </property>
+
          <property name="styleClass" stdset="0">
-          <string>subtituloAside</string>
+          <string>tituloSeccion</string>
          </property>
         </widget>
        </item>
+
        <item>
-        <widget class="QLabel" name="lblPaso3Descripcion">
+        <widget class="QLabel" name="lblDescripcionPaso3">
          <property name="text">
           <string>Obtén recomendaciones basadas
 en tus datos.</string>
          </property>
+
          <property name="styleClass" stdset="0">
-          <string>descripcionPaso</string>
+          <string>textoPaso</string>
          </property>
         </widget>
        </item>
+
       </layout>
      </item>
 
     </layout>
    </widget>
+
   </widget>
+
+  <!-- ==================== REGISTRO ==================== -->
+
+  <widget class="QWidget" name="containerRegistro">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>40</y>
+     <width>911</width>
+     <height>91</height>
+    </rect>
+   </property>
+
+   <layout class="QVBoxLayout" name="layoutVRegistro">
+
+    <item>
+     <widget class="QLabel" name="lblTituloRegistro">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    qproperty-alignment: 'AlignHCenter | AlignVCenter';
+    font-weight: bold;
+    font-size: 20pt;
+    color: #0E042F;
+}</string>
+      </property>
+
+      <property name="text">
+       <string>Crea una Cuenta</string>
+      </property>
+
+      <property name="styleClass" stdset="0">
+       <string>tituloPrincipal</string>
+      </property>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QLabel" name="lblSubtituloRegistro">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    qproperty-alignment: 'AlignHCenter | AlignVCenter';
+    font-size: 16pt;
+    color: #6C6686;
+}</string>
+      </property>
+
+      <property name="text">
+       <string>Es un gusto verte por aquí</string>
+      </property>
+
+      <property name="styleClass" stdset="0">
+       <string>textoPaso</string>
+      </property>
+     </widget>
+    </item>
+
+   </layout>
+  </widget>
+
  </widget>
- <resources/>
+
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
+
  <connections/>
 </ui>
