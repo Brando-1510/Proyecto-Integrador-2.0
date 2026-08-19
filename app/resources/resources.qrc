@@ -1,5 +1,24 @@
 <RCC>
   <qresource prefix="/">
+    <!-- Imagenes añadidas -->
     <file>images/logo.png</file>
+
+    <!-- Iconos añadidos -->
+    <file>icons/person.svg</file>
+    <file>icons/kiosk.svg</file>
+    <file>icons/file.svg</file>
+    <file>icons/checkIcon.svg</file>
+    <file>icons/checkIconDark.svg</file>
+    <file>icons/iconSuitcase.svg</file>
+    <file>icons/iconSuitcaseLight.svg</file>
+    <file>icons/lightbulb.svg</file>
+
+    <!-- Fuentes añadidas -->
+    <file>fonts/Manrope-Bold.ttf</file>
+    <file>fonts/Manrope-Regular.ttf</file>
+    <file>fonts/Manrope-SemiBold.ttf</file>
+    <file>fonts/SourceSans3-SemiBold.ttf</file>
+    <file>fonts/SourceSans3-Bold.ttf</file>
+    <file>fonts/SourceSans3-Regular.ttf</file>
   </qresource>
 </RCC>

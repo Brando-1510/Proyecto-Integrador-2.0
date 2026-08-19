@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1370</width>
-    <height>768</height>
+    <height>689</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">/* Fondo general */
 QWidget#paginaRegistro {
-    background-color: #F9F9FC;
+    background-color: #F3F4F6;
 }
 
 /* Aside */
@@ -28,11 +28,65 @@ QFrame#frameAside {
 QLabel {
     background-color: transparent;
 }
+QLabel[styleClass=&quot;tituloPrincipal&quot;] {
+    font-weight: bold;
+    font-size: 30px;
+	color: #0E042F
+}
+
+QLabel[styleClass=&quot;tituloSecundario&quot;] {
+    font-size: 20px;
+	color: #6C6686;
+}
+QLabel[styleClass=&quot;numeroPaso&quot;] {
+    background-color: #FFFEFE;
+    border: 2px solid #B9B7A7;
+    /* 1. Cambia el radio a la mitad del nuevo tamaño */
+    border-radius: 32px; 
+    color: #252525;
+    font-weight: bold;
+    /* 2. Sube el tamaño de la fuente si lo necesitas */
+    font-size: 18px; 
+    /* 3. Aumenta las dimensiones del elemento */
+    min-width: 64px;
+    max-width: 64px;
+    min-height: 64px;
+    max-height: 64px;
+    qproperty-alignment: 'AlignCenter';
+}
+
+QLabel[paso=&quot;PasoActivo&quot;]{
+    background-color: #5D38BB;
+    color: #252525;
+ 	border: 0px;
+}
+QLabel[paso=&quot;PasoCompletado&quot;]{
+    background-color: #279D4F;
+    color: #252525;
+ 	border: 0px;
+}
+QLineEdit {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+QDateEdit {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+QLabel[styleClass=&quot;circuloDescripcion&quot;] {
+    border: 5px solid #279D4F;
+    border-radius: 25px;
+    color: #D1D5DB;
+    qproperty-alignment: 'AlignCenter';
+}
 </string>
   </property>
-
-  <!-- ==================== ASIDE ==================== -->
-
   <widget class="QFrame" name="frameAside">
    <property name="geometry">
     <rect>
@@ -42,23 +96,24 @@ QLabel {
      <height>768</height>
     </rect>
    </property>
-
    <property name="styleSheet">
     <string notr="true">/* Estilos generales del Aside */
 QLabel {
     color: #F7F7F7;
     qproperty-alignment: 'AlignHCenter | AlignVCenter';
-    font-size: 14pt;
+    font-size: 16px;
 }
 
 QLabel[styleClass=&quot;tituloPrincipal&quot;] {
     font-weight: bold;
-    font-size: 20pt;
+    font-size: 22px;
+	font-family: &quot;Manrope&quot;; 
 }
 
 QLabel[styleClass=&quot;tituloSeccion&quot;] {
     font-weight: bold;
-    font-size: 16pt;
+    font-size: 24px;
+	font-family: &quot;Manrope&quot;; 
 }
 
 QLabel[styleClass=&quot;numeroPaso&quot;] {
@@ -67,30 +122,20 @@ QLabel[styleClass=&quot;numeroPaso&quot;] {
     border-radius: 25px;
     color: white;
     font-weight: bold;
-    font-size: 14pt;
+    font-size: 14px;
     min-width: 50px;
     max-width: 50px;
     min-height: 50px;
     max-height: 50px;
     qproperty-alignment: 'AlignCenter';
-}
-
-QLabel[styleClass=&quot;textoPaso&quot;] {
-    font-size: 14pt;
-}
-</string>
+}</string>
    </property>
-
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
-
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-
-   <!-- ==================== DATOS DE EMPRESA ==================== -->
-
    <widget class="QWidget" name="containerEmpresa">
     <property name="geometry">
      <rect>
@@ -100,12 +145,10 @@ QLabel[styleClass=&quot;textoPaso&quot;] {
       <height>83</height>
      </rect>
     </property>
-
     <layout class="QHBoxLayout" name="layoutHEmpresa">
      <property name="spacing">
       <number>0</number>
      </property>
-
      <property name="leftMargin">
       <number>0</number>
      </property>
@@ -118,7 +161,6 @@ QLabel[styleClass=&quot;textoPaso&quot;] {
      <property name="bottomMargin">
       <number>0</number>
      </property>
-
      <item>
       <widget class="QLabel" name="lblLogoEmpresa">
        <property name="minimumSize">
@@ -127,67 +169,53 @@ QLabel[styleClass=&quot;textoPaso&quot;] {
          <height>81</height>
         </size>
        </property>
-
        <property name="maximumSize">
         <size>
          <width>91</width>
          <height>81</height>
         </size>
        </property>
-
        <property name="text">
         <string/>
        </property>
-
        <property name="pixmap">
         <pixmap resource="../resources/resources.qrc">:/images/logo.png</pixmap>
        </property>
-
        <property name="scaledContents">
         <bool>true</bool>
        </property>
       </widget>
      </item>
-
      <item>
       <layout class="QVBoxLayout" name="layoutVEmpresa">
        <property name="spacing">
         <number>0</number>
        </property>
-
        <item>
         <widget class="QLabel" name="lblNombreEmpresa">
          <property name="text">
           <string>Empresa</string>
          </property>
-
          <property name="styleClass" stdset="0">
           <string>tituloPrincipal</string>
          </property>
         </widget>
        </item>
-
        <item>
         <widget class="QLabel" name="lblDescripcionEmpresa">
          <property name="text">
           <string>Inteligencia financiera
 para tu negocio</string>
          </property>
-
          <property name="styleClass" stdset="0">
-          <string>textoPaso</string>
+          <string/>
          </property>
         </widget>
        </item>
-
       </layout>
      </item>
-
     </layout>
    </widget>
-
-   <!-- ==================== INTRODUCCIÓN ==================== -->
-
    <widget class="QWidget" name="containerIntroduccion">
     <property name="geometry">
      <rect>
@@ -197,39 +225,30 @@ para tu negocio</string>
       <height>141</height>
      </rect>
     </property>
-
     <layout class="QVBoxLayout" name="layoutVIntroduccion">
-
      <item>
       <widget class="QLabel" name="lblTituloIntroduccion">
        <property name="text">
         <string>Configura tu negocio
 en pocos pasos</string>
        </property>
-
        <property name="styleClass" stdset="0">
-        <string>tituloPrincipal</string>
+        <string>tituloSeccion</string>
        </property>
       </widget>
      </item>
-
      <item>
       <widget class="QLabel" name="lblSubtituloIntroduccion">
        <property name="text">
         <string>Inteligencia Financiera para tu Local</string>
        </property>
-
        <property name="styleClass" stdset="0">
-        <string>textoPaso</string>
+        <string/>
        </property>
       </widget>
      </item>
-
     </layout>
    </widget>
-
-   <!-- ==================== PASOS ==================== -->
-
    <widget class="QWidget" name="containerPasos">
     <property name="geometry">
      <rect>
@@ -239,24 +258,18 @@ en pocos pasos</string>
       <height>411</height>
      </rect>
     </property>
-
     <property name="styleSheet">
      <string notr="true">QLabel {
     font-size: 14pt;
 }</string>
     </property>
-
     <layout class="QGridLayout" name="layoutGridPasos">
      <property name="horizontalSpacing">
       <number>25</number>
      </property>
-
      <property name="verticalSpacing">
       <number>30</number>
      </property>
-
-     <!-- ==================== PASO 1 ==================== -->
-
      <item row="0" column="0">
       <widget class="QLabel" name="lblNumeroPaso1">
        <property name="minimumSize">
@@ -265,57 +278,49 @@ en pocos pasos</string>
          <height>50</height>
         </size>
        </property>
-
        <property name="maximumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
-
        <property name="text">
         <string>01</string>
        </property>
-
        <property name="styleClass" stdset="0">
         <string>numeroPaso</string>
        </property>
       </widget>
      </item>
-
      <item row="0" column="1">
       <layout class="QVBoxLayout" name="layoutVPaso1">
-
        <item>
         <widget class="QLabel" name="lblTituloPaso1">
          <property name="text">
           <string>Registra tus datos</string>
          </property>
-
          <property name="styleClass" stdset="0">
-          <string>tituloSeccion</string>
+          <string>tituloPrincipal</string>
          </property>
         </widget>
        </item>
-
        <item>
         <widget class="QLabel" name="lblDescripcionPaso1">
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px;
+</string>
+         </property>
          <property name="text">
           <string>Carga la información financiera de
 tu negocio.</string>
          </property>
-
          <property name="styleClass" stdset="0">
-          <string>textoPaso</string>
+          <string/>
          </property>
         </widget>
        </item>
-
       </layout>
      </item>
-
-     <!-- ==================== PASO 2 ==================== -->
-
      <item row="1" column="0">
       <widget class="QLabel" name="lblNumeroPaso2">
        <property name="minimumSize">
@@ -324,57 +329,48 @@ tu negocio.</string>
          <height>50</height>
         </size>
        </property>
-
        <property name="maximumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
-
        <property name="text">
         <string>02</string>
        </property>
-
        <property name="styleClass" stdset="0">
         <string>numeroPaso</string>
        </property>
       </widget>
      </item>
-
      <item row="1" column="1">
       <layout class="QVBoxLayout" name="layoutVPaso2">
-
        <item>
         <widget class="QLabel" name="lblTituloPaso2">
          <property name="text">
           <string>Analiza tu información</string>
          </property>
-
          <property name="styleClass" stdset="0">
-          <string>tituloSeccion</string>
+          <string>tituloPrincipal</string>
          </property>
         </widget>
        </item>
-
        <item>
         <widget class="QLabel" name="lblDescripcionPaso2">
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px;</string>
+         </property>
          <property name="text">
           <string>Visualiza indicadores y gráficos para
 entender tu situación.</string>
          </property>
-
          <property name="styleClass" stdset="0">
-          <string>textoPaso</string>
+          <string/>
          </property>
         </widget>
        </item>
-
       </layout>
      </item>
-
-     <!-- ==================== PASO 3 ==================== -->
-
      <item row="2" column="0">
       <widget class="QLabel" name="lblNumeroPaso3">
        <property name="minimumSize">
@@ -383,123 +379,1243 @@ entender tu situación.</string>
          <height>50</height>
         </size>
        </property>
-
        <property name="maximumSize">
         <size>
          <width>50</width>
          <height>50</height>
         </size>
        </property>
-
        <property name="text">
         <string>03</string>
        </property>
-
        <property name="styleClass" stdset="0">
         <string>numeroPaso</string>
        </property>
       </widget>
      </item>
-
      <item row="2" column="1">
       <layout class="QVBoxLayout" name="layoutVPaso3">
-
        <item>
         <widget class="QLabel" name="lblTituloPaso3">
          <property name="text">
           <string>Toma mejores decisiones</string>
          </property>
-
          <property name="styleClass" stdset="0">
-          <string>tituloSeccion</string>
+          <string>tituloPrincipal</string>
          </property>
         </widget>
        </item>
-
        <item>
         <widget class="QLabel" name="lblDescripcionPaso3">
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px;</string>
+         </property>
          <property name="text">
           <string>Obtén recomendaciones basadas
 en tus datos.</string>
          </property>
-
          <property name="styleClass" stdset="0">
-          <string>textoPaso</string>
+          <string/>
          </property>
         </widget>
        </item>
-
       </layout>
      </item>
-
     </layout>
    </widget>
-
   </widget>
-
-  <!-- ==================== REGISTRO ==================== -->
-
   <widget class="QWidget" name="containerRegistro">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>40</y>
+     <x>440</x>
+     <y>10</y>
      <width>911</width>
      <height>91</height>
     </rect>
    </property>
-
    <layout class="QVBoxLayout" name="layoutVRegistro">
-
     <item>
      <widget class="QLabel" name="lblTituloRegistro">
       <property name="styleSheet">
-       <string notr="true">QLabel {
-    qproperty-alignment: 'AlignHCenter | AlignVCenter';
-    font-weight: bold;
-    font-size: 20pt;
-    color: #0E042F;
-}</string>
+       <string notr="true">qproperty-alignment: 'AlignCenter';</string>
       </property>
-
       <property name="text">
        <string>Crea una Cuenta</string>
       </property>
-
       <property name="styleClass" stdset="0">
        <string>tituloPrincipal</string>
       </property>
      </widget>
     </item>
-
     <item>
      <widget class="QLabel" name="lblSubtituloRegistro">
       <property name="styleSheet">
-       <string notr="true">QLabel {
-    qproperty-alignment: 'AlignHCenter | AlignVCenter';
-    font-size: 16pt;
-    color: #6C6686;
-}</string>
+       <string notr="true">qproperty-alignment: 'AlignCenter';</string>
       </property>
-
       <property name="text">
        <string>Es un gusto verte por aquí</string>
       </property>
-
       <property name="styleClass" stdset="0">
-       <string>textoPaso</string>
+       <string>tituloSecundario</string>
       </property>
      </widget>
     </item>
-
    </layout>
   </widget>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>110</y>
+     <width>911</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#stackedWidget{background-color: #F7f7f7;
+border: 2px solid #E5E7EB;
+border-radius: 8px;}
+QWidget[widget=&quot;Pasos Creados&quot;]{background-color: #F2F8F4;
+border: 2px solid #A1E7BF;
+border-radius: 15px;
+padding: 0px 20px}
 
+
+</string>
+   </property>
+   <property name="currentIndex">
+    <number>2</number>
+   </property>
+   <widget class="QWidget" name="page">
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>891</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>👤</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoActivo</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="styleSheet">
+         <string notr="true">color: #279D4F</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_14">
+        <property name="maximumSize">
+         <size>
+          <width>68</width>
+          <height>68</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/iconSuitcase.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_13">
+        <property name="maximumSize">
+         <size>
+          <width>68</width>
+          <height>68</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIconDark.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>891</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="styleSheet">
+         <string notr="true">color: #5D38BB;
+font-weight:bold;
+font-size: 12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Información Básica</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: 'AlignCenter';
+color: #6C6686;
+font-weight:bold;
+font-size: 12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Negocio</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: 'AlignTrailing | AlignVCenter';
+color: #6C6686;
+font-weight:bold;
+font-size: 12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Cuenta Lista</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>891</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="layoutVRegistro_3">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_3">
+        <property name="styleSheet">
+         <string notr="true">font-size: 14pt;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Información básica</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblSubtituloRegistro_3">
+        <property name="styleSheet">
+         <string notr="true">font-size:12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Crea tu cuenta para comenzar a gestionar tu negocio.</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloSecundario</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>260</y>
+       <width>521</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="inputLayout">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_5">
+        <property name="styleSheet">
+         <string notr="true">font-size: 12pt;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Nombre de Usuario</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>360</y>
+       <width>521</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="inputLayout_2">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_6">
+        <property name="styleSheet">
+         <string notr="true">font-size: 12pt;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Correo Electrónico</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_2"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>470</y>
+       <width>521</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(161, 147, 204, 0.7);
+border: 2px solid rgba(161, 147, 204, 1);
+border-radius: 10px;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <widget class="QLabel" name="icon_16">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+    /* Aumenta las dimensiones del elemento */
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    qproperty-alignment: 'AlignCenter';
+background-color: transparent;
+border: None;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/lightbulb.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string/>
+        </property>
+        <property name="paso" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_20">
+        <property name="styleSheet">
+         <string notr="true"> background-color: transparent;
+border: 0pt;
+color: rgba(93, 56, 187, 0.8);
+font-size:12pt;
+
+</string>
+        </property>
+        <property name="text">
+         <string>Usaremos tu correo para mantener tu información segura
+ y enviarte notificaciones importantes</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>490</y>
+       <width>161</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: #5D38BB;
+font-weight: bold;
+color: #f7f7f7;
+font-size: 12pt;
+</string>
+     </property>
+     <property name="text">
+      <string>Continuar</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="horizontalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>891</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="icon_11">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIcon.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoCompletado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_3">
+        <property name="styleSheet">
+         <string notr="true">background-color: #279D4F</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_15">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/iconSuitcaseLight.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoActivo</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_12">
+        <property name="maximumSize">
+         <size>
+          <width>68</width>
+          <height>68</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIconDark.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>891</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_10">
+        <property name="styleSheet">
+         <string notr="true">color: #6C6686;
+font-weight:bold;
+font-size: 12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Información Básica</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_11">
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: 'AlignCenter';
+color: #5D38BB;
+font-weight:bold;
+font-size: 12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Negocio</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_12">
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: 'AlignTrailing | AlignVCenter';
+color: #6C6686;
+font-weight:bold;
+font-size: 12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Cuenta Lista</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>891</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="layoutVRegistro_4">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_4">
+        <property name="styleSheet">
+         <string notr="true">font-size: 14pt;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Información de tu Negocio</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblSubtituloRegistro_4">
+        <property name="styleSheet">
+         <string notr="true">font-size:12pt;
+</string>
+        </property>
+        <property name="text">
+         <string>Estos datos nos ayudaran a ofrecerte análisis mas relevantes</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloSecundario</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>260</y>
+       <width>521</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="inputLayout_3">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_7">
+        <property name="styleSheet">
+         <string notr="true">font-size: 16px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Nombre del Negocio</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_3"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>360</y>
+       <width>521</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="inputLayout_4">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_8">
+        <property name="styleSheet">
+         <string notr="true">font-size: 16px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Tipo del Negocio</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_4"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_9">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>360</y>
+       <width>291</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="inputLayout_5">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_9">
+        <property name="styleSheet">
+         <string notr="true">font-size: 16px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Inicio de Operaciones (Opcional)</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDateEdit" name="dateEdit"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>490</y>
+       <width>161</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: #5D38BB;
+font-weight: bold;
+color: #f7f7f7;
+font-size: 18px;
+</string>
+     </property>
+     <property name="text">
+      <string>Continuar</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>490</y>
+       <width>161</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: rgba(161, 147, 204, 0.7);
+font-weight: bold;
+color: #5D38BB;
+font-size: 18px;
+</string>
+     </property>
+     <property name="text">
+      <string>Volver</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_3">
+    <widget class="QWidget" name="horizontalLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>891</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QLabel" name="icon_10">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIcon.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoCompletado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_5">
+        <property name="styleSheet">
+         <string notr="true">background-color: #279D4F</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_9">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIcon.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoCompletado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_6">
+        <property name="styleSheet">
+         <string notr="true">background-color: #279D4F</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_8">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIcon.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoActivo</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>891</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <widget class="QLabel" name="label_16">
+        <property name="styleSheet">
+         <string notr="true">color: #6C6686;
+font-weight:bold;
+font-size: 14px;
+</string>
+        </property>
+        <property name="text">
+         <string>Información Básica</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_17">
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: 'AlignCenter';
+color: #6C6686;
+font-weight:bold;
+font-size: 14px;
+</string>
+        </property>
+        <property name="text">
+         <string>Negocio</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_18">
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: 'AlignTrailing | AlignVCenter';
+color: #5D38BB;
+font-weight:bold;
+font-size: 14px;
+</string>
+        </property>
+        <property name="text">
+         <string>Cuenta Lista</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="containerRegistro_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>891</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="layoutVRegistro_2">
+      <item>
+       <widget class="QLabel" name="lblTituloRegistro_2">
+        <property name="styleSheet">
+         <string notr="true">font-size: 20px;
+font-weight: bold;</string>
+        </property>
+        <property name="text">
+         <string>Información de tu Negocio</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblSubtituloRegistro_2">
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;
+</string>
+        </property>
+        <property name="text">
+         <string>Estos datos nos ayudaran a ofrecerte análisis mas relevantes</string>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>tituloSecundario</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>467</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="widget" stdset="0">
+      <string>Pasos Creados</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLabel" name="icon_4">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/person.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_22">
+        <property name="styleSheet">
+         <string notr="true">color: #0E042F;
+font-size: 12pt;
+font-weight:600;</string>
+        </property>
+        <property name="text">
+         <string>Cuenta Creada</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_5">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIcon.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoCompletado</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>360</y>
+       <width>467</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#widget{background-color: #F2F8F4;
+border: 2px solid #A1E7BF;
+border-radius: 15px;
+padding: 0px 20px}</string>
+     </property>
+     <property name="widget" stdset="0">
+      <string>Pasos Creados</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <item>
+       <widget class="QLabel" name="icon_2">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/kiosk.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_24">
+        <property name="styleSheet">
+         <string notr="true">color: #0E042F;
+font-size: 12pt;
+font-weight:600;</string>
+        </property>
+        <property name="text">
+         <string>Negocio Configurado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_6">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIcon.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoCompletado</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="widget_3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>450</y>
+       <width>467</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#widget{background-color: #F2F8F4;
+border: 2px solid #A1E7BF;
+border-radius: 15px;
+padding: 0px 20px}</string>
+     </property>
+     <property name="widget" stdset="0">
+      <string>Pasos Creados</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <item>
+       <widget class="QLabel" name="icon_3">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/file.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_26">
+        <property name="styleSheet">
+         <string notr="true">color: #0E042F;
+font-size: 12pt;
+font-weight:600;</string>
+        </property>
+        <property name="text">
+         <string>Datos iniciales listos</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="icon_7">
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/icons/checkIcon.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="styleClass" stdset="0">
+         <string>numeroPaso</string>
+        </property>
+        <property name="paso" stdset="0">
+         <string>PasoCompletado</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>460</y>
+       <width>161</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: #5D38BB;
+font-weight: bold;
+color: #f7f7f7;
+font-size: 18px;
+</string>
+     </property>
+     <property name="text">
+      <string>Comenzar</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
  </widget>
-
  <resources>
   <include location="../resources/resources.qrc"/>
  </resources>
-
  <connections/>
 </ui>

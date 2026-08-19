@@ -14,8 +14,7 @@ class VentanaCrearCuenta(QWidget):
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
         if not self.ui:
-            print(f"Error crítico: No se pudo cargar el archivo UI en: {ruta_ui}"
-            )
+            print(f"Error crítico: No se pudo cargar el archivo UI en: {ruta_ui}")
             return
         #*CARGAR TIPOGRAFÍAS
         # Manrope
