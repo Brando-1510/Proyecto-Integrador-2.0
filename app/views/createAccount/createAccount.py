@@ -1,6 +1,6 @@
 import os
 from PySide6.QtWidgets import QApplication, QWidget,QLineEdit
-from PySide6.QtGui import QFontDatabase
+from PySide6.QtGui import QFontDatabase,QAction,QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6 import QtCore
 from app.generated import resources_rc
@@ -124,8 +124,8 @@ class VentanaCrearCuenta(QWidget):
 
         #* CAMBIANDO LOS INPUTS
         #contraseña
-        self.ui.inputContrasena.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
-        self.ui.inputContrasenaConfirmar.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
+        self.configurar_password(self.ui.inputContrasena)
+        self.configurar_password(self.ui.inputContrasenaConfirmar)
         #fecha
         self.ui.inputFecha.setDate(QtCore.QDate.currentDate())
 
@@ -133,3 +133,18 @@ class VentanaCrearCuenta(QWidget):
         self.showMaximized()
     def cambiar_pagina(self, indice):
         self.ui.stackedWidget.setCurrentIndex(indice)
+    def configurar_password(self, input_password):
+        input_password.setEchoMode(QLineEdit.EchoMode.Password)
+        accion_ojo = QAction(input_password)
+        accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
+        accion_ojo.setCheckable(True)
+        input_password.addAction(accion_ojo,
+            QLineEdit.ActionPosition.TrailingPosition)
+        def cambiar_visibilidad(activado):
+            if activado:
+                input_password.setEchoMode(QLineEdit.EchoMode.Normal)
+                accion_ojo.setIcon(QIcon(":/icons/closeEye.svg"))
+            else:
+                input_password.setEchoMode(QLineEdit.EchoMode.Password)
+                accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
+        accion_ojo.toggled.connect(cambiar_visibilidad)
