@@ -1,10 +1,10 @@
 import sys
 from PySide6.QtWidgets import QApplication
 from app.generated import resources_rc
-from app.windows.createAccount.createAccount import VentanaCrearCuenta
+from app.views.createAccount.createAccount import VentanaCrearCuenta
 from PySide6.QtGui import QIcon
 
-#!AHORITA SOLO ESTOY PROBANDO PARA VER LA PAGINA DE createAccount
+#!AHORITA SOLO ESTOY PROBANDO PARA VER LAS VENTANA QUE VOY HACIENDO
 app = QApplication(sys.argv)
 ventana = VentanaCrearCuenta()
 ventana.setWindowTitle("Empresa")

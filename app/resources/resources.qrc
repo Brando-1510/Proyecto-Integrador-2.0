@@ -2,6 +2,7 @@
   <qresource prefix="/">
     <!-- Imagenes añadidas -->
     <file>images/logo.png</file>
+    <file>images/back.jpg</file>
 
     <!-- Iconos añadidos -->
     <file>icons/person.svg</file>
@@ -12,6 +13,10 @@
     <file>icons/iconSuitcase.svg</file>
     <file>icons/iconSuitcaseLight.svg</file>
     <file>icons/lightbulb.svg</file>
+    <file>icons/profileLight.svg</file>
+    <file>icons/profileIcon.svg</file>
+    <file>icons/openEye.svg</file>
+    <file>icons/closeEye.svg</file>
 
     <!-- Fuentes añadidas -->
     <file>fonts/Manrope-Bold.ttf</file>
