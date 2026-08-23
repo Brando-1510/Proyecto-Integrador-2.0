@@ -110239,6 +110239,91 @@ plus-[#279D4F135\
 4]\x22> </path> </g\
 > </g> </g> </g>\
 \x0a\x0d</svg>\
+\x00\x00\x05#\
+<\
+!DOCTYPE svg PUB\
+LIC \x22-//W3C//DTD\
+ SVG 1.1//EN\x22 \x22h\
+ttp://www.w3.org\
+/Graphics/SVG/1.\
+1/DTD/svg11.dtd\x22\
+>\x0a\x0d<!-- Uploaded\
+ to: SVG Repo, w\
+ww.svgrepo.com, \
+Transformed by: \
+SVG Repo Mixer T\
+ools -->\x0a<svg wi\
+dth=\x22800px\x22 heig\
+ht=\x22800px\x22 viewB\
+ox=\x220 -4.5 24 24\
+\x22 version=\x221.1\x22 \
+xmlns=\x22http://ww\
+w.w3.org/2000/sv\
+g\x22 xmlns:xlink=\x22\
+http://www.w3.or\
+g/1999/xlink\x22 xm\
+lns:sketch=\x22http\
+://www.bohemianc\
+oding.com/sketch\
+/ns\x22 fill=\x22#0000\
+00\x22>\x0a\x0d<g id=\x22SVG\
+Repo_bgCarrier\x22 \
+stroke-width=\x220\x22\
+/>\x0a\x0d<g id=\x22SVGRe\
+po_tracerCarrier\
+\x22 stroke-linecap\
+=\x22round\x22 stroke-\
+linejoin=\x22round\x22\
+/>\x0a\x0d<g id=\x22SVGRe\
+po_iconCarrier\x22>\
+ <title>chevron-\
+down</title> <de\
+sc>Created with \
+Sketch Beta.</de\
+sc> <defs> </def\
+s> <g id=\x22Page-1\
+\x22 stroke=\x22none\x22 \
+stroke-width=\x221\x22\
+ fill=\x22none\x22 fil\
+l-rule=\x22evenodd\x22\
+ sketch:type=\x22MS\
+Page\x22> <g id=\x22Ic\
+on-Set-Filled\x22 s\
+ketch:type=\x22MSLa\
+yerGroup\x22 transf\
+orm=\x22translate(-\
+574.000000, -120\
+1.000000)\x22 fill=\
+\x22#0E042F\x22> <path\
+ d=\x22M597.405,120\
+1.63 C596.576,12\
+00.8 595.23,1200\
+.8 594.401,1201.\
+63 L586.016,1210\
+.88 L577.63,1201\
+.63 C576.801,120\
+0.8 575.455,1200\
+.8 574.626,1201.\
+63 C573.797,1202\
+.46 573.797,1203\
+.81 574.626,1204\
+.64 L584.381,121\
+5.4 C584.83,1215\
+.85 585.429,1216\
+.05 586.016,1216\
+.01 C586.603,121\
+6.05 587.201,121\
+5.85 587.65,1215\
+.4 L597.405,1204\
+.64 C598.234,120\
+3.81 598.234,120\
+2.46 597.405,120\
+1.63\x22 id=\x22chevro\
+n-down\x22 sketch:t\
+ype=\x22MSShapeGrou\
+p\x22> </path> </g>\
+ </g> </g>\x0a\x0d</sv\
+g>\
 "
 
 qt_resource_name = b"\
@@ -110341,14 +110426,18 @@ qt_resource_name = b"\
 \x0ao\x83\xe7\
 \x00p\
 \x00e\x00r\x00s\x00o\x00n\x00.\x00s\x00v\x00g\
+\x00\x0b\
+\x09\xb2\x83g\
+\x00c\
+\x00h\x00e\x00v\x00r\x00o\x00n\x00.\x00s\x00v\x00g\
 "
 
 qt_resource_struct = b"\
 \x00\x00\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x01\
 \x00\x00\x00\x00\x00\x00\x00\x00\
-\x00\x00\x00\x10\x00\x02\x00\x00\x00\x06\x00\x00\x00\x12\
+\x00\x00\x00\x10\x00\x02\x00\x00\x00\x06\x00\x00\x00\x13\
 \x00\x00\x00\x00\x00\x00\x00\x00\
-\x00\x00\x00\x00\x00\x02\x00\x00\x00\x0c\x00\x00\x00\x06\
+\x00\x00\x00\x00\x00\x02\x00\x00\x00\x0d\x00\x00\x00\x06\
 \x00\x00\x00\x00\x00\x00\x00\x00\
 \x00\x00\x00 \x00\x02\x00\x00\x00\x02\x00\x00\x00\x04\
 \x00\x00\x00\x00\x00\x00\x00\x00\
@@ -110372,6 +110461,8 @@ qt_resource_struct = b"\
 \x00\x00\x01\xa0\x1a\xda\xa1\xde\
 \x00\x00\x02\x06\x00\x00\x00\x00\x00\x01\x00\x1a\xb1K\
 \x00\x00\x01\xa0\x1dX\xe4\xfd\
+\x00\x00\x03\x00\x00\x00\x00\x00\x00\x01\x00\x1a\xe6\xd8\
+\x00\x00\x01\xa0,\x08|\xb3\
 \x00\x00\x02\xe6\x00\x00\x00\x00\x00\x01\x00\x1a\xdbk\
 \x00\x00\x01\xa0\x1a\xc9\xdau\
 \x00\x00\x01\xea\x00\x00\x00\x00\x00\x01\x00\x1a\xacx\

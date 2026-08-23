@@ -1,9 +1,15 @@
+#Importaciones
 import os
-from PySide6.QtWidgets import QApplication, QWidget,QLineEdit
+#Importaciones relacionadas a la UI
+from PySide6.QtWidgets import QApplication, QWidget,QLineEdit,QMessageBox
 from PySide6.QtGui import QFontDatabase,QAction,QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6 import QtCore
 from app.generated import resources_rc
+#Importaciones de la clase Validators (validan cosas)
+from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
+#Importaciones para el hash de contraseñas
+from app.core.security.password import HashPassword as hp
 
 from PySide6.QtSvg import QSvgRenderer
 renderer = QSvgRenderer(":/icons/person.svg")
@@ -116,11 +122,18 @@ class VentanaCrearCuenta(QWidget):
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
 
         #* CONECTAR LOS BOTONES A LAS ACCIONES
+        #acciones relacionadas a moverse entre las pantallas
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.continuarUno.clicked.connect(lambda: self.cambiar_pagina(1))
+        self.ui.continuarUno.clicked.connect(lambda: self.avanzar(
+            1,self.ui.inputNombre, self.ui.inputCorreo,self.ui.inputContrasena, self.ui.inputContrasenaConfirmar
+            ))
         self.ui.volverDos.clicked.connect(lambda: self.cambiar_pagina(0))
-        self.ui.continuarDos.clicked.connect(lambda: self.cambiar_pagina(2))
+        self.ui.continuarDos.clicked.connect(lambda: self.avanzar(
+        2,self.ui.inputNegocio,self.ui.tipoNegocio
+        ))
         self.ui.volverTres.clicked.connect(lambda: self.cambiar_pagina(1))
+        #accion del boton guardar
+        self.ui.comenzar.clicked.connect(self.guardar)
 
         #* CAMBIANDO LOS INPUTS
         #contraseña
@@ -148,3 +161,20 @@ class VentanaCrearCuenta(QWidget):
                 input_password.setEchoMode(QLineEdit.EchoMode.Password)
                 accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
         accion_ojo.toggled.connect(cambiar_visibilidad)
+    def avanzar(self, index, *args):
+        # Pasamos los elementos desempaquetados directamente
+        if V.tienen_contenido(*args):
+            self.cambiar_pagina(index)
+        else:
+            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para avanzar")
+    def guardar(self):
+        if not VD.validar_correo(self.ui.inputCorreo.text()):
+            QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
+            return
+        password = self.ui.inputContrasena.text()
+        password_confirmar = self.ui.inputContrasenaConfirmar.text()
+        if password != password_confirmar:
+            QMessageBox.critical(self,"Error","Las Contraseñas deben de coincidir")
+            return
+        password_hash = hp.hash_password(password)
+

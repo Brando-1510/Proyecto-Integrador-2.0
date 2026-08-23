@@ -48,7 +48,7 @@ font-weight: bold;
 Inputs
 -----------------------------------------------------------------------------------------------------*/
 /* --- ESTADO BASE --- */
-QLineEdit, QDateEdit {
+QLineEdit, QDateEdit,QComboBox {
     background-color: #F8F9FA; 
     border: 2px solid #D1D5DB; 
     border-radius: 8px;     
@@ -58,19 +58,19 @@ QLineEdit, QDateEdit {
 }
 
 /* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
-QLineEdit:hover, QDateEdit:hover {
+QLineEdit:hover, QDateEdit:hover, QComboBox:hover {
     border: 1px solid #9CA3AF;      /* Borde un poco más oscuro */
     background-color: #F3F4F6;      /* Fondo ligeramente gris */
 }
 
 /* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
-QLineEdit:focus, QDateEdit:focus {
+QLineEdit:focus, QDateEdit:focus, QComboBox:focus {
     border: 1px solid #744bcc;      /* Borde azul más grueso */
     background-color: #FFFFFF;      /* Fondo blanco puro */
 }
 
 /* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
-QLineEdit:disabled, QDateEdit:disabled {
+QLineEdit:disabled, QDateEdit:disabled, QComboBox:disabled {
     background-color: #E5E7EB;      /* Fondo gris oscuro */
     color: #9CA3AF;                 /* Texto gris claro */
     border: 2px solid #D1D5DB;      /* Borde original o más claro */
@@ -87,6 +87,36 @@ QDateEdit::drop-down {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
+/*----- ESTILOS DE LOS QComboBox -----*/
+/* --- BOTÓN DE LA FLECHA (DROP-DOWN) --- */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left-width: 0px; /* Quita el borde interno */
+    border-top-right-radius: 8px; /* Mantiene el redondeado del contenedor */
+    border-bottom-right-radius: 8px;
+}
+
+/* --- ICONO DE LA FLECHA --- */
+QComboBox::down-arrow {
+   image: url(:/icons/chevron.svg);
+    width: 12px;
+    height: 12px;
+}
+
+/* --- EL MENÚ DESPLEGABLE (LISTA DE OPCIONES) --- */
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 2px solid #744bcc; /* Borde que combina con tu Focus */
+    border-radius: 8px;
+    padding: 4px;
+    color: #0E042F;
+    selection-background-color: #744bcc; /* Fondo al pasar el mouse en la lista */
+    selection-color: #FFFFFF; /* Texto al pasar el mouse en la lista */
+}
+
 
 /*
 -----------------------------------------------------------------------------------------------------
@@ -529,7 +559,7 @@ padding: 0px 20px}
 </string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QWidget" name="horizontalLayoutWidget">
@@ -1269,10 +1299,42 @@ font-weight: bold;
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="inputTipoNegocio">
-          <property name="placeholderText">
-           <string>Tipo de Negocio</string>
-          </property>
+         <widget class="QComboBox" name="tipoNegocio">
+          <item>
+           <property name="text">
+            <string>Seleccione una Opción</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Barbería</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Pulpería</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Tienda de Ropa</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ferretería</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Panadería</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Restaurante</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
@@ -1793,7 +1855,7 @@ font-weight:600;
        <string>Secundario</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="continuarTres">
+     <widget class="QPushButton" name="comenzar">
       <property name="geometry">
        <rect>
         <x>250</x>

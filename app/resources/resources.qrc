@@ -17,6 +17,7 @@
     <file>icons/profileIcon.svg</file>
     <file>icons/openEye.svg</file>
     <file>icons/closeEye.svg</file>
+    <file>icons/chevron.svg</file>
 
     <!-- Fuentes añadidas -->
     <file>fonts/Manrope-Bold.ttf</file>

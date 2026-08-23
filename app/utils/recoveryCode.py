@@ -8,6 +8,9 @@ from email.utils import make_msgid
 from PySide6.QtCore import QThread, Signal, QFile, QIODevice
 from app.config.settings import EMAIL, PASSWORD
 
+#!ESTO AUN NO ESTA TERMINADO
+
+
 #*Función para generar el código
 def generar_codigo_recuperacion():
     codigo_numerico = str(secrets.randbelow(900000) + 100000)
@@ -52,22 +55,22 @@ class EnviarCorreoThread(QThread):
                     <img src="cid:{logo_cid[1:-1]}" alt="Logo FINANCE" style="width: 130px; height: auto;">
                 </div>
 
-                <h3 style="color: #1a365d; margin-top: 0; text-align: center;">Recuperación de Contraseña</h3>
+                <h3 style="color: #0E042F; margin-top: 0; text-align: center;">Recuperación de Contraseña</h3>
                 <p>Te saludamos desde <strong>FINANCE</strong>,</p>
                 <p>Has solicitado recuperar tu contraseña. Tu código de verificación es:</p>
 
                 <div style="text-align: center; margin: 25px 0;">
-                    <span style="background-color: #f0f4f8; border: 2px dashed #1a365d; color: #1a365d; font-size: 24px; font-weight: bold; padding: 10px 20px; letter-spacing: 2px; border-radius: 4px;">
+                    <span style="background-color: #f0f4f8; border: 2px dashed #2B21BB; color: #1a365d; font-size: 24px; font-weight: bold; padding: 10px 20px; letter-spacing: 2px; border-radius: 4px;">
                         {self.codigo}
                     </span>
                 </div>
 
-                <p style="font-size: 13px; color: #666666; background-color: #fffaf0; border-left: 4px solid #dd6b20; padding: 10px; margin-top: 20px;">
+                <p style="font-size: 13px; color: #252525; background-color: #fffaf0; border-left: 4px solid #6C6686; padding: 10px; margin-top: 20px;">
                     Este código expirará en <strong>15 minutos</strong>.
                 </p>
 
                 <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;">
-                <p style="font-size: 11px; color: #999999; text-align: center; margin: 0;">
+                <p style="font-size: 11px; color: #6C6686; text-align: center; margin: 0;">
                     Si no solicitaste este cambio, puedes ignorar este correo de forma segura.
                 </p>
             </body>
@@ -93,13 +96,17 @@ class EnviarCorreoThread(QThread):
 
         #Proceso de envío SMTP tradicional
         try:
-            server = smtplib.SMTP(smtp_server, smtp_port)
-            server.starttls()
-            server.login(remitente, password)
-            server.sendmail(remitente, self.email_destino, mensaje.as_string())
-            server.quit()
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls()
+                server.login(remitente, password)
+                server.sendmail(
+                    remitente,
+                    self.email_destino,
+                    mensaje.as_string()
+                )
             # Emitimos señal de éxito
             self.exito_signal.emit(self.codigo)
         except Exception as e:
             # Emitimos señal de error con el detalle
-            self.error_signal.emit(str(e))
+            print(f"Error al enviar correo: {e}")
+            self.error_signal.emit("No se pudo enviar el correo. Inténtalo nuevamente.")
