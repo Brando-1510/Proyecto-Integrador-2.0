@@ -1,10 +1,10 @@
+#Importaciones
 import os
+#Importaciones relacionadas a la UI
 from PySide6.QtWidgets import QApplication, QWidget,QLineEdit,QMessageBox
-from PySide6.QtGui import QFontDatabase
+from PySide6.QtGui import QFontDatabase,QAction,QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6 import QtCore
-from PySide6.QtCore import QRect
-from PySide6.QtGui import QIcon,QAction
 from app.generated import resources_rc
 #Importaciones de la clase Validators (validan cosas)
 from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
@@ -21,7 +21,7 @@ class VentanaCrearCuenta(QWidget):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
         #* CARGAR ARCHIVO .UI
-        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/createAccount.ui"))
+        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/creatingAccount.ui"))
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui,self)
 
@@ -77,15 +77,9 @@ class VentanaCrearCuenta(QWidget):
                     font-weight: bold;
                 }}
                 /* =========================
-                BOTONES
-                ========================= */
-                QPushButton {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
                 TÍTULOS DE SECCIÓN
                 ========================= */
-                QLabel[texto="InputTexto"],QPushButton[boton="BotonTexto"] {{
+                QLabel[texto="InputTexto"] {{
                     font-family: "{manrope_family}";
                     font-weight: bold;
                 }}
@@ -93,6 +87,12 @@ class VentanaCrearCuenta(QWidget):
                 TÍTULOS SECUNDARIOS
                 ========================= */
                 QLabel[styleClass="tituloSecundario"] {{
+                    font-family: "{source_family}";
+                }}
+                /* =========================
+                TEXTO DE LOS PASOS
+                ========================= */
+                QLabel[styleClass="textoPaso"] {{
                     font-family: "{source_family}";
                 }}
                 /* =========================
@@ -110,28 +110,42 @@ class VentanaCrearCuenta(QWidget):
                     font-family: "{source_family}";
                     font-size: 14px;
                 }}
+                /* =========================
+                BOTONES
+                ========================= */
+                QPushButton {{
+                    font-family: "{source_family}";
+                }}
             """
             self.ui.setStyleSheet(estilos_actuales + estilos_fuentes)
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
 
+        #* CONECTAR LOS BOTONES A LAS ACCIONES
+        #acciones relacionadas a moverse entre las pantallas
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.continuarUno.clicked.connect(lambda: self.avanzar(
+            1,self.ui.inputNombre, self.ui.inputCorreo,self.ui.inputContrasena, self.ui.inputContrasenaConfirmar
+            ))
+        self.ui.volverDos.clicked.connect(lambda: self.cambiar_pagina(0))
+        self.ui.continuarDos.clicked.connect(lambda: self.avanzar(
+        2,self.ui.inputNegocio,self.ui.tipoNegocio
+        ))
+        self.ui.volverTres.clicked.connect(lambda: self.cambiar_pagina(1))
+        #accion del boton guardar
+        self.ui.comenzar.clicked.connect(self.guardar)
+
         #* CAMBIANDO LOS INPUTS
-        #relacionado a las contraseñas
+        #contraseña
         self.configurar_password(self.ui.inputContrasena)
         self.configurar_password(self.ui.inputContrasenaConfirmar)
-        #relacionados a la fecha de nacimiento
-        hoy = QtCore.QDate.currentDate()
-        fecha_maxima = hoy.addYears(-18)
-        self.ui.inputFecha.setCalendarPopup(True)
-        self.ui.inputFecha.setMaximumDate(fecha_maxima)
-        self.ui.inputFecha.setDate(fecha_maxima)
-
-        #*CONECTAR LAS ACCIONES
-        self.ui.BtnCrearCuenta.clicked.connect(self.guardar)
+        #fecha
+        self.ui.inputFecha.setDate(QtCore.QDate.currentDate())
 
         #* MOSTRAR VENTANA
         self.showMaximized()
-
+    def cambiar_pagina(self, indice):
+        self.ui.stackedWidget.setCurrentIndex(indice)
     def configurar_password(self, input_password):
         input_password.setEchoMode(QLineEdit.EchoMode.Password)
         accion_ojo = QAction(input_password)
@@ -147,20 +161,20 @@ class VentanaCrearCuenta(QWidget):
                 input_password.setEchoMode(QLineEdit.EchoMode.Password)
                 accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
         accion_ojo.toggled.connect(cambiar_visibilidad)
-    def verificar(self):
-        if not V.tienen_contenido(
-            [self.ui.inputNombre,self.ui.inputCorreo,
-            self.ui.inputContrasena,self.ui.inputContrasenaConfirmar]
-        ):
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear la Cuenta")
-            return
+    def avanzar(self, index, *args):
+        # Pasamos los elementos desempaquetados directamente
+        if V.tienen_contenido(*args):
+            self.cambiar_pagina(index)
+        else:
+            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para avanzar")
+    def guardar(self):
         if not VD.validar_correo(self.ui.inputCorreo.text()):
             QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
             return
         password = self.ui.inputContrasena.text()
         password_confirmar = self.ui.inputContrasenaConfirmar.text()
-        VD.comparar_contraseñas(self,password,password_confirmar)
-        VD.evaluar_contrasena(self.ui.inputContrasena.text(),self)
-    def guardar(self):
-        self.verificar()
-        
+        if password != password_confirmar:
+            QMessageBox.critical(self,"Error","Las Contraseñas deben de coincidir")
+            return
+        password_hash = hp.hash_password(password)
+

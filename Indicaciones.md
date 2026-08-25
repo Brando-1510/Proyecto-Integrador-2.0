@@ -271,15 +271,17 @@ debe contener una configuración similar a la siguiente:
         {
             "label": "Ejecutar Proyecto",
             "type": "shell",
-            "command": "python -m app.main",
+            "command": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+            "args": [
+                "-m",
+                "app.main"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared",
-                "focus": false
             },
             "problemMatcher": []
         }

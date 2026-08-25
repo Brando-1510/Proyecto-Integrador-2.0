@@ -3,6 +3,7 @@
     <!-- Imagenes añadidas -->
     <file>images/logo.png</file>
     <file>images/back.jpg</file>
+    <file>images/backCreateAccount.jpg</file>
 
     <!-- Iconos añadidos -->
     <file>icons/person.svg</file>
