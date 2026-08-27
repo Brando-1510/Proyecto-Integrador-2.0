@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>LoginWindow</class>
+
  <widget class="QWidget" name="LoginWindow">
+
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,46 +12,62 @@
     <height>700</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
+
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
   </property>
+
+  <property name="maximumSize">
+   <size>
+    <width>1370</width>
+    <height>700</height>
+   </size>
+  </property>
+
+  <property name="windowTitle">
+   <string>Crear Cuenta</string>
+  </property>
+
   <property name="styleSheet">
-   <string notr="true">#LoginWindow{
-background-color: #f7f7f7;
+   <string notr="true">
+#LoginWindow {
+    background-color: #F7F7F7;
 }
+
 /*
 -----------------------------------------------------------------------------------------------------
 Inputs
------------------------------------------------------------------------------------------------------*/
-/* --- ESTADO BASE --- */
+-----------------------------------------------------------------------------------------------------
+*/
+
 QLineEdit, QDateEdit {
-    background-color: #F8F9FA; 
-    border: 2px solid #D1D5DB; 
-    border-radius: 8px;     
-    padding: 8px 12px;         
+    background-color: #F8F9FA;
+    border: 2px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
     color: #0E042F;
+    min-height: 18px;
 }
 
-/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
 QLineEdit:hover, QDateEdit:hover {
-    border: 1px solid #9CA3AF;      /* Borde un poco más oscuro */
-    background-color: #F3F4F6;      /* Fondo ligeramente gris */
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
 }
 
-/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
 QLineEdit:focus, QDateEdit:focus {
-    border: 1px solid #744bcc;      /* Borde azul más grueso */
-    background-color: #FFFFFF;      /* Fondo blanco puro */
+    border: 1px solid #744BCC;
+    background-color: #FFFFFF;
 }
 
-/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
 QLineEdit:disabled, QDateEdit:disabled {
-    background-color: #E5E7EB;      /* Fondo gris oscuro */
-    color: #9CA3AF;                 /* Texto gris claro */
-    border:2px solid #D1D5DB;      /* Borde original o más claro */
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 2px solid #D1D5DB;
 }
 
-/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
 QDateEdit::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
@@ -60,72 +78,83 @@ QDateEdit::drop-down {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
 /*
 -----------------------------------------------------------------------------------------------------
 Textos
------------------------------------------------------------------------------------------------------*/
-QLabel{
-font-size: 14px;
-color: #0E042F;
+-----------------------------------------------------------------------------------------------------
+*/
+
+QLabel {
+    font-size: 14px;
+    color: #0E042F;
 }
-QLabel[texto=&quot;TituloPrincipal&quot;]{
-font-size:30px;
-qproperty-alignment: 'AlignCenter';
-font-weight:bold;
+
+QLabel[texto=&quot;TituloPrincipal&quot;] {
+    font-size: 30px;
+    qproperty-alignment: 'AlignCenter';
+    font-weight: bold;
 }
-QLabel[texto=&quot;Descripcion&quot;]{
-font-size:18px;
-color: #6C6686;
+
+QLabel[texto=&quot;Descripcion&quot;] {
+    font-size: 18px;
+    color: #6C6686;
 }
-QLabel[texto=&quot;InputTexto&quot;]{
-font-size:16px;
-color: #6C6686;
+
+QLabel[texto=&quot;InputTexto&quot;] {
+    font-size: 16px;
+    color: #6C6686;
 }
-QLabel[texto=&quot;Destacado&quot;]{
-font-size:16px;
-color: #0E042F;
-qproperty-alignment: 'AlignCenter';
-font-weight: bold;
+
+QLabel[texto=&quot;Destacado&quot;] {
+    font-size: 16px;
+    color: #0E042F;
+    qproperty-alignment: 'AlignCenter';
+    font-weight: bold;
 }
+
 /*
 -----------------------------------------------------------------------------------------------------
 Botones
------------------------------------------------------------------------------------------------------*/
-/* --- BOTÓN PRIMARIO --- */
+-----------------------------------------------------------------------------------------------------
+*/
+
 QPushButton[boton=&quot;Primario&quot;] {
     border-radius: 10px;
     background-color: #5D38BB;
     font-weight: bold;
-    color: #f7f7f7;
+    color: #F7F7F7;
     font-size: 12pt;
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 QPushButton[boton=&quot;Primario&quot;]:hover {
-    background-color: #744bcc;
+    background-color: #744BCC;
 }
 
 QPushButton[boton=&quot;Primario&quot;]:pressed {
-    background-color: #472a8f;
+    background-color: #472A8F;
 }
 
-
-/* --- BOTÓN SECUNDARIO --- */
 QPushButton[boton=&quot;Secundario&quot;] {
     border-radius: 10px;
     background-color: rgba(161, 147, 204, 0.7);
     font-weight: bold;
     color: #5D38BB;
     font-size: 18px;
+    min-height: 40px;
 }
 
 QPushButton[boton=&quot;Secundario&quot;]:hover {
-    background-color: rgba(161, 147, 204, 0.9); 
+    background-color: rgba(161, 147, 204, 0.9);
 }
 
 QPushButton[boton=&quot;Secundario&quot;]:pressed {
     background-color: rgba(131, 117, 174, 0.9);
 }
-/* --- BOTÓN TEXTO --- */
+
 QPushButton[boton=&quot;BotonTexto&quot;] {
     border: none;
     background: transparent;
@@ -133,10 +162,9 @@ QPushButton[boton=&quot;BotonTexto&quot;] {
     margin: 0px;
     color: #0E042F;
     font-weight: bold;
-	font-size: 16px;
+    font-size: 16px;
 }
 
-/* Evita que cambie de estilo o muestre bordes al pasar el mouse, hacer clic o tener el foco */
 QPushButton[boton=&quot;BotonTexto&quot;]:hover {
     color: #6C6686;
     background: transparent;
@@ -148,322 +176,836 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
     background: transparent;
     outline: none;
 }
-</string>
+   </string>
   </property>
+
+
+  <!-- ================================================================= -->
+  <!-- LAYOUT PRINCIPAL -->
+  <!-- ================================================================= -->
+
   <layout class="QHBoxLayout" name="horizontalLayout_8">
+
+   <property name="spacing">
+    <number>0</number>
+   </property>
+
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+
+
+   <!-- =============================================================== -->
+   <!-- CONTENEDOR PRINCIPAL -->
+   <!-- =============================================================== -->
+
    <item>
-    <widget class="QWidget" name="ContenedorPrincipal" native="true">
+
+    <widget class="QWidget" name="ContenedorPrincipal">
+
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>1</horstretch>
+       <verstretch>1</verstretch>
+      </sizepolicy>
+     </property>
+
+
      <layout class="QHBoxLayout" name="horizontalLayout">
+
+      <property name="spacing">
+       <number>0</number>
+      </property>
+
       <property name="leftMargin">
        <number>0</number>
       </property>
+
       <property name="topMargin">
        <number>0</number>
       </property>
+
       <property name="rightMargin">
        <number>0</number>
       </property>
+
       <property name="bottomMargin">
        <number>0</number>
       </property>
+
+
+      <!-- ============================================================= -->
+      <!-- LADO IZQUIERDO - IMAGEN -->
+      <!-- ============================================================= -->
+
       <item>
-       <widget class="QWidget" name="rightSide" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <item>
-          <widget class="QWidget" name="contenedorPrincipal" native="true">
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-             <widget class="QWidget" name="contenedorTitulo_2" native="true">
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <widget class="QLabel" name="Titulo_2">
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>60</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string>Crear Cuenta</string>
-                 </property>
-                 <property name="texto" stdset="0">
-                  <string>TituloPrincipal</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QWidget" name="contenedorForms_2" native="true">
-                 <layout class="QVBoxLayout" name="verticalLayout_6">
-                  <item>
-                   <layout class="QVBoxLayout" name="inputLayout_4">
-                    <property name="sizeConstraint">
-                     <enum>QLayout::SetFixedSize</enum>
-                    </property>
-                    <item>
-                     <widget class="QLabel" name="descripcion_6">
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Nombre Completo</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>InputTexto</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="inputNombre">
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Ingrese su Nombre...</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QVBoxLayout" name="inputLayout_5">
-                    <property name="sizeConstraint">
-                     <enum>QLayout::SetFixedSize</enum>
-                    </property>
-                    <item>
-                     <widget class="QLabel" name="descripcion_8">
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Email</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>InputTexto</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="inputCorreo">
-                      <property name="placeholderText">
-                       <string>Ingrese su Email...</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QVBoxLayout" name="inputLayout_6">
-                    <property name="sizeConstraint">
-                     <enum>QLayout::SetFixedSize</enum>
-                    </property>
-                    <item>
-                     <widget class="QLabel" name="descripcion_9">
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Fecha de Nacimiento (d-m-yyyy)</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>InputTexto</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QDateEdit" name="inputFecha"/>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QGridLayout" name="gridLayout_2">
-                    <property name="sizeConstraint">
-                     <enum>QLayout::SetFixedSize</enum>
-                    </property>
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="descripcion_10">
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Contraseña</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>InputTexto</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLineEdit" name="inputContrasenaConfirmar">
-                      <property name="placeholderText">
-                       <string>Confirme su contraseña...</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLineEdit" name="inputContrasena">
-                      <property name="placeholderText">
-                       <string>Ingrese su Contraseña...</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QLabel" name="descripcion_11">
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Confirmar Contraseña</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>InputTexto</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <widget class="QWidget" name="widget_2" native="true">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_5">
-                     <item>
-                      <widget class="QLabel" name="descripcion_12">
-                       <property name="maximumSize">
-                        <size>
-                         <width>16777215</width>
-                         <height>15</height>
-                        </size>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true"/>
-                       </property>
-                       <property name="text">
-                        <string>La Contraseña debe tener 8 carácteres entre ellos mayúsculas, minúsculas, números y simbolos</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QWidget" name="widget_5" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>70</height>
-               </size>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_6">
-               <item>
-                <widget class="QPushButton" name="BtnCrearCuenta">
-                 <property name="maximumSize">
-                  <size>
-                   <width>210</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true"/>
-                 </property>
-                 <property name="text">
-                  <string>Crear Cuenta</string>
-                 </property>
-                 <property name="boton" stdset="0">
-                  <string>Primario</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QWidget" name="widget_6" native="true">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>50</height>
-               </size>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_7">
-               <item>
-                <widget class="QPushButton" name="BtnLogin">
-                 <property name="maximumSize">
-                  <size>
-                   <width>300</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true"/>
-                 </property>
-                 <property name="text">
-                  <string>¿Ya tienes una Cuenta? Regístrate</string>
-                 </property>
-                 <property name="boton" stdset="0">
-                  <string>BotonTexto</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="leftSide" native="true">
+
+       <widget class="QWidget" name="leftSide">
+
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>0</height>
+         </size>
+        </property>
+
+
         <layout class="QVBoxLayout" name="verticalLayout_8">
+
+         <property name="spacing">
+          <number>0</number>
+         </property>
+
          <property name="leftMargin">
           <number>0</number>
          </property>
+
          <property name="topMargin">
           <number>0</number>
          </property>
+
          <property name="rightMargin">
           <number>0</number>
          </property>
+
          <property name="bottomMargin">
           <number>0</number>
          </property>
+
+
          <item>
+
           <widget class="QLabel" name="label_2">
-           <property name="styleSheet">
-            <string notr="true"/>
+
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
            </property>
+
            <property name="text">
             <string/>
            </property>
+
            <property name="pixmap">
             <pixmap resource="../resources/resources.qrc">:/images/backCreateAccount.jpg</pixmap>
            </property>
+
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+
           </widget>
+
          </item>
+
         </layout>
+
        </widget>
+
       </item>
+
+
+      <!-- ============================================================= -->
+      <!-- LADO DERECHO - FORMULARIO -->
+      <!-- ============================================================= -->
+
+      <item>
+
+       <widget class="QWidget" name="rightSide">
+
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+
+        <property name="minimumSize">
+         <size>
+          <width>450</width>
+          <height>0</height>
+         </size>
+        </property>
+
+
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+
+         <property name="spacing">
+          <number>0</number>
+         </property>
+
+         <property name="leftMargin">
+          <number>40</number>
+         </property>
+
+         <property name="topMargin">
+          <number>30</number>
+         </property>
+
+         <property name="rightMargin">
+          <number>40</number>
+         </property>
+
+         <property name="bottomMargin">
+          <number>30</number>
+         </property>
+
+
+         <!-- ========================================================== -->
+         <!-- CONTENEDOR DEL FORMULARIO -->
+         <!-- ========================================================== -->
+
+         <item>
+
+          <widget class="QWidget" name="contenedorPrincipal">
+
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>1</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+
+
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+
+            <property name="spacing">
+             <number>15</number>
+            </property>
+
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+
+            <property name="topMargin">
+             <number>20</number>
+            </property>
+
+            <property name="rightMargin">
+             <number>20</number>
+            </property>
+
+            <property name="bottomMargin">
+             <number>20</number>
+            </property>
+
+
+            <!-- ======================================================== -->
+            <!-- TÍTULO -->
+            <!-- ======================================================== -->
+
+            <item>
+
+             <widget class="QWidget" name="contenedorTitulo_2">
+
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+
+               <property name="spacing">
+                <number>10</number>
+               </property>
+
+               <item>
+
+                <widget class="QLabel" name="Titulo_2">
+
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+
+                 <property name="text">
+                  <string>Crear Cuenta</string>
+                 </property>
+
+                 <property name="texto" stdset="0">
+                  <string>TituloPrincipal</string>
+                 </property>
+
+                </widget>
+
+               </item>
+
+
+               <!-- ===================================================== -->
+               <!-- FORMULARIOS -->
+               <!-- ===================================================== -->
+
+               <item>
+
+                <widget class="QWidget" name="contenedorForms_2">
+
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>1</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+
+
+                 <layout class="QVBoxLayout" name="verticalLayout_6">
+
+                  <property name="spacing">
+                   <number>12</number>
+                  </property>
+
+
+                  <!-- ================================================= -->
+                  <!-- NOMBRE -->
+                  <!-- ================================================= -->
+
+                  <item>
+
+                   <layout class="QVBoxLayout" name="inputLayout_4">
+
+                    <property name="spacing">
+                     <number>5</number>
+                    </property>
+
+                    <item>
+
+                     <widget class="QLabel" name="descripcion_6">
+
+                      <property name="text">
+                       <string>Nombre Completo</string>
+                      </property>
+
+                      <property name="texto" stdset="0">
+                       <string>InputTexto</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+
+                    <item>
+
+                     <widget class="QLineEdit" name="inputNombre">
+
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>1</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+
+                      <property name="placeholderText">
+                       <string>Ingrese su Nombre...</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+                   </layout>
+
+                  </item>
+
+
+                  <!-- ================================================= -->
+                  <!-- EMAIL -->
+                  <!-- ================================================= -->
+
+                  <item>
+
+                   <layout class="QVBoxLayout" name="inputLayout_5">
+
+                    <property name="spacing">
+                     <number>5</number>
+                    </property>
+
+                    <item>
+
+                     <widget class="QLabel" name="descripcion_8">
+
+                      <property name="text">
+                       <string>Email</string>
+                      </property>
+
+                      <property name="texto" stdset="0">
+                       <string>InputTexto</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+
+                    <item>
+
+                     <widget class="QLineEdit" name="inputCorreo">
+
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>1</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+
+                      <property name="placeholderText">
+                       <string>Ingrese su Email...</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+                   </layout>
+
+                  </item>
+
+
+                  <!-- ================================================= -->
+                  <!-- FECHA DE NACIMIENTO -->
+                  <!-- ================================================= -->
+
+                  <item>
+
+                   <layout class="QVBoxLayout" name="inputLayout_6">
+
+                    <property name="spacing">
+                     <number>5</number>
+                    </property>
+
+                    <item>
+
+                     <widget class="QLabel" name="descripcion_9">
+
+                      <property name="text">
+                       <string>Fecha de Nacimiento (d-m-yyyy)</string>
+                      </property>
+
+                      <property name="texto" stdset="0">
+                       <string>InputTexto</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+
+                    <item>
+
+                     <widget class="QDateEdit" name="inputFecha">
+
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>1</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+
+                      <property name="calendarPopup">
+                       <bool>true</bool>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+                   </layout>
+
+                  </item>
+
+
+                  <!-- ================================================= -->
+                  <!-- CONTRASEÑAS -->
+                  <!-- ================================================= -->
+
+                  <item>
+
+                   <layout class="QGridLayout" name="gridLayout_2">
+
+                    <property name="horizontalSpacing">
+                     <number>12</number>
+                    </property>
+
+                    <property name="verticalSpacing">
+                     <number>5</number>
+                    </property>
+
+
+                    <!-- CONTRASEÑA -->
+
+                    <item row="0" column="0">
+
+                     <widget class="QLabel" name="descripcion_10">
+
+                      <property name="text">
+                       <string>Contraseña</string>
+                      </property>
+
+                      <property name="texto" stdset="0">
+                       <string>InputTexto</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+
+                    <item row="1" column="0">
+
+                     <widget class="QLineEdit" name="inputContrasena">
+
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>1</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+
+                      <property name="placeholderText">
+                       <string>Ingrese su Contraseña...</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+
+                    <!-- CONFIRMAR CONTRASEÑA -->
+
+                    <item row="0" column="1">
+
+                     <widget class="QLabel" name="descripcion_11">
+
+                      <property name="text">
+                       <string>Confirmar Contraseña</string>
+                      </property>
+
+                      <property name="texto" stdset="0">
+                       <string>InputTexto</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+
+                    <item row="1" column="1">
+
+                     <widget class="QLineEdit" name="inputContrasenaConfirmar">
+
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>1</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+
+                      <property name="placeholderText">
+                       <string>Confirme su contraseña...</string>
+                      </property>
+
+                     </widget>
+
+                    </item>
+
+                   </layout>
+
+                  </item>
+
+
+                  <!-- ================================================= -->
+                  <!-- REQUISITOS CONTRASEÑA -->
+                  <!-- ================================================= -->
+
+                  <item>
+
+                   <widget class="QLabel" name="descripcion_12">
+
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                      <horstretch>1</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+
+                    <property name="text">
+                     <string>La Contraseña debe tener 8 carácteres entre ellos mayúsculas, minúsculas, números y simbolos</string>
+                    </property>
+
+                    <property name="texto" stdset="0">
+                     <string/>
+                    </property>
+
+                   </widget>
+
+                  </item>
+
+                 </layout>
+
+                </widget>
+
+               </item>
+
+              </layout>
+
+             </widget>
+
+            </item>
+
+
+            <!-- ======================================================== -->
+            <!-- BOTÓN CREAR CUENTA -->
+            <!-- ======================================================== -->
+
+            <item>
+
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+
+              <item>
+
+               <spacer name="crearCuentaLeftSpacer">
+
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+
+               </spacer>
+
+              </item>
+
+
+              <item>
+
+               <widget class="QPushButton" name="BtnCrearCuenta">
+
+                <property name="minimumSize">
+                 <size>
+                  <width>180</width>
+                  <height>40</height>
+                 </size>
+                </property>
+
+                <property name="maximumSize">
+                 <size>
+                  <width>250</width>
+                  <height>40</height>
+                 </size>
+                </property>
+
+                <property name="text">
+                 <string>Crear Cuenta</string>
+                </property>
+
+                <property name="boton" stdset="0">
+                 <string>Primario</string>
+                </property>
+
+               </widget>
+
+              </item>
+
+
+              <item>
+
+               <spacer name="crearCuentaRightSpacer">
+
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+
+               </spacer>
+
+              </item>
+
+             </layout>
+
+            </item>
+
+
+            <!-- ======================================================== -->
+            <!-- VOLVER AL LOGIN -->
+            <!-- ======================================================== -->
+
+            <item>
+
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+
+              <item>
+
+               <spacer name="loginLeftSpacer">
+
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+
+               </spacer>
+
+              </item>
+
+
+              <item>
+
+               <widget class="QPushButton" name="BtnLogin">
+
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+
+                <property name="text">
+                 <string>¿Ya tienes una Cuenta? Regístrate</string>
+                </property>
+
+                <property name="boton" stdset="0">
+                 <string>BotonTexto</string>
+                </property>
+
+               </widget>
+
+              </item>
+
+
+              <item>
+
+               <spacer name="loginRightSpacer">
+
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+
+               </spacer>
+
+              </item>
+
+             </layout>
+
+            </item>
+
+           </layout>
+
+          </widget>
+
+         </item>
+
+        </layout>
+
+       </widget>
+
+      </item>
+
      </layout>
+
     </widget>
+
    </item>
+
   </layout>
+
  </widget>
+
+
  <resources>
   <include location="../resources/resources.qrc"/>
  </resources>
+
  <connections/>
+
 </ui>
