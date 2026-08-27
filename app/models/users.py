@@ -1,6 +1,6 @@
 from typing import Annotated,TYPE_CHECKING
-from datetime import datetime
-from sqlalchemy import String, func
+from datetime import datetime,date
+from sqlalchemy import String, func,Date
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.base import Base
 
@@ -17,6 +17,7 @@ class Users(Base):
     username: Mapped[str] = mapped_column(String(150),nullable=False)
     email: Mapped[str] = mapped_column(String(150),unique=True,nullable=False)
     password: Mapped[str] = mapped_column(String(255),nullable=False)
+    birth_date:Mapped[date]=mapped_column(Date,nullable=False)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(),onupdate=func.now())
     # Recuperaciones de contraseña

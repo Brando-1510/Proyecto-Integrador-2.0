@@ -15,8 +15,9 @@ from PySide6.QtSvg import QSvgRenderer
 renderer = QSvgRenderer(":/icons/person.svg")
 
 class VentanaCrearCuenta(QWidget):
-    def __init__(self):
+    def __init__(self,user_controller):
         super().__init__()
+        self.controller=user_controller
         #* OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
@@ -163,4 +164,23 @@ class VentanaCrearCuenta(QWidget):
         VD.evaluar_contrasena(self.ui.inputContrasena.text(),self)
     def guardar(self):
         self.verificar()
-        
+        name=self.ui.inputNombre.text().strip()
+        email=self.ui.inputCorreo.text().strip()
+        date = self.ui.inputFecha.date().toPython()
+        password=self.ui.inputContrasena.text().strip()
+        password_hash=hp.hash_password(password)
+        result=self.controller.register_user(
+            name,email,date,password_hash
+        )
+        if result["success"]:
+            QMessageBox.information(
+                self,
+                "Éxito",
+                result["message"]
+            )
+        else:
+            QMessageBox.warning(
+                self,
+                "Error",
+                result["message"]
+            )
