@@ -1,18 +1,19 @@
 import os
-from PySide6.QtWidgets import QApplication, QWidget,QLineEdit,QSizePolicy
+from PySide6.QtWidgets import QApplication, QWidget,QLineEdit,QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6 import QtCore
 from PySide6.QtCore import QRect
 from PySide6.QtGui import QIcon,QAction
 from app.generated import resources_rc
-
+from app.utils.validators import ValidadoresDatos as VD, ValidadoresUI as V
 from PySide6.QtSvg import QSvgRenderer
 renderer = QSvgRenderer(":/icons/person.svg")
 
 class VentanaLogin(QWidget):
-    def __init__(self):
+    def __init__(self,user_controller):
         super().__init__()
+        self.controller=user_controller
         #* OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
@@ -113,18 +114,19 @@ class VentanaLogin(QWidget):
 
         #* MODIFICAR EL QSTACKEDWIDGET
         self.centrar_stacked_widget()
-        self.ui.recuperarContrasena.setCurrentIndex(0)
+        self.ui.stackRecuperacion.setCurrentIndex(0)
         self.ocultarStackedWidget()
 
         #* CAMBIANDO LOS INPUTS
-        self.configurar_password(self.ui.inputContrasena)
-        self.configurar_password(self.ui.inputCambiarContra)
-        self.configurar_password(self.ui.inputCambiarContraDos)
+        self.configurar_password(self.ui.txtContrasena)
+        self.configurar_password(self.ui.txtNuevaContrasena)
+        self.configurar_password(self.ui.txtConfirmarContrasena)
 
         #* CONECTAR ACCIONES
         #cuando el usuario hace click en "Olvidaste la contraseña"
-        self.ui.mostrarReset.clicked.connect(self.mostrarStackedWidget)
-        self.ui.btnRegresar.clicked.connect(self.ocultarStackedWidget)
+        self.ui.btnRecuperarContrasena.clicked.connect(self.mostrarStackedWidget)
+        self.ui.btnRegresarLogin.clicked.connect(self.ocultarStackedWidget)
+        self.ui.btnLogin.clicked.connect(self.login)
 
         #* MOSTRAR VENTANA
         self.showMaximized()
@@ -134,21 +136,21 @@ class VentanaLogin(QWidget):
         ancho_ventana = self.width()
         alto_ventana = self.height()
         # Obtener el ancho y alto actual del QStackedWidget (tu cuadro blanco)
-        ancho_stack = self.ui.recuperarContrasena.width()
-        alto_stack = self.ui.recuperarContrasena.height()
+        ancho_stack = self.ui.stackRecuperacion.width()
+        alto_stack = self.ui.stackRecuperacion.height()
         # Calcular las coordenadas X e Y para centrarlo exactamente
         nueva_x = (ancho_ventana - ancho_stack) // 2
         nueva_y = (alto_ventana - alto_stack) // 2
         # Aplicar la nueva geometría centrada
-        self.ui.recuperarContrasena.setGeometry(QRect(nueva_x, nueva_y, ancho_stack, alto_stack))
+        self.ui.stackRecuperacion.setGeometry(QRect(nueva_x, nueva_y, ancho_stack, alto_stack))
     def resizeEvent(self, event):
         super().resizeEvent(event)
         self.centrar_stacked_widget()
     def mostrarStackedWidget(self):
-        self.ui.recuperarContrasena.raise_()
-        self.ui.recuperarContrasena.show()
+        self.ui.stackRecuperacion.raise_()
+        self.ui.stackRecuperacion.show()
     def ocultarStackedWidget(self):
-        self.ui.recuperarContrasena.hide()
+        self.ui.stackRecuperacion.hide()
     def configurar_password(self, input_password):
         input_password.setEchoMode(QLineEdit.EchoMode.Password)
         accion_ojo = QAction(input_password)
@@ -164,3 +166,27 @@ class VentanaLogin(QWidget):
                 input_password.setEchoMode(QLineEdit.EchoMode.Password)
                 accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
         accion_ojo.toggled.connect(cambiar_visibilidad)
+    def verificar(self):
+        if not V.tienen_contenido([self.ui.txtContrasena,self.ui.txtCorreo]):
+            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear la Cuenta")
+            return
+        if not VD.validar_correo(self.ui.txtCorreo.text()):
+            QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
+            return
+    def login(self):
+        self.verificar()
+        email=self.ui.txtCorreo.text()
+        password=self.ui.txtContrasena.text()
+        result=self.controller.login(email,password)
+        if result["success"]:
+            QMessageBox.information(
+                self,
+                "Éxito",
+                result["message"]
+            )
+        else:
+            QMessageBox.warning(
+                self,
+                "Error",
+                result["message"]
+            )

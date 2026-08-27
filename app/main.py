@@ -22,7 +22,7 @@ if __name__=="__main__":
     user_repository = UserRepository(session)
     user_service = UserService(user_repository)
     user_controller = UserController(user_service)
-    ventana = VentanaCrearCuenta(user_controller)
+    ventana = VentanaLogin(user_controller)
     #ventana=VentanaLogin()
     ventana.setWindowTitle("Empresa")
     ventana.setWindowIcon(QIcon(":images/logo.png"))

@@ -1,5 +1,6 @@
 from sqlalchemy import select
 from app.models.users import Users
+from app.core.security.password import HashPassword as hp
 
 class UserRepository:
     def __init__(self, session):
@@ -13,3 +14,7 @@ class UserRepository:
         stmt = select(Users).where(Users.email == email)
         user = self.session.scalar(stmt)
         return user is not None
+    def get_by_email(self,email:str):
+        stmt=select(Users).where(Users.email==email)
+        user=self.session.scalar(stmt)
+        return user

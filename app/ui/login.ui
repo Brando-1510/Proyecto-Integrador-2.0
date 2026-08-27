@@ -20,45 +20,54 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Login</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#LoginWindow{
-background-color: #f7f7f7;
+   <string notr="true">
+#LoginWindow {
+    background-color: #F7F7F7;
 }
+
 /*
 -----------------------------------------------------------------------------------------------------
 Inputs
------------------------------------------------------------------------------------------------------*/
+-----------------------------------------------------------------------------------------------------
+*/
+
 /* --- ESTADO BASE --- */
+
 QLineEdit, QDateEdit {
-    background-color: #F8F9FA; 
-    border: 2px solid #D1D5DB; 
-    border-radius: 8px;     
-    padding: 8px 12px;         
+    background-color: #F8F9FA;
+    border: 2px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
     color: #0E042F;
 }
 
-/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
+/* --- HOVER --- */
+
 QLineEdit:hover, QDateEdit:hover {
-    border: 1px solid #9CA3AF;      /* Borde un poco más oscuro */
-    background-color: #F3F4F6;      /* Fondo ligeramente gris */
+    border: 2px solid #9CA3AF;
+    background-color: #F3F4F6;
 }
 
-/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
+/* --- FOCUS --- */
+
 QLineEdit:focus, QDateEdit:focus {
-    border: 1px solid #744bcc;      /* Borde azul más grueso */
-    background-color: #FFFFFF;      /* Fondo blanco puro */
+    border: 2px solid #744BCC;
+    background-color: #FFFFFF;
 }
 
-/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
+/* --- DISABLED --- */
+
 QLineEdit:disabled, QDateEdit:disabled {
-    background-color: #E5E7EB;      /* Fondo gris oscuro */
-    color: #9CA3AF;                 /* Texto gris claro */
-    border:2px solid #D1D5DB;      /* Borde original o más claro */
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 2px solid #D1D5DB;
 }
 
-/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
+/* --- QDATEEDIT --- */
+
 QDateEdit::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
@@ -69,56 +78,67 @@ QDateEdit::drop-down {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
 /*
 -----------------------------------------------------------------------------------------------------
 Textos
------------------------------------------------------------------------------------------------------*/
-QLabel{
-font-size: 14px;
-color: #0E042F;
+-----------------------------------------------------------------------------------------------------
+*/
+
+QLabel {
+    font-size: 14px;
+    color: #0E042F;
 }
-QLabel[texto=&quot;TituloPrincipal&quot;]{
-font-size:30px;
-qproperty-alignment: 'AlignCenter';
-font-weight:bold;
+
+QLabel[texto=&quot;TituloPrincipal&quot;] {
+    font-size: 30px;
+    qproperty-alignment: 'AlignCenter';
+    font-weight: bold;
 }
-QLabel[texto=&quot;Descripcion&quot;]{
-font-size:18px;
-color: #6C6686;
+
+QLabel[texto=&quot;Descripcion&quot;] {
+    font-size: 18px;
+    color: #6C6686;
 }
-QLabel[texto=&quot;InputTexto&quot;]{
-font-size:16px;
-color: #6C6686;
+
+QLabel[texto=&quot;InputTexto&quot;] {
+    font-size: 16px;
+    color: #6C6686;
 }
-QLabel[texto=&quot;Destacado&quot;]{
-font-size:16px;
-color: #0E042F;
-qproperty-alignment: 'AlignCenter';
-font-weight: bold;
+
+QLabel[texto=&quot;Destacado&quot;] {
+    font-size: 16px;
+    color: #0E042F;
+    qproperty-alignment: 'AlignCenter';
+    font-weight: bold;
 }
+
 /*
 -----------------------------------------------------------------------------------------------------
 Botones
------------------------------------------------------------------------------------------------------*/
+-----------------------------------------------------------------------------------------------------
+*/
+
 /* --- BOTÓN PRIMARIO --- */
+
 QPushButton[boton=&quot;Primario&quot;] {
     border-radius: 10px;
     background-color: #5D38BB;
     font-weight: bold;
-    color: #f7f7f7;
+    color: #F7F7F7;
     font-size: 12pt;
 }
 
 QPushButton[boton=&quot;Primario&quot;]:hover {
-    background-color: #744bcc;
+    background-color: #744BCC;
 }
 
 QPushButton[boton=&quot;Primario&quot;]:pressed {
-    background-color: #472a8f;
+    background-color: #472A8F;
 }
 
-
 /* --- BOTÓN SECUNDARIO --- */
+
 QPushButton[boton=&quot;Secundario&quot;] {
     border-radius: 10px;
     background-color: rgba(161, 147, 204, 0.7);
@@ -128,13 +148,15 @@ QPushButton[boton=&quot;Secundario&quot;] {
 }
 
 QPushButton[boton=&quot;Secundario&quot;]:hover {
-    background-color: rgba(161, 147, 204, 0.9); 
+    background-color: rgba(161, 147, 204, 0.9);
 }
 
 QPushButton[boton=&quot;Secundario&quot;]:pressed {
     background-color: rgba(131, 117, 174, 0.9);
 }
+
 /* --- BOTÓN TEXTO --- */
+
 QPushButton[boton=&quot;BotonTexto&quot;] {
     border: none;
     background: transparent;
@@ -142,10 +164,9 @@ QPushButton[boton=&quot;BotonTexto&quot;] {
     margin: 0px;
     color: #0E042F;
     font-weight: bold;
-	font-size: 16px;
+    font-size: 16px;
 }
 
-/* Evita que cambie de estilo o muestre bordes al pasar el mouse, hacer clic o tener el foco */
 QPushButton[boton=&quot;BotonTexto&quot;]:hover {
     color: #6C6686;
     background: transparent;
@@ -157,9 +178,9 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
     background: transparent;
     outline: none;
 }
-</string>
+   </string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="lblImagenFondo">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -174,8 +195,11 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
    <property name="pixmap">
     <pixmap resource="../resources/resources.qrc">:/images/back.jpg</pixmap>
    </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QWidget" name="contenedorPrincipal" native="true">
+  <widget class="QWidget" name="loginContainer">
    <property name="geometry">
     <rect>
      <x>810</x>
@@ -184,185 +208,145 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
      <height>611</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="loginLayout">
     <item>
-     <widget class="QWidget" name="contenedorTitulo" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="Titulo">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Login</string>
-         </property>
-         <property name="texto" stdset="0">
-          <string>TituloPrincipal</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QWidget" name="contenedorForms" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QVBoxLayout" name="titleLayout">
+      <item>
+       <widget class="QLabel" name="lblTituloLogin">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Login</string>
+        </property>
+        <property name="texto" stdset="0">
+         <string>TituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="formLayout">
+        <item>
+         <layout class="QVBoxLayout" name="correoLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
           <item>
-           <layout class="QVBoxLayout" name="inputLayout">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
+           <widget class="QLabel" name="lblCorreo">
+            <property name="text">
+             <string>Email</string>
             </property>
-            <item>
-             <widget class="QLabel" name="descripcion">
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text">
-               <string>Email</string>
-              </property>
-              <property name="texto" stdset="0">
-               <string>InputTexto</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="inputCorreo">
-              <property name="placeholderText">
-               <string>Ingrese su Correo...</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="inputLayout_2">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
+           <widget class="QLineEdit" name="txtCorreo">
+            <property name="placeholderText">
+             <string>Ingrese su Correo...</string>
             </property>
-            <item>
-             <widget class="QLabel" name="descripcion_2">
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text">
-               <string>Contraseña</string>
-              </property>
-              <property name="texto" stdset="0">
-               <string>InputTexto</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="inputContrasena">
-              <property name="placeholderText">
-               <string>Ingrese su Contraseña...</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           </widget>
           </item>
          </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="contrasenaLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblContrasena">
+            <property name="text">
+             <string>Contraseña</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtContrasena">
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Ingrese su Contraseña...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QWidget" name="widget" native="true">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>50</height>
-       </size>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="mostrarReset">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>¿Olvidaste tu Contraseña?</string>
-         </property>
-         <property name="boton" stdset="0">
-          <string>BotonTexto</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <layout class="QHBoxLayout" name="forgotPasswordLayout">
+      <item>
+       <widget class="QPushButton" name="btnRecuperarContrasena">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>¿Olvidaste tu Contraseña?</string>
+        </property>
+        <property name="boton" stdset="0">
+         <string>BotonTexto</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QWidget" name="widget_4" native="true">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>70</height>
-       </size>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
-       <item>
-        <widget class="QPushButton" name="loginButton_3">
-         <property name="maximumSize">
-          <size>
-           <width>210</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>Login</string>
-         </property>
-         <property name="boton" stdset="0">
-          <string>Primario</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <layout class="QHBoxLayout" name="loginButtonLayout">
+      <item>
+       <widget class="QPushButton" name="btnLogin">
+        <property name="maximumSize">
+         <size>
+          <width>210</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Login</string>
+        </property>
+        <property name="boton" stdset="0">
+         <string>Primario</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QWidget" name="widget_3" native="true">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>50</height>
-       </size>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <widget class="QPushButton" name="BtnCrearCuenta">
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>¿No tienes una Cuenta? Creala</string>
-         </property>
-         <property name="boton" stdset="0">
-          <string>BotonTexto</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <layout class="QHBoxLayout" name="createAccountLayout">
+      <item>
+       <widget class="QPushButton" name="btnCrearCuenta">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>¿No tienes una Cuenta? Créala</string>
+        </property>
+        <property name="boton" stdset="0">
+         <string>BotonTexto</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QStackedWidget" name="recuperarContrasena">
+  <widget class="QStackedWidget" name="stackRecuperacion">
    <property name="geometry">
     <rect>
      <x>420</x>
@@ -372,16 +356,18 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#recuperarContrasena{
-background-color: #F4F5F7;
-border-radius: 20px;
-}</string>
+    <string notr="true">
+#stackRecuperacion {
+    background-color: #F4F5F7;
+    border-radius: 20px;
+}
+    </string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
-   <widget class="QWidget" name="page">
-    <widget class="QWidget" name="contenedorRecuperar" native="true">
+   <widget class="QWidget" name="pageSolicitarCodigo">
+    <widget class="QWidget" name="recoveryContainer">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -390,150 +376,124 @@ border-radius: 20px;
        <height>361</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
+     <layout class="QVBoxLayout" name="recoveryLayout">
       <item>
-       <widget class="QWidget" name="contenedorTitulo_2" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <item>
-          <widget class="QLabel" name="Titulo_2">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>100</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Cambiar Contraseña</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>TituloPrincipal</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="inputLayout_3">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetFixedSize</enum>
-           </property>
-           <item>
-            <widget class="QLabel" name="descripcion_3">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Ingresa tu Correo para enviarte el código</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>InputTexto</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="inputCorreoCod">
-             <property name="placeholderText">
-              <string>ejemplo@gmail.com</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QWidget" name="widget_5" native="true">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>70</height>
-            </size>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <layout class="QVBoxLayout" name="recoveryTitleLayout">
+        <item>
+         <widget class="QLabel" name="lblTituloRecuperacion">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Cambiar Contraseña</string>
+          </property>
+          <property name="texto" stdset="0">
+           <string>TituloPrincipal</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="recoveryEmailLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblCorreoRecuperacion">
+            <property name="text">
+             <string>Ingresa tu Correo para enviarte el código</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtCorreoRecuperacion">
+            <property name="placeholderText">
+             <string>ejemplo@gmail.com</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="sendCodeLayout">
+          <item>
+           <widget class="QPushButton" name="btnEnviarCodigo">
+            <property name="maximumSize">
+             <size>
+              <width>210</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Enviar Código</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Primario</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="codeLayout">
+          <item>
+           <layout class="QVBoxLayout" name="verificationCodeLayout">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
             <item>
-             <widget class="QPushButton" name="loginButton_4">
+             <widget class="QLabel" name="lblCodigo">
+              <property name="text">
+               <string>Ingrese el Código</string>
+              </property>
+              <property name="texto" stdset="0">
+               <string>InputTexto</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txtCodigo">
+              <property name="placeholderText">
+               <string>El Código fue enviado a su Correo</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="backToLoginLayout">
+            <item>
+             <widget class="QPushButton" name="btnRegresarLogin">
               <property name="maximumSize">
                <size>
                 <width>210</width>
                 <height>40</height>
                </size>
               </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
               <property name="text">
-               <string>Enviar Código</string>
+               <string>Regresar a Login</string>
               </property>
               <property name="boton" stdset="0">
-               <string>Primario</string>
+               <string>BotonTexto</string>
               </property>
              </widget>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="contenedorForms_2" native="true">
-           <layout class="QVBoxLayout" name="verticalLayout_6">
-            <item>
-             <layout class="QVBoxLayout" name="inputLayout_5">
-              <property name="sizeConstraint">
-               <enum>QLayout::SetFixedSize</enum>
-              </property>
-              <item>
-               <widget class="QLabel" name="descripcion_5">
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>Ingrese el Código</string>
-                </property>
-                <property name="texto" stdset="0">
-                 <string>InputTexto</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="inputCodigo">
-                <property name="placeholderText">
-                 <string>El Código fue enviado a su Correo</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="QWidget" name="widget_2" native="true">
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <item>
-                <widget class="QPushButton" name="btnRegresar">
-                 <property name="maximumSize">
-                  <size>
-                   <width>210</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true"/>
-                 </property>
-                 <property name="text">
-                  <string>Regresar a Login</string>
-                 </property>
-                 <property name="boton" stdset="0">
-                  <string>BotonTexto</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="page_2">
-    <widget class="QWidget" name="contenedorRecuperar_2" native="true">
+   <widget class="QWidget" name="pageNuevaContrasena">
+    <widget class="QWidget" name="newPasswordContainer">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -542,113 +502,100 @@ border-radius: 20px;
        <height>411</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_7">
+     <layout class="QVBoxLayout" name="newPasswordLayout">
       <item>
-       <widget class="QWidget" name="contenedorTitulo_3" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <item>
-          <widget class="QLabel" name="tituloRecuperar">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>100</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Cambiar Contraseña</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>TituloPrincipal</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="inputLayout_4">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetFixedSize</enum>
-           </property>
-           <item>
-            <widget class="QLabel" name="descripcion_4">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Ingresa tu Nueva Contraseña</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>InputTexto</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="inputCambiarContra">
-             <property name="placeholderText">
-              <string>Crea una nueva Contraseña</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="inputLayout_6">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetFixedSize</enum>
-           </property>
-           <item>
-            <widget class="QLabel" name="descripcion_6">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="text">
-              <string>Repite tu Contraseña</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>InputTexto</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="inputCambiarContraDos">
-             <property name="placeholderText">
-              <string>Confirma tu Contraseña</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QWidget" name="widget_6" native="true">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>70</height>
-            </size>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
-             <widget class="QPushButton" name="loginButton_5">
-              <property name="maximumSize">
-               <size>
-                <width>210</width>
-                <height>40</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text">
-               <string>Realizar Cambio</string>
-              </property>
-              <property name="boton" stdset="0">
-               <string>Primario</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QVBoxLayout" name="newPasswordTitleLayout">
+        <item>
+         <widget class="QLabel" name="lblTituloNuevaContrasena">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Cambiar Contraseña</string>
+          </property>
+          <property name="texto" stdset="0">
+           <string>TituloPrincipal</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="newPasswordInputLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblNuevaContrasena">
+            <property name="text">
+             <string>Ingresa tu Nueva Contraseña</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtNuevaContrasena">
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Crea una nueva Contraseña</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="confirmPasswordLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblConfirmarContrasena">
+            <property name="text">
+             <string>Repite tu Contraseña</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtConfirmarContrasena">
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Confirma tu Contraseña</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="changePasswordButtonLayout">
+          <item>
+           <widget class="QPushButton" name="btnCambiarContrasena">
+            <property name="maximumSize">
+             <size>
+              <width>210</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Realizar Cambio</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Primario</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
