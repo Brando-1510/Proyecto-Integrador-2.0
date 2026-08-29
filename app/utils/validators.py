@@ -30,10 +30,11 @@ class ValidadoresDatos:
             return False
         return bool(re.fullmatch(cls.EMAIL_PATTERN, correo))
     @staticmethod
-    def comparar_contraseñas(ventana,password,password_confirmar):
+    def comparar_contraseñas(ventana, password, password_confirmar) -> bool:
         if password != password_confirmar:
-            QMessageBox.critical(ventana,"Error","Las Contraseñas deben de coincidir")
-            return
+            QMessageBox.critical(ventana, "Error", "Las contraseñas deben coincidir")
+            return False
+        return True
     @staticmethod
     def validar_fecha(ventana,fecha):
         if not fecha.isValid():
@@ -45,7 +46,7 @@ class ValidadoresDatos:
             QMessageBox.critical(ventana,"Error","No se permite seleccionar una fecha futura")
             return
     @staticmethod
-    def evaluar_contrasena(texto,ventana):
+    def evaluar_contrasena(ventana,texto):
         # Reglas de validación
         largo = len(texto) >= 8
         mayuscula = bool(re.search(r"[A-Z]", texto))

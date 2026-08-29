@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dashboard</class>
+ <widget class="QWidget" name="Dashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1370</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="contenedorPrincipal" native="true">
+   <property name="geometry">
+    <rect>
+     <x>-1</x>
+     <y>0</y>
+     <width>1371</width>
+     <height>701</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="Sidebar" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#Sidebar{
+background-color: #16094C;
+}
+
+/*------------------------------------------------------------------------------------
+QLabels
+---------------------------------------------------------------------------------------*/
+QLabel{
+color:#f7f7f7;
+font-size:14px;
+}
+QLabel[texto=&quot;tituloAside&quot;]{
+font-weight:bold;
+font-size:18px;
+}
+QLabel[texto=&quot;Destacado&quot;]{
+font-weight:bold;
+font-size:16px;
+}
+
+/*--------------------------------------------------------------------------------
+QPushButton 
+----------------------------------------------------------------------------------*/
+/* Estilo general para todos los botones del menú */
+QPushButton {
+    background-color: transparent; /* Fondo transparente por defecto */
+    color: #ffffff;               /* Texto blanco */
+    font-size: 14px;              /* Tamaño de fuente */
+    text-align: left;             /* Alinea icono y texto a la izquierda */
+    padding-left: 15px;           /* Separación con el borde izquierdo */
+    border: none;                 /* Quita el borde por defecto */
+    border-radius: 8px;           /* Bordes redondeados */
+    height: 40px;                 /* Altura del botón */
+	font-weight:bold;
+	qproperty-alignment: 'AlignCenter';
+}
+
+/* Efecto al pasar el cursor por encima (Hover) */
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+/* Estado activo/seleccionado (como el botón &quot;Home&quot; morado) */
+QPushButton:checked, QPushButton:pressed {
+    background-color: #5d51f2;    /* Color morado de tu imagen */
+}
+
+/*---------------------------
+Widgets
+*------------*/
+#promotionalFrame{
+background-color: #311B6E;
+border: 2px solid rgba(161, 147, 204, 0.7);
+border-radius: 15px;
+}
+
+</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>9</number>
+       </property>
+       <property name="topMargin">
+        <number>9</number>
+       </property>
+       <property name="rightMargin">
+        <number>9</number>
+       </property>
+       <property name="bottomMargin">
+        <number>9</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="layoutHEmpresa">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="lblLogoEmpresa">
+           <property name="minimumSize">
+            <size>
+             <width>91</width>
+             <height>81</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>91</width>
+             <height>81</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="../resources/resources.qrc">:/images/logo.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="layoutVEmpresa">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblNombreEmpresa">
+             <property name="text">
+              <string>Finanzen</string>
+             </property>
+             <property name="styleClass" stdset="0">
+              <string>tituloPrincipal</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>tituloAside</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblDescripcionEmpresa">
+             <property name="text">
+              <string>Inteligencia financiera
+para tu negocio</string>
+             </property>
+             <property name="styleClass" stdset="0">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QWidget" name="menuContainer" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnHome">
+            <property name="text">
+             <string>Home</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/home.svg</normaloff>:/icons/menuIcons/home.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnLoadData">
+            <property name="text">
+             <string>Carga de Datos</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/load.svg</normaloff>:/icons/menuIcons/load.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnMovimientos">
+            <property name="text">
+             <string>Movimientos</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/arrows.svg</normaloff>:/icons/menuIcons/arrows.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnRent">
+            <property name="text">
+             <string>Rentabilidad</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/profitability.svg</normaloff>:/icons/menuIcons/profitability.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnRadar">
+            <property name="text">
+             <string>Radar Financiero</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/radar.svg</normaloff>:/icons/menuIcons/radar.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnProyecciones">
+            <property name="text">
+             <string>Proyecciones</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/schedule.svg</normaloff>:/icons/menuIcons/schedule.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnInformes">
+            <property name="text">
+             <string>Informes</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/fileLight.svg</normaloff>:/icons/menuIcons/fileLight.svg</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QWidget" name="promotionalFrame" native="true">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+qproperty-alignment: 'AlignCenter';
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="layoutPromocional">
+            <property name="spacing">
+             <number>10</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lblIcon">
+              <property name="minimumSize">
+               <size>
+                <width>91</width>
+                <height>81</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>91</width>
+                <height>81</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../resources/resources.qrc">:/icons/kioskLight.svg</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="layoutPromocional_2">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="lblDescripcionPromocion">
+                <property name="text">
+                 <string>Tu negocio más
+inteligente cada
+día</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Destacado</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblDescripcionSlogan">
+            <property name="text">
+             <string>Decisiones Claras Hoy.
+Mejores resultados mañana</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="main" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#topBar{
+padding: 30px;
+background-color: #FFFEFE;
+border: 2px solid #EBECF0;
+border-radius: 20px;
+}
+
+/*----------------------------------------------------------------------
+QLabel
+------------------------------------------------------------*/
+QLabel{
+	color: #6C6686;
+	font-size: 14px;
+}
+QLabel[texto=&quot;Principal&quot;]{
+color: #0E042F;
+font-weight:bold;
+font-size: 20px;
+}</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QWidget" name="topBar" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel[texto=&quot;Destacado&quot;]{
+color: #0E042F;
+font-size: 16px;
+font-weight: bold;
+}
+</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="layoutHNeogico">
+            <property name="spacing">
+             <number>15</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lblKioskIcon">
+              <property name="minimumSize">
+               <size>
+                <width>91</width>
+                <height>81</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>91</width>
+                <height>81</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../resources/resources.qrc">:/icons/kioskPurple.svg</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="layoutVEmpresa_2">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="lblNombreNegocio">
+                <property name="text">
+                 <string>Club</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Destacado</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblLugarNegocio">
+                <property name="text">
+                 <string>Managua, Nicaragua</string>
+                </property>
+                <property name="styleClass" stdset="0">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QComboBox" name="btnSeleccionarPeriodo">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+    /* Fondo claro y bordes muy redondeados */
+    background-color: #F8F9FA;
+    border: 1px solid transparent; /* O un gris muy tenue si lo deseas */
+    border-radius: 12px;
+    
+    /* Espaciado interno: arriba, derecha, abajo, izquierda */
+    padding: 8px 30px 8px 12px;
+    
+    /* Tipografía y color del texto */
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 14px;
+    color: #000000;
+}
+
+/* Espacio reservado para el botón de la flecha */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 25px;
+    border-left-width: 0px; /* Quita la línea divisoria por defecto */
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Icono de la flecha hacia abajo minimalista */
+QComboBox::down-arrow {
+    image: url(:icons/chevron.svg); /* Usa un PNG gris tenue como el de la imagen */
+    width: 12px;
+    height: 12px;
+}
+
+/* Estilo opcional para cuando el usuario pasa el mouse por encima */
+QComboBox:hover {
+    background-color: #F1F3F5;
+}
+</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Mayo 2026</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Junio 2026</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Julio 2026</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Agosto 2026</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="layoutHNeogico_2">
+            <property name="spacing">
+             <number>15</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lblProfile">
+              <property name="minimumSize">
+               <size>
+                <width>91</width>
+                <height>81</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>91</width>
+                <height>81</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../resources/resources.qrc">:/images/profile.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="layoutVEmpresa_3">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="lblUsername">
+                <property name="text">
+                 <string>Jose</string>
+                </property>
+                <property name="styleClass" stdset="0">
+                 <string>tituloPrincipal</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Destacado</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lblUserRole">
+                <property name="text">
+                 <string>Gerente</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Destacado</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Resumen Financiero</string>
+         </property>
+         <property name="texto" stdset="0">
+          <string>Principal</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Un resumen claro de tu negocio</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <widget class="QWidget" name="page"/>
+         <widget class="QWidget" name="page_2"/>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+  <include location="../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

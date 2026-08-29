@@ -1,9 +1,7 @@
 import os
-from PySide6.QtWidgets import QApplication, QWidget,QLineEdit,QMessageBox
+from PySide6.QtWidgets import QWidget,QLineEdit,QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
-from PySide6 import QtCore
-from PySide6.QtCore import QRect
 from PySide6.QtGui import QIcon,QAction
 from app.generated import resources_rc
 from app.utils.validators import ValidadoresDatos as VD, ValidadoresUI as V
@@ -18,7 +16,7 @@ class VentanaLogin(QWidget):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
         #* CARGAR ARCHIVO .UI
-        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/login.ui"))
+        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/login/loginU.ui"))
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui,self)
 
@@ -112,45 +110,16 @@ class VentanaLogin(QWidget):
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
 
-        #* MODIFICAR EL QSTACKEDWIDGET
-        self.centrar_stacked_widget()
-        self.ui.stackRecuperacion.setCurrentIndex(0)
-        self.ocultarStackedWidget()
-
         #* CAMBIANDO LOS INPUTS
         self.configurar_password(self.ui.txtContrasena)
-        self.configurar_password(self.ui.txtNuevaContrasena)
-        self.configurar_password(self.ui.txtConfirmarContrasena)
 
         #* CONECTAR ACCIONES
         #cuando el usuario hace click en "Olvidaste la contraseña"
-        self.ui.btnRecuperarContrasena.clicked.connect(self.mostrarStackedWidget)
-        self.ui.btnRegresarLogin.clicked.connect(self.ocultarStackedWidget)
         self.ui.btnLogin.clicked.connect(self.login)
 
         #* MOSTRAR VENTANA
         self.showMaximized()
 
-    def centrar_stacked_widget(self):
-        # Obtener el ancho y alto de la ventana principal
-        ancho_ventana = self.width()
-        alto_ventana = self.height()
-        # Obtener el ancho y alto actual del QStackedWidget (tu cuadro blanco)
-        ancho_stack = self.ui.stackRecuperacion.width()
-        alto_stack = self.ui.stackRecuperacion.height()
-        # Calcular las coordenadas X e Y para centrarlo exactamente
-        nueva_x = (ancho_ventana - ancho_stack) // 2
-        nueva_y = (alto_ventana - alto_stack) // 2
-        # Aplicar la nueva geometría centrada
-        self.ui.stackRecuperacion.setGeometry(QRect(nueva_x, nueva_y, ancho_stack, alto_stack))
-    def resizeEvent(self, event):
-        super().resizeEvent(event)
-        self.centrar_stacked_widget()
-    def mostrarStackedWidget(self):
-        self.ui.stackRecuperacion.raise_()
-        self.ui.stackRecuperacion.show()
-    def ocultarStackedWidget(self):
-        self.ui.stackRecuperacion.hide()
     def configurar_password(self, input_password):
         input_password.setEchoMode(QLineEdit.EchoMode.Password)
         accion_ojo = QAction(input_password)

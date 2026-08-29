@@ -6,6 +6,7 @@ from PySide6.QtGui import QIcon
 #*Importaciones relacionados a la view
 from app.views.createAccount.createAccount import VentanaCrearCuenta
 from app.views.login.login import VentanaLogin
+from app.views.login.recuperarContra import VentanaRecuperarContra
 #*Importaciones relacionadas a la base de datos y SQLAlchemy
 from app.database.init_db import init_db
 from app.database.connection import SessionLocal
@@ -22,9 +23,10 @@ if __name__=="__main__":
     user_repository = UserRepository(session)
     user_service = UserService(user_repository)
     user_controller = UserController(user_service)
-    ventana = VentanaCrearCuenta(user_controller)
-    #ventana=VentanaLogin()
-    ventana.setWindowTitle("Empresa")
+    #ventana = VentanaLogin(user_controller)
+    ventana=VentanaRecuperarContra(user_controller)
+    #ventana=VentanaCrearCuenta(user_controller)
+    ventana.setWindowTitle("Finanzen")
     ventana.setWindowIcon(QIcon(":images/logo.png"))
     ventana.show()
     sys.exit(app.exec())

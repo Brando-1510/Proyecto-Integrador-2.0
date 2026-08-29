@@ -1,20 +1,14 @@
 import os
-from PySide6.QtWidgets import QApplication, QWidget,QLineEdit,QMessageBox
+from PySide6.QtWidgets import QWidget,QLineEdit,QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
-from PySide6 import QtCore
-from PySide6.QtCore import QRect
 from PySide6.QtGui import QIcon,QAction
 from app.generated import resources_rc
-#Importaciones de la clase Validators (validan cosas)
-from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
-#Importaciones para el hash de contraseñas
-from app.core.security.password import HashPassword as hp
-
+from app.utils.validators import ValidadoresDatos as VD, ValidadoresUI as V
 from PySide6.QtSvg import QSvgRenderer
 renderer = QSvgRenderer(":/icons/person.svg")
 
-class VentanaCrearCuenta(QWidget):
+class VentanaRecuperarContra(QWidget):
     def __init__(self,user_controller):
         super().__init__()
         self.controller=user_controller
@@ -22,7 +16,7 @@ class VentanaCrearCuenta(QWidget):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
         #* CARGAR ARCHIVO .UI
-        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/createAccount.ui"))
+        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/login/recuperarContrasena.ui"))
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui,self)
 
@@ -117,21 +111,13 @@ class VentanaCrearCuenta(QWidget):
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
 
         #* CAMBIANDO LOS INPUTS
-        #relacionado a las contraseñas
-        self.configurar_password(self.ui.inputContrasena)
-        self.configurar_password(self.ui.inputContrasenaConfirmar)
-        #relacionados a la fecha de nacimiento
-        hoy = QtCore.QDate.currentDate()
-        fecha_maxima = hoy.addYears(-18)
-        self.ui.inputFecha.setCalendarPopup(True)
-        self.ui.inputFecha.setMaximumDate(fecha_maxima)
-        self.ui.inputFecha.setDate(fecha_maxima)
+        self.configurar_password(self.ui.inputCambiarContra)
+        self.configurar_password(self.ui.inputConfirmarContra)
 
-        #*CONECTAR LAS ACCIONES
-        self.ui.BtnCrearCuenta.clicked.connect(self.guardar)
+        #* CONECTAR ACCIONES
 
         #* MOSTRAR VENTANA
-        self.showMaximized()
+        self.show()
 
     def configurar_password(self, input_password):
         input_password.setEchoMode(QLineEdit.EchoMode.Password)
@@ -149,38 +135,10 @@ class VentanaCrearCuenta(QWidget):
                 accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
         accion_ojo.toggled.connect(cambiar_visibilidad)
     def verificar(self):
-        pass
-    def guardar(self):
-        if not V.tienen_contenido(
-            self.ui.inputNombre,self.ui.inputCorreo,
-            self.ui.inputContrasena,self.ui.inputContrasenaConfirmar
-        ):
+        if not V.tienen_contenido([self.ui.txtContrasena,self.ui.txtCorreo]):
             QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear la Cuenta")
             return
-        if not VD.validar_correo(self.ui.inputCorreo.text()):
+        if not VD.validar_correo(self.ui.txtCorreo.text()):
             QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
             return
-        password = self.ui.inputContrasena.text().strip()
-        password_confirmar = self.ui.inputContrasenaConfirmar.text().strip()
-        VD.evaluar_contrasena(self,password)
-        if not VD.comparar_contraseñas(self,password,password_confirmar):
-            return
-        name=self.ui.inputNombre.text().strip()
-        email=self.ui.inputCorreo.text().strip()
-        date = self.ui.inputFecha.date().toPython()
-        password_hash=hp.hash_password(password)
-        result=self.controller.register_user(
-            name,email,date,password_hash
-        )
-        if result["success"]:
-            QMessageBox.information(
-                self,
-                "Éxito",
-                result["message"]
-            )
-        else:
-            QMessageBox.warning(
-                self,
-                "Error",
-                result["message"]
-            )
+
