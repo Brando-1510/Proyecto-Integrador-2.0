@@ -4,14 +4,18 @@ from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QIcon,QAction
 from app.generated import resources_rc
+from app.views.estilosTipografia import estilos_fuentes
 from app.utils.validators import ValidadoresDatos as VD, ValidadoresUI as V
+from app.utils.recoveryCode import EnviarCorreoThread
+from app.core.security.password import HashPassword as hp
 from PySide6.QtSvg import QSvgRenderer
 renderer = QSvgRenderer(":/icons/person.svg")
 
 class VentanaRecuperarContra(QWidget):
-    def __init__(self,user_controller):
+    def __init__(self,recovery_controller):
         super().__init__()
-        self.controller=user_controller
+        self.controller=recovery_controller
+        self.email_thread=None
         #* OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
@@ -56,57 +60,8 @@ class VentanaRecuperarContra(QWidget):
         #* APLICAR TIPOGRAFÍAS
         if manrope_family and source_family:
             estilos_actuales = self.ui.styleSheet()
-            estilos_fuentes = f"""
-                /* =========================
-                FUENTE GENERAL
-                ========================= */
-                QWidget {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                TÍTULOS PRINCIPALES
-                ========================= */
-                QLabel[texto="Principal"], QLabel[texto="TituloPrincipal"],
-                QLabel[texto="Destacado"], {{
-                    font-family: "{manrope_family}";
-                    font-weight: bold;
-                }}
-                /* =========================
-                BOTONES
-                ========================= */
-                QPushButton {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                TÍTULOS DE SECCIÓN
-                ========================= */
-                QLabel[texto="InputTexto"],QPushButton[boton="BotonTexto"] {{
-                    font-family: "{manrope_family}";
-                    font-weight: bold;
-                }}
-                /* =========================
-                TÍTULOS SECUNDARIOS
-                ========================= */
-                QLabel[styleClass="tituloSecundario"] {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                LABELS GENERALES
-                ========================= */
-                QLabel {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                INPUTS
-                ========================= */
-                QLineEdit,
-                QDateEdit,
-                QComboBox {{
-                    font-family: "{source_family}";
-                    font-size: 14px;
-                }}
-            """
-            self.ui.setStyleSheet(estilos_actuales + estilos_fuentes)
+            estilos_tipografias=estilos_fuentes(source_family,manrope_family)
+            self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
 
@@ -115,10 +70,11 @@ class VentanaRecuperarContra(QWidget):
         self.configurar_password(self.ui.inputConfirmarContra)
 
         #* CONECTAR ACCIONES
-
+        self.ui.btnEnviar.clicked.connect(self.enviarCodigo)
+        self.ui.btnConfirmar.clicked.connect(self.cambiarContrasena)
+        self.ui.btnConfirmarCod.clicked.connect(self.verificar_codigo)
         #* MOSTRAR VENTANA
         self.show()
-
     def configurar_password(self, input_password):
         input_password.setEchoMode(QLineEdit.EchoMode.Password)
         accion_ojo = QAction(input_password)
@@ -134,11 +90,74 @@ class VentanaRecuperarContra(QWidget):
                 input_password.setEchoMode(QLineEdit.EchoMode.Password)
                 accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
         accion_ojo.toggled.connect(cambiar_visibilidad)
-    def verificar(self):
-        if not V.tienen_contenido([self.ui.txtContrasena,self.ui.txtCorreo]):
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear la Cuenta")
+    def enviarCodigo(self):
+        if not V.tienen_contenido(self.ui.inputCoreo):
+            QMessageBox.critical(
+                self,
+                "Error",
+                "Debe llenar el campo solicitado para enviar el código"
+            )
             return
-        if not VD.validar_correo(self.ui.txtCorreo.text()):
-            QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
+        self.ui.btnEnviar.setEnabled(False)
+        self.email = self.ui.inputCoreo.text().strip()
+        self.respuesta = self.controller.request_recovery(self.email)
+        if not self.respuesta["success"]:
+            self.ui.btnEnviar.setEnabled(True)
+            QMessageBox.warning(
+                self,
+                "Error",
+                self.respuesta["message"]
+            )
             return
+        datos_codigo = self.respuesta["datos_codigo"]
+        self.user_id = datos_codigo["user_id"]
+        self.enviarCorreo()
 
+    def enviarCorreo(self):
+        datos_codigo = self.respuesta["datos_codigo"]
+        self.email_thread = EnviarCorreoThread(datos_codigo["email"],datos_codigo["codigo"])
+        self.email_thread.exito_signal.connect(self.correoEnviado)
+        self.email_thread.error_signal.connect(self.errorCorreo)
+        self.email_thread.start()
+
+    def correoEnviado(self):
+        QMessageBox.information(self,"Éxito","El código fue enviado correctamente.")
+        self.ui.btnEnviar.setEnabled(True)
+
+    def errorCorreo(self, mensaje):
+        QMessageBox.warning(self,"Error",mensaje)
+        self.ui.btnEnviar.setEnabled(True)
+
+
+    def verificar_codigo(self):
+        if not V.tienen_contenido(self.ui.inputCodigo):
+            QMessageBox.critical(self,"Error","Debe llenar el campo necesario")
+            return
+        codigo = self.ui.inputCodigo.text().strip()
+        result = self.controller.verify_recovery_code(self.user_id,codigo)
+        if result["success"]:
+            self.recovery = result["recovery"]
+            QMessageBox.information(self,"Éxito",result["message"])
+            self.ui.stacked.setCurrentIndex(1)
+        else:
+            QMessageBox.warning(self,"Error",result["message"])
+
+
+    def cambiarContrasena(self):
+        if not V.tienen_contenido(
+            self.ui.inputCambiarContra.text().strip(),
+            self.ui.inputConfirmarContra.text().strip()
+        ):
+            QMessageBox.critical(self,"Error","Debe llenar el campo necesario")
+            return
+        password = self.ui.inputCambiarContra.text().strip()
+        password_confirmar = self.ui.inputConfirmarContra.text().strip()
+        VD.evaluar_contrasena(self, password)
+        if not VD.comparar_contraseñas(self,password,password_confirmar):
+            return
+        result = self.controller.change_password(self.recovery,password)
+        if result["success"]:
+            QMessageBox.information(self,"Éxito",result["message"])
+            self.close()
+        else:
+            QMessageBox.warning(self,"Error",result["message"])

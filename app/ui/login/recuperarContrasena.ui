@@ -17,8 +17,6 @@
    <string notr="true">
 #recuperarContrasena {
     background-color: #FFFEFE;
-	border-radius: 20px;
-	border: 2px solid #EBECF0;
 }
 #stacked{
 background-color: transparent;
@@ -188,7 +186,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
    <item>
     <widget class="QStackedWidget" name="stacked">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -225,7 +223,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="inputCodigo">
+        <widget class="QLineEdit" name="inputCoreo">
          <property name="placeholderText">
           <string>Correo...</string>
          </property>
@@ -241,9 +239,9 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QPushButton" name="btnConfirmar">
+           <widget class="QPushButton" name="btnEnviar">
             <property name="text">
-             <string>Confirmar</string>
+             <string>Enviar Código</string>
             </property>
             <property name="boton" stdset="0">
              <string>Primario</string>
@@ -270,7 +268,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="inputCodigo">
          <property name="placeholderText">
           <string>Código...</string>
          </property>
@@ -280,7 +278,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
         <widget class="QWidget" name="widget_4" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btnConfirmarCod">
             <property name="text">
              <string>Confirmar Código</string>
             </property>
@@ -359,7 +357,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QPushButton" name="btnConfirmar_2">
+            <widget class="QPushButton" name="btnConfirmar">
              <property name="text">
               <string>Confirmar</string>
              </property>

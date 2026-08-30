@@ -17,7 +17,7 @@ class RecoveryRepository:
         stmt = select(Recovery).where(
             Recovery.user_id == user_id,
             Recovery.codigo == code,
-            Recovery.expires_at > datetime.now(timezone.utc),
+            Recovery.expires_at > datetime.utcnow(),
             Recovery.used == False
         )
         return self.session.scalar(stmt)

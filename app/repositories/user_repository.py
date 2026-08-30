@@ -19,7 +19,7 @@ class UserRepository:
         user=self.session.scalar(stmt)
         return user
     def get_by_id(self, user_id: int):
-        stmt = select(Users).where(Users.id == user_id)
+        stmt = select(Users).where(Users.user_id == user_id)
         return self.session.scalar(stmt)
     def update_password(self, user: Users, password: str):
         user.password = password

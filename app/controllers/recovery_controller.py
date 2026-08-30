@@ -20,15 +20,13 @@ class RecoveryController:
                 "message": "Ocurrió un error al procesar la solicitud."
             }
 
-    def verify_recovery_code(self, user, datos_codigo):
+    def verify_recovery_code(self, user_id, code):
         try:
-            recovery = self.service.verify_recovery_code(
-                user.id,
-                datos_codigo["codigo"]
-            )
+            recovery = self.service.verify_recovery_code(user_id,code)
             return {
                 "success": True,
-                "recovery": recovery
+                "recovery": recovery,
+                "message": "El código es válido."
             }
         except ValueError as e:
             return {
@@ -54,6 +52,8 @@ class RecoveryController:
                 "message": str(e)
             }
         except Exception:
+            import traceback
+            traceback.print_exc()
             return {
                 "success": False,
                 "message": "Ocurrió un error al cambiar la contraseña."

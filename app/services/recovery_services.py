@@ -17,7 +17,7 @@ class RecoveryService:
         # Generar código, token y expiración
         datos = generar_codigo_recuperacion()
         recovery = Recovery(
-            user_id=user.id,
+            user_id=user.user_id,
             codigo=datos["codigo_numerico"],
             token=datos["token_seguro"],
             expires_at=datos["expira_en"]
@@ -27,7 +27,8 @@ class RecoveryService:
         # Devolver información necesaria para continuar
         return {
             "codigo": datos["codigo_numerico"],
-            "user":user
+            "email":user.email,
+            "user_id":user.user_id
         }
     def verify_recovery_code(self, user_id: int, code: str):
         recovery = self.repository.find_valid_recovery(user_id,code)
@@ -38,7 +39,7 @@ class RecoveryService:
         # Verificar que la recuperación siga siendo válida
         if recovery.used:
             raise ValueError("Esta recuperación ya fue utilizada.")
-        if recovery.expires_at <= datetime.now(timezone.utc):
+        if recovery.expires_at <= datetime.utcnow():
             raise ValueError("Esta recuperación ha expirado.")
         # Generar hash
         password_hash = hp.hash_password(new_password)

@@ -1,11 +1,12 @@
 import os
-from PySide6.QtWidgets import QApplication, QWidget,QLineEdit,QMessageBox
+from PySide6.QtWidgets import QWidget,QLineEdit,QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6 import QtCore
-from PySide6.QtCore import QRect
 from PySide6.QtGui import QIcon,QAction
+from PySide6.QtCore import Signal
 from app.generated import resources_rc
+from app.views.estilosTipografia import estilos_fuentes
 #Importaciones de la clase Validators (validan cosas)
 from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
 #Importaciones para el hash de contraseñas
@@ -15,6 +16,8 @@ from PySide6.QtSvg import QSvgRenderer
 renderer = QSvgRenderer(":/icons/person.svg")
 
 class VentanaCrearCuenta(QWidget):
+    volver_login_requested = Signal()
+    register_successful = Signal()
     def __init__(self,user_controller):
         super().__init__()
         self.controller=user_controller
@@ -62,57 +65,8 @@ class VentanaCrearCuenta(QWidget):
         #* APLICAR TIPOGRAFÍAS
         if manrope_family and source_family:
             estilos_actuales = self.ui.styleSheet()
-            estilos_fuentes = f"""
-                /* =========================
-                FUENTE GENERAL
-                ========================= */
-                QWidget {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                TÍTULOS PRINCIPALES
-                ========================= */
-                QLabel[texto="Principal"], QLabel[texto="TituloPrincipal"],
-                QLabel[texto="Destacado"], {{
-                    font-family: "{manrope_family}";
-                    font-weight: bold;
-                }}
-                /* =========================
-                BOTONES
-                ========================= */
-                QPushButton {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                TÍTULOS DE SECCIÓN
-                ========================= */
-                QLabel[texto="InputTexto"],QPushButton[boton="BotonTexto"] {{
-                    font-family: "{manrope_family}";
-                    font-weight: bold;
-                }}
-                /* =========================
-                TÍTULOS SECUNDARIOS
-                ========================= */
-                QLabel[styleClass="tituloSecundario"] {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                LABELS GENERALES
-                ========================= */
-                QLabel {{
-                    font-family: "{source_family}";
-                }}
-                /* =========================
-                INPUTS
-                ========================= */
-                QLineEdit,
-                QDateEdit,
-                QComboBox {{
-                    font-family: "{source_family}";
-                    font-size: 14px;
-                }}
-            """
-            self.ui.setStyleSheet(estilos_actuales + estilos_fuentes)
+            estilos_tipografias = estilos_fuentes(source_family,manrope_family)
+            self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
 
@@ -129,6 +83,7 @@ class VentanaCrearCuenta(QWidget):
 
         #*CONECTAR LAS ACCIONES
         self.ui.BtnCrearCuenta.clicked.connect(self.guardar)
+        self.ui.BtnLogin.clicked.connect(self.volver_login_requested.emit)
 
         #* MOSTRAR VENTANA
         self.showMaximized()
@@ -178,6 +133,7 @@ class VentanaCrearCuenta(QWidget):
                 "Éxito",
                 result["message"]
             )
+            self.register_successful.emit()
         else:
             QMessageBox.warning(
                 self,
