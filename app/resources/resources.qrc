@@ -6,6 +6,16 @@
     <file>images/backCreateAccount.jpg</file>
     <file>images/profile.png</file>
 
+    <file>images/businessIcons/barberShop.png</file>
+    <file>images/businessIcons/clotheStore.png</file>
+    <file>images/businessIcons/clotheStore.png</file>
+    <file>images/businessIcons/coffeShop.png</file>
+    <file>images/businessIcons/drugStore.png</file>
+    <file>images/businessIcons/restaurant.png</file>
+    <file>images/businessIcons/drugStore.png</file>
+    <file>images/businessIcons/restaurant.png</file>
+    <file>images/businessIcons/shop.png</file>
+
     <!-- Iconos añadidos -->
     <file>icons/person.svg</file>
     <file>icons/kiosk.svg</file>

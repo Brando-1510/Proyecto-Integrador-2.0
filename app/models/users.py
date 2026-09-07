@@ -18,6 +18,7 @@ class Users(Base):
     email: Mapped[str] = mapped_column(String(150),unique=True,nullable=False)
     password: Mapped[str] = mapped_column(String(255),nullable=False)
     birth_date:Mapped[date]=mapped_column(Date,nullable=False)
+    profile_picture: Mapped[str | None] = mapped_column(String(255), nullable=True)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(),onupdate=func.now())
     # Recuperaciones de contraseña

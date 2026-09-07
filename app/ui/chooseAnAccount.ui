@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>contenedorPrincipal</class>
+ <widget class="QWidget" name="contenedorPrincipal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1370</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*
+-----------------------------------------------------------------------------------------------------
+Textos
+-----------------------------------------------------------------------------------------------------
+*/
+
+QLabel {
+    font-size: 14px;
+    color: #0E042F;
+}
+QLabel[texto=&quot;TituloPrincipal&quot;] {
+    font-size: 30px;
+    qproperty-alignment: 'AlignCenter';
+    font-weight: bold;
+}
+
+
+
+/* Estado por defecto (Inactivo / No seleccionado) */
+QFrame[tarjeta=&quot;Negocio&quot;] {
+    background-color: #ffffff;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+}
+
+/* Al hacer hover o estar seleccionado, el borde cambia a #16094C */
+QFrame[tarjeta=&quot;Negocio&quot;]:hover,
+QFrame[tarjeta=&quot;Negocio&quot;][seleccionado=&quot;true&quot;] {
+    background-color: #f7fafc;
+    border: 2px solid #16094C;
+    border-radius: 8px;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="parteArriba" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#parteArriba{
+background-color: #16094C;
+}
+/*
+-----------------------------------------------------------------------------------------------------
+Textos
+-----------------------------------------------------------------------------------------------------
+*/
+
+QLabel {
+    font-size: 14px;
+    color: #F7F7F7;
+}
+QLabel[texto=&quot;Destacado&quot;] {
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>30</number>
+      </property>
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/resources.qrc">:/images/logo.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Acceso Empresarial</string>
+        </property>
+        <property name="texto" stdset="0">
+         <string>Destacado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBienvenidaUser">
+        <property name="text">
+         <string>Bienvenido, Luis Hernández</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>¿A Qué Negocio Deseas Ingresar?</string>
+        </property>
+        <property name="texto" stdset="0">
+         <string>TituloPrincipal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="stackedWidget">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="page">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>1332</width>
+               <height>496</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout"/>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page_2"/>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
