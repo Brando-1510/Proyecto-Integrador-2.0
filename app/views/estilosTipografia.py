@@ -46,4 +46,7 @@ def estilos_fuentes(source_family,manrope_family):
             font-family: "{source_family}";
             font-size: 14px;
         }}
+        QWidget[contenedor="Principal"]{{
+	    background-color: #f7f7f7;
+     }}
 """

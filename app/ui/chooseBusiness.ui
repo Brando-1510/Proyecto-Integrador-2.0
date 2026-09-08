@@ -1,24 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>contenedor</class>
- <widget class="QWidget" name="contenedor">
+ <class>LoginWindow</class>
+ <widget class="QWidget" name="LoginWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1370</width>
+    <width>1362</width>
     <height>700</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
   </property>
-  <property name="autoFillBackground">
-   <bool>true</bool>
+  <property name="maximumSize">
+   <size>
+    <width>1370</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Crear Cuenta</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget#contenedor {
-    background-color: #f7f7f7;
+   <string notr="true">
+#LoginWindow {
+    background-color: #F7F7F7;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Inputs
+-----------------------------------------------------------------------------------------------------
+*/
+
+QLineEdit, QDateEdit {
+    background-color: #F8F9FA;
+    border: 2px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #0E042F;
+    min-height: 18px;
+}
+
+QLineEdit:hover, QDateEdit:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+QLineEdit:focus, QDateEdit:focus {
+    border: 1px solid #744BCC;
+    background-color: #FFFFFF;
+}
+
+QLineEdit:disabled, QDateEdit:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 2px solid #D1D5DB;
+}
+
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #D1D5DB;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 /*
@@ -31,32 +83,94 @@ QLabel {
     font-size: 14px;
     color: #0E042F;
 }
+
 QLabel[texto=&quot;TituloPrincipal&quot;] {
     font-size: 30px;
     qproperty-alignment: 'AlignCenter';
     font-weight: bold;
 }
 
-
-
-QFrame[tarjeta=&quot;Negocio&quot;] {
-    background-color: #ffffff;
-    border: 2px solid #dcdde1;
-    border-radius: 8px;
+QLabel[texto=&quot;Descripcion&quot;] {
+    font-size: 18px;
+    color: #6C6686;
 }
 
-QFrame[tarjeta=&quot;Negocio&quot;]:hover {
-    background-color: #f7fafc;
-    border: 2px solid #16094C;
-    border-radius: 8px;
+QLabel[texto=&quot;InputTexto&quot;] {
+    font-size: 16px;
+    color: #6C6686;
 }
-#contenedor{
-	background-color: #f7f7f7;
+
+QLabel[texto=&quot;Destacado&quot;] {
+    font-size: 16px;
+    color: #0E042F;
+    qproperty-alignment: 'AlignCenter';
+    font-weight: bold;
 }
-</string>
-  </property>
-  <property name="contenedor" stdset="0">
-   <string>Principal</string>
+
+/*
+-----------------------------------------------------------------------------------------------------
+Botones
+-----------------------------------------------------------------------------------------------------
+*/
+
+QPushButton[boton=&quot;Primario&quot;] {
+    border-radius: 10px;
+    background-color: #5D38BB;
+    font-weight: bold;
+    color: #F7F7F7;
+    font-size: 12pt;
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:hover {
+    background-color: #744BCC;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:pressed {
+    background-color: #472A8F;
+}
+
+QPushButton[boton=&quot;Secundario&quot;] {
+    border-radius: 10px;
+    background-color: rgba(161, 147, 204, 0.7);
+    font-weight: bold;
+    color: #5D38BB;
+    font-size: 18px;
+    min-height: 40px;
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:hover {
+    background-color: rgba(161, 147, 204, 0.9);
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:pressed {
+    background-color: rgba(131, 117, 174, 0.9);
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;] {
+    border: none;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+    color: #0E042F;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:hover {
+    color: #6C6686;
+    background: transparent;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:pressed,
+QPushButton[boton=&quot;BotonTexto&quot;]:focus {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+   </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
@@ -68,9 +182,6 @@ QFrame[tarjeta=&quot;Negocio&quot;]:hover {
    <property name="rightMargin">
     <number>0</number>
    </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
     <widget class="QWidget" name="parteArriba" native="true">
      <property name="maximumSize">
@@ -80,7 +191,7 @@ QFrame[tarjeta=&quot;Negocio&quot;]:hover {
       </size>
      </property>
      <property name="autoFillBackground">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="styleSheet">
       <string notr="true">#parteArriba{
@@ -189,7 +300,7 @@ QLabel[texto=&quot;Destacado&quot;] {
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page">
          <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -251,8 +362,8 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>74</width>
-               <height>18</height>
+               <width>1326</width>
+               <height>489</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout"/>

@@ -13,7 +13,7 @@ renderer = QSvgRenderer(":/icons/person.svg")
 class VentanaLogin(QWidget):
     crear_cuenta_requested = Signal()
     recuperar_contrasena_requested = Signal()
-    login_successful = Signal()
+    login_successful = Signal(object)
     def __init__(self,user_controller):
         super().__init__()
         self.controller=user_controller
@@ -111,7 +111,7 @@ class VentanaLogin(QWidget):
                 "Éxito",
                 result["message"]
             )
-            self.login_successful.emit()
+            self.login_successful.emit(result["user"])
         else:
             QMessageBox.warning(
                 self,
