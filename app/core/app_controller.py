@@ -2,7 +2,7 @@ from app.views.login.login import VentanaLogin
 from app.views.createAccount.createAccount import VentanaCrearCuenta
 from app.views.login.recuperarContra import VentanaRecuperarContra
 from app.views.chooseABusiness.chooseABusiness import VentanaChooseBusiness
-# from app.views.dashboard.dashboard import VentanaDashboard
+from app.views.dashboard.dashboard import VentanaDashboard
 
 class AppController:
     def __init__(self, container):
@@ -51,9 +51,14 @@ class AppController:
         if self.create_account_window is not None:
             self.create_account_window.close()
         if self.chooseBusiness_window is None:
-            self.chooseBusiness_window = VentanaChooseBusiness(user)
-
+            self.chooseBusiness_window = VentanaChooseBusiness(user,self.container.userBusiness_controller)
+            self.chooseBusiness_window.dashboard_requested.connect(self.show_dashboard)
         self.chooseBusiness_window.show()
+    #*Mostrar Dashboard
+    def show_dashboard(self, user, userBusiness):
+        self.dashboard_window = VentanaDashboard(user,userBusiness)
+        self.dashboard_window.show()
+        self.chooseBusiness_window.close()
     #*Crear Aplicación
     def close(self):
         self.container.close()

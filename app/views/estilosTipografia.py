@@ -10,7 +10,7 @@ def estilos_fuentes(source_family,manrope_family):
         TÍTULOS PRINCIPALES
     ========================= */
         QLabel[texto="Principal"], QLabel[texto="TituloPrincipal"],
-        QLabel[texto="Destacado"], {{
+        QLabel[texto="Destacado"], QLabel[texto="DestacadoArriba] {{
             font-family: "{manrope_family}";
             font-weight: bold;
         }}
@@ -46,7 +46,4 @@ def estilos_fuentes(source_family,manrope_family):
             font-family: "{source_family}";
             font-size: 14px;
         }}
-        QWidget[contenedor="Principal"]{{
-	    background-color: #f7f7f7;
-     }}
 """
