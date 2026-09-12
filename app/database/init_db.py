@@ -7,5 +7,5 @@ from app.models.business import Business
 from app.models.user_business import UserBusiness
 from app.models.recovery import Recovery
 
-def init_db():
-    Base.metadata.create_all(bind=engine)
+"""def init_db():
+    Base.metadata.create_all(bind=engine)"""

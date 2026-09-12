@@ -15,6 +15,7 @@ class VentanaChooseBusiness(QWidget):
         self.user = user
         self.userBusiness_seleccionado = None
         self.controller = userBusiness_controller
+        self.tarjeta_seleccionada = None
         #*OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
@@ -66,6 +67,7 @@ class VentanaChooseBusiness(QWidget):
 
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
+        self.ui.stackedWidget.setCurrentIndex(0)
         #*CARGAR NEGOCIOS
         self.cargar_negocios()
         self.ui.btnEntrar.clicked.connect(self.entrar_al_negocio)
@@ -75,8 +77,15 @@ class VentanaChooseBusiness(QWidget):
         self.ui.lblBienvenidaUser.setText(f"Bienvenido, {texto}")
     def cambiar_index(self):
         self.ui.stackedWidget.setCurrentIndex(1)
-    def seleccionar_negocio(self, userBusiness):
-        self.userBusiness_seleccionado = userBusiness
+    def seleccionar_negocio(self, tarjeta):
+        if self.tarjeta_seleccionada is not None:
+            self.tarjeta_seleccionada.establecer_seleccionada(False)
+        # Guardar la nueva tarjeta
+        self.tarjeta_seleccionada = tarjeta
+        # Mantener visualmente seleccionada
+        self.tarjeta_seleccionada.establecer_seleccionada(True)
+        # Guardar el UserBusiness correspondiente
+        self.userBusiness_seleccionado = tarjeta.negocio
     def entrar_al_negocio(self):
         if not self.userBusiness_seleccionado:
             return

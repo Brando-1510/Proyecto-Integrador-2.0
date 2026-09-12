@@ -11,9 +11,8 @@ if TYPE_CHECKING:
     from app.models.business import Business
 
 class Role(Enum):
-    ADMIN = "Gerente"
-    ASSISTANT_MANAGER = "Asistente del Gerente"
-    ACCOUNTANT = "Contador"
+    MANAGER = "Gerente"
+    FINANCIAL_ANALYST="Analista Financiero"
     EMPLOYEE = "Empleado"
 
 class UserBusiness(Base):
@@ -21,7 +20,9 @@ class UserBusiness(Base):
     user_business_id: Mapped[intpk]
     user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False)
     business_id: Mapped[int] = mapped_column(ForeignKey("businesses.business_id"),nullable=False)
-    role: Mapped[Role] = mapped_column(SQLEnum(Role),default=Role.EMPLOYEE,nullable=False)
+    role: Mapped[Role] = mapped_column(SQLEnum(
+        Role,values_callable=lambda enum_class: [item.value for item in enum_class]),
+        default=Role.EMPLOYEE,nullable=False)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     user: Mapped["Users"] = relationship(back_populates="business_relationships")
     business: Mapped["Business"] = relationship(back_populates="user_relationships")

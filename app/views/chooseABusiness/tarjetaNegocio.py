@@ -11,6 +11,7 @@ class TarjetaNegocio(QFrame):
         self.esta_seleccionada=False
         # Propiedad establecida en Designer
         self.setProperty("tarjeta", "Negocio")
+        self.setProperty("seleccionada", "false")
         self.crear_ui()
         self.style().unpolish(self)
         self.style().polish(self)
@@ -48,7 +49,13 @@ class TarjetaNegocio(QFrame):
         layout_principal.addWidget(self.lblIcono)
         layout_principal.addLayout(layout_info)
 
+    def establecer_seleccionada(self, seleccionada):
+        self.esta_seleccionada = seleccionada
+        self.setProperty("seleccionada","true" if seleccionada else "false")
 
+        self.style().unpolish(self)
+        self.style().polish(self)
+        self.update()
     def obtener_icono(self):
         iconos = {
             "Barberia": ":/images/businessIcons/barberShop.png",
@@ -65,5 +72,7 @@ class TarjetaNegocio(QFrame):
             ":/icons/default.png"
         )
     def mousePressEvent(self, event):
-        self.seleccionada.emit(self.negocio)
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.seleccionada.emit(self)
+
         super().mousePressEvent(event)

@@ -30,18 +30,18 @@
     background-color: #F7F7F7;
 }
 QFrame[tarjeta=&quot;Negocio&quot;] {
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 10px;
-}
-QFrame[tarjeta=&quot;Negocio&quot;] {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
     border-radius: 10px;
 }
 
 QFrame[tarjeta=&quot;Negocio&quot;]:hover {
-    border: 2px solid #2A094C;
+    border: 2px solid #16094C;
+}
+
+QFrame[tarjeta=&quot;Negocio&quot;][seleccionada=&quot;true&quot;] {
+    background-color: #F5F3FF;
+    border: 2px solid #16094C;
 }
 
 /*
@@ -348,7 +348,7 @@ QLabel[texto=&quot;Descripcion&quot;] {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="page">
          <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -423,8 +423,8 @@ color: #16094C;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>1326</width>
-               <height>489</height>
+               <width>688</width>
+               <height>84</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">
@@ -441,7 +441,7 @@ color: #16094C;
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <item>
-                  <widget class="QPushButton" name="pushButton_2">
+                  <widget class="QPushButton" name="BtnNuevoNeg">
                    <property name="maximumSize">
                     <size>
                      <width>500</width>
@@ -542,7 +542,7 @@ QPushButton[boton=&quot;Primario&quot;]:pressed {
            <item>
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>Su cuenta aun no esta vinculada a un negocio</string>
+              <string>Su cuenta aún no esta vinculada a un negocio</string>
              </property>
              <property name="texto" stdset="0">
               <string>Destacado</string>
@@ -572,7 +572,7 @@ QPushButton[boton=&quot;Primario&quot;]:pressed {
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="btnCrearNeg">
                 <property name="minimumSize">
                  <size>
                   <width>500</width>

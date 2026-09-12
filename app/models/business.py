@@ -10,19 +10,23 @@ if TYPE_CHECKING:
     from app.models.users import Users
     from app.models.user_business import UserBusiness
 class Type_of_Business(Enum):
-    BARBERSHOP="Barberia"
+    BARBERSHOP="Barbería"
     CLOTHSTORE="Tienda de Ropa"
     COFFESHOP="Cafetería"
     DRUGSTORE="Farmacia"
     RESTAURANT="Restaurante"
     HARDWARESTORE="Ferretería"
-    GROCERYSTORE="Pulperia"
+    GROCERYSTORE="Pulpería"
     OTHER="Otro"
 class Business(Base):
     __tablename__ = "businesses"
     business_id: Mapped[intpk]
     business_name: Mapped[str] = mapped_column(String(150),nullable=False)
-    type_of_business: Mapped[Type_of_Business] = mapped_column(SQLEnum(Type_of_Business),default=Type_of_Business.OTHER,nullable=False)
+    type_of_business: Mapped[Type_of_Business] = mapped_column(SQLEnum(
+        Type_of_Business,
+        values_callable=lambda enum_class: [item.value for item in enum_class]),
+    default=Type_of_Business.OTHER,
+    nullable=False)
     start_of_operations: Mapped[datetime | None]
     description: Mapped[str | None] = mapped_column(Text)
     logo: Mapped[str | None] = mapped_column(String(255), nullable=True)
