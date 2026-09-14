@@ -4,9 +4,9 @@ from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
-from app.views.chooseABusiness.tarjetaNegocio import TarjetaNegocio
+from PySide6 import QtCore
 from PySide6.QtCore import Qt,Signal
-
+from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
 
 class VentanaCreateBusiness(QWidget):
     dashboard_requested = Signal(object, object)
@@ -27,6 +27,8 @@ class VentanaCreateBusiness(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.tipoNegocio.setCurrentIndex(7)
         #*CARGAR TIPOGRAFÍAS
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
@@ -64,3 +66,28 @@ class VentanaCreateBusiness(QWidget):
 
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
+        self.showMaximized()
+        #*Cambiando los inputs
+        hoy = QtCore.QDate.currentDate()
+        self.ui.inputFecha.setCalendarPopup(True)
+        self.ui.inputFecha.setMaximumDate(hoy)
+        self.ui.inputFecha.setDate(hoy)
+        #*Conectando las acciones
+        self.ui.continuarUno.clicked.connect(lambda: self.avanzar(
+            1,self.ui.inputNegocio, self.ui.descripcionInput
+            ))
+        self.ui.volver.clicked.connect(lambda: self.cambiar_pagina(0))
+    def cambiar_pagina(self, indice):
+        self.ui.stackedWidget.setCurrentIndex(indice)
+    def avanzar(self, index, *args):
+        # Pasamos los elementos desempaquetados directamente
+        if V.tienen_contenido(*args):
+            self.cambiar_pagina(index)
+        else:
+            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para avanzar")
+    def validar_campos(self):
+        if not V.tienen_contenido(
+            self.ui.inputNegocio,self.ui.descripcionInput
+        ):
+            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear el Negocio")
+            return None
