@@ -5,7 +5,6 @@ class ChooseBusinessController:
     def load_businesses(self, user_id):
         try:
             userBusinesses = self.service.get_user_businesses(user_id)
-
             return {
                 "success": True,
                 "userBusinesses": userBusinesses or []

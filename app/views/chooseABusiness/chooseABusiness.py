@@ -10,6 +10,7 @@ from PySide6.QtCore import Qt,Signal
 
 class VentanaChooseBusiness(QWidget):
     dashboard_requested = Signal(object, object)
+    crear_negocio_requested = Signal(object)
     def __init__(self, user, userBusiness_controller):
         super().__init__()
         self.user = user
@@ -71,8 +72,12 @@ class VentanaChooseBusiness(QWidget):
         #*CARGAR NEGOCIOS
         self.cargar_negocios()
         self.ui.btnEntrar.clicked.connect(self.entrar_al_negocio)
+        self.ui.btnCrearNeg.clicked.connect(self.ir_a_crear_negocio)
+        self.ui.BtnNuevoNeg.clicked.connect(self.ir_a_crear_negocio)
         #*MOSTRAR VENTANA
         self.showMaximized()
+    def ir_a_crear_negocio(self):
+        self.crear_negocio_requested.emit(self.user)
     def cambiar_lbl(self,texto):
         self.ui.lblBienvenidaUser.setText(f"Bienvenido, {texto}")
     def cambiar_index(self):

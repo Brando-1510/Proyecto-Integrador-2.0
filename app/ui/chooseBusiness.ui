@@ -423,8 +423,8 @@ color: #16094C;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>688</width>
-               <height>84</height>
+               <width>1326</width>
+               <height>489</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">

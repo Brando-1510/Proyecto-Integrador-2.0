@@ -3,6 +3,7 @@ from app.views.createAccount.createAccount import VentanaCrearCuenta
 from app.views.login.recuperarContra import VentanaRecuperarContra
 from app.views.chooseABusiness.chooseABusiness import VentanaChooseBusiness
 from app.views.dashboard.dashboard import VentanaDashboard
+from app.views.createBusiness.createBusiness import VentanaCreateBusiness
 
 class AppController:
     def __init__(self, container):
@@ -12,6 +13,7 @@ class AppController:
         self.recovery_window = None
         self.dashboard_window = None
         self.chooseBusiness_window=None
+        self.createBusiness_window=None
 
     def start(self):
         self.show_login()
@@ -53,7 +55,15 @@ class AppController:
         if self.chooseBusiness_window is None:
             self.chooseBusiness_window = VentanaChooseBusiness(user,self.container.userBusiness_controller)
             self.chooseBusiness_window.dashboard_requested.connect(self.show_dashboard)
+            self.chooseBusiness_window.crear_negocio_requested.connect(self.show_create_business)
         self.chooseBusiness_window.show()
+    # Mostrar ventana de crear negocio
+    def show_create_business(self, user):
+        self.createBusiness_window = VentanaCreateBusiness(user)
+        #self.createBusiness_window.business_created.connect(self.show_dashboard)
+        self.createBusiness_window.show()
+        self.chooseBusiness_window.close()
+
     #*Mostrar Dashboard
     def show_dashboard(self, user, userBusiness):
         self.dashboard_window = VentanaDashboard(user,userBusiness)
