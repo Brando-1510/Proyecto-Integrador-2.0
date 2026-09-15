@@ -30,7 +30,7 @@ class Business(Base):
     start_of_operations: Mapped[datetime | None]
     description: Mapped[str | None] = mapped_column(Text)
     logo: Mapped[str | None] = mapped_column(String(255), nullable=True)
-    owner_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False,unique=True)
+    owner_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(),onupdate=func.now())
     owner: Mapped["Users"] = relationship(back_populates="owned_business")

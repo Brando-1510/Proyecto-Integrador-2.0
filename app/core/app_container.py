@@ -12,22 +12,28 @@ from app.repositories.user_business_repository import UserBusinessRepository
 from app.services.user_business_service import UserBusinessService
 from app.controllers.choose_business_controller import ChooseBusinessController
 
-
+from app.repositories.business_repository import BusinessRepository
+from app.services.business_service import BusinessService
+from app.controllers.business_controller import BusinessController
 class AppContainer:
     def __init__(self):
         self.session = SessionLocal()
-        # User
+        #*User
         self.user_repository = UserRepository(self.session)
         self.user_service = UserService(self.user_repository)
         self.user_controller = UserController(self.user_service)
-        # Recovery
+        #*Recovery
         self.recovery_repository = RecoveryRepository(self.session)
         self.recovery_service = RecoveryService(self.recovery_repository,self.user_repository)
         self.recovery_controller = RecoveryController(self.recovery_service)
-        #UserBusiness
+        #*UserBusiness
         self.userBusiness_repository=UserBusinessRepository(self.session)
         self.userBusiness_service= UserBusinessService(self.userBusiness_repository)
         self.userBusiness_controller=ChooseBusinessController(self.userBusiness_service)
+        #*Business
+        self.business_repository=BusinessRepository(self.session)
+        self.business_service=BusinessService(self.business_repository)
+        self.business_controller=BusinessController(self.business_service)
 
     def close(self):
         self.session.close()

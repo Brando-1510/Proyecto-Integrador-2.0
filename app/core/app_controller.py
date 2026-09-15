@@ -59,16 +59,25 @@ class AppController:
         self.chooseBusiness_window.show()
     # Mostrar ventana de crear negocio
     def show_create_business(self, user):
-        self.createBusiness_window = VentanaCreateBusiness(user)
-        #self.createBusiness_window.business_created.connect(self.show_dashboard)
+        if self.chooseBusiness_window is not None:
+            self.chooseBusiness_window.close()
+            self.chooseBusiness_window = None
+        self.createBusiness_window = VentanaCreateBusiness(
+            user,
+            self.container.business_controller
+        )
+        self.createBusiness_window.dashboard_requested.connect(self.show_dashboard)
         self.createBusiness_window.show()
-        self.chooseBusiness_window.close()
-
     #*Mostrar Dashboard
-    def show_dashboard(self, user, userBusiness):
-        self.dashboard_window = VentanaDashboard(user,userBusiness)
+    def show_dashboard(self, user, business, userBusiness):
+        self.dashboard_window = VentanaDashboard(
+            user,business,userBusiness
+        )
         self.dashboard_window.show()
-        self.chooseBusiness_window.close()
+        if self.chooseBusiness_window is not None:
+            self.chooseBusiness_window.close()
+        if self.createBusiness_window is not None:
+            self.createBusiness_window.close()
     #*Crear Aplicación
     def close(self):
         self.container.close()

@@ -9,7 +9,7 @@ from PySide6.QtCore import Qt,Signal
 
 
 class VentanaChooseBusiness(QWidget):
-    dashboard_requested = Signal(object, object)
+    dashboard_requested = Signal(object, object,object)
     crear_negocio_requested = Signal(object)
     def __init__(self, user, userBusiness_controller):
         super().__init__()
@@ -94,7 +94,9 @@ class VentanaChooseBusiness(QWidget):
     def entrar_al_negocio(self):
         if not self.userBusiness_seleccionado:
             return
-        self.dashboard_requested.emit(self.user,self.userBusiness_seleccionado)
+        self.dashboard_requested.emit(
+            self.user,self.userBusiness_seleccionado.business,self.userBusiness_seleccionado
+            )
     def cargar_negocios(self):
         resultado = self.controller.load_businesses(self.user.user_id)
         if not resultado["success"]:

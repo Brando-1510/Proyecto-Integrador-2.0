@@ -10,10 +10,11 @@ from PySide6.QtCore import Qt,Signal
 
 class VentanaDashboard(QWidget):
     dashboard_requested = Signal(object, object)
-    def __init__(self, user, userBusiness_controller):
+    def __init__(self, user, business, userBusiness):
         super().__init__()
         self.user = user
-        self.controller = userBusiness_controller
+        self.business = business
+        self.userBusiness = userBusiness
         #*OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI

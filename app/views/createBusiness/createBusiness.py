@@ -9,10 +9,11 @@ from PySide6.QtCore import Qt,Signal
 from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
 
 class VentanaCreateBusiness(QWidget):
-    dashboard_requested = Signal(object, object)
-    def __init__(self, user):
+    dashboard_requested = Signal(object, object,object)
+    def __init__(self, user,business_controller):
         super().__init__()
         self.user = user
+        self.controller=business_controller
         #*OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
@@ -77,6 +78,7 @@ class VentanaCreateBusiness(QWidget):
             1,self.ui.inputNegocio, self.ui.descripcionInput
             ))
         self.ui.volver.clicked.connect(lambda: self.cambiar_pagina(0))
+        self.ui.terminar.clicked.connect(self.guardar_negocio)
     def cambiar_pagina(self, indice):
         self.ui.stackedWidget.setCurrentIndex(indice)
     def avanzar(self, index, *args):
@@ -91,3 +93,25 @@ class VentanaCreateBusiness(QWidget):
         ):
             QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear el Negocio")
             return None
+    def guardar_negocio(self):
+        user_id=self.user.user_id
+        business_name=self.ui.inputNegocio.text().strip()
+        type_of_business=self.ui.tipoNegocio.currentText()
+        start_of_operations=self.ui.inputFecha.date().toPython()
+        description=self.ui.descripcionInput.toPlainText().strip()
+        result=self.controller.create_business(
+            user_id,business_name,type_of_business,start_of_operations,description
+        )
+        if result["success"]:
+            QMessageBox.information(
+                self,
+                "Éxito",
+                result["message"]
+            )
+            self.dashboard_requested.emit(self.user,result["business"],result["userBusiness"])
+        else:
+            QMessageBox.warning(
+                self,
+                "Error",
+                result["message"]
+            )
