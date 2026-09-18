@@ -1,48 +1,60 @@
 import os
-from PySide6.QtWidgets import (QWidget,QGridLayout,QMessageBox)
+from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
+from PySide6.QtCore import Signal
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
-from app.views.chooseABusiness.tarjetaNegocio import TarjetaNegocio
-from PySide6.QtCore import Qt,Signal
+from app.views.dashboard.pages.dashboard_home import DashboardHome
+from app.views.dashboard.pages.cargar_datos import CargarDatos
 
 
 class VentanaDashboard(QWidget):
     dashboard_requested = Signal(object, object)
-    def __init__(self, user, business, userBusiness):
+    def __init__(self, userBusiness):
         super().__init__()
-        self.user = user
-        self.business = business
+        self.user = userBusiness.user
+        self.business = userBusiness.business
         self.userBusiness = userBusiness
-        #*OBTENER DIRECTORIO ACTUAL
+        #*Obtener directorio actual
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
-        #*CARGAR ARCHIVO .UI
-        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/dashboard.ui"))
+        #*Cargar archivo ui
+        ruta_ui = os.path.normpath(os.path.join(
+                directorio_actual,"../../ui/dashboard/dashboard.ui"
+            ))
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
         if not self.ui:
-            print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
+            print(f"Error crítico: No se pudo cargar el archivo UI en: {ruta_ui}")
             return
-        #*CARGAR TIPOGRAFÍAS
+
+        #*Obtener widget del ui
+        self.stackedWidget = self.ui.findChild(QStackedWidget,"stackedWidget")
+
+        self.btnHome = self.ui.findChild(QPushButton,"btnHome")
+        self.btnCargarDatos=self.ui.findChild(QPushButton,"btnLoadData")
+        if not self.stackedWidget:
+            print("Error: No se encontró stackedWidget.")
+        if not self.btnHome:
+            print("Error: No se encontró btnHome.")
+
+        #*Cargar tipografías
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
         # Source Sans 3
         font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-        # VERIFICAR TIPOGRAFÍAS
+        #*Verificar tipografías
         if font_id_manrope == -1:
             print("Advertencia: No se pudo cargar Manrope.")
         if font_id_source == -1:
             print("Advertencia: No se pudo cargar Source Sans 3.")
-
-        # OBTENER FAMILIAS REALES
+        #*Obtener familias reales
         manrope_family = None
         source_family = None
         if font_id_manrope != -1:
             familias = QFontDatabase.applicationFontFamilies(font_id_manrope)
             if familias:
                 manrope_family = familias[0]
-
         if font_id_source != -1:
             familias = QFontDatabase.applicationFontFamilies(font_id_source)
             if familias:
@@ -50,16 +62,30 @@ class VentanaDashboard(QWidget):
         # Mostrar familias detectadas
         print("Manrope:", manrope_family)
         print("Source Sans 3:", source_family)
-        # APLICAR TIPOGRAFÍAS
+        #* APLICAR TIPOGRAFÍAS
         if manrope_family and source_family:
             estilos_actuales = self.ui.styleSheet()
-            estilos_tipografias = estilos_fuentes(
-                source_family,
-                manrope_family
-            )
+            estilos_tipografias = estilos_fuentes(source_family,manrope_family)
             self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
-
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
+        #* Cargar páginas
+        self.cargar_paginas()
+        #* Conectar botones
+        self.btnHome.clicked.connect(self.mostrar_home)
+        self.btnCargarDatos.clicked.connect(self.mostar_cargar_datos)
+        #Mostrar el home al iniciar
+        self.mostrar_home()
         #*MOSTRAR VENTANA
         self.showMaximized()
+    def cargar_paginas(self):
+        self.dashboard_home = DashboardHome(self.userBusiness)
+        self.cargar_datos = CargarDatos(self.userBusiness)
+        self.stackedWidget.addWidget(self.dashboard_home)
+        self.stackedWidget.addWidget(self.cargar_datos)
+    #*Mostrar Home
+    def mostrar_home(self):
+        self.stackedWidget.setCurrentWidget(self.dashboard_home)
+    #*Mostrar Cargar Datos
+    def mostar_cargar_datos(self):
+        self.stackedWidget.setCurrentWidget(self.cargar_datos)

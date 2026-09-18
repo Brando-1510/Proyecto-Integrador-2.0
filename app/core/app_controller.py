@@ -69,10 +69,8 @@ class AppController:
         self.createBusiness_window.dashboard_requested.connect(self.show_dashboard)
         self.createBusiness_window.show()
     #*Mostrar Dashboard
-    def show_dashboard(self, user, business, userBusiness):
-        self.dashboard_window = VentanaDashboard(
-            user,business,userBusiness
-        )
+    def show_dashboard(self,userBusiness):
+        self.dashboard_window = VentanaDashboard(userBusiness)
         self.dashboard_window.show()
         if self.chooseBusiness_window is not None:
             self.chooseBusiness_window.close()

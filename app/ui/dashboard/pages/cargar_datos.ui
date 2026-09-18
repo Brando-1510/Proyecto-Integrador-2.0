@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CargarDatos</class>
+ <widget class="QWidget" name="CargarDatos">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1073</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame[carta=&quot;Dashboard&quot;] {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 12px;
+}
+#CargarDatos{
+background-color:#f7f7f7;
+}
+QFrame{
+background-color:#f7f7f7;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Textos
+-----------------------------------------------------------------------------------------------------*/
+QLabel{
+background-color: transparent;
+font-size: 14px;
+color: #0E042F;
+}
+QLabel[texto=&quot;InputTexto&quot;]{
+font-size: 16px;
+font-weight: bold;
+}
+QLabel[texto=&quot;TituloPrincipal&quot;]{
+font-size:20px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Valor&quot;]{
+font-size:20px;
+}
+QLabel[texto=&quot;TituloSecundario&quot;]{
+font-size:18px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Descripcion&quot;]{
+font-size:16px;
+color: #46315c;
+}
+QLabel[texto=&quot;Destacado&quot;]{
+font-size:16px;
+color: #0E042F;
+font-weight: bold;
+}
+
+
+/*Botones*/
+/* --- BOTÓN PRIMARIO --- */
+
+QPushButton[boton=&quot;Primario&quot;] {
+    border-radius: 10px;
+    background-color: #5D38BB;
+    font-weight: bold;
+    color: #F7F7F7;
+    font-size: 12pt;
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+	width: 200px;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:hover {
+    background-color: #744BCC;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:pressed {
+    background-color: #472A8F;
+}
+
+/* --- BOTÓN SECUNDARIO --- */
+
+QPushButton[boton=&quot;Secundario&quot;] {
+    border-radius: 10px;
+    background-color: rgba(161, 147, 204, 0.7);
+    font-weight: bold;
+    color: #5D38BB;
+    font-size: 18px;
+    min-height: 40px;
+	width: 250px;
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:hover {
+    background-color: rgba(161, 147, 204, 0.9);
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:pressed {
+    background-color: rgba(131, 117, 174, 0.9);
+}
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_12">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <property name="leftMargin">
+      <number>30</number>
+     </property>
+     <property name="topMargin">
+      <number>25</number>
+     </property>
+     <property name="rightMargin">
+      <number>30</number>
+     </property>
+     <property name="bottomMargin">
+      <number>25</number>
+     </property>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="styleSheet">
+        <string notr="true">/*
+-----------------------------------------------------------------------------------------------------
+ScrollArea
+-----------------------------------------------------------------------------------------------------
+*/
+#scrollAreaWidgetContents {
+    background-color: transparent;
+}
+QScrollArea {
+    background-color: transparent;
+    border: none;
+	border-radius:0px;
+}
+
+/* Widget que está dentro del ScrollArea */
+/*QScrollArea &gt; QWidget &gt; QWidget {
+    background-color: #F9F9FC;
+}*/
+
+/* Scrollbar vertical */
+QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 0px;
+}
+
+/* Parte que se puede arrastrar */
+QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 40px;
+}
+
+/* Al pasar el mouse */
+QScrollBar::handle:vertical:hover {
+    background-color: #A99DB8;
+}
+
+/* Ocultar botones de arriba y abajo */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* Espacio antes/después del handle */
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>987</width>
+          <height>852</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="spacing">
+            <number>20</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblTitulo">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Cargar Datos</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>TituloPrincipal</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblDescripcion">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Importa y administra los datos financieros de tu negocio.</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>Descripcion</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameCargarArchivos">
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+qproperty-alignment: 'AlignCenter';
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="carta" stdset="0">
+              <string>Dashboard</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <property name="spacing">
+               <number>20</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QWidget" name="widget" native="true">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>130</height>
+                 </size>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QLabel" name="lblBusinessIcon">
+                   <property name="minimumSize">
+                    <size>
+                     <width>111</width>
+                     <height>101</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>121</width>
+                     <height>111</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">qproperty-alignment: 'AlignCenter';</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="../../../resources/resources.qrc">:/images/excel.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-size:30px;</string>
+                </property>
+                <property name="text">
+                 <string>Selecciona un archivo Excel</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>TituloPrincipal</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Carga un archivo .xslx para comenzar a procesar tus datos financieros</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Descripcion</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget_2" native="true">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnSeleccionarArchivo">
+                   <property name="text">
+                    <string>Seleccionar Archivo</string>
+                   </property>
+                   <property name="boton" stdset="0">
+                    <string>Primario</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frameArchivo">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="carta" stdset="0">
+              <string>Dashboard</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <property name="spacing">
+               <number>15</number>
+              </property>
+              <property name="leftMargin">
+               <number>15</number>
+              </property>
+              <property name="topMargin">
+               <number>15</number>
+              </property>
+              <property name="rightMargin">
+               <number>15</number>
+              </property>
+              <property name="bottomMargin">
+               <number>15</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="frameVisualizacionArchivo">
+                <property name="styleSheet">
+                 <string notr="true">/* Estado: Archivo Válido (Verde) */
+QFrame[carta=&quot;Valido&quot;] {
+    background-color: #e6f7ed;  /* Fondo verde claro */
+    border: 1px solid #a3e2bc;   /* Borde verde suave (opcional) */
+    color: #1e7e34;              /* Texto o contenido en verde oscuro */
+ border-radius: 12px;
+}
+
+/* Estado: Error (Rojo) */
+QFrame[carta=&quot;Error&quot;] {
+    background-color: #fce8e6;  /* Fondo rojo claro */
+    border: 1px solid #f5c2c7;   /* Borde rojo suave (opcional) */
+    color: #dc3545;              /* Texto o contenido en rojo oscuro */
+ border-radius: 12px;
+}
+/* --- ESTILOS DE LOS QLABEL DEPENDIENDO DEL CONTENEDOR --- */
+
+/* Cuando el Frame está en modo 'Valido', pinta su QLabel de verde oscuro */
+QFrame[carta=&quot;Valido&quot;] QLabel {
+    color: #2e7d32;
+	font-weight:bold;
+    font-size: 16px;
+}
+
+/* Cuando el Frame está en modo 'Error', pinta su QLabel de rojo oscuro */
+QFrame[carta=&quot;Error&quot;] QLabel {
+    color: #c62828;
+    font-size: 16px;
+}
+</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <property name="carta" stdset="0">
+                 <string>Dashboard</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <item>
+                  <widget class="QWidget" name="widget_3" native="true">
+                   <layout class="QHBoxLayout" name="horizontalLayout_3">
+                    <item>
+                     <widget class="QLabel" name="lblBusinessIcon_2">
+                      <property name="minimumSize">
+                       <size>
+                        <width>61</width>
+                        <height>61</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>61</width>
+                        <height>51</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="pixmap">
+                       <pixmap resource="../../../resources/resources.qrc">:/icons/file.svg</pixmap>
+                      </property>
+                      <property name="scaledContents">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QWidget" name="widget_4" native="true">
+                      <layout class="QVBoxLayout" name="verticalLayout_6">
+                       <item>
+                        <widget class="QLabel" name="label_3">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>ventas_agosto.xlsx</string>
+                         </property>
+                         <property name="texto" stdset="0">
+                          <string>Destacado</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_4">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>245 Registros Encontrados</string>
+                         </property>
+                         <property name="texto" stdset="0">
+                          <string>Descripcion</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_3">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton">
+                      <property name="text">
+                       <string>Cambiar Archivo</string>
+                      </property>
+                      <property name="boton" stdset="0">
+                       <string>Secundario</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="carta" stdset="0">
+                    <string>Valido</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <item>
+                     <widget class="QLabel" name="lblBusinessIcon_3">
+                      <property name="minimumSize">
+                       <size>
+                        <width>61</width>
+                        <height>61</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>61</width>
+                        <height>51</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="pixmap">
+                       <pixmap resource="../../../resources/resources.qrc">:/icons/check.svg</pixmap>
+                      </property>
+                      <property name="scaledContents">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_5">
+                      <property name="text">
+                       <string>Archivo Válido</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Valido</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_2">
+                <property name="styleSheet">
+                 <string notr="true">/* 
+-----------------------------------------------------------------------------------------------------
+Tabla (Optimizado para QTableView)
+-----------------------------------------------------------------------------------------------------
+*/
+
+QTableView {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 10px;
+    gridline-color: #EAE7EF;
+    font-size: 14px;
+    color: #0E042F;
+    selection-background-color: #EEEAF5;
+    selection-color: #0E042F;
+    /* Importante para que los elementos internos respeten los bordes redondeados */
+    overflow: hidden; 
+}
+
+/* Encabezados (Horizontal y Vertical) */
+QTableView QHeaderView::section {
+    background-color: #F5F3F8;
+    color: #0E042F;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 1px solid #E4E0EA;
+    padding: 10px;
+}
+
+/* Forzar que el encabezado horizontal se alinee bien con el estilo */
+QHeaderView {
+    background-color: #F5F3F8;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+/* Celdas individuales */
+QTableView::item {
+    padding: 8px;
+    border: none;
+}
+
+/* Fila seleccionada */
+QTableView::item:selected {
+    background-color: #EEEAF5;
+    color: #0E042F;
+}
+
+/* Esquina superior izquierda (intersección de encabezados) */
+QTableView QTableCornerButton::section {
+    background-color: #F5F3F8;
+    border: none;
+    border-top-left-radius: 9px;
+}
+
+/* --- SCROLLBAR VERTICAL --- */
+QTableView QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 2px;
+}
+
+QTableView QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+/* Ocultar flechas del scrollbar */
+QTableView QScrollBar::add-line:vertical,
+QTableView QScrollBar::sub-line:vertical,
+QTableView QScrollBar::add-page:vertical,
+QTableView QScrollBar::sub-page:vertical {
+    background: none;
+    height: 0px;
+}
+
+/* --- SCROLLBAR HORIZONTAL (Opcional, para mantener coherencia visual) --- */
+QTableView QScrollBar:horizontal {
+    background-color: transparent;
+    height: 8px;
+    margin: 2px 4px 2px 4px;
+}
+
+QTableView QScrollBar::handle:horizontal {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-width: 30px;
+}
+
+QTableView QScrollBar::add-line:horizontal,
+QTableView QScrollBar::sub-line:horizontal,
+QTableView QScrollBar::add-page:horizontal,
+QTableView QScrollBar::sub-page:horizontal {
+    background: none;
+    width: 0px;
+}
+</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <property name="carta" stdset="0">
+                 <string>Dashboard</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <item>
+                  <widget class="QLabel" name="label_6">
+                   <property name="text">
+                    <string>Vista Previa</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>TituloSecundario</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lblRegistros">
+                   <property name="text">
+                    <string>Primeros Registros del Archivo (total: 100)</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Descripcion</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTableView" name="tableView"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="widget_5" native="true">
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_3">
+                      <property name="text">
+                       <string>Guardar Datos</string>
+                      </property>
+                      <property name="boton" stdset="0">
+                       <string>Primario</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_2">
+                      <property name="text">
+                       <string>Cancelar</string>
+                      </property>
+                      <property name="boton" stdset="0">
+                       <string>Secundario</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../../resources/resources.qrc"/>
+  <include location="../../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

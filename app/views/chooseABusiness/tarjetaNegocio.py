@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QFrame, QLabel, QHBoxLayout, QVBoxLayout
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt, Signal
+from app.utils.utilsUI import obtener_icono
 
 class TarjetaNegocio(QFrame):
     seleccionada = Signal(object)
@@ -24,7 +25,7 @@ class TarjetaNegocio(QFrame):
         self.lblIcono = QLabel()
         self.lblIcono.setFixedSize(60, 60)
         self.lblIcono.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        pixmap = QPixmap(self.obtener_icono())
+        pixmap = QPixmap(obtener_icono(self.negocio))
         pixmap = pixmap.scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
         self.lblIcono.setPixmap(pixmap)
         layout_info = QVBoxLayout()
@@ -56,21 +57,6 @@ class TarjetaNegocio(QFrame):
         self.style().unpolish(self)
         self.style().polish(self)
         self.update()
-    def obtener_icono(self):
-        iconos = {
-            "Barberia": ":/images/businessIcons/barberShop.png",
-            "Tienda de Ropa": ":/images/businessIcons/clotheStore.png",
-            "Cafetería": ":/images/businessIcons/coffeShop.png",
-            "Farmacia": ":/images/businessIcons/drugStore.png",
-            "Restaurante": ":/images/businessIcons/restaurant.png",
-            "Ferretería": ":/images/businessIcons/hardwareStore.png",
-            "Pulperia": ":/images/businessIcons/shop.png",
-            "Otro": ":/images/businessIcons/shop.png"
-        }
-        return iconos.get(
-            self.negocio.business.type_of_business.value,
-            ":/icons/default.png"
-        )
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             self.seleccionada.emit(self)

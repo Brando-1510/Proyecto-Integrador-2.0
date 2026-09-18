@@ -40,7 +40,7 @@ font-weight:bold;
 }
 QLabel[texto=&quot;Descripcion&quot;]{
 font-size:18px;
-color: #6C6686;
+color: #46315c;
 }
 QLabel[texto=&quot;Destacado&quot;]{
 font-size:20px;
@@ -616,6 +616,10 @@ border-radius: 15px;
 width: 300px;
 height:100px;
 padding: 0px 20px}
+QLabel[texto=&quot;Descripcion&quot;]{
+font-size:16px;
+color: #46315c;
+}
 
 </string>
         </property>
@@ -888,8 +892,8 @@ font-weight: bold;</string>
                 <item>
                  <widget class="QLabel" name="lblSubtituloRegistro_6">
                   <property name="styleSheet">
-                   <string notr="true">font-size:18px;
-color: #6C6686;</string>
+                   <string notr="true">font-size:16px;
+color: #46315c;</string>
                   </property>
                   <property name="text">
                    <string>Verifica que todos los módulos estén inicializados correctamente antes de acceder al panel principal.</string>

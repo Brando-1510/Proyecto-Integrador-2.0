@@ -9,7 +9,7 @@ from PySide6.QtCore import Qt,Signal
 from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
 
 class VentanaCreateBusiness(QWidget):
-    dashboard_requested = Signal(object, object,object)
+    dashboard_requested = Signal(object)
     def __init__(self, user,business_controller):
         super().__init__()
         self.user = user
@@ -108,7 +108,7 @@ class VentanaCreateBusiness(QWidget):
                 "Éxito",
                 result["message"]
             )
-            self.dashboard_requested.emit(self.user,result["business"],result["userBusiness"])
+            self.dashboard_requested.emit(result["userBusiness"])
         else:
             QMessageBox.warning(
                 self,

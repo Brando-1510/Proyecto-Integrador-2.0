@@ -5,6 +5,7 @@
     <file>images/back.jpg</file>
     <file>images/backCreateAccount.jpg</file>
     <file>images/profile.png</file>
+    <file>images/excel.png</file>
 
     <file>images/businessIcons/barberShop.png</file>
     <file>images/businessIcons/clotheStore.png</file>
@@ -30,6 +31,8 @@
     <file>icons/openEye.svg</file>
     <file>icons/closeEye.svg</file>
     <file>icons/chevron.svg</file>
+    <file>icons/check.svg</file>
+    <file>icons/X.svg</file>
     <file>icons/menuIcons/arrows.svg</file>
     <file>icons/menuIcons/fileLight.svg</file>
     <file>icons/menuIcons/home.svg</file>
