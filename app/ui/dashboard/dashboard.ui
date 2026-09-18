@@ -266,7 +266,7 @@ para tu negocio</string>
            <item>
             <widget class="QPushButton" name="BtnRent">
              <property name="text">
-              <string>Rentabilidad</string>
+              <string>Analisis</string>
              </property>
              <property name="icon">
               <iconset resource="../../resources/resources.qrc">
@@ -283,7 +283,7 @@ para tu negocio</string>
            <item>
             <widget class="QPushButton" name="BtnRadar">
              <property name="text">
-              <string>Radar Financiero</string>
+              <string>Recomendaciones</string>
              </property>
              <property name="icon">
               <iconset resource="../../resources/resources.qrc">
@@ -293,23 +293,6 @@ para tu negocio</string>
               <size>
                <width>20</width>
                <height>20</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btnProyecciones">
-             <property name="text">
-              <string>Proyecciones</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../../resources/resources.qrc">
-               <normaloff>:/icons/menuIcons/schedule.svg</normaloff>:/icons/menuIcons/schedule.svg</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>20</width>
-               <height>29</height>
               </size>
              </property>
             </widget>

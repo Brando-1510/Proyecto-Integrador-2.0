@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Analisis</class>
+ <widget class="QWidget" name="Analisis">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1073</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame[carta=&quot;Dashboard&quot;] {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 12px;
+}
+#CargarDatos{
+background-color:#f7f7f7;
+}
+QFrame{
+background-color:#f7f7f7;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Textos
+-----------------------------------------------------------------------------------------------------*/
+QLabel{
+background-color: transparent;
+font-size: 14px;
+color: #0E042F;
+}
+QLabel[texto=&quot;InputTexto&quot;]{
+font-size: 16px;
+font-weight: bold;
+}
+QLabel[texto=&quot;TituloPrincipal&quot;]{
+font-size:20px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Valor&quot;]{
+font-size:20px;
+}
+QLabel[texto=&quot;TituloSecundario&quot;]{
+font-size:18px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Positivo&quot;]{
+color: #15803D;
+}
+QLabel[texto=&quot;Negativo&quot;]{
+color: #B91C1C;
+}
+QLabel[texto=&quot;Descripcion&quot;]{
+font-size:16px;
+color: #46315c;
+}
+QLabel[texto=&quot;Destacado&quot;]{
+font-size:16px;
+color: #0E042F;
+font-weight: bold;
+}
+
+
+/*Botones*/
+/* --- BOTÓN PRIMARIO --- */
+
+QPushButton[boton=&quot;Primario&quot;] {
+    border-radius: 10px;
+    background-color: #5D38BB;
+    font-weight: bold;
+    color: #F7F7F7;
+    font-size: 12pt;
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+	width: 200px;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:hover {
+    background-color: #744BCC;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:pressed {
+    background-color: #472A8F;
+}
+
+/* --- BOTÓN SECUNDARIO --- */
+
+QPushButton[boton=&quot;Secundario&quot;] {
+    border-radius: 10px;
+    background-color: rgba(161, 147, 204, 0.7);
+    font-weight: bold;
+    color: #5D38BB;
+    font-size: 18px;
+    min-height: 40px;
+	width: 250px;
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:hover {
+    background-color: rgba(161, 147, 204, 0.9);
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:pressed {
+    background-color: rgba(131, 117, 174, 0.9);
+}
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_12">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <property name="leftMargin">
+      <number>30</number>
+     </property>
+     <property name="topMargin">
+      <number>25</number>
+     </property>
+     <property name="rightMargin">
+      <number>30</number>
+     </property>
+     <property name="bottomMargin">
+      <number>25</number>
+     </property>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="styleSheet">
+        <string notr="true">/*
+-----------------------------------------------------------------------------------------------------
+ScrollArea
+-----------------------------------------------------------------------------------------------------
+*/
+#scrollAreaWidgetContents {
+    background-color: transparent;
+}
+QScrollArea {
+    background-color: transparent;
+    border: none;
+	border-radius:0px;
+}
+
+/* Widget que está dentro del ScrollArea */
+/*QScrollArea &gt; QWidget &gt; QWidget {
+    background-color: #F9F9FC;
+}*/
+
+/* Scrollbar vertical */
+QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 0px;
+}
+
+/* Parte que se puede arrastrar */
+QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 40px;
+}
+
+/* Al pasar el mouse */
+QScrollBar::handle:vertical:hover {
+    background-color: #A99DB8;
+}
+
+/* Ocultar botones de arriba y abajo */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* Espacio antes/después del handle */
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>995</width>
+          <height>732</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="spacing">
+            <number>20</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblTitulo">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Análisis Financiero</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>TituloPrincipal</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblDescripcion">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Analiza el comportamiento financiero de tu negocio.</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>Descripcion</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget" native="true">
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+qproperty-alignment: AlignCenter;
+}</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QFrame" name="frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <property name="carta" stdset="0">
+                 <string>Dashboard</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_3">
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>Ingresos</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="valorIngresos">
+                   <property name="text">
+                    <string>C$ 45,280.00</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Valor</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="estadoIngresos">
+                   <property name="text">
+                    <string>▲ 8.4% vs Período Anterior</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Positivo</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_2">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <property name="carta" stdset="0">
+                 <string>Dashboard</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <item>
+                  <widget class="QLabel" name="label_7">
+                   <property name="text">
+                    <string>Gastos</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="valorGastos">
+                   <property name="text">
+                    <string>C$ 28,430.00</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Valor</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="estadoGastos">
+                   <property name="text">
+                    <string>▲ 8.4% vs Período Anterior</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Negativo</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_3">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <property name="carta" stdset="0">
+                 <string>Dashboard</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <item>
+                  <widget class="QLabel" name="label_10">
+                   <property name="text">
+                    <string>Ganancia</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_11">
+                   <property name="text">
+                    <string>C$ 16.850.00</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Valor</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_12">
+                   <property name="text">
+                    <string>▲ 2.4% vs Período Anterior</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Positivo</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="contenedorGraficos" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QFrame" name="frame_4">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <property name="carta" stdset="0">
+                 <string>Dashboard</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_4">
+                 <item>
+                  <widget class="QLabel" name="label_2">
+                   <property name="text">
+                    <string>Ingresos vs Gastos</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>TituloSecundario</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_5">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <property name="carta" stdset="0">
+                 <string>Dashboard</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <item>
+                  <widget class="QLabel" name="label_3">
+                   <property name="text">
+                    <string>Distribución de Gastos</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>TituloSecundario</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_6">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Evolución de la Ganancias</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>TituloSecundario</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_7">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../../resources/resources.qrc"/>
+  <include location="../../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
