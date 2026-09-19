@@ -7,6 +7,7 @@ from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from app.views.dashboard.pages.dashboard_home import DashboardHome
 from app.views.dashboard.pages.cargar_datos import CargarDatos
+from app.views.dashboard.pages.analisis import Analisis
 
 
 class VentanaDashboard(QWidget):
@@ -33,6 +34,7 @@ class VentanaDashboard(QWidget):
 
         self.btnHome = self.ui.findChild(QPushButton,"btnHome")
         self.btnCargarDatos=self.ui.findChild(QPushButton,"btnLoadData")
+        self.btnAnalisis=self.ui.findChild(QPushButton,"BtnAnalisis")
         if not self.stackedWidget:
             print("Error: No se encontró stackedWidget.")
         if not self.btnHome:
@@ -74,6 +76,7 @@ class VentanaDashboard(QWidget):
         #* Conectar botones
         self.btnHome.clicked.connect(self.mostrar_home)
         self.btnCargarDatos.clicked.connect(self.mostar_cargar_datos)
+        self.btnAnalisis.clicked.connect(self.mostrar_analisis)
         #Mostrar el home al iniciar
         self.mostrar_home()
         #*MOSTRAR VENTANA
@@ -81,11 +84,16 @@ class VentanaDashboard(QWidget):
     def cargar_paginas(self):
         self.dashboard_home = DashboardHome(self.userBusiness)
         self.cargar_datos = CargarDatos(self.userBusiness)
+        self.analisis=Analisis(self.userBusiness)
         self.stackedWidget.addWidget(self.dashboard_home)
         self.stackedWidget.addWidget(self.cargar_datos)
+        self.stackedWidget.addWidget(self.analisis)
     #*Mostrar Home
     def mostrar_home(self):
         self.stackedWidget.setCurrentWidget(self.dashboard_home)
     #*Mostrar Cargar Datos
     def mostar_cargar_datos(self):
         self.stackedWidget.setCurrentWidget(self.cargar_datos)
+    #*Mostrar analisis
+    def mostrar_analisis(self):
+        self.stackedWidget.setCurrentWidget(self.analisis)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1073</width>
-    <height>800</height>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -197,8 +197,8 @@ QScrollBar::sub-page:vertical {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>995</width>
-          <height>732</height>
+          <width>1031</width>
+          <height>802</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -464,6 +464,9 @@ qproperty-alignment: AlignCenter;
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
+             <property name="carta" stdset="0">
+              <string>Dashboard</string>
+             </property>
              <layout class="QVBoxLayout" name="verticalLayout_8">
               <item>
                <widget class="QLabel" name="label_4">
@@ -486,6 +489,405 @@ qproperty-alignment: AlignCenter;
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
+             <property name="carta" stdset="0">
+              <string>Dashboard</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Indicadores Financieros</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>TituloSecundario</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget_2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QFrame" name="frame_10">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="carta" stdset="0">
+                    <string>Dashboard</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_13">
+                    <item>
+                     <widget class="QLabel" name="label_8">
+                      <property name="text">
+                       <string>Ticket Promedio</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Destacado</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="valorTicket">
+                      <property name="text">
+                       <string>C$ 485.20</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Valor</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="estadoTicket">
+                      <property name="text">
+                       <string>▲ 8.4% vs Período Anterior</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Positivo</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_8">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="carta" stdset="0">
+                    <string>Dashboard</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_9">
+                    <item>
+                     <widget class="QLabel" name="label_5">
+                      <property name="text">
+                       <string>Transacciones</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Destacado</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="valorTransacciones">
+                      <property name="text">
+                       <string>428</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Valor</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="estadoTransacciones">
+                      <property name="text">
+                       <string>▲ 8.4% vs Período Anterior</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Positivo</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_9">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="carta" stdset="0">
+                    <string>Dashboard</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_10">
+                    <item>
+                     <widget class="QLabel" name="label_6">
+                      <property name="text">
+                       <string>Gastos Promedio</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Destacado</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="valorGastoPromedio">
+                      <property name="text">
+                       <string>C$ 306.40</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Valor</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="estadoGastosPromedio">
+                      <property name="text">
+                       <string>▲ 8.4% vs Período Anterior</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Positivo</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_11">
+             <property name="styleSheet">
+              <string notr="true">QLabel[texto=&quot;Destacado&quot;]{
+font-size:14px;
+color: #0E042F;
+font-weight: bold;
+}
+QFrame[carta] {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px;      /* Espacio interno para el contenido */
+}
+/* 1. Cuadro de Atención (Rojo/Rosa) */
+QFrame[carta=&quot;atencion&quot;] {
+    background-color: #FFF0F2; /* Fondo rosa claro */
+    border-color: #FFD2D7;     /* Borde rosa */
+}
+
+/* 2. Cuadro de Buen Comportamiento (Verde) */
+QFrame[carta=&quot;bueno&quot;] {
+    background-color: #F0FAF5; /* Fondo verde claro */
+    border-color: #D2F2E1;     /* Borde verde */
+}
+
+/* 3. Cuadro Para Considerar (Amarillo) */
+QFrame[carta=&quot;considerar&quot;] {
+    background-color: #FFF9EE; /* Fondo amarillo claro */
+    border-color: #FFECC7;     /* Borde amarillo */
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="carta" stdset="0">
+              <string>Dashboard</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_15">
+              <item>
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>Hallazgos del Período</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>TituloSecundario</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget_4" native="true">
+                <property name="styleSheet">
+                 <string notr="true">/* Estilo base para todas las cápsulas */
+QLabel[tipo=&quot;capsula&quot;] {
+    font-weight: bold;
+    font-size: 11px;
+    padding: 4px 12px;       /* Espaciado interno (arriba/abajo, lados) */
+    border-radius: 10px;     /* Hace las esquinas completamente redondas */
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* Cápsula dentro de la carta de atención */
+QFrame[carta=&quot;atencion&quot;] QLabel[tipo=&quot;capsula&quot;] {
+    background-color: #FFE3E6;
+    border-color: #FFA3A8;
+    color: #D9383A;
+}
+
+/* Cápsula dentro de la carta de buen comportamiento */
+QFrame[carta=&quot;bueno&quot;] QLabel[tipo=&quot;capsula&quot;] {
+    background-color: #E2F7EB;
+    border-color: #9CE7BA;
+    color: #1A874B;
+}
+
+/* Cápsula dentro de la carta para considerar */
+QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
+    background-color: #FFF2D6;
+    border-color: #FED48C;
+    color: #B27000;
+}
+</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <item>
+                  <widget class="QFrame" name="frame_12">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="carta" stdset="0">
+                    <string>atencion</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_16">
+                    <item>
+                     <widget class="QLabel" name="label_14">
+                      <property name="text">
+                       <string>Los gastos aumentaron 14.2%</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Destacado</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="valorTicket_2">
+                      <property name="text">
+                       <string>Los gastos totales del período actual son
+14.2% mayores que el período anteriro</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="estadoTicket_2">
+                      <property name="text">
+                       <string>▲ 8.4% vs Período Anterior</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string/>
+                      </property>
+                      <property name="tipo" stdset="0">
+                       <string>capsula</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_13">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="carta" stdset="0">
+                    <string>bueno</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_17">
+                    <item>
+                     <widget class="QLabel" name="label_15">
+                      <property name="text">
+                       <string>Los ingresos presentan una tendencia
+ positiva.</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Destacado</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="valorTransacciones_2">
+                      <property name="text">
+                       <string>El crecimiento en los ingresos fue del 8.4%
+respecto al período anterior.</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="estadoTransacciones_2">
+                      <property name="text">
+                       <string>▲ 8.4% vs Período Anterior</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string/>
+                      </property>
+                      <property name="tipo" stdset="0">
+                       <string>capsula</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_14">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="carta" stdset="0">
+                    <string>considerar</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_18">
+                    <item>
+                     <widget class="QLabel" name="label_16">
+                      <property name="text">
+                       <string>Los gastos de proveedores representan
+el 35% del total de gastos.</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Destacado</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="valorGastoPromedio_2">
+                      <property name="text">
+                       <string>Es la categoría con mayor peso en la
+estructura de costos</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="estadoGastosPromedio_2">
+                      <property name="text">
+                       <string>▲ 8.4% vs Período Anterior</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string/>
+                      </property>
+                      <property name="tipo" stdset="0">
+                       <string>capsula</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>

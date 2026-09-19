@@ -264,7 +264,7 @@ para tu negocio</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="BtnRent">
+            <widget class="QPushButton" name="BtnAnalisis">
              <property name="text">
               <string>Analisis</string>
              </property>
