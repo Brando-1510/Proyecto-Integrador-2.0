@@ -19,7 +19,8 @@ class UserController:
                 "success": False,
                 "message": str(e)
             }
-        except Exception:
+        except Exception as e:
+            print("ERROR AL REGISTRAR USUARIO:", repr(e))
             return {
                 "success": False,
                 "message": "Ocurrió un error al registrar el usuario"

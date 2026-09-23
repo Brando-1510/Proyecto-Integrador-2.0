@@ -1,12 +1,10 @@
 import sys
-
 from PySide6.QtWidgets import QApplication
 from PySide6.QtGui import QIcon
-
 from app.generated import resources_rc
 from app.core.app_container import AppContainer
 from app.core.app_controller import AppController
-
+import app.models
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

@@ -11,7 +11,7 @@ class Recovery(Base):
     __tablename__ = "recoveries"
     recovery_id: Mapped[intpk]
     user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False)
-    codigo: Mapped[str] = mapped_column(String(255),nullable=False)
+    code: Mapped[str] = mapped_column(String(255),nullable=False)
     token: Mapped[str] = mapped_column(String(255),nullable=False)
     expires_at: Mapped[datetime] = mapped_column(nullable=False)
     used: Mapped[bool] = mapped_column(Boolean,default=False,nullable=False)

@@ -461,93 +461,24 @@ font-size: 20px;
 }</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
-         <widget class="QScrollArea" name="scrollArea">
-          <property name="styleSheet">
-           <string notr="true">/*
------------------------------------------------------------------------------------------------------
-ScrollArea
------------------------------------------------------------------------------------------------------
-*/
-#scrollAreaWidgetContents {
-   background-color:#f7f7f7;
-}
-QScrollArea {
-   background-color:#f7f7f7;
-    border: none;
-	border-radius:0px;
-}
-
-/* Widget que está dentro del ScrollArea */
-/*QScrollArea &gt; QWidget &gt; QWidget {
-    background-color: #F9F9FC;
-}*/
-
-/* Scrollbar vertical */
-QScrollBar:vertical {
-    background-color: transparent;
-    width: 8px;
-    margin: 4px 2px 4px 0px;
-}
-
-/* Parte que se puede arrastrar */
-QScrollBar::handle:vertical {
-    background-color: #C9C1D5;
-    border-radius: 4px;
-    min-height: 40px;
-}
-
-/* Al pasar el mouse */
-QScrollBar::handle:vertical:hover {
-    background-color: #A99DB8;
-}
-
-/* Ocultar botones de arriba y abajo */
-QScrollBar::add-line:vertical,
-QScrollBar::sub-line:vertical {
-    height: 0px;
-}
-
-/* Espacio antes/después del handle */
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: transparent;
-}</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>1071</width>
-             <height>680</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_5">
-              <item>
-               <widget class="QStackedWidget" name="stackedWidget">
-                <widget class="QWidget" name="page">
-                 <layout class="QVBoxLayout" name="verticalLayout_7">
-                  <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_8"/>
-                  </item>
-                 </layout>
-                </widget>
-                <widget class="QWidget" name="page_2"/>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
+         <widget class="QStackedWidget" name="stackedWidget">
+          <widget class="QWidget" name="page">
+           <layout class="QVBoxLayout" name="verticalLayout_7"/>
           </widget>
+          <widget class="QWidget" name="page_2"/>
          </widget>
         </item>
        </layout>
