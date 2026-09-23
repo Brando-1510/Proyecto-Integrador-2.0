@@ -8,7 +8,7 @@ from app.views.estilosTipografia import estilos_fuentes
 from app.views.dashboard.pages.dashboard_home import DashboardHome
 from app.views.dashboard.pages.cargar_datos import CargarDatos
 from app.views.dashboard.pages.analisis import Analisis
-
+from app.views.dashboard.pages.movimientos import Movimientos
 
 class VentanaDashboard(QWidget):
     dashboard_requested = Signal(object, object)
@@ -35,6 +35,7 @@ class VentanaDashboard(QWidget):
         self.btnHome = self.ui.findChild(QPushButton,"btnHome")
         self.btnCargarDatos=self.ui.findChild(QPushButton,"btnLoadData")
         self.btnAnalisis=self.ui.findChild(QPushButton,"BtnAnalisis")
+        self.btnMovimientos=self.ui.findChild(QPushButton,"btnMovimientos")
         if not self.stackedWidget:
             print("Error: No se encontró stackedWidget.")
         if not self.btnHome:
@@ -77,6 +78,7 @@ class VentanaDashboard(QWidget):
         self.btnHome.clicked.connect(self.mostrar_home)
         self.btnCargarDatos.clicked.connect(self.mostar_cargar_datos)
         self.btnAnalisis.clicked.connect(self.mostrar_analisis)
+        self.btnMovimientos.clicked.connect(self.mostrar_movimientos)
         #Mostrar el home al iniciar
         self.mostrar_home()
         #*MOSTRAR VENTANA
@@ -85,9 +87,11 @@ class VentanaDashboard(QWidget):
         self.dashboard_home = DashboardHome(self.userBusiness)
         self.cargar_datos = CargarDatos(self.userBusiness)
         self.analisis=Analisis(self.userBusiness)
+        self.movimientos=Movimientos(self.userBusiness)
         self.stackedWidget.addWidget(self.dashboard_home)
         self.stackedWidget.addWidget(self.cargar_datos)
         self.stackedWidget.addWidget(self.analisis)
+        self.stackedWidget.addWidget(self.movimientos)
     #*Mostrar Home
     def mostrar_home(self):
         self.stackedWidget.setCurrentWidget(self.dashboard_home)
@@ -97,3 +101,6 @@ class VentanaDashboard(QWidget):
     #*Mostrar analisis
     def mostrar_analisis(self):
         self.stackedWidget.setCurrentWidget(self.analisis)
+    #*Mostrar movimientos
+    def mostrar_movimientos(self):
+        self.stackedWidget.setCurrentWidget(self.movimientos)

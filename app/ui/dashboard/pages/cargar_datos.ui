@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1073</width>
-    <height>800</height>
+    <height>698</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -190,9 +190,9 @@ QScrollBar::sub-page:vertical {
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-279</y>
           <width>987</width>
-          <height>852</height>
+          <height>909</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -756,7 +756,171 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QTableView" name="tableView"/>
+                  <widget class="QTabWidget" name="tabWidget">
+                   <property name="accessibleName">
+                    <string>Movimientos</string>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QTabWidget {
+        qproperty-expanding: true;
+		background-color:#f7f7f7;
+    }
+QTabWidget::pane {
+    border: none;
+    background-color: #f7f7f7;
+}
+QTabWidget &gt; QWidget {
+    background-color: #f7f7f7;
+}
+QTabBar::tab {
+    background: #F1EFF6;
+    color: #46315c;
+
+    padding: 10px 28px;
+
+    border: none;
+    border-radius: 8px;
+
+    margin-right: 6px;
+	min-width: 50px; 
+    font-family: &quot;Manrope&quot;;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QTabBar::tab:hover {
+    background: #E8E5F0;
+    color: #16094C;
+}
+
+QTabBar::tab:selected {
+    background: #16094C;
+    color: white;
+}
+/* 
+-----------------------------------------------------------------------------------------------------
+Tabla (Optimizado para QTableView)
+-----------------------------------------------------------------------------------------------------
+*/
+
+QTableView {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 10px;
+    gridline-color: #EAE7EF;
+    font-size: 14px;
+    color: #0E042F;
+    selection-background-color: #EEEAF5;
+    selection-color: #0E042F;
+    /* Importante para que los elementos internos respeten los bordes redondeados */
+    overflow: hidden; 
+}
+
+/* Encabezados (Horizontal y Vertical) */
+QTableView QHeaderView::section {
+    background-color: #F5F3F8;
+    color: #0E042F;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 1px solid #E4E0EA;
+    padding: 10px;
+}
+
+/* Forzar que el encabezado horizontal se alinee bien con el estilo */
+QHeaderView {
+    background-color: #F5F3F8;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+/* Celdas individuales */
+QTableView::item {
+    padding: 8px;
+    border: none;
+}
+
+/* Fila seleccionada */
+QTableView::item:selected {
+    background-color: #EEEAF5;
+    color: #0E042F;
+}
+
+/* Esquina superior izquierda (intersección de encabezados) */
+QTableView QTableCornerButton::section {
+    background-color: #F5F3F8;
+    border: none;
+    border-top-left-radius: 9px;
+}
+
+/* --- SCROLLBAR VERTICAL --- */
+QTableView QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 2px;
+}
+
+QTableView QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+/* Ocultar flechas del scrollbar */
+QTableView QScrollBar::add-line:vertical,
+QTableView QScrollBar::sub-line:vertical,
+QTableView QScrollBar::add-page:vertical,
+QTableView QScrollBar::sub-page:vertical {
+    background: none;
+    height: 0px;
+}
+
+/* --- SCROLLBAR HORIZONTAL (Opcional, para mantener coherencia visual) --- */
+QTableView QScrollBar:horizontal {
+    background-color: transparent;
+    height: 8px;
+    margin: 2px 4px 2px 4px;
+}
+
+QTableView QScrollBar::handle:horizontal {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-width: 30px;
+}
+
+QTableView QScrollBar::add-line:horizontal,
+QTableView QScrollBar::sub-line:horizontal,
+QTableView QScrollBar::add-page:horizontal,
+QTableView QScrollBar::sub-page:horizontal {
+    background: none;
+    width: 0px;
+}
+</string>
+                   </property>
+                   <property name="currentIndex">
+                    <number>0</number>
+                   </property>
+                   <widget class="QWidget" name="Movimientos">
+                    <attribute name="title">
+                     <string>Movimientos</string>
+                    </attribute>
+                    <layout class="QVBoxLayout" name="verticalLayout_8">
+                     <item>
+                      <widget class="QTableView" name="movimientosTable"/>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="tab_2">
+                    <attribute name="title">
+                     <string>Ventas</string>
+                    </attribute>
+                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                     <item>
+                      <widget class="QTableView" name="ventasTable"/>
+                     </item>
+                    </layout>
+                   </widget>
+                  </widget>
                  </item>
                  <item>
                   <widget class="QWidget" name="widget_5" native="true">

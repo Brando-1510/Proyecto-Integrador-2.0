@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1073</width>
-    <height>660</height>
+    <height>698</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -196,9 +196,9 @@ QScrollBar::sub-page:vertical {
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-193</y>
           <width>1031</width>
-          <height>802</height>
+          <height>806</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -705,7 +705,7 @@ QFrame[carta=&quot;considerar&quot;] {
                  <string notr="true">/* Estilo base para todas las cápsulas */
 QLabel[tipo=&quot;capsula&quot;] {
     font-weight: bold;
-    font-size: 11px;
+    font-size: 14px;
     padding: 4px 12px;       /* Espaciado interno (arriba/abajo, lados) */
     border-radius: 10px;     /* Hace las esquinas completamente redondas */
     border-width: 1px;

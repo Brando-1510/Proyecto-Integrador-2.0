@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 from app.models.recovery import Recovery
 from app.utils.recoveryCode import generar_codigo_recuperacion
 from app.core.security.password import HashPassword as hp
@@ -37,7 +37,7 @@ class RecoveryService:
         try:
             if recovery.used:
                 raise ValueError("Esta recuperación ya fue utilizada.")
-            if recovery.expires_at <= datetime.now(timezone.utc):
+            if recovery.expires_at <= datetime.now():
                 raise ValueError("Esta recuperación ha expirado.")
             password_hash = hp.hash_password(new_password)
             user = self.repository_user.get_by_id(recovery.user_id)

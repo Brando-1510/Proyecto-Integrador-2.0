@@ -1,8 +1,10 @@
 import os
-from PySide6.QtWidgets import QWidget,QHeaderView
+import sys
 from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_table_model import SalesTableModel
+from PySide6.QtWidgets import QWidget,QHeaderView
 from PySide6.QtGui import QPixmap
+from PySide6.QtCore import QEvent
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
@@ -10,7 +12,7 @@ from app.views.estilosTipografia import estilos_fuentes
 from app.utils.utilsUI import obtener_icono
 from PySide6.QtCore import Qt,Signal
 
-class CargarDatos(QWidget):
+class Movimientos(QWidget):
     def __init__(self, userBusiness):
         super().__init__()
         self.user = userBusiness.user
@@ -20,7 +22,7 @@ class CargarDatos(QWidget):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
         ruta_ui = os.path.normpath(os.path.join(
-            directorio_actual,"../../../ui/dashboard/pages/cargar_datos.ui"))
+            directorio_actual,"../../../ui/dashboard/pages/movimientos.ui"))
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
         if not self.ui:
@@ -63,18 +65,18 @@ class CargarDatos(QWidget):
                 manrope_family
             )
             self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
-
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
         #*Cambios en la ui
+        self.ui.ventasTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.ui.movimientosTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         #TabWidget
         self.ui.tabWidget.tabBar().setExpanding(True)
         #Tablas
-        self.ui.ventasTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.ui.movimientosTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.movements_model = MovementsTableModel()
         self.sales_model=SalesTableModel()
         self.ui.movimientosTable.setModel(self.movements_model)
         self.ui.ventasTable.setModel(self.sales_model)
         #*MOSTRAR VENTANA
         self.show()
+

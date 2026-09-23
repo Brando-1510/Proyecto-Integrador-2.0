@@ -1,4 +1,6 @@
 import os
+from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
+from app.views.dashboard.table_models.sales_table_model import SalesTableModel
 from PySide6.QtWidgets import QWidget,QHeaderView
 from PySide6.QtGui import QPixmap
 from PySide6.QtGui import QFontDatabase
@@ -24,6 +26,9 @@ class DashboardHome(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        self.ui.tabWidget.setTabBarAutoHide(False)
+        self.ui.tabWidget.tabBar().setExpanding(True)
+        self.ui.tabWidget.setDocumentMode(True)
         #*CARGAR TIPOGRAFÍAS
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
@@ -64,9 +69,18 @@ class DashboardHome(QWidget):
         #*Cambios en la ui
         self.ui.lblSaludo.setText(f"Bienvenido, {self.user.username}")
         self.ui.lblNombreNeg.setText(f"{self.business.business_name}")
-        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         pixmap = QPixmap(obtener_icono(self.userBusiness))
         pixmap = pixmap.scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
         self.ui.lblBusinessIcon.setPixmap(pixmap)
+        #*Cambios en la ui
+        #TabWidget
+        self.ui.tabWidget.tabBar().setExpanding(True)
+        #Tablas
+        self.ui.ventasTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.ui.movimientosTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.movements_model = MovementsTableModel()
+        self.sales_model=SalesTableModel()
+        self.ui.movimientosTable.setModel(self.movements_model)
+        self.ui.ventasTable.setModel(self.sales_model)
         #*MOSTRAR VENTANA
         self.show()
