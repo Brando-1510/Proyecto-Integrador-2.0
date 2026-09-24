@@ -1,7 +1,7 @@
 import os
 from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_table_model import SalesTableModel
-from PySide6.QtWidgets import QWidget,QHeaderView
+from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout
 from PySide6.QtGui import QPixmap
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
@@ -26,6 +26,9 @@ class DashboardHome(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.ui)
         self.ui.tabWidget.setTabBarAutoHide(False)
         self.ui.tabWidget.tabBar().setExpanding(True)
         self.ui.tabWidget.setDocumentMode(True)

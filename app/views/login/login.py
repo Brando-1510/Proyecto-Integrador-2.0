@@ -8,6 +8,8 @@ from app.generated import resources_rc
 from app.utils.validators import ValidadoresDatos as VD, ValidadoresUI as V
 from app.views.estilosTipografia import estilos_fuentes
 from PySide6.QtSvg import QSvgRenderer
+from app.core.screen_utils import calcular_tamano_pantalla
+from PySide6.QtWidgets import QVBoxLayout
 renderer = QSvgRenderer(":/icons/person.svg")
 
 class VentanaLogin(QWidget):
@@ -16,7 +18,10 @@ class VentanaLogin(QWidget):
     login_successful = Signal(object)
     def __init__(self,user_controller):
         super().__init__()
+        ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
+        self.resize(ancho, alto)
         self.controller=user_controller
+        self.setMinimumSize(900, 600)
         #* OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
@@ -28,6 +33,9 @@ class VentanaLogin(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.ui)
 
         #* CARGAR TIPOGRAFÍAS
         # Manrope

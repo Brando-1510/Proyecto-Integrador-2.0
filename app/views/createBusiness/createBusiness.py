@@ -7,6 +7,8 @@ from app.views.estilosTipografia import estilos_fuentes
 from PySide6 import QtCore
 from PySide6.QtCore import Qt,Signal
 from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
+from app.core.screen_utils import calcular_tamano_pantalla
+from PySide6.QtWidgets import QVBoxLayout
 
 class VentanaCreateBusiness(QWidget):
     dashboard_requested = Signal(object)
@@ -28,6 +30,12 @@ class VentanaCreateBusiness(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
+        self.resize(ancho, alto)
+        self.setMinimumSize(900, 570)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.ui)
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.tipoNegocio.setCurrentIndex(7)
         #*CARGAR TIPOGRAFÍAS

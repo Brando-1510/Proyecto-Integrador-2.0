@@ -7,6 +7,8 @@ from PySide6.QtGui import QIcon,QAction
 from PySide6.QtCore import Signal
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
+from app.core.screen_utils import calcular_tamano_pantalla
+from PySide6.QtWidgets import QVBoxLayout
 #Importaciones de la clase Validators (validan cosas)
 from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
 #Importaciones para el hash de contraseñas
@@ -32,6 +34,12 @@ class VentanaCrearCuenta(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
+        self.resize(ancho, alto)
+        self.setMinimumSize(900, 570)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.ui)
 
         #* CARGAR TIPOGRAFÍAS
         # Manrope

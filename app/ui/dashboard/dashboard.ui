@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1370</width>
-    <height>700</height>
+    <width>1360</width>
+    <height>695</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,7 +35,7 @@ background-color:#f7f7f7;
     <number>0</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
      <item>
       <widget class="QWidget" name="Sidebar" native="true">
        <property name="sizePolicy">
@@ -475,6 +475,12 @@ font-size: 20px;
         </property>
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <widget class="QWidget" name="page">
            <layout class="QVBoxLayout" name="verticalLayout_7"/>
           </widget>

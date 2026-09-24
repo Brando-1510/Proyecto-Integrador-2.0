@@ -1,5 +1,6 @@
 import os
-from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton
+from app.core.screen_utils import calcular_tamano_pantalla
+from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton,QVBoxLayout
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import Signal
@@ -28,6 +29,12 @@ class VentanaDashboard(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en: {ruta_ui}")
             return
+        ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
+        self.resize(ancho, alto)
+        self.setMinimumSize(900, 570)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.ui)
 
         #*Obtener widget del ui
         self.stackedWidget = self.ui.findChild(QStackedWidget,"stackedWidget")

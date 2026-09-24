@@ -6,6 +6,8 @@ from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from app.views.chooseABusiness.tarjetaNegocio import TarjetaNegocio
 from PySide6.QtCore import Qt,Signal
+from app.core.screen_utils import calcular_tamano_pantalla
+from PySide6.QtWidgets import QVBoxLayout
 
 
 class VentanaChooseBusiness(QWidget):
@@ -31,6 +33,13 @@ class VentanaChooseBusiness(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
+        self.resize(ancho, alto)
+        self.setMinimumSize(900, 570)
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.ui)
+
         #*CARGAR TIPOGRAFÍAS
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")

@@ -1,5 +1,5 @@
 import os
-from PySide6.QtWidgets import QWidget,QHeaderView
+from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout
 from PySide6.QtGui import QPixmap
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
@@ -24,6 +24,9 @@ class Analisis(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.ui)
         #*CARGAR TIPOGRAFÍAS
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
