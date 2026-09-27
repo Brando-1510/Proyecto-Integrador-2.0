@@ -4,7 +4,6 @@
     <file>images/logo.png</file>
     <file>images/back.jpg</file>
     <file>images/backCreateAccount.jpg</file>
-    <file>images/profile.png</file>
     <file>images/excel.png</file>
 
     <file>images/businessIcons/barberShop.png</file>
@@ -16,6 +15,9 @@
     <file>images/businessIcons/shop.png</file>
 
     <!-- Iconos añadidos -->
+    <file>icons/star.svg</file>
+    <file>icons/exclamationMarkBlue.svg</file>
+    <file>icons/exclamationMarkRed.svg</file>
     <file>icons/person.svg</file>
     <file>icons/kiosk.svg</file>
     <file>icons/kioskLight.svg</file>
@@ -26,11 +28,11 @@
     <file>icons/iconSuitcase.svg</file>
     <file>icons/iconSuitcaseLight.svg</file>
     <file>icons/lightbulb.svg</file>
-    <file>icons/profileLight.svg</file>
     <file>icons/profileIcon.svg</file>
     <file>icons/openEye.svg</file>
     <file>icons/closeEye.svg</file>
     <file>icons/chevron.svg</file>
+    <file>icons/chevronBack.svg</file>
     <file>icons/check.svg</file>
     <file>icons/X.svg</file>
     <file>icons/menuIcons/arrows.svg</file>
@@ -40,7 +42,10 @@
     <file>icons/menuIcons/radar.svg</file>
     <file>icons/menuIcons/schedule.svg</file>
     <file>icons/menuIcons/profitability.svg</file>
-
+    <file>icons/menuIcons/monitoring.svg</file>
+    <file>icons/menuIcons/leave.svg</file>
+    <file>icons/menuIcons/settings.svg</file>
+    <file>icons/menuIcons/profile.svg</file>
 
     <!-- Fuentes añadidas -->
     <file>fonts/Manrope-Bold.ttf</file>

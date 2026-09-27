@@ -6,7 +6,7 @@ from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from PySide6.QtCore import Qt,Signal
 
-class Analisis(QWidget):
+class Recomendaciones(QWidget):
     def __init__(self, userBusiness):
         super().__init__()
         self.user = userBusiness.user
@@ -16,7 +16,7 @@ class Analisis(QWidget):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
         ruta_ui = os.path.normpath(os.path.join(
-            directorio_actual,"../../../ui/dashboard/pages/analisis.ui"))
+            directorio_actual,"../../../ui/dashboard/pages/recomendaciones.ui"))
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
         if not self.ui:

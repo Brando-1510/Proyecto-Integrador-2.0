@@ -788,6 +788,23 @@ QTableView QScrollBar::sub-page:horizontal {
              </layout>
             </widget>
            </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="styleSheet">
+              <string notr="true">font-size:16px;
+color: #46315c;
+font-weight:bold;
+qproperty-alignment: 'AlignCenter';</string>
+             </property>
+             <property name="text">
+              <string>&lt;a href=&quot;https://luis-hdz7.github.io/Finanzen-Web/&quot; style=&quot;color: #46315c; text-align: center; text-decoration: none;&quot;&gt;Descubre más acerca de nuestra aplicación aquí&lt;/a&gt;
+</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
         </layout>

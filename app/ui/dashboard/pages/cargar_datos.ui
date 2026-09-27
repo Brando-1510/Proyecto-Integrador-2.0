@@ -190,9 +190,9 @@ QScrollBar::sub-page:vertical {
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-279</y>
+          <y>0</y>
           <width>987</width>
-          <height>909</height>
+          <height>948</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -404,6 +404,23 @@ qproperty-alignment: 'AlignCenter';
                </widget>
               </item>
              </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="styleSheet">
+              <string notr="true">font-size:16px;
+color: #46315c;
+font-weight:bold;
+qproperty-alignment: 'AlignCenter';</string>
+             </property>
+             <property name="text">
+              <string>&lt;a href=&quot;https://luis-hdz7.github.io/Finanzen-Web/excelTemplate.html&quot; style=&quot;color: #46315c; text-align: center; text-decoration: none;&quot;&gt;Descarga la plantilla de Excel para empezar a trabajar&lt;/a&gt;
+</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
            <item>

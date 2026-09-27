@@ -3,13 +3,10 @@ import sys
 from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_table_model import SalesTableModel
 from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout
-from PySide6.QtGui import QPixmap
-from PySide6.QtCore import QEvent
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
-from app.utils.utilsUI import obtener_icono
 from PySide6.QtCore import Qt,Signal
 
 class Movimientos(QWidget):

@@ -12,6 +12,7 @@ from PySide6.QtWidgets import QVBoxLayout
 
 class VentanaCreateBusiness(QWidget):
     dashboard_requested = Signal(object)
+    volver_choose_business_requested = Signal()
     def __init__(self, user,business_controller):
         super().__init__()
         self.user = user
@@ -87,6 +88,7 @@ class VentanaCreateBusiness(QWidget):
             ))
         self.ui.volver.clicked.connect(lambda: self.cambiar_pagina(0))
         self.ui.terminar.clicked.connect(self.guardar_negocio)
+        self.ui.btnBack.clicked.connect(self.volver_a_seleccionar_negocio)
     def cambiar_pagina(self, indice):
         self.ui.stackedWidget.setCurrentIndex(indice)
     def avanzar(self, index, *args):
@@ -123,3 +125,5 @@ class VentanaCreateBusiness(QWidget):
                 "Error",
                 result["message"]
             )
+    def volver_a_seleccionar_negocio(self):
+        self.volver_choose_business_requested.emit()

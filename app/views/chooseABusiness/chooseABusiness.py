@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QVBoxLayout
 
 class VentanaChooseBusiness(QWidget):
     dashboard_requested = Signal(object)
-    crear_negocio_requested = Signal(object)
+    crear_negocio_requested = Signal()
     def __init__(self, user, userBusiness_controller):
         super().__init__()
         self.user = user
@@ -86,7 +86,7 @@ class VentanaChooseBusiness(QWidget):
         #*MOSTRAR VENTANA
         self.showMaximized()
     def ir_a_crear_negocio(self):
-        self.crear_negocio_requested.emit(self.user)
+        self.crear_negocio_requested.emit()
     def cambiar_lbl(self,texto):
         self.ui.lblBienvenidaUser.setText(f"Bienvenido, {texto}")
     def cambiar_index(self):
