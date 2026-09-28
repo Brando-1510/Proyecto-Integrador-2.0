@@ -1,0 +1,1372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Configuracion</class>
+ <widget class="QWidget" name="Configuracion">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1073</width>
+    <height>689</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame[carta=&quot;Dashboard&quot;] {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 12px;
+}
+QFrame{
+background-color:#f7f7f7;
+}
+/*
+-----------------------------------------------------------------------------------------------------
+Textos
+-----------------------------------------------------------------------------------------------------*/
+QLabel{
+font-size: 14px;
+color: #0E042F;
+background-color:transparent;
+}
+QLabel[texto=&quot;InputTexto&quot;]{
+font-size: 16px;
+color: #46315c;
+}
+QLabel[texto=&quot;TituloPrincipal&quot;]{
+font-size:22px;
+font-weight:bold;
+}
+QLabel[texto=&quot;TituloSecundario&quot;]{
+font-size:18px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Descripcion&quot;]{
+font-size:18px;
+color: #46315c;
+}
+QLabel[texto=&quot;Destacado&quot;]{
+font-size:16px;
+color: #0E042F;
+font-weight: bold;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Inputs
+-----------------------------------------------------------------------------------------------------*/
+/* --- ESTADO BASE --- */
+QLineEdit, QDateEdit, QPlainTextEdit, QComboBox {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+
+/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
+QLineEdit:hover, QDateEdit:hover, QPlainTextEdit:hover, QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
+QLineEdit:focus, QDateEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
+QLineEdit:disabled, QDateEdit:disabled, QPlainTextEdit:disabled, QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #D1D5DB;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- ESTILO DEL QCOMBOBOX --- */
+QComboBox {
+    background-color: #F8F9FA;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
+    padding-right: 30px;
+    color: #333333;
+}
+
+QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- BOTÓN DE DESPLEGAR --- */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #D1D5DB;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- FLECHA --- */
+QComboBox::down-arrow {
+    image: url(:/icons/chevron.svg);
+    width: 12px;
+    height: 12px;
+}
+/* --- LISTA DESPLEGABLE DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 4px;
+    color: #333333;
+    selection-background-color: #744bcc;
+    selection-color: #FFFFFF;
+}
+
+/* --- HOVER DE LOS ELEMENTOS DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView::item:hover {
+    background-color: #F3F4F6;
+    color: #333333;
+}
+/*
+-----------------------------------------------------------------------------------------------------
+Botones
+-----------------------------------------------------------------------------------------------------*/
+QPushButton{
+width:300px;
+height:50px;
+}
+/* --- BOTÓN PRIMARIO --- */
+QPushButton[boton=&quot;Primario&quot;] {
+    border-radius: 10px;
+    background-color: #5D38BB;
+    font-weight: bold;
+    color: #f7f7f7;
+    font-size: 12pt;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:hover {
+    background-color: #744bcc;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:pressed {
+    background-color: #472a8f;
+}
+
+
+/* --- BOTÓN SECUNDARIO --- */
+QPushButton[boton=&quot;Secundario&quot;] {
+    border-radius: 10px;
+    background-color: rgba(161, 147, 204, 0.7);
+    font-weight: bold;
+    color: #5D38BB;
+    font-size: 18px;
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:hover {
+    background-color: rgba(161, 147, 204, 0.9); 
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:pressed {
+    background-color: rgba(131, 117, 174, 0.9);
+}
+/* --- BOTÓN TEXTO --- */
+
+QPushButton[boton=&quot;BotonTexto&quot;] {
+    border: none;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+    color: #0E042F;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:hover {
+    color: #6C6686;
+    background: transparent;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:pressed,
+QPushButton[boton=&quot;BotonTexto&quot;]:focus {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+/* Estilo general del contenedor del ListWidget */
+QListWidget {
+    background-color: #ffffff;
+    border: 2px solid #D1D1D6;          /* Mismo gris suave de tus inputs */
+    border-radius: 6px;                 /* Bordes redondeados consistentes */
+    padding: 5px;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 14px;
+    color: #252525;                     /* Tu color de texto oscuro */
+    outline: 0;                         /* Elimina el borde punteado de enfoque nativo */
+}
+
+/* Estilo para cada elemento (ítem) de la lista */
+QListWidget::item {
+    padding: 8px 12px;                  /* Espaciado interno para que no se vea apretado */
+    border-radius: 4px;                 /* Esquinas sutilmente redondeadas en cada fila */
+    margin-bottom: 2px;                 /* Separación ligera entre filas */
+}
+
+/* Estado al pasar el mouse por encima de una fila (Hover) */
+QListWidget::item:hover {
+    background-color: #F9F6FF;          /* Fondo morado muy claro, igual que el hover del checkbox */
+    color: #4A148C;                     /* Texto morado oscuro */
+}
+
+/* Estado cuando un elemento está seleccionado */
+QListWidget::item:selected {
+    background-color: #5E2BFF;          /* Tu morado principal (el del botón) */
+    color: #ffffff;                     /* Texto blanco para alto contraste */
+}
+
+/* Estado cuando está seleccionado pero la ventana pierde el enfoque */
+QListWidget::item:selected:!active {
+    background-color: #7A52FF;          /* Un morado un poco más tenue */
+    color: #ffffff;
+}
+
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_12">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <property name="leftMargin">
+      <number>30</number>
+     </property>
+     <property name="topMargin">
+      <number>25</number>
+     </property>
+     <property name="rightMargin">
+      <number>30</number>
+     </property>
+     <property name="bottomMargin">
+      <number>25</number>
+     </property>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="styleSheet">
+        <string notr="true">/*
+-----------------------------------------------------------------------------------------------------
+ScrollArea
+-----------------------------------------------------------------------------------------------------
+*/
+#scrollAreaWidgetContents {
+    background-color: transparent;
+}
+QScrollArea {
+    background-color: transparent;
+    border: none;
+	border-radius:0px;
+}
+
+/* Widget que está dentro del ScrollArea */
+/*QScrollArea &gt; QWidget &gt; QWidget {
+    background-color: #F9F9FC;
+}*/
+
+/* Scrollbar vertical */
+QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 0px;
+}
+
+/* Parte que se puede arrastrar */
+QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 40px;
+}
+
+/* Al pasar el mouse */
+QScrollBar::handle:vertical:hover {
+    background-color: #A99DB8;
+}
+
+/* Ocultar botones de arriba y abajo */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* Espacio antes/después del handle */
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>987</width>
+          <height>746</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="spacing">
+            <number>20</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblTitulo">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Configuración</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>TituloPrincipal</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblDescripcion">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Datos e Información de tu negocio</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>Descripcion</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTabWidget" name="tabWidget">
+             <property name="styleSheet">
+              <string notr="true">QTabWidget {
+		background-color:#f7f7f7;
+    }
+QTabWidget::pane {
+    border: none;
+    background-color: #f7f7f7;
+}
+QTabWidget &gt; QWidget {
+    background-color: #f7f7f7;
+	background-color:transparent;
+}
+QTabBar::tab {
+    background: #F1EFF6;
+    color: #46315c;
+    padding: 10px 28px;
+
+    border: none;
+    border-radius: 8px;
+
+    margin-right: 6px;
+	min-width: 50px; 
+    font-family: &quot;Manrope&quot;;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QTabBar::tab:hover {
+    background: #E8E5F0;
+    color: #16094C;
+}
+
+QTabBar::tab:selected {
+    background: #16094C;
+    color: white;
+}
+
+/* Configuración general de la tabla */
+QTableWidget {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 10px;
+    gridline-color: #EAE7EF;
+    font-size: 14px;
+    color: #0E042F;
+    selection-background-color: #EEEAF5;
+    selection-color: #0E042F;
+}
+
+/* Encabezados (Horizontal y Vertical) */
+QTableWidget QHeaderView::section {
+    background-color: #F5F3F8;
+    color: #0E042F;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 1px solid #E4E0EA;
+    padding: 10px;
+}
+
+/* Contenedor del encabezado */
+QHeaderView {
+    background-color: #F5F3F8;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+/* Celdas individuales */
+QTableWidget::item {
+    padding: 8px;
+    border: none;
+}
+
+/* Fila/Celda seleccionada */
+QTableWidget::item:selected {
+    background-color: #EEEAF5;
+    color: #0E042F;
+}
+
+/* Esquina superior izquierda (intersección de encabezados) */
+QTableWidget QTableCornerButton::section {
+    background-color: #F5F3F8;
+    border: none;
+    border-top-left-radius: 9px;
+}
+
+/* --- SCROLLBAR VERTICAL --- */
+QTableWidget QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 2px;
+}
+
+QTableWidget QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+QTableWidget QScrollBar::handle:vertical:hover {
+    background-color: #B4A9C4;
+}
+
+/* Ocultar botones/flechas del scrollbar vertical */
+QTableWidget QScrollBar::add-line:vertical,
+QTableWidget QScrollBar::sub-line:vertical,
+QTableWidget QScrollBar::add-page:vertical,
+QTableWidget QScrollBar::sub-page:vertical {
+    background: none;
+    height: 0px;
+}
+
+/* --- SCROLLBAR HORIZONTAL --- */
+QTableWidget QScrollBar:horizontal {
+    background-color: transparent;
+    height: 8px;
+    margin: 2px 4px 2px 4px;
+}
+
+QTableWidget QScrollBar::handle:horizontal {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-width: 30px;
+}
+
+QTableWidget QScrollBar::handle:horizontal:hover {
+    background-color: #B4A9C4;
+}
+
+/* Ocultar botones/flechas del scrollbar horizontal */
+QTableWidget QScrollBar::add-line:horizontal,
+QTableWidget QScrollBar::sub-line:horizontal,
+QTableWidget QScrollBar::add-page:horizontal,
+QTableWidget QScrollBar::sub-page:horizontal {
+    background: none;
+    width: 0px;
+}
+</string>
+             </property>
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <widget class="QWidget" name="tab">
+              <attribute name="title">
+               <string>Información del Negocio</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QFrame" name="frame">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_3">
+                  <item>
+                   <widget class="QLabel" name="label">
+                    <property name="text">
+                     <string>Datos Generales</string>
+                    </property>
+                    <property name="texto" stdset="0">
+                     <string>Destacado</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_3">
+                    <property name="text">
+                     <string>Nombre del Negocio</string>
+                    </property>
+                    <property name="texto" stdset="0">
+                     <string>InputTexto</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="nombreNegocio"/>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_4">
+                    <property name="text">
+                     <string>Descripcion</string>
+                    </property>
+                    <property name="texto" stdset="0">
+                     <string>InputTexto</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPlainTextEdit" name="descripcion"/>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_5">
+                    <property name="text">
+                     <string>Tipo de Negocio</string>
+                    </property>
+                    <property name="texto" stdset="0">
+                     <string>InputTexto</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="tipoNegocio">
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Barbería</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Tienda de Ropa</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Cafetería</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Farmacia</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Restaurante</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Ferretería</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Pulpería</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Otro</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_2">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <item>
+                   <widget class="QWidget" name="widget_6" native="true">
+                    <property name="styleSheet">
+                     <string notr="true">QLabel {
+    qproperty-alignment: 'AlignCenter';
+}</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_14">
+                     <item>
+                      <widget class="QLabel" name="label_2">
+                       <property name="text">
+                        <string>Categorías</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>Destacado</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_6">
+                       <property name="text">
+                        <string>Organiza las categorías utilizadas para clasificar</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>Descripcion</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_2">
+                       <property name="text">
+                        <string>Quitar Categoría</string>
+                       </property>
+                       <property name="boton" stdset="0">
+                        <string>BotonTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_4">
+                       <property name="text">
+                        <string>Agregar Categoría</string>
+                       </property>
+                       <property name="boton" stdset="0">
+                        <string>BotonTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QListWidget" name="listaCategorias">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>3000</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="widget_2" native="true">
+                 <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item>
+                   <widget class="QPushButton" name="pushButton">
+                    <property name="text">
+                     <string>Cancelar</string>
+                    </property>
+                    <property name="boton" stdset="0">
+                     <string>Secundario</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_3">
+                    <property name="text">
+                     <string>Guardar</string>
+                    </property>
+                    <property name="boton" stdset="0">
+                     <string>Primario</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_2">
+              <attribute name="title">
+               <string>Empleados</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <item>
+                <widget class="QTabWidget" name="tabWidgetDos">
+                 <property name="styleSheet">
+                  <string notr="true">QTabWidget {
+    background-color: transparent;
+}
+
+QTabWidget::pane {
+    border: none;
+    background-color: transparent;
+}
+
+QTabWidget &gt; QWidget {
+    background-color: transparent;
+}
+
+QTabBar {
+    background-color: transparent;
+    qproperty-drawBase: 0;
+}
+
+QTabBar::tab {
+    background: transparent;
+    color: #79668E;
+    padding: 8px 16px;
+    border: none;
+    border-bottom: 2px solid transparent;
+   
+    min-width: 180px; 
+    
+    margin-right: 0px; /* Cambiar a 0px ayuda a que no queden huecos feos */
+    font-family: &quot;Manrope&quot;, &quot;Segoe UI&quot;, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+QTabBar::tab:hover {
+    color: #16094C;
+    border-bottom: 2px solid #D6CEE5; /* Línea tenue al pasar el ratón */
+}
+
+QTabBar::tab:selected {
+    background: transparent;
+    color: #16094C; /* Púrpura oscuro para texto activo */
+    border-bottom: 3px solid #16094C; /* Indicador de línea activa */
+}</string>
+                 </property>
+                 <property name="currentIndex">
+                  <number>1</number>
+                 </property>
+                 <widget class="QWidget" name="tab_3">
+                  <attribute name="title">
+                   <string>Ver Empleados</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayout_7">
+                   <item>
+                    <layout class="QFormLayout" name="formLayout">
+                     <property name="horizontalSpacing">
+                      <number>20</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_7">
+                       <property name="text">
+                        <string>Buscar Empleado:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEdit_2">
+                       <property name="placeholderText">
+                        <string>Ingrese el nombre del Empleado...</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QTableWidget" name="verEmpleados">
+                     <column>
+                      <property name="text">
+                       <string>Nombre</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Correo</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Rol</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Vinculado</string>
+                      </property>
+                     </column>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tab_4">
+                  <attribute name="title">
+                   <string>Agregar Empleado</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayout_8">
+                   <item>
+                    <widget class="QLabel" name="label_8">
+                     <property name="text">
+                      <string>Vincular Usuario</string>
+                     </property>
+                     <property name="texto" stdset="0">
+                      <string>TituloSecundario</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_9">
+                     <property name="text">
+                      <string>Buscar una cuenta existente por usuario o correo</string>
+                     </property>
+                     <property name="texto" stdset="0">
+                      <string>Descripcion</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_2">
+                     <property name="horizontalSpacing">
+                      <number>20</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_10">
+                       <property name="text">
+                        <string>Buscar Empleado:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEdit_3">
+                       <property name="placeholderText">
+                        <string>Ingrese el nombre del Empleado...</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_11">
+                     <property name="text">
+                      <string>Resultados</string>
+                     </property>
+                     <property name="texto" stdset="0">
+                      <string>Destacado</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QListWidget" name="listWidget_2"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_16">
+                     <property name="text">
+                      <string>Rol</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="tipoNegocio_2">
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Vendedor</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Analista Financiero</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Gerente</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_14">
+                       <property name="text">
+                        <string>Rol:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_12">
+                       <property name="text">
+                        <string>Usuario Seleccionado:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_15">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLabel" name="label_13">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QWidget" name="widget_3" native="true">
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                      <item>
+                       <spacer name="horizontalSpacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_5">
+                        <property name="text">
+                         <string>Confirmar Cambios</string>
+                        </property>
+                        <property name="boton" stdset="0">
+                         <string>Primario</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_4">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="tab_5">
+                  <attribute name="title">
+                   <string>Eliminar Empleados</string>
+                  </attribute>
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_5">
+                     <property name="horizontalSpacing">
+                      <number>20</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_18">
+                       <property name="text">
+                        <string>Buscar Empleado:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEdit_5">
+                       <property name="placeholderText">
+                        <string>Ingrese el nombre del Empleado...</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QTableWidget" name="tableWidget_2">
+                     <column>
+                      <property name="text">
+                       <string>Nombre</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Correo</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Rol</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>Vinculado</string>
+                      </property>
+                     </column>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_17">
+                       <property name="text">
+                        <string>Rol:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_20">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_19">
+                       <property name="text">
+                        <string>Usuario Seleccionado:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLabel" name="label_21">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="label_22">
+                       <property name="text">
+                        <string>Correo:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>InputTexto</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLabel" name="label_23">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QWidget" name="widget_4" native="true">
+                     <layout class="QHBoxLayout" name="horizontalLayout_4">
+                      <item>
+                       <spacer name="horizontalSpacer_5">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_6">
+                        <property name="text">
+                         <string>Eliminar Empleado</string>
+                        </property>
+                        <property name="boton" stdset="0">
+                         <string>Primario</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_6">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="Gastos">
+              <attribute name="title">
+               <string>Operaciones criticas</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <item>
+                <widget class="QLabel" name="label_24">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string> Operaciones críticas</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string>TituloPrincipal</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_25">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Estas acciones pueden afectar permanentemente la información del negocio.</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string>Descripcion</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_3">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <property name="carta" stdset="0">
+                  <string/>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_13">
+                  <item>
+                   <widget class="QLabel" name="label_26">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Eliminar Negocio</string>
+                    </property>
+                    <property name="texto" stdset="0">
+                     <string>TituloSecundario</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_27">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Esta acción eliminara permanentemente:</string>
+                    </property>
+                    <property name="texto" stdset="0">
+                     <string>Descripcion</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_28">
+                    <property name="text">
+                     <string>&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Información del negocio&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Usuarios vinculados&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Ventas y movimientos&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Categorías&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 0px;&quot;&gt;• Informes relacionados&lt;/p&gt;</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_29">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string> Esta acción no puede deshacerse.</string>
+                    </property>
+                    <property name="texto" stdset="0">
+                     <string>Descripcion</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="widget_5" native="true">
+                    <layout class="QHBoxLayout" name="horizontalLayout_5">
+                     <item>
+                      <spacer name="horizontalSpacer_7">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_7">
+                       <property name="text">
+                        <string>Eliminar Negocio</string>
+                       </property>
+                       <property name="boton" stdset="0">
+                        <string>Primario</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../../resources/resources.qrc"/>
+  <include location="../../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

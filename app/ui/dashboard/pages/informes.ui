@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Analisis</class>
+ <widget class="QWidget" name="Analisis">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1073</width>
+    <height>698</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame[carta=&quot;Dashboard&quot;] {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 12px;
+}
+#CargarDatos{
+background-color:#f7f7f7;
+}
+QFrame{
+background-color:#f7f7f7;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Textos
+-----------------------------------------------------------------------------------------------------*/
+QLabel{
+background-color: transparent;
+font-size: 14px;
+color: #0E042F;
+}
+QLabel[texto=&quot;InputTexto&quot;]{
+font-size: 16px;
+font-weight: bold;
+}
+QLabel[texto=&quot;TituloPrincipal&quot;]{
+font-size:20px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Valor&quot;]{
+font-size:20px;
+}
+QLabel[texto=&quot;TituloSecundario&quot;]{
+font-size:18px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Positivo&quot;]{
+color: #15803D;
+}
+QLabel[texto=&quot;Negativo&quot;]{
+color: #B91C1C;
+}
+QLabel[texto=&quot;Descripcion&quot;]{
+font-size:16px;
+color: #46315c;
+}
+QLabel[texto=&quot;Destacado&quot;]{
+font-size:16px;
+color: #0E042F;
+font-weight: bold;
+}
+
+
+/*Botones*/
+/* --- BOTÓN PRIMARIO --- */
+
+QPushButton[boton=&quot;Primario&quot;] {
+    border-radius: 10px;
+    background-color: #5D38BB;
+    font-weight: bold;
+    color: #F7F7F7;
+    font-size: 12pt;
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+	width: 200px;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:hover {
+    background-color: #744BCC;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:pressed {
+    background-color: #472A8F;
+}
+
+/* --- BOTÓN SECUNDARIO --- */
+
+QPushButton[boton=&quot;Secundario&quot;] {
+    border-radius: 10px;
+    background-color: rgba(161, 147, 204, 0.7);
+    font-weight: bold;
+    color: #5D38BB;
+    font-size: 18px;
+    min-height: 40px;
+	width: 250px;
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:hover {
+    background-color: rgba(161, 147, 204, 0.9);
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:pressed {
+    background-color: rgba(131, 117, 174, 0.9);
+}
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_12">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <property name="leftMargin">
+      <number>30</number>
+     </property>
+     <property name="topMargin">
+      <number>25</number>
+     </property>
+     <property name="rightMargin">
+      <number>30</number>
+     </property>
+     <property name="bottomMargin">
+      <number>25</number>
+     </property>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="styleSheet">
+        <string notr="true">/*
+-----------------------------------------------------------------------------------------------------
+ScrollArea
+-----------------------------------------------------------------------------------------------------
+*/
+#scrollAreaWidgetContents {
+    background-color: transparent;
+}
+QScrollArea {
+    background-color: transparent;
+    border: none;
+	border-radius:0px;
+}
+
+/* Widget que está dentro del ScrollArea */
+/*QScrollArea &gt; QWidget &gt; QWidget {
+    background-color: #F9F9FC;
+}*/
+
+/* Scrollbar vertical */
+QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 0px;
+}
+
+/* Parte que se puede arrastrar */
+QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 40px;
+}
+
+/* Al pasar el mouse */
+QScrollBar::handle:vertical:hover {
+    background-color: #A99DB8;
+}
+
+/* Ocultar botones de arriba y abajo */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* Espacio antes/después del handle */
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>995</width>
+          <height>630</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <property name="spacing">
+            <number>20</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblTitulo">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Informes</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>TituloPrincipal</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblDescripcion">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Genera reportes financieros de tu negocio</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>Descripcion</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_7">
+             <property name="styleSheet">
+              <string notr="true">/* --- ESTADO BASE --- */
+QLineEdit, QDateEdit, QPlainTextEdit, QComboBox {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+
+/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
+QLineEdit:hover, QDateEdit:hover, QPlainTextEdit:hover, QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
+QLineEdit:focus, QDateEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
+QLineEdit:disabled, QDateEdit:disabled, QPlainTextEdit:disabled, QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #D1D5DB;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Estilo base para el QCheckBox y su texto */
+QCheckBox {
+    spacing: 8px;                 /* Espacio entre el cuadro y el texto */
+    font-family: &quot;Segoe UI&quot;, sans-serif; /* Mismo estilo de fuente limpio */
+    font-size: 14px;
+    color: #252525;               /* Tu color de texto oscuro */
+}
+
+/* Estado al pasar el mouse por encima de la etiqueta */
+QCheckBox:hover {
+    color: #4A148C;               /* El texto se torna ligeramente morado al pasar el mouse */
+}
+
+/* Estado cuando el checkbox está deshabilitado */
+QCheckBox:disabled {
+    color: #aaaaaa;
+}
+
+/* Estilo del cuadro (indicador) */
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #D1D1D6;    /* Gris suave que combina con tus inputs */
+    border-radius: 5px;           /* Esquinas sutilmente redondeadas */
+    background-color: #ffffff;
+}
+
+/* Cuadro cuando se pasa el mouse por encima (Hover) */
+QCheckBox::indicator:hover {
+    border-color: #5E2BFF;        /* Borde morado intermedio al posicionarse encima */
+    background-color: #F9F6FF;    /* Destello de fondo morado muy claro */
+}
+/* Cuadro cuando está marcado (Checked) utilizando el archivo QRC */
+QCheckBox::indicator:checked {
+    border-color: #5E2BFF;        /* Borde con tu morado principal */
+    background-color: #5E2BFF;    /* Fondo con tu morado principal */
+    image: url(:/icons/checkIcon.svg); /* Ruta absoluta del recurso QRC */
+}
+
+/* Cuadro marcado cuando se pasa el mouse por encima */
+QCheckBox::indicator:checked:hover {
+    border-color: #4A148C;        
+    background-color: #4A148C;
+    image: url(:/icons/checkIcon.svg); /* Mantenemos el icono en el hover */
+}
+
+
+
+/* Cuadro marcado cuando se pasa el mouse por encima */
+QCheckBox::indicator:checked:hover {
+    border-color: #4A148C;        /* Un morado más oscuro al hacer hover sobre el check activo */
+    background-color: #4A148C;
+}
+/* Cuadro cuando está marcado (Checked) */
+QCheckBox::indicator:checked {
+    border-color: #5E2BFF;        /* Borde con tu morado principal */
+    background-color: #5E2BFF;    /* Fondo con tu morado principal */
+}
+
+/* --- ESTILO DEL QCOMBOBOX --- */
+QComboBox {
+    background-color: #F8F9FA;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
+    padding-right: 30px;
+    color: #333333;
+}
+
+QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- BOTÓN DE DESPLEGAR --- */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #D1D5DB;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- FLECHA --- */
+QComboBox::down-arrow {
+    image: url(:/icons/chevron.svg);
+    width: 12px;
+    height: 12px;
+}
+/* --- LISTA DESPLEGABLE DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 4px;
+    color: #333333;
+    selection-background-color: #744bcc;
+    selection-color: #FFFFFF;
+}
+
+/* --- HOVER DE LOS ELEMENTOS DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView::item:hover {
+    background-color: #F3F4F6;
+    color: #333333;
+}
+/*
+-----------------------------------------------------------------------------------------------------
+Botones
+-----------------------------------------------------------------------------------------------------*/
+QPushButton{
+width:300px;
+height:50px;
+}
+/* --- BOTÓN PRIMARIO --- */
+QPushButton[boton=&quot;Primario&quot;] {
+    border-radius: 10px;
+    background-color: #5D38BB;
+    font-weight: bold;
+    color: #f7f7f7;
+    font-size: 12pt;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:hover {
+    background-color: #744bcc;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:pressed {
+    background-color: #472a8f;
+}
+
+
+/* --- BOTÓN SECUNDARIO --- */
+QPushButton[boton=&quot;Secundario&quot;] {
+    border-radius: 10px;
+    background-color: rgba(161, 147, 204, 0.7);
+    font-weight: bold;
+    color: #5D38BB;
+    font-size: 18px;
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:hover {
+    background-color: rgba(161, 147, 204, 0.9); 
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:pressed {
+    background-color: rgba(131, 117, 174, 0.9);
+}
+/* --- BOTÓN TEXTO --- */
+
+QPushButton[boton=&quot;BotonTexto&quot;] {
+    border: none;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+    color: #0E042F;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:hover {
+    color: #6C6686;
+    background: transparent;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:pressed,
+QPushButton[boton=&quot;BotonTexto&quot;]:focus {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="carta" stdset="0">
+              <string>Dashboard</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Generar Informes</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>TituloSecundario</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>Tipo de Informe</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Destacado</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox">
+                <item>
+                 <property name="text">
+                  <string>Informe Financiero General</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Informe de Gastos</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Informe de Ventas</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Período</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Destacado</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget" native="true">
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+    qproperty-alignment: AlignCenter;
+}
+</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QDateEdit" name="dateEdit"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_3">
+                   <property name="text">
+                    <string>Hasta</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Descripcion</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QDateEdit" name="dateEdit_2"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Incluir en el Informe</string>
+                </property>
+                <property name="texto" stdset="0">
+                 <string>Destacado</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox">
+                <property name="text">
+                 <string>Resumen Financiero</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_2">
+                <property name="text">
+                 <string>Gráficas</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_3">
+                <property name="text">
+                 <string>Recomendaciones</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget_2" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton">
+                   <property name="text">
+                    <string>Generar Informe</string>
+                   </property>
+                   <property name="boton" stdset="0">
+                    <string>Primario</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../../resources/resources.qrc"/>
+  <include location="../../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

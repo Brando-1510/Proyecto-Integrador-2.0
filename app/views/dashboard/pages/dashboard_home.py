@@ -85,5 +85,3 @@ class DashboardHome(QWidget):
         self.sales_model=SalesTableModel()
         self.ui.movimientosTable.setModel(self.movements_model)
         self.ui.ventasTable.setModel(self.sales_model)
-        #*MOSTRAR VENTANA
-        self.show()

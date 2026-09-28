@@ -6,7 +6,7 @@ from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from PySide6.QtCore import Qt,Signal
 
-class Analisis(QWidget):
+class Informes(QWidget):
     def __init__(self, userBusiness):
         super().__init__()
         self.user = userBusiness.user
@@ -16,7 +16,7 @@ class Analisis(QWidget):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
         ruta_ui = os.path.normpath(os.path.join(
-            directorio_actual,"../../../ui/dashboard/pages/analisis.ui"))
+            directorio_actual,"../../../ui/dashboard/pages/informes.ui"))
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
         if not self.ui:
@@ -48,9 +48,6 @@ class Analisis(QWidget):
             familias = QFontDatabase.applicationFontFamilies(font_id_source)
             if familias:
                 source_family = familias[0]
-        # Mostrar familias detectadas
-        print("Manrope:", manrope_family)
-        print("Source Sans 3:", source_family)
         # APLICAR TIPOGRAFÍAS
         if manrope_family and source_family:
             estilos_actuales = self.ui.styleSheet()

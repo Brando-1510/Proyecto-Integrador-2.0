@@ -74,7 +74,6 @@ QPushButton[boton=&quot;Primario&quot;] {
     min-height: 40px;
     padding-left: 20px;
     padding-right: 20px;
-	width: 200px;
 }
 
 QPushButton[boton=&quot;Primario&quot;]:hover {
@@ -94,7 +93,6 @@ QPushButton[boton=&quot;Secundario&quot;] {
     color: #5D38BB;
     font-size: 18px;
     min-height: 40px;
-	width: 250px;
 }
 
 QPushButton[boton=&quot;Secundario&quot;]:hover {
@@ -607,11 +605,85 @@ QLabel[badge=&quot;categoria&quot;] {
                        </layout>
                       </widget>
                      </item>
+                     <item>
+                      <widget class="QLabel" name="lblDescripcionReco">
+                       <property name="text">
+                        <string>Los gastos de servicios básicos representan el 40% de los
+ gasos durante el período analizado</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_13">
+                       <property name="text">
+                        <string>Dato observado:</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>Destacado</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="lblDato">
+                       <property name="text">
+                        <string>Servicios Básicos: 40%</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>Descripcion</string>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="widget_4" native="true"/>
+                   <widget class="QWidget" name="widget_4" native="true">
+                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                     <item>
+                      <widget class="QLabel" name="label_12">
+                       <property name="text">
+                        <string>Acción Sugerida</string>
+                       </property>
+                       <property name="texto" stdset="0">
+                        <string>Destacado</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_14">
+                       <property name="text">
+                        <string>La acción iria aqui</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="widget_6" native="true">
+                       <layout class="QHBoxLayout" name="horizontalLayout_4">
+                        <item>
+                         <widget class="QPushButton" name="pushButton">
+                          <property name="text">
+                           <string>Ver análisis</string>
+                          </property>
+                          <property name="boton" stdset="0">
+                           <string>Primario</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="pushButton_2">
+                          <property name="text">
+                           <string>Quitar</string>
+                          </property>
+                          <property name="boton" stdset="0">
+                           <string>Secundario</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                  </layout>
                 </widget>

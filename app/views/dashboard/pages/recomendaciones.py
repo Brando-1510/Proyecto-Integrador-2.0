@@ -62,5 +62,3 @@ class Recomendaciones(QWidget):
 
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
-        #*MOSTRAR VENTANA
-        self.show()
