@@ -77,3 +77,5 @@ class CargarDatos(QWidget):
         self.sales_model=SalesTableModel()
         self.ui.movimientosTable.setModel(self.movements_model)
         self.ui.ventasTable.setModel(self.sales_model)
+        #Controlar la visibilidad del frame
+        self.ui.frameArchivo.hide()
