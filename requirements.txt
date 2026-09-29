@@ -6,11 +6,16 @@ greenlet==3.5.5
 Mako==1.4.1
 MarkupSafe==3.0.3
 mysql-connector-python==26.7.0
+numpy==2.5.3
+pandas==3.0.6
 pycparser==3.0
 PySide6==6.11.1
 PySide6_Addons==6.11.1
 PySide6_Essentials==6.11.1
+python-dateutil==2.9.0.post0
 python-dotenv==1.2.3
 shiboken6==6.11.1
+six==1.17.0
 SQLAlchemy==2.0.52
 typing_extensions==4.16.0
+tzdata==2026.4
