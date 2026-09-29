@@ -14,9 +14,10 @@ from app.views.dashboard.pages.movimientos import Movimientos
 from app.views.dashboard.pages.recomendaciones import Recomendaciones
 from app.views.dashboard.pages.informes import Informes
 from app.views.dashboard.pages.configuracion import Configuracion
+from app.views.dashboard.pages.monitoreo import Monitoreo
 
 class VentanaDashboard(QWidget):
-    dashboard_requested = Signal(object, object)
+    logout_requested = Signal()
     def __init__(self, userBusiness):
         super().__init__()
         self.user = userBusiness.user
@@ -50,6 +51,8 @@ class VentanaDashboard(QWidget):
         self.btnRecomendaciones=self.ui.findChild(QPushButton,"BtnRecomendaciones")
         self.btnInformes=self.ui.findChild(QPushButton,"BtnInformes")
         self.btnConfiguracion=self.ui.findChild(QPushButton,"BtnConfiguracion")
+        self.btnMonitoreo=self.ui.findChild(QPushButton,"BtnMonitoreo")
+        self.btnLogout = self.ui.findChild(QPushButton, "BtnCerrarSesion")
         #*Cargar tipografías
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
@@ -81,6 +84,9 @@ class VentanaDashboard(QWidget):
         #* Cargar páginas
         self.cargar_paginas()
         #* Conectar botones
+        #cerrar sesion
+        self.btnLogout.clicked.connect(self.logout_requested.emit)
+        #manejar stackedWidget
         self.btnHome.clicked.connect(self.mostrar_home)
         self.btnCargarDatos.clicked.connect(self.mostar_cargar_datos)
         self.btnAnalisis.clicked.connect(self.mostrar_analisis)
@@ -88,43 +94,63 @@ class VentanaDashboard(QWidget):
         self.btnRecomendaciones.clicked.connect(self.mostrar_recomendaciones)
         self.btnInformes.clicked.connect(self.mostrar_informes)
         self.btnConfiguracion.clicked.connect(self.mostrar_configuracion)
+        self.btnMonitoreo.clicked.connect(self.mostrar_monitoreo)
         #Mostrar el home al iniciar
         self.mostrar_home()
         #*MOSTRAR VENTANA
         self.showMaximized()
     def cargar_paginas(self):
-        self.cargar_datos = CargarDatos(self.userBusiness)
         self.dashboard_home = DashboardHome(self.userBusiness)
-        self.analisis = Analisis(self.userBusiness)
-        self.movimientos = Movimientos(self.userBusiness)
-        self.recomendaciones = Recomendaciones(self.userBusiness)
-        self.informes=Informes(self.userBusiness)
-        self.configuracion=Configuracion(self.userBusiness)
-        self.stackedWidget.addWidget(self.recomendaciones)
-        self.stackedWidget.addWidget(self.informes)
         self.stackedWidget.addWidget(self.dashboard_home)
-        self.stackedWidget.addWidget(self.cargar_datos)
-        self.stackedWidget.addWidget(self.analisis)
-        self.stackedWidget.addWidget(self.movimientos)
-        self.stackedWidget.addWidget(self.configuracion)
+        self.cargar_datos = None
+        self.analisis = None
+        self.movimientos = None
+        self.recomendaciones = None
+        self.informes = None
+        self.monitoreo = None
+        self.configuracion = None
     #*Mostrar Home
     def mostrar_home(self):
         self.stackedWidget.setCurrentWidget(self.dashboard_home)
     #*Mostrar Cargar Datos
     def mostar_cargar_datos(self):
+        if self.cargar_datos is None:
+            self.cargar_datos = CargarDatos(self.userBusiness)
+            self.stackedWidget.addWidget(self.cargar_datos)
         self.stackedWidget.setCurrentWidget(self.cargar_datos)
-    #*Mostrar analisis
+    #*Mostrar Análisis
     def mostrar_analisis(self):
+        if self.analisis is None:
+            self.analisis = Analisis(self.userBusiness)
+            self.stackedWidget.addWidget(self.analisis)
         self.stackedWidget.setCurrentWidget(self.analisis)
-    #*Mostrar movimientos
+    #*Mostrar Movimientos
     def mostrar_movimientos(self):
+        if self.movimientos is None:
+            self.movimientos = Movimientos(self.userBusiness)
+            self.stackedWidget.addWidget(self.movimientos)
         self.stackedWidget.setCurrentWidget(self.movimientos)
-    #*Mostrar recomendaciones
+    #*Mostrar Recomendaciones
     def mostrar_recomendaciones(self):
+        if self.recomendaciones is None:
+            self.recomendaciones = Recomendaciones(self.userBusiness)
+            self.stackedWidget.addWidget(self.recomendaciones)
         self.stackedWidget.setCurrentWidget(self.recomendaciones)
-    #*Mostrar informes
+    #*Mostrar Informes
     def mostrar_informes(self):
+        if self.informes is None:
+            self.informes = Informes(self.userBusiness)
+            self.stackedWidget.addWidget(self.informes)
         self.stackedWidget.setCurrentWidget(self.informes)
-    #*Mostrar Configuracion
+    #*Mostrar Configuración
     def mostrar_configuracion(self):
+        if self.configuracion is None:
+            self.configuracion = Configuracion(self.userBusiness)
+            self.stackedWidget.addWidget(self.configuracion)
         self.stackedWidget.setCurrentWidget(self.configuracion)
+    #*Mostrar Monitoreo
+    def mostrar_monitoreo(self):
+        if self.monitoreo is None:
+            self.monitoreo = Monitoreo(self.userBusiness)
+            self.stackedWidget.addWidget(self.monitoreo)
+        self.stackedWidget.setCurrentWidget(self.monitoreo)

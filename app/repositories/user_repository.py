@@ -21,3 +21,6 @@ class UserRepository:
     def update_password(self, user: Users, password_hash: str):
         user.password = password_hash
         self.session.flush()
+    def get_admin_users(self):
+        stmt = select(Users).where(Users.is_admin == True)
+        return self.session.scalars(stmt).all()

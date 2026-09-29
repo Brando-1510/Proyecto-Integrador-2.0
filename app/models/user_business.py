@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from app.models.users import Users
     from app.models.business import Business
 class Role(Enum):
+    ADMIN = "Administrador"
     MANAGER = "Gerente"
     FINANCIAL_ANALYST = "Analista Financiero"
     EMPLOYEE = "Empleado"

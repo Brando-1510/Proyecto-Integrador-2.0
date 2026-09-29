@@ -16,3 +16,6 @@ class BusinessRepository:
     def get_by_id(self, business_id: int):
         stmt = (select(Business).where(Business.business_id == business_id))
         return self.session.scalar(stmt)
+    def get_all(self):
+        stmt = select(Business)
+        return self.session.scalars(stmt).all()

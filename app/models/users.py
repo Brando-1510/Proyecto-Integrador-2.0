@@ -23,6 +23,7 @@ class Users(Base):
     profile_picture: Mapped[str | None] = mapped_column(String(255),nullable=True)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(),onupdate=func.now())
+    is_admin: Mapped[bool] = mapped_column(default=False,server_default="0",nullable=False)
     #*Relaciones
     created_businesses: Mapped[list["Business"]] = relationship(back_populates="creator")
     business_relationships: Mapped[list["UserBusiness"]] = relationship(back_populates="user")

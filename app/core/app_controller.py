@@ -28,8 +28,8 @@ class AppController:
             self.login_window.crear_cuenta_requested.connect(self.show_create_account)
             self.login_window.recuperar_contrasena_requested.connect(self.show_recovery)
             self.login_window.login_successful.connect(self.show_choose_business)
+        self.login_window.limpiar_campos()
         self.login_window.show()
-
     #*Crear Cuenta
     def show_create_account(self):
         if self.login_window is not None:
@@ -80,13 +80,26 @@ class AppController:
         self.createBusiness_window.volver_choose_business_requested.connect(self.show_choose_business_again)
         self.createBusiness_window.show()
     #*Mostrar Dashboard
-    def show_dashboard(self,userBusiness):
+    def show_dashboard(self, userBusiness):
         self.dashboard_window = VentanaDashboard(userBusiness)
+        self.dashboard_window.logout_requested.connect(self.logout)
         self.dashboard_window.show()
         if self.chooseBusiness_window is not None:
             self.chooseBusiness_window.close()
         if self.createBusiness_window is not None:
             self.createBusiness_window.close()
+    def logout(self):
+        if self.dashboard_window is not None:
+            self.dashboard_window.close()
+            self.dashboard_window = None
+        if self.chooseBusiness_window is not None:
+            self.chooseBusiness_window.close()
+            self.chooseBusiness_window = None
+        if self.createBusiness_window is not None:
+            self.createBusiness_window.close()
+            self.createBusiness_window = None
+        self.current_user = None
+        self.show_login()
     #*Crear Aplicación
     def close(self):
         self.container.close()

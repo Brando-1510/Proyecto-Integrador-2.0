@@ -126,3 +126,6 @@ class VentanaLogin(QWidget):
                 "Error",
                 result["message"]
             )
+    def limpiar_campos(self):
+        self.ui.txtCorreo.clear()
+        self.ui.txtContrasena.clear()
