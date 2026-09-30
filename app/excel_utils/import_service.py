@@ -1,3 +1,4 @@
+from typing import Callable, Optional
 from app.excel_utils.excel_reader import ExcelReader
 from app.excel_utils.excel_validator import ExcelValidator
 from app.excel_utils.excel_transformer import ExcelTransformer
@@ -8,8 +9,13 @@ class ImportService:
         self.reader = ExcelReader()
         self.validator = ExcelValidator()
         self.transformer = ExcelTransformer()
-    def process_excel(self,path: str) -> ExcelImportResult:
+    def process_excel(self,path: str,
+    progress_callback: Optional[Callable[[int, str], None]] = None) -> ExcelImportResult:
+        def notify(percentage: int, message: str):
+            if progress_callback:
+                progress_callback(percentage, message)
         #*Leer Excel
+        notify(10, "Leyendo archivo Excel...")
         data = self.reader.read(path)
         if data is None:
             return ExcelImportResult(
@@ -20,6 +26,7 @@ class ImportService:
             )
         sales_df, movements_df = data
         #*Normalizar
+        notify(30, "Normalizando formato de datos...")
         sales_df, movements_df = (
             self.transformer.normalize_excel(
                 sales_df,
@@ -27,10 +34,12 @@ class ImportService:
             )
         )
         #*Validar
-        errors = self.validator.validate(sales_df,movements_df)
+        notify(50, "Validando datos...")
+        errors = self.validator.validate(sales_df, movements_df)
         if errors:
-            return ExcelImportResult(success=False,errors=errors)
+            return ExcelImportResult(success=False, errors=errors)
         #*Transformar tipos
+        notify(80, "Transformando tipos de datos...")
         sales_df, movements_df = (
             self.transformer.transform_excel(
                 sales_df,
@@ -38,6 +47,7 @@ class ImportService:
             )
         )
         #*Devolver resultado
+        notify(100, "Procesamiento completado.")
         return ExcelImportResult(
             success=True,
             sales=sales_df,
