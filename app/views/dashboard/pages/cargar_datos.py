@@ -1,5 +1,5 @@
 import os
-from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout
+from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout,QFileDialog
 from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_table_model import SalesTableModel
 from PySide6.QtGui import QFontDatabase
@@ -79,3 +79,17 @@ class CargarDatos(QWidget):
         self.ui.ventasTable.setModel(self.sales_model)
         #Controlar la visibilidad del frame
         self.ui.frameArchivo.hide()
+
+        #*Acciones relacionadas al manejo de excel
+        self.ui.btnSeleccionarArchivo.clicked.connect(self.select_excel_file)
+
+        #*Slot del QFileDialog
+    def select_excel_file(self):
+        # Abre el cuadro de diálogo para seleccionar el archivo
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,"Seleccionar archivo Excel","",
+            "Archivos de Excel (*.xlsx *.xls);;Todos los archivos (*)"
+        )
+        # Si el usuario selecciona un archivo (no presiona 'Cancelar')
+        if file_path:
+            pass
