@@ -1,38 +1,91 @@
 from PySide6.QtCore import QAbstractTableModel, QModelIndex, Qt
 
+
 class MovementsTableModel(QAbstractTableModel):
+
     HEADERS = [
-        "Fecha","Tipo","Categoría","Descripción","Método de pago","Monto",
+        "Fecha",
+        "Tipo",
+        "Categoría",
+        "Descripción",
+        "Método de Pago",
+        "Monto",
     ]
+
     def __init__(self, movements=None):
         super().__init__()
-        self.movements = movements or []
+        self.movements = movements
+
+    # FILAS
     def rowCount(self, parent=QModelIndex()):
+        if parent.isValid():
+            return 0
+
+        if self.movements is None:
+            return 0
+
         return len(self.movements)
+
+    # COLUMNAS
     def columnCount(self, parent=QModelIndex()):
+        if parent.isValid():
+            return 0
+
         return len(self.HEADERS)
-    def headerData(self, section, orientation, role=Qt.ItemDataRole.DisplayRole):
+
+    # HEADERS
+    def headerData(
+        self,
+        section,
+        orientation,
+        role=Qt.ItemDataRole.DisplayRole
+    ):
         if role != Qt.ItemDataRole.DisplayRole:
             return None
+
         if orientation == Qt.Orientation.Horizontal:
             return self.HEADERS[section]
+
         return section + 1
+
+    # DATOS
     def data(self, index, role=Qt.ItemDataRole.DisplayRole):
+
         if not index.isValid():
             return None
+
         if role != Qt.ItemDataRole.DisplayRole:
             return None
-        movement = self.movements[index.row()]
+
+        if self.movements is None:
+            return None
+
+        row = index.row()
+        column = index.column()
+
+        movement = self.movements.iloc[row]
+
         values = [
-            movement.date,
-            movement.type,
-            movement.category,
-            movement.description,
-            movement.payment_method,
-            movement.amount,
+            movement["Fecha"],
+            movement["Tipo"],
+            movement["Categoría"],
+            movement["Descripción"],
+            movement["Método de Pago"],
+            movement["Monto"],
         ]
-        return values[index.column()]
-    def set_movements(self, movements):
+
+        value = values[column]
+
+        if value is None:
+            return ""
+
+        return str(value)
+
+    # ACTUALIZAR DATOS
+    def set_data(self, movements):
+
         self.beginResetModel()
-        self.movements = movements or []
+
+        self.movements = movements
+
         self.endResetModel()

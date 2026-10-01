@@ -4,10 +4,13 @@ class ExcelTransformer:
     SALES_COLUMNS = {
         "fecha": "Fecha",
         "producto/servicio": "Producto/Servicio",
+        "producto / servicio": "Producto/Servicio",
         "categoría": "Categoría",
         "cantidad": "Cantidad",
         "precio unitario": "Precio Unitario",
+        "precio unitario ($)": "Precio Unitario",
         "total": "Total",
+        "total ($)": "Total",
     }
     MOVEMENTS_COLUMNS = {
         "fecha": "Fecha",
@@ -15,6 +18,7 @@ class ExcelTransformer:
         "categoría": "Categoría",
         "descripción": "Descripción",
         "monto": "Monto",
+        "monto ($)": "Monto",
         "método de pago": "Método de Pago",
     }
     def normalize_excel(self,sales_df: pd.DataFrame,movements_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:

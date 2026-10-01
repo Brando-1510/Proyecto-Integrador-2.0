@@ -516,8 +516,6 @@ QTableView {
     color: #0E042F;
     selection-background-color: #EEEAF5;
     selection-color: #0E042F;
-    /* Importante para que los elementos internos respeten los bordes redondeados */
-    overflow: hidden; 
 }
 
 /* Encabezados (Horizontal y Vertical) */
@@ -625,7 +623,6 @@ QTableView QScrollBar::sub-page:horizontal {
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QTabWidget {
-        qproperty-expanding: true;
 		background-color:#f7f7f7;
     }
 QTabWidget::pane {

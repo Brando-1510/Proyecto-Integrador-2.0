@@ -25,6 +25,10 @@ class ImportService:
                 ]
             )
         sales_df, movements_df = data
+        errors = self.validator.validate(
+            sales_df,
+            movements_df
+        )
         #*Normalizar
         notify(30, "Normalizando formato de datos...")
         sales_df, movements_df = (

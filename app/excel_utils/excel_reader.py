@@ -23,8 +23,9 @@ class ExcelReader:
                     if sheet not in excel.sheet_names:
                         return None
                 # Leer las hojas
-                sales_df = pd.read_excel(excel,sheet_name="Ventas")
-                movements_df = pd.read_excel(excel,sheet_name="Movimientos")
+                sales_df = pd.read_excel(excel,sheet_name="Ventas",header=2)
+                movements_df = pd.read_excel(excel,sheet_name="Movimientos",header=2)
                 return sales_df, movements_df
-        except Exception:
+        except Exception as e:
+            print("ERROR REAL AL LEER EXCEL:", repr(e))
             return None

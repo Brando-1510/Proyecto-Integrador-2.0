@@ -313,7 +313,6 @@ QScrollBar::sub-page:vertical {
              </property>
              <property name="styleSheet">
               <string notr="true">QTabWidget {
-        qproperty-expanding: true;
 		background-color:#f7f7f7;
     }
 QTabWidget::pane {
