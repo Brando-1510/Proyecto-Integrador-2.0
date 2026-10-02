@@ -415,31 +415,31 @@ qproperty-alignment: 'AlignCenter';
                 </layout>
                </widget>
               </item>
-              <item>
-               <widget class="QProgressBar" name="progressBar">
-                <property name="value">
-                 <number>0</number>
-                </property>
-                <property name="textVisible">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblEstadoImportacion">
-                <property name="text">
-                 <string>TextLabel</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="lblPorcentaje">
-                <property name="text">
-                 <string>TextLabel</string>
-                </property>
-               </widget>
-              </item>
              </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="progressBar">
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="textVisible">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblPorcentaje">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblEstadoImportacion">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -578,7 +578,7 @@ qproperty-alignment: 'AlignCenter';</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton">
+                  <widget class="QPushButton" name="btnCambiarArchivo">
                    <property name="text">
                     <string>Cambiar Archivo</string>
                    </property>
@@ -785,7 +785,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_2">
+                  <widget class="QPushButton" name="btnCancelar">
                    <property name="text">
                     <string>Cancelar</string>
                    </property>

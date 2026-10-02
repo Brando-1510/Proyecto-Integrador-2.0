@@ -72,7 +72,7 @@ class ExcelValidator:
     def validate_sales(self, df):
         errors = []
         for index, row in df.iterrows():
-            row_number = index + 2
+            row_number = index + 4
             # Ignorar filas completamente vacías
             if self._is_empty_row(row):
                 continue
