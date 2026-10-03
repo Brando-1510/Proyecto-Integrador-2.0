@@ -3,13 +3,48 @@ from app.models.movement import Movement,MovementType,PaymentMethod
 from app.utils.category_utils import normalize_category_name
 
 class TransactionImportService:
-    def __init__(self,sale_repository,movement_repository,category_service):
+    def __init__(self,session,import_service,sale_repository,movement_repository,category_service):
+        self.session = session
+        self.import_service = import_service
         self.sale_repository = sale_repository
         self.movement_repository = movement_repository
         self.category_service = category_service
+    def save_import_data(
+self,user_id: int,business_id: int,file_path: str,file_name: str,df_sales,df_movements):
+        try:
+            #*Registrar importación
+            import_created = self.import_service.save_import(
+                user_id=user_id,
+                business_id=business_id,
+                file_path=file_path,
+                file_name=file_name
+            )
+            #*Guardar ventas
+            self.save_sales(
+                df_sales=df_sales,
+                business_id=business_id,
+                import_id=import_created.import_id,
+                user_id=user_id
+            )
+            #*Guardar movimientos
+            self.save_movements(
+                df_movements=df_movements,
+                business_id=business_id,
+                import_id=import_created.import_id,
+                user_id=user_id
+            )
+            #Todo salió bien
+            self.session.commit()
+            return import_created
+        except Exception:
+            self.session.rollback()
+            raise
 
     def save_sales(self,df_sales,business_id: int,import_id: int,user_id: int):
-        category_map = self.category_service.get_category_map(business_id)
+        category_map = (
+            self.category_service
+            .get_category_map(business_id)
+        )
         sales = []
         for _, row in df_sales.iterrows():
             category_name = normalize_category_name(row["Categoría"])

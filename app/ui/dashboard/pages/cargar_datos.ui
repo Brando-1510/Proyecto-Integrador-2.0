@@ -430,6 +430,11 @@ qproperty-alignment: 'AlignCenter';
            </item>
            <item>
             <widget class="QLabel" name="lblPorcentaje">
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+qproperty-alignment: 'AlignCenter';
+}</string>
+             </property>
              <property name="text">
               <string>TextLabel</string>
              </property>
@@ -437,6 +442,11 @@ qproperty-alignment: 'AlignCenter';
            </item>
            <item>
             <widget class="QLabel" name="lblEstadoImportacion">
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+qproperty-alignment: 'AlignCenter';
+}</string>
+             </property>
              <property name="text">
               <string>TextLabel</string>
              </property>
@@ -775,7 +785,7 @@ QTableView QScrollBar::sub-page:horizontal {
                <widget class="QWidget" name="widget_5" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_5">
                  <item>
-                  <widget class="QPushButton" name="pushButton_3">
+                  <widget class="QPushButton" name="btnAceptar">
                    <property name="text">
                     <string>Guardar Datos</string>
                    </property>
