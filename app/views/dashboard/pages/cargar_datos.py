@@ -1,52 +1,48 @@
 import os
-from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout,QFileDialog,QMessageBox,QSizePolicy
+
+from PySide6.QtCore import QThread, Slot
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtCore import QThread, Slot
+from PySide6.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QSizePolicy, QVBoxLayout, QWidget
+
+from app.errors.import_errors import ImportErrorType
 from app.generated import resources_rc
-from app.views.estilosTipografia import estilos_fuentes
 from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_table_model import SalesTableModel
+from app.views.estilosTipografia import estilos_fuentes
 from app.workers.excel_import_worker import ExcelImportWorker
 from app.workers.excel_save_worker import ExcelSaveWorker
 
 
 class CargarDatos(QWidget):
-
     def __init__(self, userBusiness, parent=None):
         super().__init__(parent)
 
-        # Contexto de negocio
         self.userBusiness = userBusiness
         self.user = userBusiness.user
         self.business = userBusiness.business
 
-        # Estado de datos
         self.df_movimientos = None
         self.df_ventas = None
+
         self.selected_file_name = None
         self.selected_file_path = None
+
         self.pending_file_name = None
         self.pending_file_path = None
 
-        # Referencias de concurrencia
         self.thread = None
         self.worker = None
 
-        # Inicialización de UI y componentes
         self._setup_ui()
         self._cargar_fuentes()
         self._setup_models()
         self._connect_signals()
         self._reset_ui_state()
 
-    # Configuración inicial
-
     def _setup_ui(self):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
-        ruta_ui = os.path.normpath(
-            os.path.join(directorio_actual, "../../../ui/dashboard/pages/cargar_datos.ui")
-        )
+        ruta_ui = os.path.normpath(os.path.join(directorio_actual, "../../../ui/dashboard/pages/cargar_datos.ui"))
 
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
@@ -73,22 +69,16 @@ class CargarDatos(QWidget):
         source_families = QFontDatabase.applicationFontFamilies(font_id_source) if font_id_source != -1 else []
 
         if manrope_families and source_families:
-            self.ui.setStyleSheet(
-                self.ui.styleSheet() + estilos_fuentes(source_families[0], manrope_families[0])
-            )
+            self.ui.setStyleSheet(self.ui.styleSheet() + estilos_fuentes(source_families[0], manrope_families[0]))
 
     def _setup_models(self):
         self.movements_model = MovementsTableModel()
         self.sales_model = SalesTableModel()
 
-        # Compatibilidad con ambas nomenclaturas de tablas
         self.tabla_movimientos = getattr(self.ui, "movimientosTable", getattr(self.ui, "tableMovimientos", None))
         self.tabla_ventas = getattr(self.ui, "ventasTable", getattr(self.ui, "tableVentas", None))
 
-        for tabla, model in [
-            (self.tabla_movimientos, self.movements_model),
-            (self.tabla_ventas, self.sales_model)
-        ]:
+        for tabla, model in [(self.tabla_movimientos, self.movements_model), (self.tabla_ventas, self.sales_model)]:
             if tabla:
                 tabla.setModel(model)
                 tabla.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -107,17 +97,12 @@ class CargarDatos(QWidget):
         self.ui.lblEstadoImportacion.hide()
         self.ui.lblPorcentaje.hide()
 
-    # Gestión de archivos y procesos
-
     def select_excel_file(self):
         if self._is_processing():
             return
 
         file_path, _ = QFileDialog.getOpenFileName(
-            self,
-            "Seleccionar archivo Excel",
-            "",
-            "Archivos de Excel (*.xlsx *.xls);;Todos los archivos (*)"
+            self, "Seleccionar archivo Excel", "", "Archivos de Excel (*.xlsx *.xls);;Todos los archivos (*)"
         )
 
         if file_path:
@@ -134,19 +119,16 @@ class CargarDatos(QWidget):
         self._show_progress("Preparando importación...")
         self._toggle_buttons(enabled=False)
 
-        # Configuración de hilo y worker
         self.thread = QThread()
         self.worker = ExcelImportWorker(file_path)
         self.worker.moveToThread(self.thread)
 
-        # Conexiones del proceso
         self.thread.started.connect(self.worker.run)
         self.worker.progress.connect(self.update_progress)
         self.worker.message.connect(self.update_message)
         self.worker.finished.connect(self.import_finished)
         self.worker.error.connect(self.import_error)
 
-        # Limpieza de memoria
         self.worker.finished.connect(self.thread.quit)
         self.worker.error.connect(self.thread.quit)
         self.thread.finished.connect(self._cleanup_thread)
@@ -163,8 +145,8 @@ class CargarDatos(QWidget):
         if not self.selected_file_path or not self.selected_file_name:
             return
 
-        self._toggle_buttons(enabled=False)
         self._show_progress("Preparando guardado...")
+        self._toggle_buttons(enabled=False)
 
         self.thread = QThread()
         self.worker = ExcelSaveWorker(
@@ -173,7 +155,7 @@ class CargarDatos(QWidget):
             file_path=self.selected_file_path,
             file_name=self.selected_file_name,
             df_sales=self.df_ventas,
-            df_movements=self.df_movimientos
+            df_movements=self.df_movimientos,
         )
         self.worker.moveToThread(self.thread)
 
@@ -189,8 +171,6 @@ class CargarDatos(QWidget):
 
         self.thread.start()
 
-    # Slots de respuesta
-
     @Slot(int)
     def update_progress(self, value: int):
         self.ui.progressBar.setValue(value)
@@ -203,8 +183,11 @@ class CargarDatos(QWidget):
     @Slot(object)
     def import_finished(self, result):
         if not getattr(result, "success", False):
-            error_msg = "\n".join(result.errors) if hasattr(result, "errors") and result.errors else "Error desconocido durante la importación."
-            self.import_error(error_msg)
+            error = getattr(result, "error", None)
+            if error:
+                self.import_error(error)
+            else:
+                self._show_unknown_import_error()
             return
 
         self.selected_file_name = self.pending_file_name
@@ -225,39 +208,61 @@ class CargarDatos(QWidget):
         self._hide_progress()
         self._toggle_buttons(enabled=True)
 
-    @Slot(str)
-    def import_error(self, error_message: str):
+    @Slot(object)
+    def import_error(self, error):
+        self._show_import_error(error)
         self._hide_progress()
-        self._toggle_buttons(enabled=True, accept_enabled=False)
 
         self.pending_file_name = None
         self.pending_file_path = None
 
-        QMessageBox.warning(self, "Error al importar", error_message)
+        self._toggle_buttons(enabled=True, accept_enabled=False)
 
     @Slot()
     def save_finished(self):
-        self.ui.progressBar.setValue(100)
-        self.ui.lblPorcentaje.setText("100%")
-
         QMessageBox.information(self, "Importación exitosa", "Los datos se guardaron correctamente.")
 
         self._clear_data_state()
-        self._hide_progress()
         self.ui.frameArchivo.hide()
-        self._toggle_buttons(enabled=True)
+        self._hide_progress()
+        self._toggle_buttons(enabled=True, accept_enabled=False)
 
-    @Slot(str)
-    def save_error(self, error_message: str):
-        if "ya existe en la base de datos" in error_message:
-            QMessageBox.warning(self, "Archivo ya registrado", "Este archivo ya fue importado anteriormente para este negocio.")
-        elif "no existe para este negocio" in error_message:
-            QMessageBox.warning(self, "Categoría no encontrada", error_message)
+    @Slot(object)
+    def save_error(self, error):
+        self._show_save_error(error)
+        self._hide_progress()
+
+        self._toggle_buttons(enabled=True, accept_enabled=True)
+
+    def _show_import_error(self, error):
+        if error.error_type == ImportErrorType.INVALID_FILE:
+            QMessageBox.warning(self, "Archivo inválido", error.message)
+        elif error.error_type == ImportErrorType.FILE_NOT_FOUND:
+            QMessageBox.warning(self, "Archivo no encontrado", error.message)
+        elif error.error_type == ImportErrorType.INVALID_DATA:
+            QMessageBox.warning(self, "Datos inválidos", error.message)
         else:
-            QMessageBox.critical(self, "Error al guardar", f"No se pudieron guardar los datos.\n\n{error_message}")
+            QMessageBox.critical(self, "Error al importar", error.message)
+
+    def _show_save_error(self, error):
+        if error.error_type == ImportErrorType.FILE_ALREADY_EXISTS:
+            QMessageBox.warning(self, "Archivo ya registrado", error.message)
+        elif error.error_type == ImportErrorType.CATEGORY_NOT_FOUND:
+            QMessageBox.warning(self, "Categoría no encontrada", error.message)
+        elif error.error_type == ImportErrorType.INVALID_DATA:
+            QMessageBox.warning(self, "Datos inválidos", error.message)
+        elif error.error_type == ImportErrorType.DATABASE_ERROR:
+            QMessageBox.critical(self, "Error al guardar", error.message)
+        else:
+            QMessageBox.critical(self, "Error inesperado", error.message)
+
+    def _show_unknown_import_error(self):
+        QMessageBox.critical(self, "Error inesperado", "Ocurrió un error inesperado durante la importación del archivo.")
 
         self._hide_progress()
-        self._toggle_buttons(enabled=True)
+        self.pending_file_name = None
+        self.pending_file_path = None
+        self._toggle_buttons(enabled=True, accept_enabled=False)
 
     def cancel_import(self):
         if self._is_processing():
@@ -268,8 +273,6 @@ class CargarDatos(QWidget):
         self._hide_progress()
         self._toggle_buttons(enabled=True, accept_enabled=False)
 
-    # Métodos auxiliares
-
     def _is_processing(self) -> bool:
         return self.thread is not None and self.thread.isRunning()
 
@@ -278,6 +281,7 @@ class CargarDatos(QWidget):
         if self.worker:
             self.worker.deleteLater()
             self.worker = None
+
         if self.thread:
             self.thread.deleteLater()
             self.thread = None
@@ -285,8 +289,10 @@ class CargarDatos(QWidget):
     def _clear_data_state(self):
         self.df_ventas = None
         self.df_movimientos = None
+
         self.selected_file_name = None
         self.selected_file_path = None
+
         self.pending_file_name = None
         self.pending_file_path = None
 
@@ -297,6 +303,7 @@ class CargarDatos(QWidget):
         self.ui.progressBar.setValue(0)
         self.ui.lblPorcentaje.setText("0%")
         self.ui.lblEstadoImportacion.setText(message)
+
         self.ui.progressBar.show()
         self.ui.lblEstadoImportacion.show()
         self.ui.lblPorcentaje.show()
