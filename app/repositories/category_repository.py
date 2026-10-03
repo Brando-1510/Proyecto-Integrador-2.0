@@ -19,3 +19,10 @@ class CategoryRepository:
             .order_by(Category.name)
         )
         return self.session.scalars(stmt).all()
+
+    def get_by_business_and_name(self,business_id: int,name: str):
+        stmt = select(Category).where(
+            Category.business_id == business_id,
+            Category.name == name
+        )
+        return self.session.scalar(stmt)
