@@ -62,19 +62,35 @@ class CargarDatos(QWidget):
             self.ui.tabWidget.setDocumentMode(True)
 
     def _cargar_fuentes(self):
+        #*Cargar tipografías
+        # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
+        # Source Sans 3
         font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-
-        manrope_families = QFontDatabase.applicationFontFamilies(font_id_manrope) if font_id_manrope != -1 else []
-        source_families = QFontDatabase.applicationFontFamilies(font_id_source) if font_id_source != -1 else []
-
-        if manrope_families and source_families:
-            self.ui.setStyleSheet(self.ui.styleSheet() + estilos_fuentes(source_families[0], manrope_families[0]))
+        #*Verificar tipografías
+        if font_id_manrope == -1:
+            print("Advertencia: No se pudo cargar Manrope.")
+        if font_id_source == -1:
+            print("Advertencia: No se pudo cargar Source Sans 3.")
+        manrope_family = None
+        source_family = None
+        if font_id_manrope != -1:
+            familias = QFontDatabase.applicationFontFamilies(font_id_manrope)
+            if familias:
+                manrope_family = familias[0]
+        if font_id_source != -1:
+            familias = QFontDatabase.applicationFontFamilies(font_id_source)
+            if familias:
+                source_family = familias[0]
+        #* APLICAR TIPOGRAFÍAS
+        if manrope_family and source_family:
+            estilos_actuales = self.ui.styleSheet()
+            estilos_tipografias = estilos_fuentes(source_family,manrope_family)
+            self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
 
     def _setup_models(self):
         self.movements_model = MovementsTableModel()
         self.sales_model = SalesTableModel()
-
         self.tabla_movimientos = getattr(self.ui, "movimientosTable", getattr(self.ui, "tableMovimientos", None))
         self.tabla_ventas = getattr(self.ui, "ventasTable", getattr(self.ui, "tableVentas", None))
 
@@ -100,82 +116,71 @@ class CargarDatos(QWidget):
     def select_excel_file(self):
         if self._is_processing():
             return
-
         file_path, _ = QFileDialog.getOpenFileName(
             self, "Seleccionar archivo Excel", "", "Archivos de Excel (*.xlsx *.xls);;Todos los archivos (*)"
         )
-
         if file_path:
             self.start_import(file_path)
-
     def start_import(self, file_path: str):
         if self._is_processing():
             return
-
         self.pending_file_path = file_path
         self.pending_file_name = os.path.basename(file_path)
-
         self.ui.frameArchivo.hide()
         self._show_progress("Preparando importación...")
         self._toggle_buttons(enabled=False)
-
         self.thread = QThread()
         self.worker = ExcelImportWorker(file_path)
         self.worker.moveToThread(self.thread)
-
         self.thread.started.connect(self.worker.run)
         self.worker.progress.connect(self.update_progress)
         self.worker.message.connect(self.update_message)
         self.worker.finished.connect(self.import_finished)
         self.worker.error.connect(self.import_error)
-
         self.worker.finished.connect(self.thread.quit)
         self.worker.error.connect(self.thread.quit)
         self.thread.finished.connect(self._cleanup_thread)
-
         self.thread.start()
-
     def save_import(self):
         if self._is_processing():
             return
-
         if self.df_ventas is None or self.df_movimientos is None:
             return
-
         if not self.selected_file_path or not self.selected_file_name:
             return
-
-        self._show_progress("Preparando guardado...")
-        self._toggle_buttons(enabled=False)
-
-        self.thread = QThread()
-        self.worker = ExcelSaveWorker(
-            user_id=self.user.user_id,
-            business_id=self.business.business_id,
-            file_path=self.selected_file_path,
-            file_name=self.selected_file_name,
-            df_sales=self.df_ventas,
-            df_movements=self.df_movimientos,
+        respuesta=QMessageBox.question(
+            self,"Guardar Importación","¿Desea Guardar la Importación?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
-        self.worker.moveToThread(self.thread)
-
-        self.thread.started.connect(self.worker.run)
-        self.worker.progress.connect(self.update_progress)
-        self.worker.message.connect(self.update_message)
-        self.worker.finished.connect(self.save_finished)
-        self.worker.error.connect(self.save_error)
-
-        self.worker.finished.connect(self.thread.quit)
-        self.worker.error.connect(self.thread.quit)
-        self.thread.finished.connect(self._cleanup_thread)
-
-        self.thread.start()
+        if respuesta == QMessageBox.StandardButton.Yes:
+            self._show_progress("Preparando guardado...")
+            self._toggle_buttons(enabled=False)
+            self.thread = QThread(self)
+            self.worker = ExcelSaveWorker(
+                user_id=self.user.user_id,
+                business_id=self.business.business_id,
+                file_path=self.selected_file_path,
+                file_name=self.selected_file_name,
+                df_sales=self.df_ventas,
+                df_movements=self.df_movimientos,
+            )
+            self.worker.moveToThread(self.thread)
+            self.thread.started.connect(self.worker.run)
+            self.worker.progress.connect(self.update_progress)
+            self.worker.message.connect(self.update_message)
+            self.worker.finished.connect(self.save_finished)
+            self.worker.error.connect(self.save_error)
+            self.worker.finished.connect(self.thread.quit)
+            self.worker.error.connect(self.thread.quit)
+            self.thread.finished.connect(self._cleanup_thread)
+            self.thread.start()
+        else:
+            return
 
     @Slot(int)
     def update_progress(self, value: int):
         self.ui.progressBar.setValue(value)
         self.ui.lblPorcentaje.setText(f"{value}%")
-
     @Slot(str)
     def update_message(self, message: str):
         self.ui.lblEstadoImportacion.setText(message)
@@ -267,11 +272,17 @@ class CargarDatos(QWidget):
     def cancel_import(self):
         if self._is_processing():
             return
-
-        self._clear_data_state()
-        self.ui.frameArchivo.hide()
-        self._hide_progress()
-        self._toggle_buttons(enabled=True, accept_enabled=False)
+        respuesta=QMessageBox.question(
+            self,"Cancelar Importación","¿Desea cancelar la importación?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if respuesta == QMessageBox.StandardButton.Yes:
+            self._clear_data_state()
+            self.ui.frameArchivo.hide()
+            self._hide_progress()
+            self._toggle_buttons(enabled=True, accept_enabled=False)
+        else:
+            return
 
     def _is_processing(self) -> bool:
         return self.thread is not None and self.thread.isRunning()

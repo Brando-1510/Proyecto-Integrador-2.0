@@ -23,7 +23,8 @@
 background-color:#f7f7f7;
 }
 QFrame{
-background-color:#f7f7f7;
+background-color:transparent;
+color:#f7f7f7;
 }
 
 /*
@@ -31,24 +32,30 @@ background-color:#f7f7f7;
 Textos
 -----------------------------------------------------------------------------------------------------*/
 QLabel{
-background-color: transparent;
-font-size: 14px;
+background-color:transparent;
 color: #0E042F;
+}
+QMessageBox QLabel {
+    color: #f7f7f7;
 }
 QLabel[texto=&quot;InputTexto&quot;]{
 font-size: 16px;
 font-weight: bold;
+color: #0E042F;
 }
 QLabel[texto=&quot;TituloPrincipal&quot;]{
 font-size:20px;
 font-weight:bold;
+color: #0E042F;
 }
 QLabel[texto=&quot;Valor&quot;]{
 font-size:20px;
+color: #0E042F;
 }
 QLabel[texto=&quot;TituloSecundario&quot;]{
 font-size:18px;
 font-weight:bold;
+color: #0E042F;
 }
 QLabel[texto=&quot;Descripcion&quot;]{
 font-size:16px;
@@ -58,6 +65,7 @@ QLabel[texto=&quot;Destacado&quot;]{
 font-size:16px;
 color: #0E042F;
 font-weight: bold;
+color: #0E042F;
 }
 
 
@@ -202,9 +210,9 @@ QScrollBar::sub-page:vertical {
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-97</y>
+          <y>0</y>
           <width>987</width>
-          <height>929</height>
+          <height>933</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -438,6 +446,9 @@ qproperty-alignment: 'AlignCenter';
              <property name="text">
               <string>TextLabel</string>
              </property>
+             <property name="texto" stdset="0">
+              <string>Descripcion</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -449,6 +460,9 @@ qproperty-alignment: 'AlignCenter';
              </property>
              <property name="text">
               <string>TextLabel</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>Descripcion</string>
              </property>
             </widget>
            </item>
@@ -750,7 +764,7 @@ QTableView QScrollBar::sub-page:horizontal {
 </string>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="Movimientos">
                  <attribute name="title">

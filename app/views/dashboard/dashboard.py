@@ -1,6 +1,6 @@
 import os
 from app.core.screen_utils import calcular_tamano_pantalla
-from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton,QVBoxLayout
+from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton,QVBoxLayout,QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import Signal
@@ -85,7 +85,7 @@ class VentanaDashboard(QWidget):
         self.cargar_paginas()
         #* Conectar botones
         #cerrar sesion
-        self.btnLogout.clicked.connect(self.logout_requested.emit)
+        self.btnLogout.clicked.connect(self.cerrar_sesion)
         #manejar stackedWidget
         self.btnHome.clicked.connect(self.mostrar_home)
         self.btnCargarDatos.clicked.connect(self.mostar_cargar_datos)
@@ -99,6 +99,16 @@ class VentanaDashboard(QWidget):
         self.mostrar_home()
         #*MOSTRAR VENTANA
         self.showMaximized()
+    #*Función para cerrar sesión
+    def cerrar_sesion(self):
+        respuesta=QMessageBox.question(
+            self,"Cerrar Sesión","¿Desea Salir?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if respuesta == QMessageBox.StandardButton.Yes:
+            self.logout_requested.emit()
+        else:
+            return
     def cargar_paginas(self):
         self.dashboard_home = DashboardHome(self.userBusiness)
         self.stackedWidget.addWidget(self.dashboard_home)
