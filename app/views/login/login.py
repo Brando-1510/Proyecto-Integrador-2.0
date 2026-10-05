@@ -80,6 +80,7 @@ class VentanaLogin(QWidget):
         #* CONECTAR ACCIONES
         #cuando el usuario hace click en "Olvidaste la contraseña"
         self.ui.btnLogin.clicked.connect(self.login)
+        self.ui.txtContrasena.returnPressed.connect(self.login)
         self.ui.btnCrearCuenta.clicked.connect(self.crear_cuenta_requested.emit)
         self.ui.btnRecuperarContrasena.clicked.connect(self.recuperar_contrasena_requested.emit)
 
