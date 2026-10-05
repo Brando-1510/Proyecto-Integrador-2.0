@@ -418,7 +418,7 @@ color: #16094C;
                <x>0</x>
                <y>0</y>
                <width>1324</width>
-               <height>459</height>
+               <height>484</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">
@@ -603,18 +603,16 @@ QPushButton[boton=&quot;Primario&quot;]:pressed {
              </layout>
             </widget>
            </item>
-          </layout>
-         </widget>
-        </widget>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_5">
-     <property name="styleSheet">
-      <string notr="true">QLabel {
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel {
 	color: #16094C;
     font-size: 16px;
     font-weight: bold;
@@ -631,14 +629,22 @@ QLabel a:hover {
 }
 
 </string>
-     </property>
-     <property name="text">
-      <string>&lt;a href=&quot;https://luis-hdz7.github.io/Finanzen-Web/&quot; style=&quot;color: #46315c; text-align: center; text-decoration: none;&quot;&gt;Descubre más acerca de nuestra aplicación aquí&lt;/a&gt;
+             </property>
+             <property name="text">
+              <string>&lt;a href=&quot;https://luis-hdz7.github.io/Finanzen-Web/&quot; style=&quot;color: #46315c; text-align: center; text-decoration: none;&quot;&gt;Descubre más acerca de nuestra aplicación aquí&lt;/a&gt;
 </string>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
