@@ -14,7 +14,7 @@ class SaleRepository:
         self.session.flush()
         return sales
     #*Obtiene el monto total de las ventas en los ultimos 30 días
-    def get_total_sales_last_30_days(self,business_id:int,start_date: date, end_date: date):
+    def get_total_sales(self,business_id:int,start_date: date, end_date: date):
         stmt=(
             select(func.coalesce(func.sum(Sale.total), 0))
             .where(

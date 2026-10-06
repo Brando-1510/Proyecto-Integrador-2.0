@@ -18,11 +18,16 @@ from app.views.dashboard.pages.monitoreo import Monitoreo
 
 class VentanaDashboard(QWidget):
     logout_requested = Signal()
-    def __init__(self, userBusiness):
+    def __init__(
+        self, userBusiness,
+        home_dashboard_controller,
+    ):
         super().__init__()
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
+        #*Controllers para las paginas del stackedwidget
+        self.home_dashboard_controller=home_dashboard_controller
         #*Obtener directorio actual
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*Cargar archivo ui
@@ -110,7 +115,7 @@ class VentanaDashboard(QWidget):
         else:
             return
     def cargar_paginas(self):
-        self.dashboard_home = DashboardHome(self.userBusiness)
+        self.dashboard_home = DashboardHome(self.userBusiness,self.home_dashboard_controller)
         self.stackedWidget.addWidget(self.dashboard_home)
         self.cargar_datos = None
         self.analisis = None

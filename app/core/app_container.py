@@ -1,5 +1,5 @@
 from app.database.connection import SessionLocal
-# Repositories
+# *Repositories
 from app.repositories.user_repository import UserRepository
 from app.repositories.recovery_repository import RecoveryRepository
 from app.repositories.user_business_repository import UserBusinessRepository
@@ -8,7 +8,7 @@ from app.repositories.category_repository import CategoryRepository
 from app.repositories.import_repository import ImportRepository
 from app.repositories.sale_repository import SaleRepository
 from app.repositories.movement_repository import MovementRepository
-# Services
+#*Services
 from app.services.user_services import UserService
 from app.services.recovery_services import RecoveryService
 from app.services.user_business_service import UserBusinessService
@@ -16,11 +16,13 @@ from app.services.business_service import BusinessService
 from app.services.import_service import ImportService
 from app.services.category_service import CategoryService
 from app.services.transaction_import_service import TransactionImportService
-# Controllers
+from app.services.home_dashboard_service import HomeDashboardService
+#*Controllers
 from app.controllers.user_controller import UserController
 from app.controllers.recovery_controller import RecoveryController
 from app.controllers.choose_business_controller import ChooseBusinessController
 from app.controllers.business_controller import BusinessController
+from app.controllers.home_dashboard_controller import HomeDashboardController
 
 class AppContainer:
     def __init__(self):
@@ -56,5 +58,8 @@ class AppContainer:
         #*Servicio de importación de transacciones
         self.transaction_import_service = TransactionImportService(
         self.session,self.import_service,self.sale_repository,self.movement_repository,self.category_service)
+        #*Home Dashboard
+        self.home_dashboard_service=HomeDashboardService(self.sale_repository,self.movement_repository)
+        self.home_dashboard_controller=HomeDashboardController(self.home_dashboard_service)
     def close(self):
         self.session.close()

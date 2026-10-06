@@ -405,7 +405,7 @@ qproperty-alignment: 'AlignCenter';
                  <item>
                   <widget class="QLabel" name="lblIngresosPeriodo">
                    <property name="text">
-                    <string>Septiembre</string>
+                    <string>05 sep - 06 oct</string>
                    </property>
                    <property name="texto" stdset="0">
                     <string>Descripcion</string>
@@ -484,15 +484,7 @@ qproperty-alignment: 'AlignCenter';
               </item>
               <item>
                <widget class="QWidget" name="grafico" native="true">
-                <layout class="QVBoxLayout" name="verticalLayout_9">
-                 <item>
-                  <widget class="QLabel" name="label_4">
-                   <property name="text">
-                    <string>Aquí va ir un gráfico de ventas</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                <layout class="QVBoxLayout" name="verticalLayout_9"/>
                </widget>
               </item>
              </layout>

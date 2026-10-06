@@ -9,13 +9,17 @@ from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from app.utils.utilsUI import obtener_icono
 from PySide6.QtCore import Qt,Signal
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 class DashboardHome(QWidget):
-    def __init__(self, userBusiness):
+    def __init__(self, userBusiness,home_dashboard_controller):
         super().__init__()
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
+        self.home_dashboard_controller=home_dashboard_controller
+        self.resultado=home_dashboard_controller.datos_dashboard(self.business.business_id)
         #*OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
@@ -26,6 +30,8 @@ class DashboardHome(QWidget):
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        self.configurar_grafica()
+        self.mostrar_evolucion_ventas()
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
@@ -76,6 +82,8 @@ class DashboardHome(QWidget):
         pixmap = pixmap.scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
         self.ui.lblBusinessIcon.setPixmap(pixmap)
         #*Cambios en la ui
+        #relacionados al controller
+        self.cambios_ui_controller()
         #TabWidget
         self.ui.tabWidget.tabBar().setExpanding(True)
         #Tablas
@@ -85,3 +93,40 @@ class DashboardHome(QWidget):
         self.sales_model=SalesTableModel()
         self.ui.movimientosTable.setModel(self.movements_model)
         self.ui.ventasTable.setModel(self.sales_model)
+    def cambios_ui_controller(self):
+        self.ui.lblVentasValor.setText(f"C${str(self.resultado["ventas"])}")
+    #Metodos para crear la gráfica
+    def configurar_grafica(self):
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self.figure)
+        layout = QVBoxLayout(self.ui.grafico)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self.canvas)
+        self.ax = self.figure.add_subplot(111)
+    def mostrar_evolucion_ventas(self):
+
+        fechas = [
+            "01/09",
+            "02/09",
+            "03/09",
+            "04/09",
+            "05/09"
+        ]
+
+        ventas = [1500, 0, 800, 1200, 500]
+
+        self.ax.clear()
+
+        self.ax.plot(
+            fechas,
+            ventas,
+            marker="o"
+        )
+
+        self.ax.set_title("Evolución de ventas")
+        self.ax.set_xlabel("Fecha")
+        self.ax.set_ylabel("Ventas")
+
+        self.ax.grid(True, alpha=0.3)
+
+        self.canvas.draw()
