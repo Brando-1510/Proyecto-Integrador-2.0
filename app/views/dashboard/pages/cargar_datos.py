@@ -1,6 +1,6 @@
 import os
 
-from PySide6.QtCore import QThread, Slot
+from PySide6.QtCore import QThread, Slot,Signal
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QSizePolicy, QVBoxLayout, QWidget
@@ -15,6 +15,7 @@ from app.workers.excel_save_worker import ExcelSaveWorker
 
 
 class CargarDatos(QWidget):
+    altura_cambiada = Signal(int)
     def __init__(self, userBusiness, parent=None):
         super().__init__(parent)
 
@@ -53,6 +54,7 @@ class CargarDatos(QWidget):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
+        self.altura_cambiada.emit(689)
 
         self.ui.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
 
@@ -93,13 +95,15 @@ class CargarDatos(QWidget):
         self.sales_model = SalesTableModel()
         self.tabla_movimientos = getattr(self.ui, "movimientosTable", getattr(self.ui, "tableMovimientos", None))
         self.tabla_ventas = getattr(self.ui, "ventasTable", getattr(self.ui, "tableVentas", None))
+        self.tabla_movimientos.setMinimumHeight(400)
+        self.tabla_movimientos.setMinimumHeight(400)
 
         for tabla, model in [(self.tabla_movimientos, self.movements_model), (self.tabla_ventas, self.sales_model)]:
             if tabla:
                 tabla.setModel(model)
                 tabla.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
                 tabla.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-                tabla.setMinimumHeight(300)
+
 
     def _connect_signals(self):
         self.ui.btnSeleccionarArchivo.clicked.connect(self.select_excel_file)
@@ -108,6 +112,7 @@ class CargarDatos(QWidget):
         self.ui.btnAceptar.clicked.connect(self.save_import)
 
     def _reset_ui_state(self):
+        self.altura_cambiada.emit(689)
         self.ui.frameArchivo.hide()
         self.ui.progressBar.hide()
         self.ui.lblEstadoImportacion.hide()
@@ -127,6 +132,7 @@ class CargarDatos(QWidget):
         self.pending_file_path = file_path
         self.pending_file_name = os.path.basename(file_path)
         self.ui.frameArchivo.hide()
+        self.altura_cambiada.emit(689)
         self._show_progress("Preparando importación...")
         self._toggle_buttons(enabled=False)
         self.thread = QThread()
@@ -210,6 +216,7 @@ class CargarDatos(QWidget):
             self.ui.lblNombreArchivo.setText(self.selected_file_name)
 
         self.ui.frameArchivo.show()
+        self.altura_cambiada.emit(1000)
         self._hide_progress()
         self._toggle_buttons(enabled=True)
 
@@ -229,6 +236,7 @@ class CargarDatos(QWidget):
 
         self._clear_data_state()
         self.ui.frameArchivo.hide()
+        self.altura_cambiada.emit(689)
         self._hide_progress()
         self._toggle_buttons(enabled=True, accept_enabled=False)
 
@@ -279,6 +287,7 @@ class CargarDatos(QWidget):
         if respuesta == QMessageBox.StandardButton.Yes:
             self._clear_data_state()
             self.ui.frameArchivo.hide()
+            self.altura_cambiada.emit(689)
             self._hide_progress()
             self._toggle_buttons(enabled=True, accept_enabled=False)
         else:

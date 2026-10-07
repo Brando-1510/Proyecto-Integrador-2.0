@@ -81,6 +81,7 @@ class VentanaChooseBusiness(QWidget):
         #*CARGAR NEGOCIOS
         self.cargar_negocios()
         self.ui.btnEntrar.clicked.connect(self.entrar_al_negocio)
+        
         self.ui.btnCrearNeg.clicked.connect(self.ir_a_crear_negocio)
         self.ui.BtnNuevoNeg.clicked.connect(self.ir_a_crear_negocio)
         #*MOSTRAR VENTANA

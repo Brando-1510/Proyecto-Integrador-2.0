@@ -1,6 +1,6 @@
 import os
 from app.core.screen_utils import calcular_tamano_pantalla
-from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton,QVBoxLayout,QMessageBox
+from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton,QVBoxLayout,QMessageBox,QSizePolicy
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import Signal
@@ -114,8 +114,22 @@ class VentanaDashboard(QWidget):
             self.logout_requested.emit()
         else:
             return
+    def cambiar_vista(self, nuevo_widget):
+        # Ajustar la política de tamaño para que solo la vista activa mande sobre el alto
+        for i in range(self.stackedWidget.count()):
+            widget = self.stackedWidget.widget(i)
+            if widget == nuevo_widget:
+                widget.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+            else:
+                widget.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
+        # Asignar la vista actual
+        self.stackedWidget.setCurrentWidget(nuevo_widget)
+        # Forzar el recalculo del tamaño del ScrollArea
+        self.stackedWidget.adjustSize()
+        if hasattr(self.ui, "scrollAreaWidgetContents"):
+            self.ui.scrollAreaWidgetContents.adjustSize()
     def cargar_paginas(self):
-        self.dashboard_home = DashboardHome(self.userBusiness,self.home_dashboard_controller)
+        self.dashboard_home = DashboardHome(self.userBusiness, self.home_dashboard_controller)
         self.stackedWidget.addWidget(self.dashboard_home)
         self.cargar_datos = None
         self.analisis = None
@@ -124,48 +138,49 @@ class VentanaDashboard(QWidget):
         self.informes = None
         self.monitoreo = None
         self.configuracion = None
-    #*Mostrar Home
+    # *Mostrar Home
     def mostrar_home(self):
-        self.stackedWidget.setCurrentWidget(self.dashboard_home)
-    #*Mostrar Cargar Datos
+        # NOTA: Se eliminó self.stackedWidget.setMinimumHeight(1000)
+        self.cambiar_vista(self.dashboard_home)
+    # *Mostrar Cargar Datos
     def mostar_cargar_datos(self):
         if self.cargar_datos is None:
             self.cargar_datos = CargarDatos(self.userBusiness)
             self.stackedWidget.addWidget(self.cargar_datos)
-        self.stackedWidget.setCurrentWidget(self.cargar_datos)
-    #*Mostrar Análisis
+        self.cambiar_vista(self.cargar_datos)
+    # *Mostrar Análisis
     def mostrar_analisis(self):
         if self.analisis is None:
             self.analisis = Analisis(self.userBusiness)
             self.stackedWidget.addWidget(self.analisis)
-        self.stackedWidget.setCurrentWidget(self.analisis)
-    #*Mostrar Movimientos
+        self.cambiar_vista(self.analisis)
+    # *Mostrar Movimientos
     def mostrar_movimientos(self):
         if self.movimientos is None:
             self.movimientos = Movimientos(self.userBusiness)
             self.stackedWidget.addWidget(self.movimientos)
-        self.stackedWidget.setCurrentWidget(self.movimientos)
-    #*Mostrar Recomendaciones
+        self.cambiar_vista(self.movimientos)
+    # *Mostrar Recomendaciones
     def mostrar_recomendaciones(self):
         if self.recomendaciones is None:
             self.recomendaciones = Recomendaciones(self.userBusiness)
             self.stackedWidget.addWidget(self.recomendaciones)
-        self.stackedWidget.setCurrentWidget(self.recomendaciones)
-    #*Mostrar Informes
+        self.cambiar_vista(self.recomendaciones)
+    # *Mostrar Informes
     def mostrar_informes(self):
         if self.informes is None:
             self.informes = Informes(self.userBusiness)
             self.stackedWidget.addWidget(self.informes)
-        self.stackedWidget.setCurrentWidget(self.informes)
-    #*Mostrar Configuración
+        self.cambiar_vista(self.informes)
+    # *Mostrar Configuración
     def mostrar_configuracion(self):
         if self.configuracion is None:
             self.configuracion = Configuracion(self.userBusiness)
             self.stackedWidget.addWidget(self.configuracion)
-        self.stackedWidget.setCurrentWidget(self.configuracion)
-    #*Mostrar Monitoreo
+        self.cambiar_vista(self.configuracion)
+    # *Mostrar Monitoreo
     def mostrar_monitoreo(self):
         if self.monitoreo is None:
             self.monitoreo = Monitoreo(self.userBusiness)
             self.stackedWidget.addWidget(self.monitoreo)
-        self.stackedWidget.setCurrentWidget(self.monitoreo)
+        self.cambiar_vista(self.monitoreo)
