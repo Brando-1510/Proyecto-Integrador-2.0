@@ -516,12 +516,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QComboBox" name="comboBox">
-                   <item>
-                    <property name="text">
-                     <string>-- Seleccionar Período --</string>
-                    </property>
-                   </item>
+                  <widget class="QComboBox" name="periodoMov">
                    <item>
                     <property name="text">
                      <string>Esta Semana</string>
@@ -542,6 +537,11 @@ QTableView QScrollBar::sub-page:horizontal {
                      <string>Último Año</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>Personalizado</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item row="2" column="0">
@@ -555,7 +555,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QComboBox" name="comboBox_3">
+                  <widget class="QComboBox" name="tipoMov">
                    <item>
                     <property name="text">
                      <string>Todos</string>
@@ -584,7 +584,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="3" column="1">
-                  <widget class="QPlainTextEdit" name="plainTextEdit">
+                  <widget class="QPlainTextEdit" name="buscar">
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
@@ -597,7 +597,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QLabel" name="label_7">
+                  <widget class="QLabel" name="lblPersonalizar">
                    <property name="text">
                     <string>Personaliza el Rango:</string>
                    </property>
@@ -607,7 +607,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QWidget" name="widget" native="true">
+                  <widget class="QWidget" name="contenedorFechas" native="true">
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
@@ -616,10 +616,10 @@ QTableView QScrollBar::sub-page:horizontal {
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout">
                     <item>
-                     <widget class="QDateEdit" name="dateEdit"/>
+                     <widget class="QDateEdit" name="rangoInicio"/>
                     </item>
                     <item>
-                     <widget class="QDateEdit" name="dateEdit_2"/>
+                     <widget class="QDateEdit" name="rangoFinal"/>
                     </item>
                    </layout>
                   </widget>
@@ -671,12 +671,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QComboBox" name="comboBox_2">
-                   <item>
-                    <property name="text">
-                     <string>-- Seleccionar Período --</string>
-                    </property>
-                   </item>
+                  <widget class="QComboBox" name="periodoVentas">
                    <item>
                     <property name="text">
                      <string>Esta Semana</string>
@@ -697,10 +692,15 @@ QTableView QScrollBar::sub-page:horizontal {
                      <string>Último Año</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>Personalizado</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item row="1" column="0">
-                  <widget class="QLabel" name="label_4">
+                  <widget class="QLabel" name="lblPersonalizarV">
                    <property name="text">
                     <string>Personaliza el Rango:</string>
                    </property>
@@ -710,7 +710,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QWidget" name="widget_2" native="true">
+                  <widget class="QWidget" name="contenedorFechasV" native="true">
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
@@ -719,10 +719,10 @@ QTableView QScrollBar::sub-page:horizontal {
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_2">
                     <item>
-                     <widget class="QDateEdit" name="dateEdit_3"/>
+                     <widget class="QDateEdit" name="rangoInicioV"/>
                     </item>
                     <item>
-                     <widget class="QDateEdit" name="dateEdit_4"/>
+                     <widget class="QDateEdit" name="rangoFinalV"/>
                     </item>
                    </layout>
                   </widget>
@@ -738,7 +738,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QComboBox" name="comboBox_4">
+                  <widget class="QComboBox" name="categoriasVentas">
                    <item>
                     <property name="text">
                      <string>Todos</string>
