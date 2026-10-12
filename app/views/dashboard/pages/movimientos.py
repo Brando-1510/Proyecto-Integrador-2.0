@@ -15,6 +15,7 @@ class Movimientos(QWidget):
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
+        self.categories=userBusiness.business.categories
         #*OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
@@ -72,6 +73,15 @@ class Movimientos(QWidget):
         self.ui.contenedorFechas.hide()
         self.ui.lblPersonalizarV.hide()
         self.ui.contenedorFechasV.hide()
+        #llenar el combobox
+        self.ui.categoriasVentas.addItem("Todas las categorías", None)
+        for category in self.categories:
+            self.ui.categoriasVentas.addItem(
+                category.name,category.category_id
+            )
+        self.ui.tipoMov.addItem("Todos", None)
+        self.ui.tipoMov.addItem("Ingreso", "Ingreso")
+        self.ui.tipoMov.addItem("Gasto", "Gasto")
         #tablas
         self.ui.ventasTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.movimientosTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -95,24 +105,24 @@ class Movimientos(QWidget):
         es_personalizado_ventas = (self.ui.periodoVentas.currentText() == "Personalizado")
         self.ui.lblPersonalizarV.setVisible(es_personalizado_ventas)
         self.ui.contenedorFechasV.setVisible(es_personalizado_ventas)
+
     def obtener_datos(self):
         tab_actual = self.ui.tuTabWidget.currentIndex()
         datos = {}
         if tab_actual == 0:
             periodo = self.ui.periodoMov.currentText()
             datos["periodo"] = periodo
-            # Si es personalizado, extraemos las fechas del contenedor
+            datos["tipo_movimiento"] = (self.ui.tipoMov.currentData())
+            datos["descripcion"] = self.ui.buscar.toPlainText().strip() or None
             if periodo == "Personalizado":
-                datos["rango_inicio"] = self.ui.rangoInicio.date().toPyDate()
-                datos["rango_final"] = self.ui.rangoFinal.date().toPyDate()
-            datos["tipo_movimiento"] = self.ui.tipoMov.currentText()
-            datos["buscar"] = self.ui.buscar.text().strip()
+                datos["rango_inicio"] = (self.ui.rangoInicio.date().toPyDate())
+                datos["rango_final"] = (self.ui.rangoFinal.date().toPyDate())
         else:
-            periodo_v = self.ui.periodoVentas.currentText()
-            datos["periodo"] = periodo_v
-            if periodo_v == "Personalizado":
-                datos["rango_inicio"] = self.ui.rangoInicioV.date().toPyDate()
-                datos["rango_final"] = self.ui.rangoFinalV.date().toPyDate()
-            datos["categorias"] = self.ui.categoriasVentas.currentText()
+            periodo = self.ui.periodoVentas.currentText()
+            datos["periodo"] = periodo
+            datos["categoria_id"] = (self.ui.categoriasVentas.currentData())
+            if periodo == "Personalizado":
+                datos["rango_inicio"] = (self.ui.rangoInicioV.date().toPyDate())
+                datos["rango_final"] = (self.ui.rangoFinalV.date().toPyDate())
         return datos
 

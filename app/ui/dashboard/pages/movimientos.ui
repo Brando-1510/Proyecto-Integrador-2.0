@@ -555,23 +555,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QComboBox" name="tipoMov">
-                   <item>
-                    <property name="text">
-                     <string>Todos</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Ingresos</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Gastos</string>
-                    </property>
-                   </item>
-                  </widget>
+                  <widget class="QComboBox" name="tipoMov"/>
                  </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_2">
@@ -738,13 +722,7 @@ QTableView QScrollBar::sub-page:horizontal {
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QComboBox" name="categoriasVentas">
-                   <item>
-                    <property name="text">
-                     <string>Todos</string>
-                    </property>
-                   </item>
-                  </widget>
+                  <widget class="QComboBox" name="categoriasVentas"/>
                  </item>
                 </layout>
                </item>

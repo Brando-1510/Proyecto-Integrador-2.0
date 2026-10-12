@@ -47,12 +47,12 @@ class MovementRepository:
                 Movement.business_id==business_id,
                 Movement.date.between(start_date, end_date)
                 )
-            .order_by(Movement.date.desc())
+            .order_by(Movement.date.desc(),Movement.movement_id.desc(),)
         )
         if movement_type is not None:
             stmt=stmt.where(Movement.type==movement_type)
         if description is not None:
-            stmt=stmt.where(Movement.description.like(description))
+            stmt=stmt.where(Movement.description.like(f"%{description.strip()}%"))
         if limit is not None:
             stmt=stmt.limit(limit)
         resultado = self.session.scalars(stmt).all()
