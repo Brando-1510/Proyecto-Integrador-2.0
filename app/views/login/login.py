@@ -104,10 +104,7 @@ class VentanaLogin(QWidget):
         accion_ojo.toggled.connect(cambiar_visibilidad)
     def verificar(self):
         if not V.tienen_contenido([self.ui.txtContrasena,self.ui.txtCorreo]):
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear la Cuenta")
-            return
-        if not VD.validar_correo(self.ui.txtCorreo.text()):
-            QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
+            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para iniciar sesión")
             return
     def login(self):
         self.verificar()

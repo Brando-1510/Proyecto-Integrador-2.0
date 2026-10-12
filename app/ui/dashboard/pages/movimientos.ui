@@ -104,6 +104,47 @@ QPushButton[boton=&quot;Secundario&quot;]:pressed {
     background-color: rgba(131, 117, 174, 0.9);
 }
 /* --- ESTILO DEL QCOMBOBOX --- */
+/* --- ESTADO BASE --- */
+QLineEdit, QDateEdit, QPlainTextEdit, QComboBox {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+
+/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
+QLineEdit:hover, QDateEdit:hover, QPlainTextEdit:hover, QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
+QLineEdit:focus, QDateEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
+QLineEdit:disabled, QDateEdit:disabled, QPlainTextEdit:disabled, QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #D1D5DB;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- ESTILO DEL QCOMBOBOX --- */
 QComboBox {
     background-color: #F8F9FA;
     border: 1px solid #D1D5DB;
@@ -160,9 +201,7 @@ QComboBox QAbstractItemView {
 QComboBox QAbstractItemView::item:hover {
     background-color: #F3F4F6;
     color: #333333;
-}
-/*
-</string>
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -445,7 +484,7 @@ QTableView QScrollBar::sub-page:horizontal {
 }</string>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="Movimientos">
               <attribute name="title">
@@ -472,7 +511,7 @@ QTableView QScrollBar::sub-page:horizontal {
                     <string>Período:</string>
                    </property>
                    <property name="texto" stdset="0">
-                    <string>TituloSecundario</string>
+                    <string>Destacado</string>
                    </property>
                   </widget>
                  </item>
@@ -505,22 +544,92 @@ QTableView QScrollBar::sub-page:horizontal {
                    </item>
                   </widget>
                  </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>Tipo de Movimiento:</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QComboBox" name="comboBox_3">
+                   <item>
+                    <property name="text">
+                     <string>Todos</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Ingresos</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Gastos</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_2">
+                   <property name="text">
+                    <string>Buscar por Descripción:</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QPlainTextEdit" name="plainTextEdit">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Busca por la Descripción...</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_7">
+                   <property name="text">
+                    <string>Personaliza el Rango:</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QWidget" name="widget" native="true">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout">
+                    <item>
+                     <widget class="QDateEdit" name="dateEdit"/>
+                    </item>
+                    <item>
+                     <widget class="QDateEdit" name="dateEdit_2"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
                 </layout>
                </item>
                <item>
                 <widget class="QLabel" name="lblPeriodo">
                  <property name="text">
                   <string>01 septiembre 2026 - 30 septiembre 2026  </string>
-                 </property>
-                 <property name="texto" stdset="0">
-                  <string>Descripcion</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="lblCantidadDatos">
-                 <property name="text">
-                  <string> 128 registros    </string>
                  </property>
                  <property name="texto" stdset="0">
                   <string>Descripcion</string>
@@ -557,7 +666,7 @@ QTableView QScrollBar::sub-page:horizontal {
                     <string>Período:</string>
                    </property>
                    <property name="texto" stdset="0">
-                    <string>TituloSecundario</string>
+                    <string>Destacado</string>
                    </property>
                   </widget>
                  </item>
@@ -590,22 +699,59 @@ QTableView QScrollBar::sub-page:horizontal {
                    </item>
                   </widget>
                  </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_4">
+                   <property name="text">
+                    <string>Personaliza el Rango:</string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QWidget" name="widget_2" native="true">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_2">
+                    <item>
+                     <widget class="QDateEdit" name="dateEdit_3"/>
+                    </item>
+                    <item>
+                     <widget class="QDateEdit" name="dateEdit_4"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_8">
+                   <property name="text">
+                    <string>Categorias: </string>
+                   </property>
+                   <property name="texto" stdset="0">
+                    <string>Destacado</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QComboBox" name="comboBox_4">
+                   <item>
+                    <property name="text">
+                     <string>Todos</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
                 </layout>
                </item>
                <item>
                 <widget class="QLabel" name="label_3">
                  <property name="text">
                   <string>01 septiembre 2026 - 30 septiembre 2026  </string>
-                 </property>
-                 <property name="texto" stdset="0">
-                  <string>Descripcion</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string> 128 registros    </string>
                  </property>
                  <property name="texto" stdset="0">
                   <string>Descripcion</string>

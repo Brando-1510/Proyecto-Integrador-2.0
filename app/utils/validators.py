@@ -58,4 +58,4 @@ class ValidadoresDatos:
             return True
         else:
             QMessageBox.warning(ventana,"Problema con la Contraseña","Contraseña débil (revisa los requisitos)")
-            return
+            return False

@@ -111,8 +111,6 @@ class VentanaCrearCuenta(QWidget):
                 input_password.setEchoMode(QLineEdit.EchoMode.Password)
                 accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
         accion_ojo.toggled.connect(cambiar_visibilidad)
-    def verificar(self):
-        pass
     def guardar(self):
         if not V.tienen_contenido(
             self.ui.inputNombre,self.ui.inputCorreo,
@@ -125,7 +123,8 @@ class VentanaCrearCuenta(QWidget):
             return
         password = self.ui.inputContrasena.text().strip()
         password_confirmar = self.ui.inputContrasenaConfirmar.text().strip()
-        VD.evaluar_contrasena(self,password)
+        if not VD.evaluar_contrasena(self,password):
+            return
         if not VD.comparar_contraseñas(self,password,password_confirmar):
             return
         name=self.ui.inputNombre.text().strip()

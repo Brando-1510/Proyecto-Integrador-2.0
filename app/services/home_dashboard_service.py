@@ -20,8 +20,8 @@ class HomeDashboardService:
         #*Datos relacionados con la gráfica
         evolucion=self.get_sales_evolution_last_30_days(start_date,end_date)
         #*Datos para las tablas de movimientos y ventas recientes
-        movimientos_recientes=self.movement_repository.get_recent_movements(self.business_id,start_date,end_date)
-        ventas_recientes=self.sale_repository.get_recent_sales(self.business_id,start_date,end_date)
+        movimientos_recientes=self.movement_repository.get_movements(self.business_id,start_date,end_date)
+        ventas_recientes=self.sale_repository.get_sales(self.business_id,start_date,end_date)
         #*Retornar datos
         return {
             "success":True,

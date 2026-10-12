@@ -321,19 +321,25 @@ QLabel[texto=&quot;Descripcion&quot;] {
     <widget class="QWidget" name="widget" native="true">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="label_3">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>¿A Qué Negocio Deseas Ingresar?</string>
-        </property>
-        <property name="texto" stdset="0">
-         <string>TituloPrincipal</string>
-        </property>
+       <widget class="QWidget" name="widget_5" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>¿A Qué Negocio Deseas Ingresar?</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>TituloPrincipal</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
@@ -342,7 +348,7 @@ QLabel[texto=&quot;Descripcion&quot;] {
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="page">
          <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -489,17 +495,11 @@ color: #16094C;
          </layout>
         </widget>
         <widget class="QWidget" name="page_2">
-         <widget class="QWidget" name="widget_2" native="true">
-          <property name="geometry">
-           <rect>
-            <x>9</x>
-            <y>29</y>
-            <width>1331</width>
-            <height>461</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel[texto=&quot;Destacado&quot;]{
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QWidget" name="widget_2" native="true">
+            <property name="styleSheet">
+             <string notr="true">QLabel[texto=&quot;Destacado&quot;]{
 font-weight:bold;
 font-size: 28px;
 color: #6C6686;
@@ -531,88 +531,94 @@ QPushButton[boton=&quot;Primario&quot;]:hover {
 QPushButton[boton=&quot;Primario&quot;]:pressed {
     background-color: #472A8F;
 }</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Su cuenta aún no esta vinculada a un negocio</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>Destacado</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QWidget" name="widget_3" native="true">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>100</height>
-              </size>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <item>
-               <spacer name="horizontalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnCrearNeg">
-                <property name="minimumSize">
-                 <size>
-                  <width>500</width>
-                  <height>40</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Crear Negocio</string>
-                </property>
-                <property name="boton" stdset="0">
-                 <string>Primario</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_5">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QLabel {
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Su cuenta aún no esta vinculada a un negocio</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>Destacado</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="widget_3" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btnCrearNeg">
+                  <property name="minimumSize">
+                   <size>
+                    <width>500</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>300</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Crear Negocio</string>
+                  </property>
+                  <property name="boton" stdset="0">
+                   <string>Primario</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_5">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QLabel {
 	color: #16094C;
     font-size: 16px;
     font-weight: bold;
@@ -629,18 +635,20 @@ QLabel a:hover {
 }
 
 </string>
-             </property>
-             <property name="text">
-              <string>&lt;a href=&quot;https://luis-hdz7.github.io/Finanzen-Web/&quot; style=&quot;color: #46315c; text-align: center; text-decoration: none;&quot;&gt;Descubre más acerca de nuestra aplicación aquí&lt;/a&gt;
+               </property>
+               <property name="text">
+                <string>&lt;a href=&quot;https://luis-hdz7.github.io/Finanzen-Web/&quot; style=&quot;color: #46315c; text-align: center; text-decoration: none;&quot;&gt;Descubre más acerca de nuestra aplicación aquí&lt;/a&gt;
 </string>
-             </property>
-             <property name="openExternalLinks">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>

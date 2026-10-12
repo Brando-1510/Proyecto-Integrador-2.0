@@ -38,13 +38,15 @@ class SaleRepository:
         resultado=self.session.execute(stmt).all()
         return resultado
     #*Para la sección de ventas recientes del home dashboard
-    def get_recent_sales(self,business_id:int,start_date:date,end_date:date):
+    def get_sales(self,business_id:int,start_date:date,end_date:date,limit: int | None = 20):
         stmt=(
             select(Sale).where(
                 Sale.business_id==business_id,
                 Sale.date.between(start_date, end_date)
             )
-            .order_by(Sale.date.desc()).limit(20)
+            .order_by(Sale.date.desc())
         )
+        if limit is not None:
+            stmt=stmt.limit(limit)
         resultado = self.session.scalars(stmt).all()
         return resultado

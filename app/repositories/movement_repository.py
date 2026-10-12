@@ -38,13 +38,15 @@ class MovementRepository:
         total_expenses=self.session.scalar(stmt)
         return total_expenses
     #*Para la sección de movimientos recientes del home dashboard
-    def get_recent_movements(self,business_id:int,start_date:date,end_date:date):
+    def get_movements(self,business_id:int,start_date:date,end_date:date,limit: int | None = 20):
         stmt=(
             select(Movement).where(
                 Movement.business_id==business_id,
                 Movement.date.between(start_date, end_date)
                 )
-            .order_by(Movement.date.desc()).limit(20)
+            .order_by(Movement.date.desc())
         )
+        if limit is not None:
+            stmt=stmt.limit(limit)
         resultado = self.session.scalars(stmt).all()
         return resultado
