@@ -109,6 +109,7 @@ class Movimientos(QWidget):
     def obtener_datos(self):
         tab_actual = self.ui.tuTabWidget.currentIndex()
         datos = {}
+        datos["businness_id"]=self.business.business_id
         if tab_actual == 0:
             periodo = self.ui.periodoMov.currentText()
             datos["periodo"] = periodo
