@@ -205,153 +205,44 @@ QComboBox QAbstractItemView::item:hover {
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_12">
-     <property name="spacing">
-      <number>20</number>
+    <widget class="QLabel" name="lblTitulo">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="leftMargin">
-      <number>30</number>
+     <property name="text">
+      <string>Cargar Datos</string>
      </property>
-     <property name="topMargin">
-      <number>25</number>
+     <property name="texto" stdset="0">
+      <string>TituloPrincipal</string>
      </property>
-     <property name="rightMargin">
-      <number>30</number>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblDescripcion">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="bottomMargin">
-      <number>25</number>
+     <property name="text">
+      <string>Importa y administra los datos financieros de tu negocio.</string>
      </property>
-     <item>
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="styleSheet">
-        <string notr="true">/*
------------------------------------------------------------------------------------------------------
-ScrollArea
------------------------------------------------------------------------------------------------------
-*/
-#scrollAreaWidgetContents {
-    background-color: transparent;
-}
-QScrollArea {
-    background-color: transparent;
-    border: none;
-	border-radius:0px;
-}
-
-/* Widget que está dentro del ScrollArea */
-/*QScrollArea &gt; QWidget &gt; QWidget {
-    background-color: #F9F9FC;
-}*/
-
-/* Scrollbar vertical */
-QScrollBar:vertical {
-    background-color: transparent;
-    width: 8px;
-    margin: 4px 2px 4px 0px;
-}
-
-/* Parte que se puede arrastrar */
-QScrollBar::handle:vertical {
-    background-color: #C9C1D5;
-    border-radius: 4px;
-    min-height: 40px;
-}
-
-/* Al pasar el mouse */
-QScrollBar::handle:vertical:hover {
-    background-color: #A99DB8;
-}
-
-/* Ocultar botones de arriba y abajo */
-QScrollBar::add-line:vertical,
-QScrollBar::sub-line:vertical {
-    height: 0px;
-}
-
-/* Espacio antes/después del handle */
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: transparent;
-}</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>995</width>
-          <height>630</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="leftMargin">
-          <number>9</number>
-         </property>
-         <property name="topMargin">
-          <number>9</number>
-         </property>
-         <property name="rightMargin">
-          <number>9</number>
-         </property>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <property name="spacing">
-            <number>20</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="lblTitulo">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Cargar Datos</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>TituloPrincipal</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="lblDescripcion">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Importa y administra los datos financieros de tu negocio.</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>Descripcion</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTabWidget" name="tabWidget">
-             <property name="accessibleName">
-              <string>Movimientos</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QTabWidget {
+     <property name="texto" stdset="0">
+      <string>Descripcion</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="accessibleName">
+      <string>Movimientos</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTabWidget {
 		background-color:#f7f7f7;
     }
 QTabWidget::pane {
@@ -482,274 +373,266 @@ QTableView QScrollBar::sub-page:horizontal {
     background: none;
     width: 0px;
 }</string>
-             </property>
-             <property name="currentIndex">
-              <number>1</number>
-             </property>
-             <widget class="QWidget" name="Movimientos">
-              <attribute name="title">
-               <string>Movimientos</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_4">
-               <item>
-                <layout class="QFormLayout" name="formLayout">
-                 <property name="sizeConstraint">
-                  <enum>QLayout::SetDefaultConstraint</enum>
-                 </property>
-                 <property name="labelAlignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                 <property name="formAlignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                 <property name="horizontalSpacing">
-                  <number>30</number>
-                 </property>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_5">
-                   <property name="text">
-                    <string>Período:</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QComboBox" name="periodoMov">
-                   <item>
-                    <property name="text">
-                     <string>Esta Semana</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Este Mes</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Los Últimos 3 Meses</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Último Año</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Personalizado</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label">
-                   <property name="text">
-                    <string>Tipo de Movimiento:</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QComboBox" name="tipoMov"/>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_2">
-                   <property name="text">
-                    <string>Buscar por Descripción:</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QPlainTextEdit" name="buscar">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="placeholderText">
-                    <string>Busca por la Descripción...</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="lblPersonalizar">
-                   <property name="text">
-                    <string>Personaliza el Rango:</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QWidget" name="contenedorFechas" native="true">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout">
-                    <item>
-                     <widget class="QDateEdit" name="rangoInicio"/>
-                    </item>
-                    <item>
-                     <widget class="QDateEdit" name="rangoFinal"/>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <widget class="QLabel" name="lblPeriodo">
-                 <property name="text">
-                  <string>01 septiembre 2026 - 30 septiembre 2026  </string>
-                 </property>
-                 <property name="texto" stdset="0">
-                  <string>Descripcion</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QTableView" name="movimientosTable"/>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_2">
-              <attribute name="title">
-               <string>Ventas</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_3">
-               <item>
-                <layout class="QFormLayout" name="formLayout_2">
-                 <property name="sizeConstraint">
-                  <enum>QLayout::SetDefaultConstraint</enum>
-                 </property>
-                 <property name="labelAlignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                 <property name="formAlignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                 <property name="horizontalSpacing">
-                  <number>30</number>
-                 </property>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_6">
-                   <property name="text">
-                    <string>Período:</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QComboBox" name="periodoVentas">
-                   <item>
-                    <property name="text">
-                     <string>Esta Semana</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Este Mes</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Los Últimos 3 Meses</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Último Año</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Personalizado</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="lblPersonalizarV">
-                   <property name="text">
-                    <string>Personaliza el Rango:</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QWidget" name="contenedorFechasV" native="true">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <item>
-                     <widget class="QDateEdit" name="rangoInicioV"/>
-                    </item>
-                    <item>
-                     <widget class="QDateEdit" name="rangoFinalV"/>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_8">
-                   <property name="text">
-                    <string>Categorias: </string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QComboBox" name="categoriasVentas"/>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>01 septiembre 2026 - 30 septiembre 2026  </string>
-                 </property>
-                 <property name="texto" stdset="0">
-                  <string>Descripcion</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QTableView" name="ventasTable"/>
-               </item>
-              </layout>
-             </widget>
-            </widget>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="Movimientos_2">
+      <attribute name="title">
+       <string>Movimientos</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QFormLayout" name="formLayout">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <property name="labelAlignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="formAlignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="horizontalSpacing">
+          <number>30</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Período:</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="periodoMov">
+           <item>
+            <property name="text">
+             <string>Esta Semana</string>
+            </property>
            </item>
-          </layout>
+           <item>
+            <property name="text">
+             <string>Este Mes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Los Últimos 3 Meses</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Último Año</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Personalizado</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Tipo de Movimiento:</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="tipoMov"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Buscar por Descripción:</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QPlainTextEdit" name="buscar">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="placeholderText">
+            <string>Busca por la Descripción...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblPersonalizar">
+           <property name="text">
+            <string>Personaliza el Rango:</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QWidget" name="contenedorFechas" native="true">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QDateEdit" name="rangoInicio"/>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="rangoFinal"/>
+            </item>
+           </layout>
+          </widget>
          </item>
         </layout>
-       </widget>
-      </widget>
-     </item>
-    </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblPeriodo">
+         <property name="text">
+          <string>01 septiembre 2026 - 30 septiembre 2026  </string>
+         </property>
+         <property name="texto" stdset="0">
+          <string>Descripcion</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="movimientosTable"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Ventas</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QFormLayout" name="formLayout_2">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <property name="labelAlignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="formAlignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="horizontalSpacing">
+          <number>30</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Período:</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="periodoVentas">
+           <item>
+            <property name="text">
+             <string>Esta Semana</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Este Mes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Los Últimos 3 Meses</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Último Año</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Personalizado</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lblPersonalizarV">
+           <property name="text">
+            <string>Personaliza el Rango:</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QWidget" name="contenedorFechasV" native="true">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QDateEdit" name="rangoInicioV"/>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="rangoFinalV"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Categorias: </string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="categoriasVentas"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblPeriodoV">
+         <property name="text">
+          <string>01 septiembre 2026 - 30 septiembre 2026  </string>
+         </property>
+         <property name="texto" stdset="0">
+          <string>Descripcion</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="ventasTable"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>

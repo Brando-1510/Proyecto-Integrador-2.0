@@ -46,9 +46,11 @@ class ConsultationService:
         elif periodo == "Esta Semana":
             start_date, end_date = DateUtils.this_week()
         elif periodo == "Este Mes":
-            start_date, end_date = DateUtils.this_month()
-        elif periodo == "Últimos 3 Meses":
+            start_date, end_date = DateUtils.last_30_days()
+        elif periodo == "Los Últimos 3 Meses":
             start_date, end_date = DateUtils.last_3_months()
+        elif periodo == "Último Año":
+            start_date, end_date = DateUtils.last_year()
         else:
             raise ValueError(f"Período no válido: {periodo}")
         if start_date > end_date:

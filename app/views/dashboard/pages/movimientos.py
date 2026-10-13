@@ -1,21 +1,22 @@
 import os
 import sys
-from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
-from app.views.dashboard.table_models.sales_table_model import SalesTableModel
-from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout
+from app.views.dashboard.table_models.movements_model import MovementsTableModel
+from app.views.dashboard.table_models.sales_model import SalesTableModel
+from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout,QMessageBox,QDateEdit
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
-from PySide6.QtCore import Qt,Signal
+from PySide6.QtCore import Qt,Signal,QDate
 
 class Movimientos(QWidget):
-    def __init__(self, userBusiness):
+    def __init__(self, userBusiness,controller):
         super().__init__()
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
         self.categories=userBusiness.business.categories
+        self.controller=controller
         #*OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
@@ -82,6 +83,8 @@ class Movimientos(QWidget):
         self.ui.tipoMov.addItem("Todos", None)
         self.ui.tipoMov.addItem("Ingreso", "Ingreso")
         self.ui.tipoMov.addItem("Gasto", "Gasto")
+        #dateedit
+        self.cambiar_dateEdits()
         #tablas
         self.ui.ventasTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.movimientosTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -96,6 +99,10 @@ class Movimientos(QWidget):
         # Conectar el cambio de selección en los QComboBox para activar o desactivar la visibilidad
         self.ui.periodoMov.currentTextChanged.connect(self.mostrar_dateEdits)
         self.ui.periodoVentas.currentTextChanged.connect(self.mostrar_dateEdits)
+        #*Cambios en la interfaz relacionado al controller
+        self.conectar_acciones_informacion()
+        self.actualizar_interfaz(0)
+        self.actualizar_interfaz(1)
     def mostrar_dateEdits(self):
         # Pestaña Movimientos
         es_personalizado_mov = (self.ui.periodoMov.currentText() == "Personalizado")
@@ -107,23 +114,91 @@ class Movimientos(QWidget):
         self.ui.contenedorFechasV.setVisible(es_personalizado_ventas)
 
     def obtener_datos(self):
-        tab_actual = self.ui.tuTabWidget.currentIndex()
+        tab_actual = self.ui.tabWidget.currentIndex()
         datos = {}
-        datos["businness_id"]=self.business.business_id
+        datos["business_id"]=self.business.business_id
         if tab_actual == 0:
             periodo = self.ui.periodoMov.currentText()
             datos["periodo"] = periodo
             datos["tipo_movimiento"] = (self.ui.tipoMov.currentData())
             datos["descripcion"] = self.ui.buscar.toPlainText().strip() or None
             if periodo == "Personalizado":
-                datos["rango_inicio"] = (self.ui.rangoInicio.date().toPyDate())
-                datos["rango_final"] = (self.ui.rangoFinal.date().toPyDate())
+                datos["rango_inicio"] = self.ui.rangoInicio.date().toPython()
+                datos["rango_final"] = self.ui.rangoFinal.date().toPython()
         else:
             periodo = self.ui.periodoVentas.currentText()
             datos["periodo"] = periodo
             datos["categoria_id"] = (self.ui.categoriasVentas.currentData())
             if periodo == "Personalizado":
-                datos["rango_inicio"] = (self.ui.rangoInicioV.date().toPyDate())
-                datos["rango_final"] = (self.ui.rangoFinalV.date().toPyDate())
+                datos["rango_inicio"] = (self.ui.rangoInicioV.date().toPython())
+                datos["rango_final"] = (self.ui.rangoFinalV.date().toPython())
         return datos
+    def enviar_datos(self,tab_actual):
+        datos=self.obtener_datos()
+        if tab_actual==0:
+            resultado=self.controller.mostrar_movimientos(datos)
+        elif tab_actual==1:
+            resultado=self.controller.mostrar_ventas(datos)
+        return resultado
+    def actualizar_interfaz(self,tab_actual):
+        resultado=self.enviar_datos(tab_actual)
+        if not resultado["success"]:
+            QMessageBox.warning(self,"Error al Cargar Datos",resultado["message"])
+            return
+        if resultado["tipo"] == "Movimientos":
+                movimientos = resultado["movimientos"]
+                self.movements_model.set_data(resultado["movimientos"])
+                self.ui.lblPeriodo.setText(resultado["rango_fecha"])
+                if not movimientos:
+                    QMessageBox.information(
+                        self,"No hay datos","No hay registros para mostrar en la tabla"
+                    )
+        elif resultado["tipo"] == "Ventas":
+                ventas = resultado["ventas"]
+                self.sales_model.set_data(resultado["ventas"])
+                self.ui.lblPeriodoV.setText(resultado["rango_fecha"])
+                if not ventas:
+                    QMessageBox.information(
+                        self,"No hay datos","No hay registros para mostrar en la tabla"
+                    )
+    def conectar_acciones_informacion(self):
+        #*Relacionados con la tab de movimientos
+        self.ui.periodoMov.currentTextChanged.connect(
+            lambda _: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        self.ui.tipoMov.currentTextChanged.connect(
+            lambda _: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        self.ui.buscar.textChanged.connect(
+            lambda: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        self.ui.rangoFinal.editingFinished.connect(
+            lambda: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        #*Relacionados con la tab de Ventas
+        self.ui.periodoVentas.currentTextChanged.connect(
+            lambda _: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        self.ui.categoriasVentas.currentTextChanged.connect(
+            lambda _: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        self.ui.rangoFinalV.editingFinished.connect(
+            lambda: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+    def cambiar_dateEdits(self):
+        fecha_hoy = QDate.currentDate()
+        fecha_ayer = fecha_hoy.addDays(-1)
+        self.ui.rangoInicio.setDisplayFormat("yyyy-MM-dd")
+        self.ui.rangoInicio.setDate(fecha_ayer)
+        self.ui.rangoInicio.setCalendarPopup(True)
+        self.ui.rangoFinal.setDisplayFormat("yyyy-MM-dd")
+        self.ui.rangoFinal.setDate(fecha_hoy)
+        self.ui.rangoFinal.setCalendarPopup(True)
+
+        self.ui.rangoInicioV.setDisplayFormat("yyyy-MM-dd")
+        self.ui.rangoInicioV.setDate(fecha_ayer)
+        self.ui.rangoInicioV.setCalendarPopup(True)
+        self.ui.rangoFinalV.setDisplayFormat("yyyy-MM-dd")
+        self.ui.rangoFinalV.setDate(fecha_hoy)
+        self.ui.rangoFinalV.setCalendarPopup(True)
 

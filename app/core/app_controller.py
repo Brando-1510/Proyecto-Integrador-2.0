@@ -82,7 +82,8 @@ class AppController:
     #*Mostrar Dashboard
     def show_dashboard(self, userBusiness):
         self.dashboard_window = VentanaDashboard(
-            userBusiness,self.container.home_dashboard_controller
+            userBusiness,self.container.home_dashboard_controller,
+            self.container.consultation_controller
         )
         self.dashboard_window.logout_requested.connect(self.logout)
         self.dashboard_window.show()

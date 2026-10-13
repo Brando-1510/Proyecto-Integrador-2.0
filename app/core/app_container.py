@@ -17,12 +17,14 @@ from app.services.import_service import ImportService
 from app.services.category_service import CategoryService
 from app.services.transaction_import_service import TransactionImportService
 from app.services.home_dashboard_service import HomeDashboardService
+from app.services.consultation_service import ConsultationService
 #*Controllers
 from app.controllers.user_controller import UserController
 from app.controllers.recovery_controller import RecoveryController
 from app.controllers.choose_business_controller import ChooseBusinessController
 from app.controllers.business_controller import BusinessController
 from app.controllers.home_dashboard_controller import HomeDashboardController
+from app.controllers.consultation_controller import ConsultationController
 
 class AppContainer:
     def __init__(self):
@@ -61,5 +63,8 @@ class AppContainer:
         #*Home Dashboard
         self.home_dashboard_service=HomeDashboardService(self.sale_repository,self.movement_repository)
         self.home_dashboard_controller=HomeDashboardController(self.home_dashboard_service)
+        #*Consultation Controlller
+        self.consultation_service=ConsultationService(self.sale_repository,self.movement_repository)
+        self.consultation_controller=ConsultationController(self.consultation_service)
     def close(self):
         self.session.close()
