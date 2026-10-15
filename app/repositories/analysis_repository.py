@@ -28,7 +28,7 @@ class AnalysisRepository:
             )
         )
         resultado = self.session.execute(stmt).one()
-        return resultado[0], resultado[1]
+        return resultado.SumaIngresos, resultado.SumaGastos
     #Obtener ingresos y gastos agrupados por intervalo temporal
     def get_financial_performance(
         self,business_id:int,start_date:date,end_date:date
@@ -116,7 +116,9 @@ class AnalysisRepository:
                 Category.name.label("CategoriaNombre"),
                 func.coalesce(func.sum(Sale.total),0).label("SumaVentas")
             )
-            .join(Category,Sale.category_id==Category.category_id & (Sale.business_id == Category.business_id))
+            .join(
+            Category,(Sale.category_id == Category.category_id)& (Sale.business_id == Category.business_id)
+            )
             .where(
                 Sale.business_id==business_id,
                 Sale.date.between(start_date,end_date)

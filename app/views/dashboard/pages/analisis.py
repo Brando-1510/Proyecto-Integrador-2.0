@@ -59,6 +59,24 @@ class Analisis(QWidget):
                 manrope_family
             )
             self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
+        #*Cambios en la interfaz
+        self.ui.lblPersonalizar.hide()
+        self.ui.contenedorFechas.hide()
+        # Conectar el cambio de selección en los QComboBox para activar o desactivar la visibilidad
+        self.ui.periodo.currentTextChanged.connect(self.mostrar_dateEdits)
+    def mostrar_dateEdits(self):
+        es_personalizado=(self.ui.periodo.currentText()=="Personalizado")
+        self.ui.lblPersonalizar.setVisible(es_personalizado)
+        self.ui.contenedorFechas.setVisible(es_personalizado)
+    def obtener_datos(self):
+        datos={}
+        periodo = self.ui.periodo.currentText()
+        datos["business_id"]=self.business.business_id
+        datos["rol"]=self.userBusiness.rol
+        datos["periodo"]=periodo
+        if periodo=="Personalizado":
+            datos["rango_inicio"] = self.ui.rangoInicio.date().toPython()
+            datos["rango_final"] = self.ui.rangoFinal.date().toPython()
+        return datos
 
-        else:
-            print("Advertencia: No se pudieron cargar correctamente las fuentes.")
+

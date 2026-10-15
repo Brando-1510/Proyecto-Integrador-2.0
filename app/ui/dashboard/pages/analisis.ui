@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1073</width>
+    <width>1094</width>
     <height>1500</height>
    </rect>
   </property>
@@ -211,6 +211,12 @@ QComboBox QAbstractItemView::item:hover {
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
    <item>
     <widget class="QLabel" name="lblTitulo">
      <property name="maximumSize">
@@ -277,6 +283,11 @@ QComboBox QAbstractItemView::item:hover {
        <item>
         <property name="text">
          <string>Este Mes</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mes Anterior</string>
         </property>
        </item>
        <item>
@@ -439,7 +450,7 @@ qproperty-alignment: AlignCenter;
          <item>
           <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>Ganancia</string>
+            <string>Balance</string>
            </property>
            <property name="texto" stdset="0">
             <string>Destacado</string>

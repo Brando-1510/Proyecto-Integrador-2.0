@@ -12,9 +12,9 @@ class Informes(QWidget):
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
-        #*OBTENER DIRECTORIO ACTUAL
+        #*obtener directorio actual
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
-        #*CARGAR ARCHIVO .UI
+        #*cargar archivo .ui
         ruta_ui = os.path.normpath(os.path.join(
             directorio_actual,"../../../ui/dashboard/pages/informes.ui"))
         loader = QUiLoader()
@@ -25,18 +25,18 @@ class Informes(QWidget):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
-        #*CARGAR TIPOGRAFÍAS
+        #*Cargar tipografías
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
         # Source Sans 3
         font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-        # VERIFICAR TIPOGRAFÍAS
+        # verificar tipografías
         if font_id_manrope == -1:
             print("Advertencia: No se pudo cargar Manrope.")
         if font_id_source == -1:
             print("Advertencia: No se pudo cargar Source Sans 3.")
 
-        # OBTENER FAMILIAS REALES
+        # obtener familias reales
         manrope_family = None
         source_family = None
         if font_id_manrope != -1:
@@ -48,7 +48,7 @@ class Informes(QWidget):
             familias = QFontDatabase.applicationFontFamilies(font_id_source)
             if familias:
                 source_family = familias[0]
-        # APLICAR TIPOGRAFÍAS
+        # aplicar tipografías
         if manrope_family and source_family:
             estilos_actuales = self.ui.styleSheet()
             estilos_tipografias = estilos_fuentes(
@@ -56,6 +56,3 @@ class Informes(QWidget):
                 manrope_family
             )
             self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
-
-        else:
-            print("Advertencia: No se pudieron cargar correctamente las fuentes.")
