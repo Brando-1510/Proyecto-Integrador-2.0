@@ -341,7 +341,7 @@ QComboBox QAbstractItemView::item:hover {
     <widget class="QWidget" name="widget" native="true">
      <property name="maximumSize">
       <size>
-       <width>16777215</width>
+       <width>1060</width>
        <height>150</height>
       </size>
      </property>
@@ -491,9 +491,21 @@ qproperty-alignment: AlignCenter;
    </item>
    <item>
     <widget class="QWidget" name="contenedorGraficos" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>1060</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QFrame" name="frameIngresosGastos">
+        <property name="maximumSize">
+         <size>
+          <width>521</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -525,6 +537,12 @@ qproperty-alignment: AlignCenter;
       </item>
       <item>
        <widget class="QFrame" name="frameDistribucion">
+        <property name="maximumSize">
+         <size>
+          <width>521</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -559,6 +577,12 @@ qproperty-alignment: AlignCenter;
    </item>
    <item>
     <widget class="QFrame" name="frameEvolucion">
+     <property name="maximumSize">
+      <size>
+       <width>1060</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -592,7 +616,7 @@ qproperty-alignment: AlignCenter;
     <widget class="QFrame" name="frame_7">
      <property name="maximumSize">
       <size>
-       <width>16777215</width>
+       <width>1060</width>
        <height>150</height>
       </size>
      </property>
@@ -632,7 +656,7 @@ qproperty-alignment: AlignCenter;
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QFrame" name="frame_10">
+          <widget class="QFrame" name="frameTicket">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -744,6 +768,12 @@ qproperty-alignment: AlignCenter;
    </item>
    <item>
     <widget class="QFrame" name="frame_11">
+     <property name="maximumSize">
+      <size>
+       <width>1060</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel[texto=&quot;Destacado&quot;]{
 font-size:14px;
@@ -784,6 +814,12 @@ QFrame[carta=&quot;considerar&quot;] {
       <string>Dashboard</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_15">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QLabel" name="label_13">
         <property name="maximumSize">
@@ -853,11 +889,23 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
 </string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QWidget" name="hallazgosGastos" native="true">
            <layout class="QVBoxLayout" name="verticalLayout_11">
             <item>
              <widget class="QFrame" name="gastosCategoriaCard">
+              <property name="maximumSize">
+               <size>
+                <width>324</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -908,6 +956,12 @@ estructura de costos</string>
             </item>
             <item>
              <widget class="QFrame" name="variacionGastosCard">
+              <property name="maximumSize">
+               <size>
+                <width>324</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -962,7 +1016,13 @@ estructura de costos</string>
           <widget class="QWidget" name="widget_6" native="true">
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QFrame" name="frame_13">
+             <widget class="QFrame" name="categoriaIngresosCard">
+              <property name="maximumSize">
+               <size>
+                <width>324</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -1010,7 +1070,13 @@ estructura de costos</string>
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_15">
+             <widget class="QFrame" name="variacionIngresosCard">
+              <property name="maximumSize">
+               <size>
+                <width>324</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -1064,7 +1130,13 @@ estructura de costos</string>
           <widget class="QWidget" name="hallazgosVentas" native="true">
            <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
-             <widget class="QFrame" name="frame_16">
+             <widget class="QFrame" name="categoriaVentasCard">
+              <property name="maximumSize">
+               <size>
+                <width>324</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -1112,7 +1184,13 @@ estructura de costos</string>
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_17">
+             <widget class="QFrame" name="variabilidadVentasCard">
+              <property name="maximumSize">
+               <size>
+                <width>324</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -1146,7 +1224,7 @@ estructura de costos</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="coefVar_2">
+                <widget class="QLabel" name="variacionClasificacion">
                  <property name="text">
                   <string>▲ 8.4% vs Período Anterior</string>
                  </property>

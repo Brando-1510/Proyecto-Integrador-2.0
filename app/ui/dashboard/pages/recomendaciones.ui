@@ -660,16 +660,6 @@ QLabel[badge=&quot;categoria&quot;] {
                       <widget class="QWidget" name="widget_6" native="true">
                        <layout class="QHBoxLayout" name="horizontalLayout_4">
                         <item>
-                         <widget class="QPushButton" name="pushButton">
-                          <property name="text">
-                           <string>Ver análisis</string>
-                          </property>
-                          <property name="boton" stdset="0">
-                           <string>Primario</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
                          <widget class="QPushButton" name="pushButton_2">
                           <property name="text">
                            <string>Quitar</string>
@@ -702,7 +692,7 @@ QLabel[badge=&quot;categoria&quot;] {
              </widget>
              <widget class="QWidget" name="tab_4">
               <attribute name="title">
-               <string>Rentabilidad</string>
+               <string>Ingresos</string>
               </attribute>
              </widget>
             </widget>

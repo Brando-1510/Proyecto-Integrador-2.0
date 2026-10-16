@@ -28,6 +28,7 @@ class Analisis(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
         self.ui.lblIndicacion.hide()
+        self.ocultar_card()
         self.charts = AnalysisCharts(
         frame_ingresos_gastos=self.ui.frameIngresosGastos,frame_distribucion=self.ui.frameDistribucion,
         frame_evolucion=self.ui.frameEvolucion,
@@ -114,6 +115,7 @@ class Analisis(QWidget):
         self.ui.estadoBalance.setText(variacion_bal)
         #*Ticket Promedio
         if estadisticas["average_ticket"] is None:
+            self.ui.frameTicket.hide()
             self.ui.valorTicket.setText("No hay datos suficientes para \ncalcular la media.")
         else:
             self.ui.valorTicket.setText(str(estadisticas["average_ticket"]))
@@ -144,7 +146,7 @@ class Analisis(QWidget):
             self.ui.gastosCategoriaCard.show()
             self.ui.gastosCategoria.setText(f"{hallazgo_gastos.get("title")}")
             self.ui.gastoCatDesc.setText(
-                f"{categoria} es la categoría con mayor peso en la estructura\nde costos, con un importe de C$ {importe:,.2f}.")
+                f"{categoria} es la categoría con mayor peso en la\n estructurade costos, con un importe\n de C$ {importe:,.2f}.")
             self.ui.gastosCatVar.setText(f"{porcentaje:.2f}% del total de gastos")
         # Variación de los gastos
         variacion_gastos = next(
@@ -157,16 +159,89 @@ class Analisis(QWidget):
             datos=variacion_gastos.get("data",{})
             porcentaje=datos.get("percentage_variation",0)
             direccion= "aumento" if datos["direction"]=="Aumento" else "descenso"
-            self.ui.variacionGastosCard.show()
-            self.ui.aumentoGasto.setText(variacion_gastos.get("title"))
-            self.ui.descAumentoGasto.setText(
-                f"Los gastos totales del período actual registraron un {direccion} equivalente al {str(porcentaje)}%."
-            )
-            self.ui.varAumentoGasto.setText(f"{porcentaje}% vs Período Anterior")
-            if direccion=="disminucion":
-                self.ui.variacionGastosCard.setProperty("carta","bueno")
+            if porcentaje is not None:
+                self.ui.variacionGastosCard.show()
+                self.ui.aumentoGasto.setText(variacion_gastos.get("title"))
+                self.ui.descAumentoGasto.setText(
+                    f"Los gastos totales del período actual registraron un {direccion}\n equivalente al {str(porcentaje)}%."
+                )
+                self.ui.varAumentoGasto.setText(f"{porcentaje}% vs Período Anterior")
+                if direccion=="disminucion":
+                    self.ui.variacionGastosCard.setProperty("carta","bueno")
         #*Hallazgos relacionados a ingresos
-
+        #Categoria que representa el mayor porcentaje
+        hallazgo_ingresos = next(
+            (
+                h for h in hallazgos
+                if h.get("type") == "income_category"
+            ), None
+        )
+        if hallazgo_ingresos:
+            datos = hallazgo_ingresos.get("data", {})
+            categorias = datos.get("categories", [])
+            categoria = categorias[0] if categorias else "Sin categoría"
+            porcentaje = datos.get("percentage", 0)
+            importe = datos.get("amount", 0)
+            self.ui.categoriaIngresosCard.show()
+            self.ui.ingresosCategoria.setText(f"{hallazgo_ingresos.get("title")}")
+            self.ui.ingresosCatDesc.setText(
+                f"{categoria} es la categoría con mayor peso en la\n estructurade ingresos, con un importe\n de C$ {importe:,.2f}.")
+            self.ui.ingresosCatVar.setText(f"{porcentaje:.2f}% del total de ingresos")
+        #Variación de los ingresos
+        variacion_ingresos = next(
+            (
+                h for h in hallazgos
+                if h.get("type") == "income_variation"
+            ), None
+        )
+        if variacion_ingresos:
+            datos=variacion_ingresos.get("data",{})
+            porcentaje=datos.get("percentage_variation",0)
+            direccion= "aumento" if datos["direction"]=="Aumento" else "descenso"
+            if porcentaje is not None:
+                self.ui.variacionIngresosCard.show()
+                self.ui.aumentoIngresos.setText(variacion_ingresos.get("title"))
+                self.ui.aumentoDescIngresos.setText(
+                    f"Los ingresos totales del período actual registraron un {direccion}\n equivalente al {str(porcentaje)}%."
+                )
+                self.ui.aumentoVarIngresos.setText(f"{porcentaje}% vs Período Anterior")
+            if direccion=="aumento":
+                self.ui.variacionIngresosCard.setProperty("carta","bueno")
+        #*Hallazgos relacionados a las ventas
+        #Mayor categoria
+        hallazgo_ventas = next(
+            (
+                h for h in hallazgos
+                if h.get("type") == "sales_category"
+            ), None
+        )
+        if hallazgo_ventas:
+            datos = hallazgo_ventas.get("data", {})
+            categorias = datos.get("categories", [])
+            categoria = categorias[0] if categorias else "Sin categoría"
+            porcentaje = datos.get("percentage", 0)
+            importe = datos.get("amount", 0)
+            self.ui.categoriaVentasCard.show()
+            self.ui.ventasCat.setText(f"{hallazgo_ventas.get("title")}")
+            self.ui.ventasDesc.setText(
+                f"{categoria} es la categoría más vendida \ncon un importe de C$ {importe:,.2f}.")
+            self.ui.ventasVar.setText(f"{porcentaje:.2f}% del total de ventas")
+        #variabilidad de las ventas
+        variablilidad_ventas=next(
+            (
+                h for h in hallazgos
+                if h.get("type")=="sales_variability"
+            ),None
+        )
+        if variablilidad_ventas:
+            datos=variablilidad_ventas.get("data",{})
+            self.ui.variabilidadVentasCard.show()
+            cv=str(datos.get("coefficient_variation"))
+            self.ui.coefVarTitulo.setText(f"{variablilidad_ventas.get("title")}")
+            self.ui.coefVarDesc.setText(
+                f"Las ventas presentan una variabilidad del\n{cv}% con respecto a la media"
+            )
+            self.ui.variacionClasificacion.setText(f"Clasificación: {datos.get("classification")}")
 
 
     def actualizar_interfaz(self):
@@ -176,6 +251,7 @@ class Analisis(QWidget):
             return
         self.llenar_datos_tarjetas(resultado)
         self.charts.actualizar(resultado)
+        self.hallazgos(resultado)
     def comparar_periodo_anterior(self,valor):
         if valor is None:
             return "No se puede establecer comparación\n con período anterior"
@@ -190,5 +266,11 @@ class Analisis(QWidget):
             lbl.setProperty("texto","Negativo")
         elif direccion=="Disminución":
             lbl.setProperty("texto","Positivo")
+    def ocultar_card(self):
+        for card in (
+            self.ui.gastosCategoriaCard,self.ui.variacionGastosCard,self.ui.categoriaIngresosCard,
+            self.ui.variacionIngresosCard,self.ui.categoriaVentasCard,self.ui.variabilidadVentasCard
+        ):
+            card.hide()
 
 
