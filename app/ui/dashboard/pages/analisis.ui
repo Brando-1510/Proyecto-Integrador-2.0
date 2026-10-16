@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1094</width>
-    <height>1500</height>
+    <height>2000</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -339,6 +339,12 @@ QComboBox QAbstractItemView::item:hover {
    </item>
    <item>
     <widget class="QWidget" name="widget" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>150</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
 qproperty-alignment: AlignCenter;
@@ -383,7 +389,7 @@ qproperty-alignment: AlignCenter;
             <string>▲ 8.4% vs Período Anterior</string>
            </property>
            <property name="texto" stdset="0">
-            <string>Positivo</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -428,7 +434,7 @@ qproperty-alignment: AlignCenter;
             <string>▲ 8.4% vs Período Anterior</string>
            </property>
            <property name="texto" stdset="0">
-            <string>Negativo</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -458,7 +464,7 @@ qproperty-alignment: AlignCenter;
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_11">
+          <widget class="QLabel" name="valorBalance">
            <property name="text">
             <string>C$ 16.850.00</string>
            </property>
@@ -468,12 +474,12 @@ qproperty-alignment: AlignCenter;
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_12">
+          <widget class="QLabel" name="estadoBalance">
            <property name="text">
             <string>▲ 2.4% vs Período Anterior</string>
            </property>
            <property name="texto" stdset="0">
-            <string>Positivo</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -487,7 +493,7 @@ qproperty-alignment: AlignCenter;
     <widget class="QWidget" name="contenedorGraficos" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QFrame" name="frame_4">
+       <widget class="QFrame" name="frameIngresosGastos">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -500,6 +506,12 @@ qproperty-alignment: AlignCenter;
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
           <widget class="QLabel" name="label_2">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="text">
             <string>Ingresos vs Gastos</string>
            </property>
@@ -512,7 +524,7 @@ qproperty-alignment: AlignCenter;
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame_5">
+       <widget class="QFrame" name="frameDistribucion">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -525,6 +537,12 @@ qproperty-alignment: AlignCenter;
         <layout class="QVBoxLayout" name="verticalLayout_7">
          <item>
           <widget class="QLabel" name="label_3">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
            <property name="text">
             <string>Distribución de Gastos</string>
            </property>
@@ -540,7 +558,7 @@ qproperty-alignment: AlignCenter;
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_6">
+    <widget class="QFrame" name="frameEvolucion">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -553,6 +571,12 @@ qproperty-alignment: AlignCenter;
      <layout class="QVBoxLayout" name="verticalLayout_8">
       <item>
        <widget class="QLabel" name="label_4">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>25</height>
+         </size>
+        </property>
         <property name="text">
          <string>Evolución de la Ganancias</string>
         </property>
@@ -566,6 +590,12 @@ qproperty-alignment: AlignCenter;
    </item>
    <item>
     <widget class="QFrame" name="frame_7">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>150</height>
+      </size>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -578,6 +608,12 @@ qproperty-alignment: AlignCenter;
      <layout class="QVBoxLayout" name="verticalLayout_14">
       <item>
        <widget class="QLabel" name="label_9">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
         <property name="text">
          <string>Indicadores Financieros</string>
         </property>
@@ -588,6 +624,12 @@ qproperty-alignment: AlignCenter;
       </item>
       <item>
        <widget class="QWidget" name="widget_2" native="true">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QFrame" name="frame_10">
@@ -621,16 +663,6 @@ qproperty-alignment: AlignCenter;
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QLabel" name="estadoTicket">
-              <property name="text">
-               <string>▲ 8.4% vs Período Anterior</string>
-              </property>
-              <property name="texto" stdset="0">
-               <string>Positivo</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </widget>
          </item>
@@ -649,7 +681,7 @@ qproperty-alignment: AlignCenter;
             <item>
              <widget class="QLabel" name="label_5">
               <property name="text">
-               <string>Transacciones</string>
+               <string>Total de Ventas</string>
               </property>
               <property name="texto" stdset="0">
                <string>Destacado</string>
@@ -657,22 +689,12 @@ qproperty-alignment: AlignCenter;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="valorTransacciones">
+             <widget class="QLabel" name="valorTotalVentas">
               <property name="text">
                <string>428</string>
               </property>
               <property name="texto" stdset="0">
                <string>Valor</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="estadoTransacciones">
-              <property name="text">
-               <string>▲ 8.4% vs Período Anterior</string>
-              </property>
-              <property name="texto" stdset="0">
-               <string>Positivo</string>
               </property>
              </widget>
             </item>
@@ -694,7 +716,7 @@ qproperty-alignment: AlignCenter;
             <item>
              <widget class="QLabel" name="label_6">
               <property name="text">
-               <string>Gastos Promedio</string>
+               <string>Total Generado por Ventas</string>
               </property>
               <property name="texto" stdset="0">
                <string>Destacado</string>
@@ -702,22 +724,12 @@ qproperty-alignment: AlignCenter;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="valorGastoPromedio">
+             <widget class="QLabel" name="valorGeneradoVentas">
               <property name="text">
                <string>C$ 306.40</string>
               </property>
               <property name="texto" stdset="0">
                <string>Valor</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="estadoGastosPromedio">
-              <property name="text">
-               <string>▲ 8.4% vs Período Anterior</string>
-              </property>
-              <property name="texto" stdset="0">
-               <string>Positivo</string>
               </property>
              </widget>
             </item>
@@ -789,11 +801,21 @@ QFrame[carta=&quot;considerar&quot;] {
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblIndicacion">
+        <property name="styleSheet">
+         <string notr="true">qproperty-alignment: 'AlignCenter';</string>
+        </property>
+        <property name="text">
+         <string>No hay hallazgos por mostrar en este período</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QWidget" name="widget_3" native="true">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>200</height>
+          <height>500</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -832,10 +854,60 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QWidget" name="widget_5" native="true">
+          <widget class="QWidget" name="hallazgosGastos" native="true">
            <layout class="QVBoxLayout" name="verticalLayout_11">
             <item>
-             <widget class="QFrame" name="frame_12">
+             <widget class="QFrame" name="gastosCategoriaCard">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <property name="carta" stdset="0">
+               <string>considerar</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_18">
+               <item>
+                <widget class="QLabel" name="gastosCategoria">
+                 <property name="text">
+                  <string>Los gastos de proveedores representan
+el 35% del total de gastos.</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string>Destacado</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="gastoCatDesc">
+                 <property name="text">
+                  <string>Es la categoría con mayor peso en la
+estructura de costos</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="gastosCatVar">
+                 <property name="text">
+                  <string>▲ 8.4% vs Período Anterior</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string/>
+                 </property>
+                 <property name="tipo" stdset="0">
+                  <string>capsula</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="variacionGastosCard">
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -847,7 +919,7 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
                <item>
-                <widget class="QLabel" name="label_14">
+                <widget class="QLabel" name="aumentoGasto">
                  <property name="text">
                   <string>Los gastos aumentaron 14.2%</string>
                  </property>
@@ -857,7 +929,7 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="valorTicket_2">
+                <widget class="QLabel" name="descAumentoGasto">
                  <property name="text">
                   <string>Los gastos totales del período actual son
 14.2% mayores que el período anteriro</string>
@@ -868,7 +940,7 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="estadoTicket_2">
+                <widget class="QLabel" name="varAumentoGasto">
                  <property name="text">
                   <string>▲ 8.4% vs Período Anterior</string>
                  </property>
@@ -902,10 +974,9 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
                <item>
-                <widget class="QLabel" name="label_15">
+                <widget class="QLabel" name="ingresosCategoria">
                  <property name="text">
-                  <string>Los ingresos presentan una tendencia
- positiva.</string>
+                  <string>Texto que representa la categoria</string>
                  </property>
                  <property name="texto" stdset="0">
                   <string>Destacado</string>
@@ -913,10 +984,9 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="valorTransacciones_2">
+                <widget class="QLabel" name="ingresosCatDesc">
                  <property name="text">
-                  <string>El crecimiento en los ingresos fue del 8.4%
-respecto al período anterior.</string>
+                  <string>La descripcion</string>
                  </property>
                  <property name="texto" stdset="0">
                   <string/>
@@ -924,7 +994,55 @@ respecto al período anterior.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="estadoTransacciones_2">
+                <widget class="QLabel" name="ingresosCatVar">
+                 <property name="text">
+                  <string>▲ 8.4% vs Período Anterior</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string/>
+                 </property>
+                 <property name="tipo" stdset="0">
+                  <string>capsula</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_15">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <property name="carta" stdset="0">
+               <string>bueno</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_19">
+               <item>
+                <widget class="QLabel" name="aumentoIngresos">
+                 <property name="text">
+                  <string>Los ingresos aumentaron</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string>Destacado</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="aumentoDescIngresos">
+                 <property name="text">
+                  <string>La descripcion</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="aumentoVarIngresos">
                  <property name="text">
                   <string>▲ 8.4% vs Período Anterior</string>
                  </property>
@@ -943,10 +1061,58 @@ respecto al período anterior.</string>
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_7" native="true">
+          <widget class="QWidget" name="hallazgosVentas" native="true">
            <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
-             <widget class="QFrame" name="frame_14">
+             <widget class="QFrame" name="frame_16">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <property name="carta" stdset="0">
+               <string>bueno</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_20">
+               <item>
+                <widget class="QLabel" name="ventasCat">
+                 <property name="text">
+                  <string>Texto que representa la categoria</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string>Destacado</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="ventasDesc">
+                 <property name="text">
+                  <string>La descripcion</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="ventasVar">
+                 <property name="text">
+                  <string>▲ 8.4% vs Período Anterior</string>
+                 </property>
+                 <property name="texto" stdset="0">
+                  <string/>
+                 </property>
+                 <property name="tipo" stdset="0">
+                  <string>capsula</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_17">
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -956,9 +1122,9 @@ respecto al período anterior.</string>
               <property name="carta" stdset="0">
                <string>considerar</string>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_18">
+              <layout class="QVBoxLayout" name="verticalLayout_21">
                <item>
-                <widget class="QLabel" name="label_16">
+                <widget class="QLabel" name="coefVarTitulo">
                  <property name="text">
                   <string>Los gastos de proveedores representan
 el 35% del total de gastos.</string>
@@ -969,7 +1135,7 @@ el 35% del total de gastos.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="valorGastoPromedio_2">
+                <widget class="QLabel" name="coefVarDesc">
                  <property name="text">
                   <string>Es la categoría con mayor peso en la
 estructura de costos</string>
@@ -980,7 +1146,7 @@ estructura de costos</string>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="estadoGastosPromedio_2">
+                <widget class="QLabel" name="coefVar_2">
                  <property name="text">
                   <string>▲ 8.4% vs Período Anterior</string>
                  </property>

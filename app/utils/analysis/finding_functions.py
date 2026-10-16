@@ -1,5 +1,6 @@
+import math
 class FindingFunctions:
-    #*Formatea un importe para incluirlo en una descripción.
+    # *ormatea un importe para incluirlo en una descripción.
     @staticmethod
     def _format_amount(value: int | float) -> str:
         return f"{value:,.2f}"
@@ -105,7 +106,6 @@ class FindingFunctions:
                 f"{FindingFunctions._format_percentage(percentage)}. "
                 "El cambio alcanza el umbral de relevancia definido."
             )
-
         return {
             "type": "income_variation",
             "title": title,
@@ -120,7 +120,7 @@ class FindingFunctions:
             }
         }
 
-    #*Construye un hallazgo a partir del análisis estadístico de la variabilidad de las ventas.
+    #* Construye un hallazgo a partir del análisis estadístico de la variabilidad de las ventas.
     @staticmethod
     def build_sales_variability_finding(result: dict) -> dict:
         mean = result["mean"]
@@ -153,3 +153,111 @@ class FindingFunctions:
                 "classification": classification
             }
         }
+
+    # *Calcula el porcentaje que representa una categoría respecto al total.
+    @staticmethod
+    def calculate_category_percentage(amount: int | float, total: int | float) -> float | None:
+        if total <= 0:
+            return None
+        return round((amount / total) * 100, 2)
+
+    # *Analiza la categoría o categorías con el mayor importe.
+    @staticmethod
+    def _analyze_category(categories: list[dict]) -> dict | None:
+        if not categories:
+            return None
+        try:
+            normalized = [
+                {"category": item["category"], "amount": float(item["amount"])}
+                for item in categories
+            ]
+        except (KeyError, TypeError, ValueError):
+            return None
+        if any(
+            not isinstance(item["category"], str)
+            or not item["category"].strip()
+            or not math.isfinite(item["amount"])
+            or item["amount"] < 0
+            for item in normalized
+        ):
+            return None
+        total = sum(item["amount"] for item in normalized)
+        if total <= 0:
+            return None
+        maximum = max(item["amount"] for item in normalized)
+        top_categories = [
+            item["category"] for item in normalized
+            if item["amount"] == maximum
+        ]
+        percentage = FindingFunctions.calculate_category_percentage(maximum, total)
+        if percentage is None:
+            return None
+        return {
+            "categories": top_categories,
+            "amount": maximum,
+            "total": total,
+            "percentage": percentage
+        }
+
+    # *Identifica la categoría con el mayor importe total de gastos.
+    @staticmethod
+    def analyze_expense_category(categories: list[dict]) -> dict | None:
+        return FindingFunctions._analyze_category(categories)
+
+    # *Identifica la categoría con el mayor importe total de ingresos.
+    @staticmethod
+    def analyze_income_category(categories: list[dict]) -> dict | None:
+        return FindingFunctions._analyze_category(categories)
+
+    # *Identifica la categoría con el mayor importe total de ventas.
+    @staticmethod
+    def analyze_sales_category(categories: list[dict]) -> dict | None:
+        return FindingFunctions._analyze_category(categories)
+
+    # *Construye un hallazgo a partir del análisis de la categoría principal.
+    @staticmethod
+    def _build_category_finding(result: dict | None, finding_type: str, title: str, amount_label: str) -> dict | None:
+        if result is None:
+            return None
+        categories = result["categories"]
+        category_text = ", ".join(categories)
+        amount = result["amount"]
+        percentage = result["percentage"]
+        description = (
+            f"{category_text} representa el "
+            f"{FindingFunctions._format_percentage(percentage)} del total de "
+            f"{amount_label}, con un importe de C$ "
+            f"{FindingFunctions._format_amount(amount)}."
+        )
+        return {
+            "type": finding_type,
+            "title": title,
+            "description": description,
+            "data": {
+                "categories": categories,
+                "amount": amount,
+                "total": result["total"],
+                "percentage": percentage
+            }
+        }
+
+    # *Construye un hallazgo a partir del análisis de la categoría con mayor gasto.
+    @staticmethod
+    def build_expense_category_finding(result: dict | None) -> dict | None:
+        return FindingFunctions._build_category_finding(
+            result, "expense_category", "Mayor categoría de gastos", "gastos"
+        )
+
+    # *Construye un hallazgo a partir del análisis de la categoría con mayor ingreso.
+    @staticmethod
+    def build_income_category_finding(result: dict | None) -> dict | None:
+        return FindingFunctions._build_category_finding(
+            result, "income_category", "Mayor categoría de ingresos", "ingresos"
+        )
+
+    # *Construye un hallazgo a partir del análisis de la categoría con mayores ventas.
+    @staticmethod
+    def build_sales_category_finding(result: dict | None) -> dict | None:
+        return FindingFunctions._build_category_finding(
+            result, "sales_category", "Mayor categoría de ventas", "ventas"
+        )

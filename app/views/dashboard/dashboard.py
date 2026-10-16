@@ -21,7 +21,7 @@ class VentanaDashboard(QWidget):
     def __init__(
         self, userBusiness,
         home_dashboard_controller,
-        consultation_controler
+        consultation_controler,analysis_controller
     ):
         super().__init__()
         self.user = userBusiness.user
@@ -30,6 +30,7 @@ class VentanaDashboard(QWidget):
         #*Controllers para las paginas del stackedwidget
         self.home_dashboard_controller=home_dashboard_controller
         self.consultation_controller=consultation_controler
+        self.analysis_controller=analysis_controller
         #*Obtener directorio actual
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*Cargar archivo ui
@@ -142,7 +143,6 @@ class VentanaDashboard(QWidget):
         self.configuracion = None
     # *Mostrar Home
     def mostrar_home(self):
-        # NOTA: Se eliminó self.stackedWidget.setMinimumHeight(1000)
         self.cambiar_vista(self.dashboard_home)
     # *Mostrar Cargar Datos
     def mostar_cargar_datos(self):
@@ -153,7 +153,7 @@ class VentanaDashboard(QWidget):
     # *Mostrar Análisis
     def mostrar_analisis(self):
         if self.analisis is None:
-            self.analisis = Analisis(self.userBusiness)
+            self.analisis = Analisis(self.userBusiness,self.analysis_controller)
             self.stackedWidget.addWidget(self.analisis)
         self.cambiar_vista(self.analisis)
     # *Mostrar Movimientos

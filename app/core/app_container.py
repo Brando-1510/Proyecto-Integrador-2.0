@@ -8,6 +8,7 @@ from app.repositories.category_repository import CategoryRepository
 from app.repositories.import_repository import ImportRepository
 from app.repositories.sale_repository import SaleRepository
 from app.repositories.movement_repository import MovementRepository
+from app.repositories.analysis_repository import AnalysisRepository
 #*Services
 from app.services.user_services import UserService
 from app.services.recovery_services import RecoveryService
@@ -18,6 +19,7 @@ from app.services.category_service import CategoryService
 from app.services.transaction_import_service import TransactionImportService
 from app.services.home_dashboard_service import HomeDashboardService
 from app.services.consultation_service import ConsultationService
+from app.services.analysis_service import AnalysisService
 #*Controllers
 from app.controllers.user_controller import UserController
 from app.controllers.recovery_controller import RecoveryController
@@ -25,6 +27,7 @@ from app.controllers.choose_business_controller import ChooseBusinessController
 from app.controllers.business_controller import BusinessController
 from app.controllers.home_dashboard_controller import HomeDashboardController
 from app.controllers.consultation_controller import ConsultationController
+from app.controllers.analysis_controller import AnalysisController
 
 class AppContainer:
     def __init__(self):
@@ -38,6 +41,7 @@ class AppContainer:
         self.import_repository= ImportRepository(self.session)
         self.sale_repository = SaleRepository(self.session)
         self.movement_repository = MovementRepository(self.session)
+        self.analysis_repository=AnalysisRepository(self.session)
         #*UserBusiness
         self.userBusiness_service = UserBusinessService(self.userBusiness_repository)
         self.userBusiness_controller = ChooseBusinessController(self.userBusiness_service)
@@ -66,5 +70,8 @@ class AppContainer:
         #*Consultation Controlller
         self.consultation_service=ConsultationService(self.sale_repository,self.movement_repository)
         self.consultation_controller=ConsultationController(self.consultation_service)
+        #*Analysis
+        self.analysis_service=AnalysisService(self.analysis_repository)
+        self.analysis_controller=AnalysisController(self.analysis_service)
     def close(self):
         self.session.close()

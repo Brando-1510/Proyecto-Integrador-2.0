@@ -95,6 +95,7 @@ class AnalysisService:
             )
 
         return {
+            "success":True,
             "period": current["period"],
             "statistics": current_stats,
             "charts": current["charts"],
