@@ -21,7 +21,7 @@ class VentanaDashboard(QWidget):
     def __init__(
         self, userBusiness,
         home_dashboard_controller,
-        consultation_controler,analysis_controller
+        consultation_controler,analysis_controller,recommendation_controller
     ):
         super().__init__()
         self.user = userBusiness.user
@@ -31,6 +31,7 @@ class VentanaDashboard(QWidget):
         self.home_dashboard_controller=home_dashboard_controller
         self.consultation_controller=consultation_controler
         self.analysis_controller=analysis_controller
+        self.recommendation_controller=recommendation_controller
         #*Obtener directorio actual
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*Cargar archivo ui
@@ -165,7 +166,7 @@ class VentanaDashboard(QWidget):
     # *Mostrar Recomendaciones
     def mostrar_recomendaciones(self):
         if self.recomendaciones is None:
-            self.recomendaciones = Recomendaciones(self.userBusiness)
+            self.recomendaciones = Recomendaciones(self.userBusiness,self.recommendation_controller)
             self.stackedWidget.addWidget(self.recomendaciones)
         self.cambiar_vista(self.recomendaciones)
     # *Mostrar Informes

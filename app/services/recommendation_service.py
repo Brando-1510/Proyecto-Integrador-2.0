@@ -11,7 +11,7 @@ class RecommendationService:
     #*Obtener el período seleccionado
     @staticmethod
     def _get_current_period(periodo: str,) -> tuple[date, date]:
-        if periodo == "Últimos 15 Días":
+        if periodo == "Los Últimos 15 Días":
             return DateUtils.last_15_days()
         elif periodo == "Este Mes":
             return DateUtils.this_month()

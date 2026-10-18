@@ -5,8 +5,9 @@ from app.views.chooseABusiness.chooseABusiness import VentanaChooseBusiness
 from app.views.dashboard.dashboard import VentanaDashboard
 from app.views.createBusiness.createBusiness import VentanaCreateBusiness
 
+from app.core.app_container import AppContainer
 class AppController:
-    def __init__(self, container):
+    def __init__(self, container:AppContainer):
         self.container = container
         self.current_user = None
         self.login_window = None
@@ -83,7 +84,8 @@ class AppController:
     def show_dashboard(self, userBusiness):
         self.dashboard_window = VentanaDashboard(
             userBusiness,self.container.home_dashboard_controller,
-            self.container.consultation_controller,self.container.analysis_controller
+            self.container.consultation_controller,self.container.analysis_controller,
+            self.container.recommendation_controller
         )
         self.dashboard_window.logout_requested.connect(self.logout)
         self.dashboard_window.show()

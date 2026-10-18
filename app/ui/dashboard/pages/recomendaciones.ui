@@ -102,328 +102,366 @@ QPushButton[boton=&quot;Secundario&quot;]:hover {
 QPushButton[boton=&quot;Secundario&quot;]:pressed {
     background-color: rgba(131, 117, 174, 0.9);
 }
+/* --- ESTILO DEL QCOMBOBOX --- */
+/* --- ESTADO BASE --- */
+QLineEdit, QDateEdit, QPlainTextEdit, QComboBox {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+
+/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
+QLineEdit:hover, QDateEdit:hover, QPlainTextEdit:hover, QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
+QLineEdit:focus, QDateEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
+QLineEdit:disabled, QDateEdit:disabled, QPlainTextEdit:disabled, QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #D1D5DB;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- ESTILO DEL QCOMBOBOX --- */
+QComboBox {
+    background-color: #F8F9FA;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
+    padding-right: 30px;
+    color: #333333;
+}
+
+QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- BOTÓN DE DESPLEGAR --- */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #D1D5DB;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- FLECHA --- */
+QComboBox::down-arrow {
+    image: url(:/icons/chevron.svg);
+    width: 12px;
+    height: 12px;
+}
+/* --- LISTA DESPLEGABLE DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 4px;
+    color: #333333;
+    selection-background-color: #744bcc;
+    selection-color: #FFFFFF;
+}
+
+/* --- HOVER DE LOS ELEMENTOS DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView::item:hover {
+    background-color: #F3F4F6;
+    color: #333333;
+}
 
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>20</number>
+   </property>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_12">
-     <property name="spacing">
-      <number>20</number>
+    <widget class="QLabel" name="lblTitulo">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="leftMargin">
-      <number>30</number>
+     <property name="text">
+      <string>Recomendaciones</string>
      </property>
-     <property name="topMargin">
-      <number>25</number>
+     <property name="texto" stdset="0">
+      <string>TituloPrincipal</string>
      </property>
-     <property name="rightMargin">
-      <number>30</number>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblDescripcion">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="bottomMargin">
-      <number>25</number>
+     <property name="text">
+      <string>Aspectos que deberías considerar a partir del análisis financiero de tu negocio</string>
      </property>
-     <item>
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="styleSheet">
-        <string notr="true">/*
------------------------------------------------------------------------------------------------------
-ScrollArea
------------------------------------------------------------------------------------------------------
-*/
-#scrollAreaWidgetContents {
-    background-color: transparent;
-}
-QScrollArea {
-    background-color: transparent;
-    border: none;
-	border-radius:0px;
-}
-
-/* Widget que está dentro del ScrollArea */
-/*QScrollArea &gt; QWidget &gt; QWidget {
-    background-color: #F9F9FC;
-}*/
-
-/* Scrollbar vertical */
-QScrollBar:vertical {
-    background-color: transparent;
-    width: 8px;
-    margin: 4px 2px 4px 0px;
-}
-
-/* Parte que se puede arrastrar */
-QScrollBar::handle:vertical {
-    background-color: #C9C1D5;
-    border-radius: 4px;
-    min-height: 40px;
-}
-
-/* Al pasar el mouse */
-QScrollBar::handle:vertical:hover {
-    background-color: #A99DB8;
-}
-
-/* Ocultar botones de arriba y abajo */
-QScrollBar::add-line:vertical,
-QScrollBar::sub-line:vertical {
-    height: 0px;
-}
-
-/* Espacio antes/después del handle */
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: transparent;
-}</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>995</width>
-          <height>630</height>
-         </rect>
+     <property name="texto" stdset="0">
+      <string>Descripcion</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_7" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QLabel" name="label_17">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+        <property name="text">
+         <string>Período:</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="leftMargin">
-          <number>9</number>
+        <property name="texto" stdset="0">
+         <string>Destacado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="periodo">
+        <item>
+         <property name="text">
+          <string>Los Últimos 15 Días</string>
          </property>
-         <property name="topMargin">
-          <number>9</number>
+        </item>
+        <item>
+         <property name="text">
+          <string>Este Mes</string>
          </property>
-         <property name="rightMargin">
-          <number>9</number>
+        </item>
+        <item>
+         <property name="text">
+          <string>Los Últimos 3 Meses</string>
          </property>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <property name="spacing">
-            <number>20</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="lblTitulo">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Recomendaciones</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>TituloPrincipal</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="lblDescripcion">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Aspectos que deberías considerar a partir del análisis financiero de tu negocio</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>Descripcion</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QWidget" name="widget" native="true">
-             <property name="styleSheet">
-              <string notr="true">QLabel {
+        </item>
+        <item>
+         <property name="text">
+          <string>Último Año</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
     qproperty-alignment: 'AlignCenter';
 }
 </string>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout">
-              <item>
-               <widget class="QFrame" name="carta_prioridad">
-                <property name="styleSheet">
-                 <string notr="true">#carta_prioridad {
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QFrame" name="carta_prioridad">
+        <property name="styleSheet">
+         <string notr="true">#carta_prioridad {
     background-color: #FFF2F2; /* Fondo rojo muy claro */
     border: 1px solid #FFE3E3;  /* Borde sutil */
     border-radius: 12px;        /* Bordes redondeados */
 }
 </string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_3">
-                 <item>
-                  <widget class="QLabel" name="label">
-                   <property name="text">
-                    <string>Prioridad Alta</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="cantidadPrioridad">
-                   <property name="text">
-                    <string>1</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Valor</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_3">
-                   <property name="text">
-                    <string>Requieren atención</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Descripcion</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="carta_oportunidades">
-                <property name="styleSheet">
-                 <string notr="true">#carta_oportunidades {
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Prioridad Alta</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="cantidadPrioridad">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Valor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Requieren atención</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Descripcion</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="carta_oportunidades">
+        <property name="styleSheet">
+         <string notr="true">#carta_oportunidades {
     background-color: #FFFDF0; /* Fondo amarillo claro */
     border: 1px solid #FFF7C2;  /* Borde sutil */
     border-radius: 12px;        /* Bordes redondeados */
 }
 </string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_4">
-                 <item>
-                  <widget class="QLabel" name="label_4">
-                   <property name="text">
-                    <string>Oportunidades</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="cantidadOportunidades">
-                   <property name="text">
-                    <string>1</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Valor</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_6">
-                   <property name="text">
-                    <string>Aspectos a potenciar</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Descripcion</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="carta_informativa">
-                <property name="styleSheet">
-                 <string notr="true">#carta_informativa {
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Oportunidades</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="cantidadOportunidades">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Valor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Aspectos a potenciar</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Descripcion</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="carta_informativa">
+        <property name="styleSheet">
+         <string notr="true">#carta_informativa {
     background-color: #F4F8FF; /* Fondo azul claro */
     border: 1px solid #E1EDFF;  /* Borde sutil */
     border-radius: 12px;        /* Bordes redondeados */
 }
 </string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_5">
-                 <item>
-                  <widget class="QLabel" name="label_7">
-                   <property name="text">
-                    <string>Informativas</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Destacado</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="cantidadInformativas">
-                   <property name="text">
-                    <string>1</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Valor</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_9">
-                   <property name="text">
-                    <string>Comportamientos detectados</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Descripcion</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Recomendaciones Detectadas</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>TituloSecundario</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTabWidget" name="tabWidget">
-             <property name="styleSheet">
-              <string notr="true">QTabWidget {
-        qproperty-expanding: true;
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Informativas</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Destacado</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="cantidadInformativas">
+           <property name="text">
+            <string>1</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Valor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Comportamientos detectados</string>
+           </property>
+           <property name="texto" stdset="0">
+            <string>Descripcion</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Recomendaciones Detectadas</string>
+     </property>
+     <property name="texto" stdset="0">
+      <string>TituloSecundario</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">QTabWidget {
 		background-color:#f7f7f7;
     }
 QTabWidget::pane {
@@ -496,214 +534,79 @@ QLabel[badge=&quot;categoria&quot;] {
 }
 
 </string>
-             </property>
-             <property name="currentIndex">
-              <number>0</number>
-             </property>
-             <widget class="QWidget" name="tab">
-              <attribute name="title">
-               <string>Todas</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_6">
-               <item>
-                <widget class="QFrame" name="frame">
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <property name="carta" stdset="0">
-                  <string>Dashboard</string>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_2">
-                  <item>
-                   <widget class="QWidget" name="widget_2" native="true">
-                    <property name="maximumSize">
-                     <size>
-                      <width>110</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_7">
-                     <item>
-                      <widget class="QLabel" name="label_5">
-                       <property name="maximumSize">
-                        <size>
-                         <width>90</width>
-                         <height>90</height>
-                        </size>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="pixmap">
-                        <pixmap resource="../../../resources/resources.qrc">:/icons/exclamationMarkRed.svg</pixmap>
-                       </property>
-                       <property name="scaledContents">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer name="verticalSpacer">
-                       <property name="orientation">
-                        <enum>Qt::Vertical</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>20</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QWidget" name="widget_3" native="true">
-                    <layout class="QVBoxLayout" name="verticalLayout_8">
-                     <item>
-                      <widget class="QLabel" name="label_8">
-                       <property name="text">
-                        <string>Reducir Gastos Operativos</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>Destacado</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QWidget" name="widget_5" native="true">
-                       <property name="styleSheet">
-                        <string notr="true">QLabel {
-    qproperty-alignment: 'AlignCenter';
-}</string>
-                       </property>
-                       <layout class="QHBoxLayout" name="horizontalLayout_3">
-                        <item>
-                         <widget class="QLabel" name="label_10">
-                          <property name="text">
-                           <string>Gastos</string>
-                          </property>
-                          <property name="badge" stdset="0">
-                           <string>categoria</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_11">
-                          <property name="text">
-                           <string>Prioridad Alta</string>
-                          </property>
-                          <property name="badge" stdset="0">
-                           <string>prioridad-alta</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="lblDescripcionReco">
-                       <property name="text">
-                        <string>Los gastos de servicios básicos representan el 40% de los
- gasos durante el período analizado</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_13">
-                       <property name="text">
-                        <string>Dato observado:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>Destacado</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="lblDato">
-                       <property name="text">
-                        <string>Servicios Básicos: 40%</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>Descripcion</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QWidget" name="widget_4" native="true">
-                    <layout class="QVBoxLayout" name="verticalLayout_9">
-                     <item>
-                      <widget class="QLabel" name="label_12">
-                       <property name="text">
-                        <string>Acción Sugerida</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>Destacado</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_14">
-                       <property name="text">
-                        <string>La acción iria aqui</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QWidget" name="widget_6" native="true">
-                       <layout class="QHBoxLayout" name="horizontalLayout_4">
-                        <item>
-                         <widget class="QPushButton" name="pushButton_2">
-                          <property name="text">
-                           <string>Quitar</string>
-                          </property>
-                          <property name="boton" stdset="0">
-                           <string>Secundario</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_2">
-              <attribute name="title">
-               <string>Ventas</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="Gastos">
-              <attribute name="title">
-               <string>Gastos</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="tab_4">
-              <attribute name="title">
-               <string>Ingresos</string>
-              </attribute>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-     </item>
-    </layout>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="TodasTab">
+      <attribute name="title">
+       <string>Todas</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QLabel" name="lblTodas">
+         <property name="styleSheet">
+          <string notr="true">qproperty-alignment: AlignCenter;</string>
+         </property>
+         <property name="text">
+          <string>No hay recomendaciones para mostrar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="VentasTab">
+      <attribute name="title">
+       <string>Ventas</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="lblVentas">
+         <property name="styleSheet">
+          <string notr="true">qproperty-alignment: AlignCenter;</string>
+         </property>
+         <property name="text">
+          <string>No hay recomendaciones para mostrar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="GastosTab">
+      <attribute name="title">
+       <string>Gastos</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <item>
+        <widget class="QLabel" name="lblGasto">
+         <property name="styleSheet">
+          <string notr="true">qproperty-alignment: AlignCenter;</string>
+         </property>
+         <property name="text">
+          <string>No hay recomendaciones para mostrar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="IngresosTab">
+      <attribute name="title">
+       <string>Ingresos</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <item>
+        <widget class="QLabel" name="lblIngreso">
+         <property name="styleSheet">
+          <string notr="true">qproperty-alignment: AlignCenter;</string>
+         </property>
+         <property name="text">
+          <string>No hay recomendaciones para mostrar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>

@@ -20,6 +20,12 @@ class DateUtils:
         start_date = end_date.replace(day=1)
         return start_date, end_date
     @staticmethod
+    def last_15_days(end_date: date | None = None) -> tuple[date, date]:
+        if end_date is None:
+            end_date = date.today()
+        start_date = end_date - timedelta(days=14)
+        return start_date, end_date
+    @staticmethod
     def last_3_months(end_date: date | None = None) -> tuple[date, date]:
             if end_date is None:
                 end_date = date.today()

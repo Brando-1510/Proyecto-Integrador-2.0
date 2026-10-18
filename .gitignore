@@ -18,3 +18,6 @@ __pycache__/
 
 # Proyectos de DB Browser para SQLite
 *.sqbpro
+
+#Archivo de prueba
+prueba.py
