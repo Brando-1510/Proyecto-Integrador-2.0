@@ -1,5 +1,5 @@
 import os
-from PySide6.QtWidgets import QWidget,QVBoxLayout,QListWidgetItem,QSizePolicy
+from PySide6.QtWidgets import QWidget,QVBoxLayout,QListWidgetItem,QSizePolicy,QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
@@ -80,6 +80,29 @@ class Configuracion(QWidget):
             item = QListWidgetItem(category.name)
             item.setData(Qt.UserRole, category)
             self.ui.listaCategorias.addItem(item)
+        self.informacion_negocio()
+    #*Metodos relacionadas a la tab de Informacion del negocio
+    def informacion_negocio(self):
+        self._desabilitar_campos()
+        self.ui.habilitarEdicion.clicked.connect(self._habilitar_campos)
+    def _desabilitar_campos(self):
+        for widget in (
+            self.ui.nombreNegocio,self.ui.descripcion,self.ui.tipoNegocio,self.ui.quitarCategoria,
+            self.ui.agregarCategoria,self.ui.cancelarCambios,self.ui.guardarCambios
+        ):
+            widget.setEnabled(False)
+    def _habilitar_campos(self):
+        respuesta=QMessageBox.question(
+            self,"Habilitar Modo de Edición",
+            "Todos los cambios que se generen en esta\nventana afectaran a su negocio\n¿Desea Continuar?"
+        )
+        if respuesta == QMessageBox.StandardButton.Yes:
+            for widget in (
+                self.ui.nombreNegocio,self.ui.descripcion,self.ui.tipoNegocio,self.ui.quitarCategoria,
+                self.ui.agregarCategoria,self.ui.cancelarCambios,self.ui.guardarCambios
+            ):
+                widget.setEnabled(True)
+        else: return
 """Recordatorio:
 def get_by_business(self, business_id):
     stmt = select(UserBusiness).where(

@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, timedelta,datetime,time
 
 class DateUtils:
     @staticmethod
@@ -60,3 +60,8 @@ class DateUtils:
         )
         start_date = end_date.replace(day=1)
         return start_date, end_date
+    @staticmethod
+    def to_datetime_range(start_date: date,end_date: date) -> tuple[datetime, datetime]:
+        start_datetime = datetime.combine(start_date, time.min)
+        end_datetime = datetime.combine(end_date, time.max)
+        return start_datetime, end_datetime

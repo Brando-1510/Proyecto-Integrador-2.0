@@ -1,10 +1,11 @@
 
 from app.utils.date_utils import DateUtils
-
+from app.repositories.import_repository import ImportRepository
 class ConsultationService:
-    def __init__(self, sale_repository, movement_repository):
+    def __init__(self, sale_repository, movement_repository,import_repository:ImportRepository):
         self.sale_repository = sale_repository
         self.movement_repository = movement_repository
+        self.import_repository=import_repository
     def get_sales(self, datos):
         start_date, end_date = self.obtener_rango_fechas(datos)
         ventas = self.sale_repository.get_sales(
@@ -35,6 +36,21 @@ class ConsultationService:
             "fecha_inicio": start_date,
             "fecha_final": end_date,
             "movimientos": movimientos,
+        }
+    def get_imports(self,datos):
+        start_date, end_date = self.obtener_rango_fechas(datos)
+        first_date,second_date=DateUtils.to_datetime_range(start_date,end_date)
+        importaciones=self.import_repository.get_imports(
+            datos["business_id"],
+            first_date,
+            second_date,
+            datos.get("nombre")
+        )
+        return {
+            "success": True,
+            "fecha_inicio": start_date,
+            "fecha_final": end_date,
+            "importaciones": importaciones
         }
     def obtener_rango_fechas(self, datos):
         periodo = datos["periodo"]

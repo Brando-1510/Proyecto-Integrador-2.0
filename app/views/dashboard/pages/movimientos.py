@@ -2,6 +2,7 @@ import os
 import sys
 from app.views.dashboard.table_models.movements_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_model import SalesTableModel
+from app.views.dashboard.table_models.imports_model import ImportsTableModel
 from PySide6.QtWidgets import QWidget,QHeaderView,QVBoxLayout,QMessageBox,QDateEdit
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
@@ -74,6 +75,8 @@ class Movimientos(QWidget):
         self.ui.contenedorFechas.hide()
         self.ui.lblPersonalizarV.hide()
         self.ui.contenedorFechasV.hide()
+        self.ui.lblPersonalizarImp.hide()
+        self.ui.contenedorFechasImp.hide()
         #llenar el combobox
         self.ui.categoriasVentas.addItem("Todas las categorías", None)
         for category in self.categories:
@@ -88,21 +91,26 @@ class Movimientos(QWidget):
         #tablas
         self.ui.ventasTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.movimientosTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.ui.importacionesTablas.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         #TabWidget
         self.ui.tabWidget.tabBar().setExpanding(True)
         #Tablas
         self.movements_model = MovementsTableModel()
         self.sales_model=SalesTableModel()
+        self.imports_model=ImportsTableModel()
         self.ui.movimientosTable.setModel(self.movements_model)
         self.ui.ventasTable.setModel(self.sales_model)
+        self.ui.importacionesTablas.setModel(self.imports_model)
         #*Conectar las acciones
         # Conectar el cambio de selección en los QComboBox para activar o desactivar la visibilidad
         self.ui.periodoMov.currentTextChanged.connect(self.mostrar_dateEdits)
         self.ui.periodoVentas.currentTextChanged.connect(self.mostrar_dateEdits)
+        self.ui.periodoImportacion.currentTextChanged.connect(self.mostrar_dateEdits)
         #*Cambios en la interfaz relacionado al controller
         self.conectar_acciones_informacion()
         self.actualizar_interfaz(0)
         self.actualizar_interfaz(1)
+        self.actualizar_interfaz(2)
     def mostrar_dateEdits(self):
         # Pestaña Movimientos
         es_personalizado_mov = (self.ui.periodoMov.currentText() == "Personalizado")
@@ -112,6 +120,10 @@ class Movimientos(QWidget):
         es_personalizado_ventas = (self.ui.periodoVentas.currentText() == "Personalizado")
         self.ui.lblPersonalizarV.setVisible(es_personalizado_ventas)
         self.ui.contenedorFechasV.setVisible(es_personalizado_ventas)
+        # Pestaña Importaciones
+        es_personalizado_importaciones = (self.ui.periodoImportacion.currentText() == "Personalizado")
+        self.ui.lblPersonalizarImp.setVisible(es_personalizado_importaciones)
+        self.ui.contenedorFechasImp.setVisible(es_personalizado_importaciones)
 
     def obtener_datos(self):
         tab_actual = self.ui.tabWidget.currentIndex()
@@ -125,13 +137,20 @@ class Movimientos(QWidget):
             if periodo == "Personalizado":
                 datos["rango_inicio"] = self.ui.rangoInicio.date().toPython()
                 datos["rango_final"] = self.ui.rangoFinal.date().toPython()
-        else:
+        elif tab_actual==1:
             periodo = self.ui.periodoVentas.currentText()
             datos["periodo"] = periodo
             datos["categoria_id"] = (self.ui.categoriasVentas.currentData())
             if periodo == "Personalizado":
                 datos["rango_inicio"] = (self.ui.rangoInicioV.date().toPython())
                 datos["rango_final"] = (self.ui.rangoFinalV.date().toPython())
+        elif tab_actual==2:
+            periodo = self.ui.periodoImportacion.currentText()
+            datos["periodo"] = periodo
+            datos["nombre"] = self.ui.buscarNombre.toPlainText().strip() or None
+            if periodo == "Personalizado":
+                datos["rango_inicio"] = (self.ui.rangoInicioImp.date().toPython())
+                datos["rango_final"] = (self.ui.rangoFinalImp.date().toPython())
         return datos
     def enviar_datos(self,tab_actual):
         datos=self.obtener_datos()
@@ -139,6 +158,8 @@ class Movimientos(QWidget):
             resultado=self.controller.mostrar_movimientos(datos)
         elif tab_actual==1:
             resultado=self.controller.mostrar_ventas(datos)
+        elif tab_actual==2:
+            resultado=self.controller.mostrar_importaciones(datos)
         return resultado
     def actualizar_interfaz(self,tab_actual):
         resultado=self.enviar_datos(tab_actual)
@@ -146,21 +167,21 @@ class Movimientos(QWidget):
             QMessageBox.warning(self,"Error al Cargar Datos",resultado["message"])
             return
         if resultado["tipo"] == "Movimientos":
-                movimientos = resultado["movimientos"]
-                self.movements_model.set_data(resultado["movimientos"])
-                self.ui.lblPeriodo.setText(resultado["rango_fecha"])
-                if not movimientos:
-                    QMessageBox.information(
-                        self,"No hay datos","No hay registros para mostrar en la tabla"
-                    )
+            movimientos = resultado["movimientos"]
+            self.movements_model.set_data(resultado["movimientos"])
+            self.ui.lblPeriodo.setText(resultado["rango_fecha"])
+            if not movimientos:
+                QMessageBox.information(
+                    self,"No hay datos","No hay registros para mostrar en la tabla"
+                )
         elif resultado["tipo"] == "Ventas":
-                ventas = resultado["ventas"]
-                self.sales_model.set_data(resultado["ventas"])
-                self.ui.lblPeriodoV.setText(resultado["rango_fecha"])
-                if not ventas:
-                    QMessageBox.information(
-                        self,"No hay datos","No hay registros para mostrar en la tabla"
-                    )
+            ventas = resultado["ventas"]
+            self.sales_model.set_data(resultado["ventas"])
+            self.ui.lblPeriodoV.setText(resultado["rango_fecha"])
+        elif resultado["tipo"]=="Importaciones":
+            importaciones=resultado["importaciones"]
+            self.imports_model.set_data(importaciones)
+            self.ui.lblPeriodoImp.setText(resultado["rango_fecha"])
     def conectar_acciones_informacion(self):
         #*Relacionados con la tab de movimientos
         self.ui.periodoMov.currentTextChanged.connect(
@@ -183,6 +204,16 @@ class Movimientos(QWidget):
             lambda _: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
         )
         self.ui.rangoFinalV.editingFinished.connect(
+            lambda: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        #*Relacionados con la tab de Importaciones
+        self.ui.periodoImportacion.currentTextChanged.connect(
+            lambda _: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        self.ui.buscarNombre.textChanged.connect(
+            lambda: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
+        )
+        self.ui.rangoFinalImp.editingFinished.connect(
             lambda: self.actualizar_interfaz(self.ui.tabWidget.currentIndex())
         )
     def cambiar_dateEdits(self):

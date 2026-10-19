@@ -72,7 +72,9 @@ class AppContainer:
         self.home_dashboard_service=HomeDashboardService(self.sale_repository,self.movement_repository)
         self.home_dashboard_controller=HomeDashboardController(self.home_dashboard_service)
         #*Consultation Controlller
-        self.consultation_service=ConsultationService(self.sale_repository,self.movement_repository)
+        self.consultation_service=ConsultationService(
+            self.sale_repository,self.movement_repository,self.import_repository
+        )
         self.consultation_controller=ConsultationController(self.consultation_service)
         #*Analysis
         self.analysis_service=AnalysisService(self.analysis_repository)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1073</width>
-    <height>689</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -262,150 +262,41 @@ QListWidget::item:selected:!active {
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_12">
-     <property name="spacing">
-      <number>20</number>
+    <widget class="QLabel" name="lblTitulo">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="leftMargin">
-      <number>30</number>
+     <property name="text">
+      <string>Configuración</string>
      </property>
-     <property name="topMargin">
-      <number>25</number>
+     <property name="texto" stdset="0">
+      <string>TituloPrincipal</string>
      </property>
-     <property name="rightMargin">
-      <number>30</number>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblDescripcion">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="bottomMargin">
-      <number>25</number>
+     <property name="text">
+      <string>Datos e Información de tu negocio</string>
      </property>
-     <item>
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="styleSheet">
-        <string notr="true">/*
------------------------------------------------------------------------------------------------------
-ScrollArea
------------------------------------------------------------------------------------------------------
-*/
-#scrollAreaWidgetContents {
-    background-color: transparent;
-}
-QScrollArea {
-    background-color: transparent;
-    border: none;
-	border-radius:0px;
-}
-
-/* Widget que está dentro del ScrollArea */
-/*QScrollArea &gt; QWidget &gt; QWidget {
-    background-color: #F9F9FC;
-}*/
-
-/* Scrollbar vertical */
-QScrollBar:vertical {
-    background-color: transparent;
-    width: 8px;
-    margin: 4px 2px 4px 0px;
-}
-
-/* Parte que se puede arrastrar */
-QScrollBar::handle:vertical {
-    background-color: #C9C1D5;
-    border-radius: 4px;
-    min-height: 40px;
-}
-
-/* Al pasar el mouse */
-QScrollBar::handle:vertical:hover {
-    background-color: #A99DB8;
-}
-
-/* Ocultar botones de arriba y abajo */
-QScrollBar::add-line:vertical,
-QScrollBar::sub-line:vertical {
-    height: 0px;
-}
-
-/* Espacio antes/después del handle */
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: transparent;
-}</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>987</width>
-          <height>746</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="leftMargin">
-          <number>9</number>
-         </property>
-         <property name="topMargin">
-          <number>9</number>
-         </property>
-         <property name="rightMargin">
-          <number>9</number>
-         </property>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <property name="spacing">
-            <number>20</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="lblTitulo">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Configuración</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>TituloPrincipal</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="lblDescripcion">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Datos e Información de tu negocio</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>Descripcion</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTabWidget" name="tabWidget">
-             <property name="styleSheet">
-              <string notr="true">QTabWidget {
+     <property name="texto" stdset="0">
+      <string>Descripcion</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">QTabWidget {
 		background-color:#f7f7f7;
     }
 QTabWidget::pane {
@@ -542,243 +433,285 @@ QTableWidget QScrollBar::sub-page:horizontal {
     width: 0px;
 }
 </string>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Información del Negocio</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Datos Generales</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>Destacado</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="habilitarEdicion">
+               <property name="text">
+                <string>Habilitar Edición</string>
+               </property>
+               <property name="boton" stdset="0">
+                <string>Secundario</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="btnHabilitarEdicion">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Nombre del Negocio</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="nombreNegocio"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Descripcion</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPlainTextEdit" name="descripcion"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Tipo de Negocio</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>InputTexto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="tipoNegocio">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <item>
+             <property name="text">
+              <string>Barbería</string>
              </property>
-             <property name="currentIndex">
-              <number>1</number>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tienda de Ropa</string>
              </property>
-             <widget class="QWidget" name="tab">
-              <attribute name="title">
-               <string>Información del Negocio</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_6">
-               <item>
-                <widget class="QFrame" name="frame">
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_3">
-                  <item>
-                   <widget class="QLabel" name="label">
-                    <property name="text">
-                     <string>Datos Generales</string>
-                    </property>
-                    <property name="texto" stdset="0">
-                     <string>Destacado</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_3">
-                    <property name="text">
-                     <string>Nombre del Negocio</string>
-                    </property>
-                    <property name="texto" stdset="0">
-                     <string>InputTexto</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="nombreNegocio"/>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_4">
-                    <property name="text">
-                     <string>Descripcion</string>
-                    </property>
-                    <property name="texto" stdset="0">
-                     <string>InputTexto</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPlainTextEdit" name="descripcion"/>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_5">
-                    <property name="text">
-                     <string>Tipo de Negocio</string>
-                    </property>
-                    <property name="texto" stdset="0">
-                     <string>InputTexto</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QComboBox" name="tipoNegocio">
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string>Barbería</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Tienda de Ropa</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Cafetería</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Farmacia</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Restaurante</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Ferretería</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Pulpería</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Otro</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QFrame" name="frame_2">
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_6">
-                  <item>
-                   <widget class="QWidget" name="widget_6" native="true">
-                    <property name="styleSheet">
-                     <string notr="true">QLabel {
+            </item>
+            <item>
+             <property name="text">
+              <string>Cafetería</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Farmacia</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Restaurante</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ferretería</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Pulpería</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Otro</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QWidget" name="widget_6" native="true">
+            <property name="styleSheet">
+             <string notr="true">QLabel {
     qproperty-alignment: 'AlignCenter';
 }</string>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_14">
-                     <item>
-                      <widget class="QLabel" name="label_2">
-                       <property name="text">
-                        <string>Categorías</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>Destacado</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_6">
-                       <property name="text">
-                        <string>Organiza las categorías utilizadas para clasificar</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>Descripcion</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_2">
-                       <property name="text">
-                        <string>Quitar Categoría</string>
-                       </property>
-                       <property name="boton" stdset="0">
-                        <string>BotonTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_4">
-                       <property name="text">
-                        <string>Agregar Categoría</string>
-                       </property>
-                       <property name="boton" stdset="0">
-                        <string>BotonTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QListWidget" name="listaCategorias">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>3000</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QWidget" name="widget_2" native="true">
-                 <layout class="QHBoxLayout" name="horizontalLayout">
-                  <item>
-                   <widget class="QPushButton" name="pushButton">
-                    <property name="text">
-                     <string>Cancelar</string>
-                    </property>
-                    <property name="boton" stdset="0">
-                     <string>Secundario</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_3">
-                    <property name="text">
-                     <string>Guardar</string>
-                    </property>
-                    <property name="boton" stdset="0">
-                     <string>Primario</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="tab_2">
-              <attribute name="title">
-               <string>Empleados</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <widget class="QTabWidget" name="tabWidgetDos">
-                 <property name="styleSheet">
-                  <string notr="true">QTabWidget {
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_14">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Categorías</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>Destacado</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Organiza las categorías utilizadas para clasificar</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>Descripcion</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="quitarCategoria">
+               <property name="text">
+                <string>Quitar Categoría</string>
+               </property>
+               <property name="boton" stdset="0">
+                <string>BotonTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="agregarCategoria">
+               <property name="text">
+                <string>Agregar Categoría</string>
+               </property>
+               <property name="boton" stdset="0">
+                <string>BotonTexto</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="listaCategorias">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>3000</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="cancelarCambios">
+            <property name="text">
+             <string>Cancelar</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Secundario</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="guardarCambios">
+            <property name="text">
+             <string>Guardar</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Primario</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Empleados</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QTabWidget" name="tabWidgetDos">
+         <property name="styleSheet">
+          <string notr="true">QTabWidget {
     background-color: transparent;
 }
 
@@ -822,545 +755,618 @@ QTabBar::tab:selected {
     color: #16094C; /* Púrpura oscuro para texto activo */
     border-bottom: 3px solid #16094C; /* Indicador de línea activa */
 }</string>
-                 </property>
-                 <property name="currentIndex">
-                  <number>1</number>
-                 </property>
-                 <widget class="QWidget" name="tab_3">
-                  <attribute name="title">
-                   <string>Ver Empleados</string>
-                  </attribute>
-                  <layout class="QVBoxLayout" name="verticalLayout_7">
-                   <item>
-                    <layout class="QFormLayout" name="formLayout">
-                     <property name="horizontalSpacing">
-                      <number>20</number>
-                     </property>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_7">
-                       <property name="text">
-                        <string>Buscar Empleado:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QLineEdit" name="lineEdit_2">
-                       <property name="placeholderText">
-                        <string>Ingrese el nombre del Empleado...</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <widget class="QTableWidget" name="verEmpleados">
-                     <column>
-                      <property name="text">
-                       <string>Nombre</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Correo</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Rol</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Vinculado</string>
-                      </property>
-                     </column>
-                    </widget>
-                   </item>
-                  </layout>
+         </property>
+         <property name="currentIndex">
+          <number>2</number>
+         </property>
+         <widget class="QWidget" name="tab_3">
+          <attribute name="title">
+           <string>Ver Empleados</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <layout class="QFormLayout" name="formLayout">
+             <property name="horizontalSpacing">
+              <number>20</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>Buscar Empleado:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="buscarEmpleado">
+               <property name="placeholderText">
+                <string>Ingrese el nombre del Empleado...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="verEmpleados">
+             <column>
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Correo</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Rol</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Vinculado</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_4">
+          <attribute name="title">
+           <string>Agregar Empleado</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Vincular Usuario</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>TituloSecundario</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Buscar una cuenta existente por usuario o correo</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>Descripcion</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QFormLayout" name="formLayout_2">
+             <property name="horizontalSpacing">
+              <number>20</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Buscar Empleado:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="buscarEmpleadoAgregar">
+               <property name="placeholderText">
+                <string>Ingrese el nombre del Empleado...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Resultados</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>Destacado</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="empleadosResultado"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>Rol</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="rol">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <item>
+              <property name="text">
+               <string>Vendedor</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Analista Financiero</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Gerente</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>Rol:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Usuario Seleccionado:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="usuario">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="rol_2">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_3" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="confirmarEmpleado">
+                <property name="text">
+                 <string>Confirmar Cambios</string>
+                </property>
+                <property name="boton" stdset="0">
+                 <string>Primario</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_5">
+          <attribute name="title">
+           <string>Eliminar Empleados</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <layout class="QFormLayout" name="formLayout_5">
+             <property name="horizontalSpacing">
+              <number>20</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_18">
+               <property name="text">
+                <string>Buscar Empleado:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="buscarEmpleadoEliminar">
+               <property name="placeholderText">
+                <string>Ingrese el nombre del Empleado...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="empleados">
+             <column>
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Correo</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Rol</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Vinculado</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+           <item>
+            <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string>Rol:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="usuarioSeleccionado">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_19">
+               <property name="text">
+                <string>Usuario Seleccionado:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="rolUsuario">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_22">
+               <property name="text">
+                <string>Correo:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLabel" name="correoUsuario">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_4" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnEliminarEmpleado">
+                <property name="text">
+                 <string>Eliminar Empleado</string>
+                </property>
+                <property name="boton" stdset="0">
+                 <string>Primario</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="Gastos">
+      <attribute name="title">
+       <string>Operaciones criticas</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <item>
+        <widget class="QLabel" name="label_24">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="text">
+          <string> Operaciones críticas</string>
+         </property>
+         <property name="texto" stdset="0">
+          <string>TituloPrincipal</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_25">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Estas acciones afectarán permanentemente la información del negocio.</string>
+         </property>
+         <property name="texto" stdset="0">
+          <string>Descripcion</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_3">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="carta" stdset="0">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <item>
+           <widget class="QWidget" name="widget_7" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,1">
+             <item>
+              <widget class="QWidget" name="widget_8" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <item>
+                 <widget class="QLabel" name="label_26">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Eliminar Negocio</string>
+                  </property>
+                  <property name="texto" stdset="0">
+                   <string>TituloSecundario</string>
+                  </property>
                  </widget>
-                 <widget class="QWidget" name="tab_4">
-                  <attribute name="title">
-                   <string>Agregar Empleado</string>
-                  </attribute>
-                  <layout class="QVBoxLayout" name="verticalLayout_8">
-                   <item>
-                    <widget class="QLabel" name="label_8">
-                     <property name="text">
-                      <string>Vincular Usuario</string>
-                     </property>
-                     <property name="texto" stdset="0">
-                      <string>TituloSecundario</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_9">
-                     <property name="text">
-                      <string>Buscar una cuenta existente por usuario o correo</string>
-                     </property>
-                     <property name="texto" stdset="0">
-                      <string>Descripcion</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <layout class="QFormLayout" name="formLayout_2">
-                     <property name="horizontalSpacing">
-                      <number>20</number>
-                     </property>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_10">
-                       <property name="text">
-                        <string>Buscar Empleado:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QLineEdit" name="lineEdit_3">
-                       <property name="placeholderText">
-                        <string>Ingrese el nombre del Empleado...</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_11">
-                     <property name="text">
-                      <string>Resultados</string>
-                     </property>
-                     <property name="texto" stdset="0">
-                      <string>Destacado</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QListWidget" name="listWidget_2"/>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="label_16">
-                     <property name="text">
-                      <string>Rol</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QComboBox" name="tipoNegocio_2">
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Vendedor</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Analista Financiero</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Gerente</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                   <item>
-                    <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
-                     <item row="2" column="0">
-                      <widget class="QLabel" name="label_14">
-                       <property name="text">
-                        <string>Rol:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_12">
-                       <property name="text">
-                        <string>Usuario Seleccionado:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QLabel" name="label_15">
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <widget class="QLabel" name="label_13">
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="widget_3" native="true">
-                     <layout class="QHBoxLayout" name="horizontalLayout_3">
-                      <item>
-                       <spacer name="horizontalSpacer_3">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_5">
-                        <property name="text">
-                         <string>Confirmar Cambios</string>
-                        </property>
-                        <property name="boton" stdset="0">
-                         <string>Primario</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="horizontalSpacer_4">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                  </layout>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_27">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Esta acción eliminara permanentemente:</string>
+                  </property>
+                  <property name="texto" stdset="0">
+                   <string>Descripcion</string>
+                  </property>
                  </widget>
-                 <widget class="QWidget" name="tab_5">
-                  <attribute name="title">
-                   <string>Eliminar Empleados</string>
-                  </attribute>
-                  <layout class="QVBoxLayout" name="verticalLayout_9">
-                   <item>
-                    <layout class="QFormLayout" name="formLayout_5">
-                     <property name="horizontalSpacing">
-                      <number>20</number>
-                     </property>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_18">
-                       <property name="text">
-                        <string>Buscar Empleado:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QLineEdit" name="lineEdit_5">
-                       <property name="placeholderText">
-                        <string>Ingrese el nombre del Empleado...</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <widget class="QTableWidget" name="tableWidget_2">
-                     <column>
-                      <property name="text">
-                       <string>Nombre</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Correo</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Rol</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Vinculado</string>
-                      </property>
-                     </column>
-                    </widget>
-                   </item>
-                   <item>
-                    <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
-                     <item row="2" column="0">
-                      <widget class="QLabel" name="label_17">
-                       <property name="text">
-                        <string>Rol:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QLabel" name="label_20">
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_19">
-                       <property name="text">
-                        <string>Usuario Seleccionado:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <widget class="QLabel" name="label_21">
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="0">
-                      <widget class="QLabel" name="label_22">
-                       <property name="text">
-                        <string>Correo:</string>
-                       </property>
-                       <property name="texto" stdset="0">
-                        <string>InputTexto</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="1">
-                      <widget class="QLabel" name="label_23">
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="widget_4" native="true">
-                     <layout class="QHBoxLayout" name="horizontalLayout_4">
-                      <item>
-                       <spacer name="horizontalSpacer_5">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_6">
-                        <property name="text">
-                         <string>Eliminar Empleado</string>
-                        </property>
-                        <property name="boton" stdset="0">
-                         <string>Primario</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="horizontalSpacer_6">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="Gastos">
-              <attribute name="title">
-               <string>Operaciones criticas</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_10">
-               <item>
-                <widget class="QLabel" name="label_24">
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>50</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string> Operaciones críticas</string>
-                 </property>
-                 <property name="texto" stdset="0">
-                  <string>TituloPrincipal</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_25">
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>50</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string>Estas acciones pueden afectar permanentemente la información del negocio.</string>
-                 </property>
-                 <property name="texto" stdset="0">
-                  <string>Descripcion</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QFrame" name="frame_3">
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <property name="carta" stdset="0">
-                  <string/>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_13">
-                  <item>
-                   <widget class="QLabel" name="label_26">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>Eliminar Negocio</string>
-                    </property>
-                    <property name="texto" stdset="0">
-                     <string>TituloSecundario</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_27">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>Esta acción eliminara permanentemente:</string>
-                    </property>
-                    <property name="texto" stdset="0">
-                     <string>Descripcion</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_28">
-                    <property name="text">
-                     <string>&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Información del negocio&lt;/p&gt;
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_28">
+                  <property name="text">
+                   <string>&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Información del negocio&lt;/p&gt;
 &lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Usuarios vinculados&lt;/p&gt;
 &lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Ventas y movimientos&lt;/p&gt;
 &lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Categorías&lt;/p&gt;
 &lt;p style=&quot;margin-bottom: 0px;&quot;&gt;• Informes relacionados&lt;/p&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_29">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string> Esta acción no puede deshacerse.</string>
-                    </property>
-                    <property name="texto" stdset="0">
-                     <string>Descripcion</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QWidget" name="widget_5" native="true">
-                    <layout class="QHBoxLayout" name="horizontalLayout_5">
-                     <item>
-                      <spacer name="horizontalSpacer_7">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="pushButton_7">
-                       <property name="text">
-                        <string>Eliminar Negocio</string>
-                       </property>
-                       <property name="boton" stdset="0">
-                        <string>Primario</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-     </item>
-    </layout>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="widget_9" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <item>
+                 <widget class="QLabel" name="label_30">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Eliminar Negocio</string>
+                  </property>
+                  <property name="texto" stdset="0">
+                   <string>TituloSecundario</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_31">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Esta acción eliminara permanentemente:</string>
+                  </property>
+                  <property name="texto" stdset="0">
+                   <string>Descripcion</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_32">
+                  <property name="text">
+                   <string>&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Información del negocio&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Usuarios vinculados&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Ventas y movimientos&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Categorías&lt;/p&gt;
+&lt;p style=&quot;margin-bottom: 0px;&quot;&gt;• Informes relacionados&lt;/p&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_13">
+                  <property name="text">
+                   <string>Ingrese el ID de la importación, para conocerlo,
+ vaya a la página de movimientos.</string>
+                  </property>
+                  <property name="texto" stdset="0">
+                   <string>InputTexto</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit"/>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_29">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string> Esta acción no puede deshacerse.</string>
+            </property>
+            <property name="texto" stdset="0">
+             <string>Descripcion</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_5" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="eliminarNegocio">
+               <property name="text">
+                <string>Eliminar Negocio</string>
+               </property>
+               <property name="boton" stdset="0">
+                <string>Primario</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>
