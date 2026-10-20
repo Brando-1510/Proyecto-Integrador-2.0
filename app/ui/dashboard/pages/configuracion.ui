@@ -261,6 +261,9 @@ QListWidget::item:selected:!active {
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>20</number>
+   </property>
    <item>
     <widget class="QLabel" name="lblTitulo">
      <property name="maximumSize">
@@ -435,7 +438,7 @@ QTableWidget QScrollBar::sub-page:horizontal {
 </string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -874,7 +877,33 @@ QTabBar::tab:selected {
             </widget>
            </item>
            <item>
-            <widget class="QListWidget" name="empleadosResultado"/>
+            <widget class="QTableWidget" name="verUsuarios">
+             <row>
+              <property name="text">
+               <string>1</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Correo</string>
+              </property>
+             </column>
+             <item row="0" column="0">
+              <property name="text">
+               <string>Hannah</string>
+              </property>
+             </item>
+             <item row="0" column="1">
+              <property name="text">
+               <string>hannah@gmail.com</string>
+              </property>
+             </item>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_16">
@@ -906,7 +935,14 @@ QTabBar::tab:selected {
             </widget>
            </item>
            <item>
-            <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
+            <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0" columnstretch="0,1">
+             <item row="1" column="1">
+              <widget class="QLabel" name="lblCorreo">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_14">
                <property name="text">
@@ -927,15 +963,25 @@ QTabBar::tab:selected {
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="usuario">
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Correo:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="lblRol">
                <property name="text">
                 <string/>
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="rol_2">
+             <item row="0" column="1">
+              <widget class="QLabel" name="usuario">
                <property name="text">
                 <string/>
                </property>
@@ -962,7 +1008,7 @@ QTabBar::tab:selected {
               <item>
                <widget class="QPushButton" name="confirmarEmpleado">
                 <property name="text">
-                 <string>Confirmar Cambios</string>
+                 <string>Agregar Usuario</string>
                 </property>
                 <property name="boton" stdset="0">
                  <string>Primario</string>
@@ -1018,6 +1064,11 @@ QTabBar::tab:selected {
            </item>
            <item>
             <widget class="QTableWidget" name="empleados">
+             <row>
+              <property name="text">
+               <string>1</string>
+              </property>
+             </row>
              <column>
               <property name="text">
                <string>Nombre</string>
@@ -1038,17 +1089,34 @@ QTabBar::tab:selected {
                <string>Vinculado</string>
               </property>
              </column>
+             <item row="0" column="0">
+              <property name="text">
+               <string>Hannah</string>
+              </property>
+             </item>
+             <item row="0" column="1">
+              <property name="text">
+               <string>hannah@gmai.com</string>
+              </property>
+             </item>
+             <item row="0" column="2">
+              <property name="text">
+               <string>Gerente</string>
+              </property>
+             </item>
+             <item row="0" column="3">
+              <property name="text">
+               <string>si</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item>
             <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_17">
+             <item row="2" column="1">
+              <widget class="QLabel" name="rolSeleccionado">
                <property name="text">
-                <string>Rol:</string>
-               </property>
-               <property name="texto" stdset="0">
-                <string>InputTexto</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -1069,15 +1137,18 @@ QTabBar::tab:selected {
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="rolUsuario">
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_22">
                <property name="text">
-                <string/>
+                <string>Rol:</string>
+               </property>
+               <property name="texto" stdset="0">
+                <string>InputTexto</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_22">
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_17">
                <property name="text">
                 <string>Correo:</string>
                </property>
@@ -1086,8 +1157,8 @@ QTabBar::tab:selected {
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="correoUsuario">
+             <item row="1" column="1">
+              <widget class="QLabel" name="correo">
                <property name="text">
                 <string/>
                </property>
@@ -1302,7 +1373,7 @@ QTabBar::tab:selected {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit"/>
+                 <widget class="QLineEdit" name="idImportacion"/>
                 </item>
                </layout>
               </widget>
@@ -1318,8 +1389,12 @@ QTabBar::tab:selected {
               <height>50</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">qproperty-alignment: 'AlignCenter';
+</string>
+            </property>
             <property name="text">
-             <string> Esta acción no puede deshacerse.</string>
+             <string> Estsa acciones no puede deshacerse.</string>
             </property>
             <property name="texto" stdset="0">
              <string>Descripcion</string>
@@ -1336,6 +1411,16 @@ QTabBar::tab:selected {
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
+              <widget class="QPushButton" name="eliminarNegocio">
+               <property name="text">
+                <string>Eliminar Negocio</string>
+               </property>
+               <property name="boton" stdset="0">
+                <string>Primario</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <spacer name="horizontalSpacer_7">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -1349,9 +1434,9 @@ QTabBar::tab:selected {
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="eliminarNegocio">
+              <widget class="QPushButton" name="pushButton">
                <property name="text">
-                <string>Eliminar Negocio</string>
+                <string>Eliminar Importación</string>
                </property>
                <property name="boton" stdset="0">
                 <string>Primario</string>
