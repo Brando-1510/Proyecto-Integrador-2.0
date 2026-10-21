@@ -17,6 +17,7 @@ from app.views.dashboard.pages.configuracion import Configuracion
 from app.views.dashboard.pages.monitoreo import Monitoreo
 
 class VentanaDashboard(QWidget):
+    choose_business_requested = Signal(object)
     logout_requested = Signal()
     def __init__(
         self, userBusiness,
@@ -181,6 +182,7 @@ class VentanaDashboard(QWidget):
     def mostrar_configuracion(self):
         if self.configuracion is None:
             self.configuracion = Configuracion(self.userBusiness,self.configuration_controller)
+            self.configuracion.choose_business_requested.connect(self.choose_business_requested.emit)
             self.stackedWidget.addWidget(self.configuracion)
         self.cambiar_vista(self.configuracion)
     # *Mostrar Monitoreo

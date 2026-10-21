@@ -56,16 +56,22 @@ class AppController:
             self.create_account_window.close()
         if self.chooseBusiness_window is None:
             self.chooseBusiness_window = VentanaChooseBusiness(
-                self.current_user,
-                self.container.userBusiness_controller
+                self.current_user,self.container.userBusiness_controller
             )
             self.chooseBusiness_window.dashboard_requested.connect(self.show_dashboard)
             self.chooseBusiness_window.crear_negocio_requested.connect(self.show_create_business)
+        else:
+            self.chooseBusiness_window.cargar_negocios()
+
         self.chooseBusiness_window.show()
     def show_choose_business_again(self):
+        if self.dashboard_window is not None:
+            self.dashboard_window.close()
+            self.dashboard_window = None
         if self.createBusiness_window is not None:
             self.createBusiness_window.close()
             self.createBusiness_window = None
+        self.show_choose_business(self.current_user)
 
         self.show_choose_business(self.current_user)
     # *Mostrar ventana de crear negocio
@@ -88,6 +94,9 @@ class AppController:
             self.container.recommendation_controller,self.container.configuration_controller
         )
         self.dashboard_window.logout_requested.connect(self.logout)
+        self.dashboard_window.choose_business_requested.connect(
+            lambda _user: self.show_choose_business_again()
+        )
         self.dashboard_window.show()
         if self.chooseBusiness_window is not None:
             self.chooseBusiness_window.close()

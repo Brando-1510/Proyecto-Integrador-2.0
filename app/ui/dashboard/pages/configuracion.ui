@@ -438,7 +438,7 @@ QTableWidget QScrollBar::sub-page:horizontal {
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -760,7 +760,7 @@ QTabBar::tab:selected {
 }</string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_3">
           <attribute name="title">
@@ -850,7 +850,7 @@ QTabBar::tab:selected {
              <item row="0" column="0">
               <widget class="QLabel" name="label_10">
                <property name="text">
-                <string>Buscar Empleado:</string>
+                <string>Buscar Usuarios:</string>
                </property>
                <property name="texto" stdset="0">
                 <string>InputTexto</string>
@@ -860,7 +860,7 @@ QTabBar::tab:selected {
              <item row="0" column="1">
               <widget class="QLineEdit" name="buscarEmpleadoAgregar">
                <property name="placeholderText">
-                <string>Ingrese el nombre del Empleado...</string>
+                <string>Ingrese el correo o nombre del usuario</string>
                </property>
               </widget>
              </item>
@@ -878,11 +878,6 @@ QTabBar::tab:selected {
            </item>
            <item>
             <widget class="QTableWidget" name="verUsuarios">
-             <row>
-              <property name="text">
-               <string>1</string>
-              </property>
-             </row>
              <column>
               <property name="text">
                <string>Nombre</string>
@@ -893,16 +888,6 @@ QTabBar::tab:selected {
                <string>Correo</string>
               </property>
              </column>
-             <item row="0" column="0">
-              <property name="text">
-               <string>Hannah</string>
-              </property>
-             </item>
-             <item row="0" column="1">
-              <property name="text">
-               <string>hannah@gmail.com</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -919,7 +904,7 @@ QTabBar::tab:selected {
              </property>
              <item>
               <property name="text">
-               <string>Vendedor</string>
+               <string>Empleado</string>
               </property>
              </item>
              <item>
@@ -1064,11 +1049,6 @@ QTabBar::tab:selected {
            </item>
            <item>
             <widget class="QTableWidget" name="empleados">
-             <row>
-              <property name="text">
-               <string>1</string>
-              </property>
-             </row>
              <column>
               <property name="text">
                <string>Nombre</string>
@@ -1089,26 +1069,6 @@ QTabBar::tab:selected {
                <string>Vinculado</string>
               </property>
              </column>
-             <item row="0" column="0">
-              <property name="text">
-               <string>Hannah</string>
-              </property>
-             </item>
-             <item row="0" column="1">
-              <property name="text">
-               <string>hannah@gmai.com</string>
-              </property>
-             </item>
-             <item row="0" column="2">
-              <property name="text">
-               <string>Gerente</string>
-              </property>
-             </item>
-             <item row="0" column="3">
-              <property name="text">
-               <string>si</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -1327,7 +1287,7 @@ QTabBar::tab:selected {
                    </size>
                   </property>
                   <property name="text">
-                   <string>Eliminar Negocio</string>
+                   <string>Eliminar Importación</string>
                   </property>
                   <property name="texto" stdset="0">
                    <string>TituloSecundario</string>
@@ -1353,10 +1313,7 @@ QTabBar::tab:selected {
                 <item>
                  <widget class="QLabel" name="label_32">
                   <property name="text">
-                   <string>&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Información del negocio&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Usuarios vinculados&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Ventas y movimientos&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Categorías&lt;/p&gt;
+                   <string>&lt;p style=&quot;margin-bottom: 12px;&quot;&gt;• Ventas y movimientos&lt;/p&gt;
 &lt;p style=&quot;margin-bottom: 0px;&quot;&gt;• Informes relacionados&lt;/p&gt;</string>
                   </property>
                  </widget>
@@ -1434,7 +1391,7 @@ QTabBar::tab:selected {
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="eliminarImportacion">
                <property name="text">
                 <string>Eliminar Importación</string>
                </property>

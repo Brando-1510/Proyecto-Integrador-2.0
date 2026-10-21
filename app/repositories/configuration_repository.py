@@ -1,9 +1,10 @@
 from datetime import date
 from decimal import Decimal
-from sqlalchemy import select, func, case, desc,update,delete
+from sqlalchemy import select, func, case, desc,update,delete,exists
 from app.models.movement import Movement
 from app.models.sale import Sale
 from app.models.imports import Import
+from app.models.user_business import UserBusiness,Role
 from app.models.users import Users
 from app.models.business import Business,TypeOfBusiness
 from app.models.category import Category
@@ -81,3 +82,142 @@ class ConfigurationRepository:
             nuevas_categorias.append(categoria)
         self.session.flush()
         return nuevas_categorias
+
+
+#TODOS los metodos relacionados a la tab de Empleados
+    def get_users(self,name:str | None=None,email:str | None=None):
+        stmt=(select(Users.username,Users.email).where(Users.is_admin != 1))
+        if name is not None:
+            stmt=stmt.where(Users.username.like(f"%{name}%"))
+        if email is not None:
+            stmt=stmt.where(Users.email.like(f"%{email}%"))
+        return self.session.execute(stmt).all()
+    def get_employees(self,business_id:int,name:str |None=None,email:str | None=None):
+        stmt=(
+            select(
+                Users.username,Users.email,UserBusiness.role,UserBusiness.created_at
+            )
+            .where(
+                UserBusiness.business_id==business_id,
+                UserBusiness.role != Role.ADMIN
+            )
+            .join(
+                Users,(UserBusiness.user_id==Users.user_id)
+            )
+        )
+        if name is not None:
+            stmt=stmt.where(Users.username.like(f"%{name}%"))
+        if email is not None:
+            stmt=stmt.where(Users.email.like(f"%{email}%"))
+        return self.session.execute(stmt).all()
+    def get_user_id(self,correo:str):
+        stmt=(
+            select(Users.user_id)
+            .where(Users.email==correo)
+        )
+        return self.session.execute(stmt).scalar_one_or_none()
+    def get_userBusiness_relationship(self,user_id:int,business_id:int):
+        stmt=select(
+            exists().where(
+                UserBusiness.user_id==user_id,
+                UserBusiness.business_id==business_id
+            )
+        )
+        return self.session.scalar(stmt)
+    def is_admin(self, user_id: int) -> bool:
+        stmt = select(Users.is_admin).where(
+            Users.user_id == user_id
+        )
+        return self.session.scalar(stmt) is True
+    def is_creator(self, user_id: int, business_id: int) -> bool:
+        stmt = select(
+            exists().where(
+                Business.business_id == business_id,
+                Business.creator_id == user_id,
+            )
+        )
+        return self.session.scalar(stmt)
+    def link_user_to_business(self,user_id: int,business_id: int,role: Role,) -> None:
+        relationship = UserBusiness(
+            user_id=user_id,
+            business_id=business_id,
+            role=role,
+        )
+        self.session.add(relationship)
+        self.session.commit()
+    def unlink_user_from_business(self,user_id: int,business_id: int,) -> bool:
+        stmt = (
+            delete(UserBusiness)
+            .where(
+                UserBusiness.user_id == user_id,
+                UserBusiness.business_id == business_id,
+            )
+        )
+        result = self.session.execute(stmt)
+        self.session.commit()
+        return result.rowcount > 0
+    #*Metodos relacionados a la tab de operaciones criticas
+    def delete_import(self,business_id: int,import_id: int,) -> bool:
+        try:
+            # Verificar que la importación pertenezca al negocio
+            stmt = select(Import.import_id).where(
+                Import.import_id == import_id,
+                Import.business_id == business_id,
+            )
+            if self.session.scalar(stmt) is None:
+                self.session.rollback()
+                return False
+            #Eliminar las ventas de la importación
+            self.session.execute(
+                delete(Sale).where(
+                    Sale.business_id == business_id,
+                    Sale.import_id == import_id,
+                )
+            )
+            #Eliminar los movimientos de la importación
+            self.session.execute(
+                delete(Movement).where(
+                    Movement.business_id == business_id,
+                    Movement.import_id == import_id,
+                )
+            )
+            #Eliminar la importación
+            self.session.execute(
+                delete(Import).where(
+                    Import.import_id == import_id,
+                    Import.business_id == business_id,
+                )
+            )
+            #Confirmar los cambios
+            self.session.commit()
+            return True
+        except Exception:
+            self.session.rollback()
+            raise
+    def delete_business(self, business_id: int) -> bool:
+        try:
+            # Verificar que el negocio exista
+            stmt = select(Business.business_id).where(Business.business_id == business_id)
+            if self.session.scalar(stmt) is None:
+                self.session.rollback()
+                return False
+            #Eliminar las ventas
+            self.session.execute(delete(Sale).where(Sale.business_id == business_id))
+            #Eliminar los movimientos
+            self.session.execute(
+                delete(Movement).where(Movement.business_id == business_id))
+            #Eliminar las importaciones
+            self.session.execute(
+                delete(Import).where(Import.business_id == business_id))
+            #Eliminar las categorías
+            self.session.execute(delete(Category).where(Category.business_id == business_id))
+            #Eliminar las vinculaciones de usuarios
+            self.session.execute(delete(UserBusiness).where(UserBusiness.business_id == business_id))
+            #Eliminar el negocio
+            self.session.execute(delete(Business).where(Business.business_id == business_id))
+            #Confirmar los cambios
+            self.session.commit()
+            return True
+        except Exception:
+            self.session.rollback()
+            raise

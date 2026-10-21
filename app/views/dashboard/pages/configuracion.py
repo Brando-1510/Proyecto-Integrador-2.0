@@ -3,14 +3,18 @@ from PySide6.QtWidgets import (QWidget,QVBoxLayout,QListWidgetItem,QSizePolicy,Q
                             QLabel,QInputDialog,QTableWidget,QHeaderView)
 from PySide6.QtGui import QFontDatabase,QIntValidator
 from PySide6.QtUiTools import QUiLoader
+from app.utils.validators import ValidadoresUI
 from app.generated import resources_rc
 from app.utils.utilsUI import llenar_datos_usuarios
 from app.views.estilosTipografia import estilos_fuentes
 from PySide6.QtCore import Qt,Signal
 from app.models.business import TypeOfBusiness
+from app.controllers.configuration_controller import ConfigurationController
+from app.views.dashboard.table_models.table_widgets import populate_table
 
 class Configuracion(QWidget):
-    def __init__(self, userBusiness,controller):
+    choose_business_requested=Signal(object)
+    def __init__(self, userBusiness,controller:ConfigurationController):
         super().__init__()
         self.user = userBusiness.user
         self.business = userBusiness.business
@@ -71,9 +75,6 @@ class Configuracion(QWidget):
         lblCorreo.setText(correo.text() if correo else "")
         if lblRol:
             lblRol.setText(rol.text() if rol else "")
-
-    def obtener_datos_inciales(self):
-        pass
 
     #TODOS los metodos relacionadas a la tab de Informacion del negocio
     def informacion_negocio(self):
@@ -239,8 +240,14 @@ class Configuracion(QWidget):
 
     #TODOS los métodos relacionados a la tab de Empleados
     def empleados_tab(self):
+        self.ver_empleados_tab()
         self.agregar_empleado_tab()
         self.eliminar_empleado_tab()
+    #*Función que maneja esa tab
+    def ver_empleados_tab(self):
+        self.ui.buscarEmpleado.textChanged.connect(
+            lambda: self._ver_empleados(self.ui.buscarEmpleado,self.ui.verEmpleados)
+        )
     #*Función que maneja esa tab
     def agregar_empleado_tab(self):
         self.ui.verUsuarios.itemSelectionChanged.connect(lambda: self._actualizar_label_table(
@@ -251,16 +258,22 @@ class Configuracion(QWidget):
         )
         #*Conectar acciones
         self.ui.confirmarEmpleado.clicked.connect(self.agregar_empleado)
+        self.ui.buscarEmpleadoAgregar.textChanged.connect(self._ver_usuarios)
     def agregar_empleado(self):
         if self.ui.lblCorreo.text().strip()=="":
             QMessageBox.warning(self,"Acción Inválida","Debe seleccionar un usuario de la tabla")
             return
-        datos={
-            "business_id":self.business.business_id,
-            "rol":self.userBusiness.role,
-            "correo":self.ui.lblCorreo.text().strip(),
-            "rol_nuevo":self.ui.lblRol.text().strip()
-        }
+        resultado=self.controller.link_user(
+            self.business.business_id,self.ui.lblCorreo.text(),self.ui.lblRol.text()
+        )
+        if resultado["success"]:
+            QMessageBox.information(self,"Éxito",resultado["message"])
+            return
+        QMessageBox.warning(self,"No se pudo realizar la acción",resultado["message"])
+    #*Ver usuarios
+    def _ver_usuarios(self):
+        usuarios=self.controller.get_users(self.ui.buscarEmpleadoAgregar.text().strip())
+        populate_table(self.ui.verUsuarios,usuarios["usuarios"])
     #*Función que maneja esa tab
     def eliminar_empleado_tab(self):
         self.ui.empleados.itemSelectionChanged.connect(lambda: self._actualizar_label_table(
@@ -268,21 +281,63 @@ class Configuracion(QWidget):
         ))
         #*Conectar las acciones
         self.ui.btnEliminarEmpleado.clicked.connect(self.eliminar_empleado)
+        self.ui.buscarEmpleadoEliminar.textChanged.connect(
+            lambda: self._ver_empleados(self.ui.buscarEmpleadoEliminar,self.ui.empleados)
+        )
+    #*ver empleados
+    def _ver_empleados(self,lbl,tabla):
+        empleados=self.controller.get_employees(
+            lbl.text().strip(),self.business.business_id
+        )
+        populate_table(tabla,empleados["empleados"])
+    #
     def eliminar_empleado(self):
         if self.ui.correo.text().strip()=="" or self.ui.rolSeleccionado.text().strip()=="":
             QMessageBox.warning(self,"Acción Inválida","Debe seleccionar un usuario de la tabla")
             return
-        datos={
-            "business_id":self.business.business_id,
-            "rol":self.userBusiness.role,
-            "correo":self.ui.correo.text().strip(),
-            "rolSeleccionado":self.ui.rolSeleccionado.text().strip()
-        }
+        resultado=self.controller.unlink_user(
+            self.business.business_id,self.ui.correo.text()
+        )
+        if resultado["success"]:
+            QMessageBox.information(self,"Éxito",resultado["message"])
+            return
+        QMessageBox.warning(self,"No se pudo realizar la acción",resultado["message"])
 
     #TODOS los metodos relacionados a la tab de operaciones criticas
     def operaciones_criticas_tab(self):
-        self._configuarar_lineEdit()
-        
-    def _configuarar_lineEdit(self):
+        self._configurar_lineEdit()
+        self.ui.eliminarImportacion.clicked.connect(self.eliminar_importacion)
+        self.ui.eliminarNegocio.clicked.connect(self.eliminar_negocio)
+
+    def _configurar_lineEdit(self):
         validador=QIntValidator(self)
         self.ui.idImportacion.setValidator(validador)
+    def eliminar_importacion(self):
+        if not ValidadoresUI.tienen_contenido(self.ui.idImportacion):
+            QMessageBox.warning(self,"Error","Debe ingresar un id de importación para\nrealizar esta operación")
+            return
+        respuesta = QMessageBox.question(
+            self,"Confirmación","¿Deseas eliminar la importación?\nEsta operación no puede revertirse",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if respuesta == QMessageBox.StandardButton.Yes:
+            importacion=int(self.ui.idImportacion.text())
+            resultado=self.controller.delete_import(self.business.business_id,importacion)
+            if resultado["success"]:
+                QMessageBox.information(self,"Éxito",resultado["message"])
+                return
+            QMessageBox.warning(self,"Error",resultado["message"])
+    def eliminar_negocio(self):
+        respuesta = QMessageBox.question(
+            self,"Confirmación","¿Deseas eliminar el Negocio?\nEsta operación no puede revertirse",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if respuesta == QMessageBox.StandardButton.Yes:
+            resultado=self.controller.delete_business(
+                self.business.business_id,self.user.user_id
+            )
+            if resultado["success"]:
+                QMessageBox.information(self,"Éxito",resultado["message"])
+                self.choose_business_requested.emit(self.user)
+                return
+            QMessageBox.warning(self,"Error",resultado["message"])

@@ -106,6 +106,7 @@ class VentanaChooseBusiness(QWidget):
             return
         self.dashboard_requested.emit(self.userBusiness_seleccionado)
     def cargar_negocios(self):
+        self.limpiar_tarjetas()
         resultado = self.controller.load_businesses(self.user.user_id)
         if not resultado["success"]:
             QMessageBox.critical(self,"Error",resultado["message"])
@@ -126,3 +127,12 @@ class VentanaChooseBusiness(QWidget):
             fila = indice // 2
             columna = indice % 2
             layout.addWidget(tarjeta,fila,columna)
+    def limpiar_tarjetas(self):
+        layout = self.ui.gridLayoutNegocios.layout()
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()
+        self.tarjeta_seleccionada = None
+        self.userBusiness_seleccionado = None

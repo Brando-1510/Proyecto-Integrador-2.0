@@ -1,7 +1,8 @@
 from app.models.business import TypeOfBusiness
-
+from app.models.user_business import Role
+from app.repositories.configuration_repository import ConfigurationRepository
 class ConfigurationService:
-    def __init__(self, configuration_repository):
+    def __init__(self, configuration_repository:ConfigurationRepository):
         self.configuration_repository = configuration_repository
         self.session = configuration_repository.session
     def save_business_changes(
@@ -80,3 +81,64 @@ class ConfigurationService:
                     "Ocurrió un error al guardar los cambios."
                 ),
             }
+
+    #*Metodos relacionadas a la tab de Empleados
+    def get_users(self, datos):
+        if datos["tipo"] == "correo":
+            return self.configuration_repository.get_users(email=datos["texto"])
+        return self.configuration_repository.get_users(name=datos["texto"])
+    def get_employees(self,datos):
+        if datos["tipos"]=="correo":
+            return self.configuration_repository.get_employees(
+                business_id=datos["business_id"],email=datos["texto"]
+            )
+        return self.configuration_repository.get_employees(
+            business_id=datos["business_id"],name=datos["texto"]
+        )
+    def link_user(self,datos):
+        user_id=self.configuration_repository.get_user_id(datos["correo"])
+        if not user_id:
+            raise ValueError("No existe un correo vinculado a ese usuario")
+        if self.configuration_repository.get_userBusiness_relationship(
+            user_id,datos["business_id"]
+        ):
+            raise ValueError("El usuario ya esta vinculado al negocio.")
+        if not isinstance(datos["rol"], Role):
+            try:
+                rol = Role(datos["rol"])
+            except (ValueError, TypeError):
+                raise ValueError("El rol seleccionado no es válido.")
+
+        if rol == Role.ADMIN:
+            raise ValueError("No se puede asignar el rol de administrador técnico.")
+        self.configuration_repository.link_user_to_business(
+            user_id=user_id,business_id=datos["business_id"],role=rol,
+        )
+        return True
+    def delete_employee(self,datos):
+        user_id=self.configuration_repository.get_user_id(datos["correo"])
+        if not user_id:
+            raise ValueError("No existe un correo vinculado a ese usuario")
+        if not self.configuration_repository.get_userBusiness_relationship(
+            user_id,datos["business_id"]
+        ):
+            raise ValueError("El usuario no esta vinculado al negocio.")
+        if self.configuration_repository.is_creator(user_id,datos["business_id"]):
+            raise ValueError("No puede eliminar al creador del negocio.")
+        if self.configuration_repository.is_admin(user_id):
+            raise ValueError("No se puede desvincular a un administrador técnico a un negocio."
+        )
+        eliminado = (self.configuration_repository.unlink_user_from_business(user_id, datos["business_id"])
+            )
+        if not eliminado:
+            raise ValueError("No se pudo desvincular al usuario del negocio.")
+        return True
+
+
+    #*Metodos relacionados a operaciones criticas
+    def delete_import(self, datos):
+        return self.configuration_repository.delete_import(datos["business_id"],datos["import_id"])
+    def delete_business(self, datos):
+        if not self.configuration_repository.is_creator(datos["user_id"], datos["business_id"]):
+            raise ValueError("Solo el creador puede eliminar el negocio.")
+        return self.configuration_repository.delete_business(datos["business_id"])
