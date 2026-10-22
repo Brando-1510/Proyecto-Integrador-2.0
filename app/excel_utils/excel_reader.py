@@ -1,31 +1,46 @@
-import pandas as pd
+import logging
 from pathlib import Path
+import pandas as pd
+logger = logging.getLogger(__name__)
+
 class ExcelReader:
-    REQUIRED_SHEETS = [
-        "Ventas",
-        "Movimientos",
-    ]
-    def read(self,path: str) -> tuple[pd.DataFrame, pd.DataFrame] | None:
-        # Verificar que se haya proporcionado una ruta
+    REQUIRED_SHEETS = ("Ventas", "Movimientos")
+    def read(self, path: str) -> dict[str, pd.DataFrame | None] | None:
+        """
+        Lee las hojas disponibles del archivo Excel.
+        Retorna None si la ruta, el archivo o la lectura son
+        inválidos. Las hojas ausentes o vacías se representan
+        con None.
+        """
         if not path:
             return None
         file_path = Path(path)
-        # Verificar que el archivo exista
         if not file_path.is_file():
             return None
-        # Verificar que sea un archivo .xlsx
         if file_path.suffix.lower() != ".xlsx":
             return None
         try:
-            with pd.ExcelFile(file_path,engine="openpyxl") as excel:
-                # Verificar que existan las hojas requeridas
+            with pd.ExcelFile(file_path, engine="openpyxl") as excel:
+                result = {
+                    sheet: None
+                    for sheet in self.REQUIRED_SHEETS
+                }
                 for sheet in self.REQUIRED_SHEETS:
                     if sheet not in excel.sheet_names:
-                        return None
-                # Leer las hojas
-                sales_df = pd.read_excel(excel,sheet_name="Ventas",header=2)
-                movements_df = pd.read_excel(excel,sheet_name="Movimientos",header=2)
-                return sales_df, movements_df
-        except Exception as e:
-            print("ERROR REAL AL LEER EXCEL:", repr(e))
+                        continue
+                    df = pd.read_excel(
+                        excel,
+                        sheet_name=sheet,
+                        header=2,
+                    )
+                    # Ignorar filas completamente vacías.
+                    df = df.dropna(how="all")
+                    if df.empty:
+                        continue
+                    result[sheet] = df
+                return result
+        except Exception:
+            logger.exception(
+                "No se pudo leer el archivo Excel: %s",file_path,
+            )
             return None

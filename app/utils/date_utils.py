@@ -2,6 +2,9 @@ from datetime import date, timedelta,datetime,time
 
 class DateUtils:
     @staticmethod
+    def identify_future_date(target_date:date) -> bool:
+        return target_date > date.today()
+    @staticmethod
     def last_30_days(end_date: date | None = None) -> tuple[date, date]:
         if end_date is None:
             end_date = date.today()

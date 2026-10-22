@@ -1,5 +1,7 @@
 import pandas as pd
-
+from app.errors.import_errors import ImportErrorResult, ImportErrorType
+from app.utils.date_utils import DateUtils
+from app.models.movement import MovementType, PaymentMethod
 
 class ExcelValidator:
     SALES_COLUMNS = [
@@ -10,6 +12,7 @@ class ExcelValidator:
         "Precio Unitario",
         "Total",
     ]
+
     MOVEMENTS_COLUMNS = [
         "Fecha",
         "Tipo",
@@ -18,115 +21,207 @@ class ExcelValidator:
         "Monto",
         "Método de Pago",
     ]
-    VALID_MOVEMENT_TYPES = {"Ingreso", "Gasto"}
-    def validate(self, sales_df, movements_df):
-        errors = []
-        errors.extend(
-            self.validate_columns(
-                sales_df,
-                self.SALES_COLUMNS,
-                "Ventas"
-            )
-        )
-        errors.extend(
-            self.validate_columns(
-                movements_df,
-                self.MOVEMENTS_COLUMNS,
-                "Movimientos"
-            )
-        )
+    VALID_MOVEMENT_TYPES = {item.value.casefold() for item in MovementType}
+    VALID_PAYMENT_METHODS = {item.value.casefold() for item in PaymentMethod}
+    def validate(self, sales_df: pd.DataFrame | None, movements_df: pd.DataFrame | None) -> list[ImportErrorResult]:
+        errors: list[ImportErrorResult] = []
+        if sales_df is not None:
+            errors.extend(self.validate_columns(sales_df, self.SALES_COLUMNS, "Ventas"))
+        if movements_df is not None:
+            errors.extend(self.validate_columns(movements_df, self.MOVEMENTS_COLUMNS, "Movimientos"))
         if errors:
             return errors
-        errors.extend(self.validate_sales(sales_df))
-        errors.extend(self.validate_movements(movements_df))
+        if sales_df is not None:
+            errors.extend(self.validate_sales(sales_df))
+        if movements_df is not None:
+            errors.extend(self.validate_movements(movements_df))
         return errors
-    def validate_columns(self, df, required_columns, sheet_name):
-        errors = []
-        columns = [
-            str(column).strip()
-            for column in df.columns
-        ]
-        duplicated_columns = {
-            column
-            for column in columns
-            if columns.count(column) > 1
-        }
+    @staticmethod
+    def _build_error(
+        message: str,
+        error_type: ImportErrorType,
+        sheet_name: str | None = None,
+        row_number: int | None = None,
+        column_name: str | None = None,
+    ) -> ImportErrorResult:
+        return ImportErrorResult(
+            error_type=error_type,
+            message=message,
+            sheet_name=sheet_name,
+            row_number=row_number,
+            column_name=column_name,
+        )
+    def validate_columns(
+        self, df: pd.DataFrame, required_columns: list[str], sheet_name: str
+    ) -> list[ImportErrorResult]:
+        errors: list[ImportErrorResult] = []
+        columns = [str(column).strip() for column in df.columns]
+        duplicated_columns = {column for column in columns if columns.count(column) > 1}
         if duplicated_columns:
+            duplicated = ", ".join(sorted(duplicated_columns))
             errors.append(
-                f"Hoja '{sheet_name}': hay columnas duplicadas: "
-                f"{', '.join(sorted(duplicated_columns))}."
+                self._build_error(
+                    f"Hay columnas duplicadas: {duplicated}.",
+                    ImportErrorType.INVALID_FILE,
+                    sheet_name=sheet_name,
+                )
             )
-        missing_columns = [
-            column
-            for column in required_columns
-            if column not in columns
-        ]
+        missing_columns = [column for column in required_columns if column not in columns]
         if missing_columns:
+            missing = ", ".join(missing_columns)
             errors.append(
-                f"Hoja '{sheet_name}': faltan las columnas: "
-                f"{', '.join(missing_columns)}."
+                self._build_error(
+                    f"Faltan las columnas obligatorias: {missing}.",
+                    ImportErrorType.INVALID_FILE,
+                    sheet_name=sheet_name,
+                )
             )
         return errors
-    def _is_empty_row(self, row: pd.Series) -> bool:
-        return all(pd.isna(value) or str(value).strip() == ""for value in row)
-    def validate_sales(self, df):
-        errors = []
+    @staticmethod
+    def _is_empty_row(row: pd.Series) -> bool:
+        return all(
+            pd.isna(value) or (isinstance(value, str) and not value.strip())
+            for value in row
+        )
+    @staticmethod
+    def _is_missing(value) -> bool:
+        if pd.isna(value):
+            return True
+        return isinstance(value, str) and not value.strip()
+    @staticmethod
+    def _is_positive_number(value) -> bool:
+        number = pd.to_numeric(value, errors="coerce")
+        return bool(pd.notna(number) and number > 0)
+    def _validate_date(self, value, sheet_name: str, row_number: int) -> list[ImportErrorResult]:
+        date_value = pd.to_datetime(value, errors="coerce")
+        if pd.isna(date_value):
+            return [
+                self._build_error("La fecha no es válida.", ImportErrorType.INVALID_DATA, sheet_name, row_number, "Fecha")
+            ]
+        if DateUtils.identify_future_date(date_value.date()):
+            return [
+                self._build_error("La fecha no puede ser futura.", ImportErrorType.INVALID_DATA, sheet_name, row_number, "Fecha")
+            ]
+        return []
+    def validate_sales(self, df: pd.DataFrame) -> list[ImportErrorResult]:
+        errors: list[ImportErrorResult] = []
         for index, row in df.iterrows():
             row_number = index + 4
-            # Ignorar filas completamente vacías
             if self._is_empty_row(row):
                 continue
-            date = pd.to_datetime(row["Fecha"],errors="coerce")
-            if pd.isna(date):
-                errors.append(f"Ventas, fila {row_number}: la fecha no es válida.")
-            product = str(row["Producto/Servicio"]).strip()
-            if not product or product.lower() == "nan":
-                errors.append(f"Ventas, fila {row_number}: el producto/servicio es obligatorio.")
-            category = str(row["Categoría"]).strip()
-            if not category or category.lower() == "nan":
-                errors.append(f"Ventas, fila {row_number}: la categoría es obligatoria.")
-            quantity = pd.to_numeric(row["Cantidad"],errors="coerce")
-            if pd.isna(quantity) or quantity <= 0:
-                errors.append(f"Ventas, fila {row_number}: la cantidad debe ser un número mayor que cero.")
-            price = pd.to_numeric(row["Precio Unitario"],errors="coerce")
-            if pd.isna(price) or price < 0:
-                errors.append(f"Ventas, fila {row_number}: el precio unitario no es válido.")
-            total = pd.to_numeric(row["Total"],errors="coerce")
-            if pd.isna(total) or total < 0:
-                errors.append(f"Ventas, fila {row_number}: el total no es válido.")
+            errors.extend(self._validate_date(row["Fecha"], "Ventas", row_number))
+            if self._is_missing(row["Producto/Servicio"]):
+                errors.append(
+                    self._build_error(
+                        "El producto/servicio es obligatorio.",
+                        ImportErrorType.INVALID_DATA,
+                        "Ventas", row_number, "Producto/Servicio",
+                    )
+                )
+            if self._is_missing(row["Categoría"]):
+                errors.append(
+                    self._build_error(
+                        "La categoría es obligatoria.",
+                        ImportErrorType.INVALID_DATA,
+                        "Ventas", row_number, "Categoría",
+                    )
+                )
+            quantity = pd.to_numeric(row["Cantidad"], errors="coerce")
+            price = pd.to_numeric(row["Precio Unitario"], errors="coerce")
+            total = pd.to_numeric(row["Total"], errors="coerce")
+            if not self._is_positive_number(quantity):
+                errors.append(
+                    self._build_error(
+                        "La cantidad debe ser un número mayor que cero.",
+                        ImportErrorType.INVALID_DATA,
+                        "Ventas", row_number, "Cantidad",
+                    )
+                )
+            if not self._is_positive_number(price):
+                errors.append(
+                    self._build_error(
+                        "El precio unitario debe ser un número mayor que cero.",
+                        ImportErrorType.INVALID_DATA,
+                        "Ventas", row_number, "Precio Unitario",
+                    )
+                )
+            if not self._is_positive_number(total):
+                errors.append(
+                    self._build_error(
+                        "El total debe ser un número mayor que cero.",
+                        ImportErrorType.INVALID_DATA,
+                        "Ventas", row_number, "Total",
+                    )
+                )
             if (
-                not pd.isna(quantity) and not pd.isna(price) and not pd.isna(total)
+                self._is_positive_number(quantity)
+                and self._is_positive_number(price)
+                and self._is_positive_number(total)
             ):
                 expected_total = quantity * price
-                if round(total, 2) != round(expected_total, 2):
+                if round(float(total), 2) != round(float(expected_total), 2):
                     errors.append(
-                        f"Ventas, fila {row_number}: el total no coincide con cantidad × precio unitario."
+                        self._build_error(
+                            "El total no coincide con cantidad × precio unitario.",
+                            ImportErrorType.INVALID_DATA,
+                            "Ventas", row_number, "Total",
+                        )
                     )
         return errors
-    def validate_movements(self, df):
-        errors = []
+    def validate_movements(self, df: pd.DataFrame) -> list[ImportErrorResult]:
+        errors: list[ImportErrorResult] = []
         for index, row in df.iterrows():
-            row_number = index + 2
-            # Ignorar filas completamente vacías
+            row_number = index + 4
             if self._is_empty_row(row):
                 continue
-            date = pd.to_datetime(row["Fecha"],errors="coerce")
-            if pd.isna(date):
-                errors.append(f"Movimientos, fila {row_number}: la fecha no es válida.")
-            movement_type = str(row["Tipo"]).strip()
-            if movement_type not in self.VALID_MOVEMENT_TYPES:
+            errors.extend(self._validate_date(row["Fecha"], "Movimientos", row_number))
+            movement_type = row["Tipo"]
+            if (
+                self._is_missing(movement_type)
+                or str(movement_type).strip().casefold() not in self.VALID_MOVEMENT_TYPES
+            ):
                 errors.append(
-                    f"Movimientos, fila {row_number}: tipo de movimiento inválido: '{movement_type}'.")
-            category = str(row["Categoría"]).strip()
-            if not category or category.lower() == "nan":
-                errors.append(f"Movimientos, fila {row_number}: la categoría es obligatoria.")
-            description = str(row["Descripción"]).strip()
-            if not description or description.lower() == "nan":
-                errors.append(f"Movimientos, fila {row_number}: la descripción es obligatoria.")
-            amount = pd.to_numeric(row["Monto"],errors="coerce")
-            if pd.isna(amount) or amount <= 0:
-                errors.append(f"Movimientos, fila {row_number}: el monto debe ser un número mayor que cero.")
-            payment_method = str(row["Método de Pago"]).strip()
-            if not payment_method or payment_method.lower() == "nan":
-                errors.append(f"Movimientos, fila {row_number}: el método de pago es obligatorio.")
+                    self._build_error(
+                        f"Tipo de movimiento inválido: '{movement_type}'.",
+                        ImportErrorType.INVALID_DATA,
+                        "Movimientos", row_number, "Tipo",
+                    )
+                )
+            if self._is_missing(row["Categoría"]):
+                errors.append(
+                    self._build_error(
+                        "La categoría es obligatoria.",
+                        ImportErrorType.INVALID_DATA,
+                        "Movimientos", row_number, "Categoría",
+                    )
+                )
+            if self._is_missing(row["Descripción"]):
+                errors.append(
+                    self._build_error(
+                        "La descripción es obligatoria.",
+                        ImportErrorType.INVALID_DATA,
+                        "Movimientos", row_number, "Descripción",
+                    )
+                )
+            amount = pd.to_numeric(row["Monto"], errors="coerce")
+            if not self._is_positive_number(amount):
+                errors.append(
+                    self._build_error(
+                        "El monto debe ser un número mayor que cero.",
+                        ImportErrorType.INVALID_DATA,
+                        "Movimientos", row_number, "Monto",
+                    )
+                )
+            payment_method = row["Método de Pago"]
+            if (
+                self._is_missing(payment_method)
+                or str(payment_method).strip().casefold() not in self.VALID_PAYMENT_METHODS
+            ):
+                errors.append(
+                    self._build_error(
+                        f"Método de pago inválido: '{payment_method}'.",
+                        ImportErrorType.INVALID_DATA,
+                        "Movimientos", row_number, "Método de Pago",
+                    )
+                )
         return errors
