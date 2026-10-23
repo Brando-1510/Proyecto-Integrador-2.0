@@ -1,12 +1,16 @@
 import os
-from app.core.screen_utils import calcular_tamano_pantalla
-from PySide6.QtWidgets import QWidget,QStackedWidget,QPushButton,QVBoxLayout,QMessageBox,QSizePolicy
+
+from PySide6.QtWidgets import (
+    QWidget,QStackedWidget,QPushButton,QVBoxLayout,QMessageBox,QSizePolicy,
+)
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import Signal
+from app.core.screen_utils import calcular_tamano_pantalla
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
-#*Importacion de los widgets
+from app.models.user_business import Role
+
 from app.views.dashboard.pages.dashboard_home import DashboardHome
 from app.views.dashboard.pages.cargar_datos import CargarDatos
 from app.views.dashboard.pages.analisis import Analisis
@@ -16,31 +20,52 @@ from app.views.dashboard.pages.informes import Informes
 from app.views.dashboard.pages.configuracion import Configuracion
 from app.views.dashboard.pages.monitoreo import Monitoreo
 
+
 class VentanaDashboard(QWidget):
     choose_business_requested = Signal(object)
     logout_requested = Signal()
+    PERMISOS_PAGINAS = {
+        Role.ADMIN: {
+            "analisis",
+            "recomendaciones",
+            "informes",
+            "configuracion",
+            "monitoreo",
+        },
+        Role.MANAGER: {
+            "analisis",
+            "recomendaciones",
+            "informes",
+            "configuracion",
+        },
+        Role.FINANCIAL_ANALYST: {
+            "analisis",
+            "recomendaciones",
+            "informes",
+        },
+        Role.EMPLOYEE: set(),
+    }
+
     def __init__(
-        self, userBusiness,
-        home_dashboard_controller,
-        consultation_controler,analysis_controller,recommendation_controller,
-        configuration_controller
+        self,userBusiness,home_dashboard_controller,consultation_controler,analysis_controller,
+        recommendation_controller,configuration_controller,monitoring_controller
     ):
         super().__init__()
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
-        #*Controllers para las paginas del stackedwidget
-        self.home_dashboard_controller=home_dashboard_controller
-        self.consultation_controller=consultation_controler
-        self.analysis_controller=analysis_controller
-        self.recommendation_controller=recommendation_controller
-        self.configuration_controller=configuration_controller
-        #*Obtener directorio actual
+
+        self.home_dashboard_controller = home_dashboard_controller
+        self.consultation_controller = consultation_controler
+        self.analysis_controller = analysis_controller
+        self.recommendation_controller = recommendation_controller
+        self.configuration_controller = configuration_controller
+        self.monitoring_controller=monitoring_controller
+
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
-        #*Cargar archivo ui
-        ruta_ui = os.path.normpath(os.path.join(
-                directorio_actual,"../../ui/dashboard/dashboard.ui"
-            ))
+        ruta_ui = os.path.normpath(
+            os.path.join(directorio_actual,"../../ui/dashboard/dashboard.ui",)
+        )
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
         if not self.ui:
@@ -53,29 +78,20 @@ class VentanaDashboard(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
 
-        #*Obtener widget del ui
-        self.stackedWidget = self.ui.findChild(QStackedWidget,"stackedWidget")
-
-        self.btnHome = self.ui.findChild(QPushButton,"btnHome")
-        self.btnCargarDatos=self.ui.findChild(QPushButton,"btnLoadData")
-        self.btnAnalisis=self.ui.findChild(QPushButton,"BtnAnalisis")
-        self.btnMovimientos=self.ui.findChild(QPushButton,"btnMovimientos")
-        self.btnRecomendaciones=self.ui.findChild(QPushButton,"BtnRecomendaciones")
-        self.btnInformes=self.ui.findChild(QPushButton,"BtnInformes")
-        self.btnConfiguracion=self.ui.findChild(QPushButton,"BtnConfiguracion")
-        self.btnMonitoreo=self.ui.findChild(QPushButton,"BtnMonitoreo")
+        self.stackedWidget = self.ui.findChild(QStackedWidget, "stackedWidget")
+        self.btnHome = self.ui.findChild(QPushButton, "btnHome")
+        self.btnCargarDatos = self.ui.findChild(QPushButton, "btnLoadData")
+        self.btnAnalisis = self.ui.findChild(QPushButton, "BtnAnalisis")
+        self.btnMovimientos = self.ui.findChild(QPushButton, "btnMovimientos")
+        self.btnRecomendaciones = self.ui.findChild(QPushButton, "BtnRecomendaciones")
+        self.btnInformes = self.ui.findChild(QPushButton, "BtnInformes")
+        self.btnConfiguracion = self.ui.findChild(QPushButton, "BtnConfiguracion")
+        self.btnMonitoreo = self.ui.findChild(QPushButton, "BtnMonitoreo")
         self.btnLogout = self.ui.findChild(QPushButton, "BtnCerrarSesion")
-        #*Cargar tipografías
-        # Manrope
+        self.configurar_permisos_interfaz()
+
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
-        # Source Sans 3
         font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-        #*Verificar tipografías
-        if font_id_manrope == -1:
-            print("Advertencia: No se pudo cargar Manrope.")
-        if font_id_source == -1:
-            print("Advertencia: No se pudo cargar Source Sans 3.")
-        #*Obtener familias reales
         manrope_family = None
         source_family = None
         if font_id_manrope != -1:
@@ -86,19 +102,17 @@ class VentanaDashboard(QWidget):
             familias = QFontDatabase.applicationFontFamilies(font_id_source)
             if familias:
                 source_family = familias[0]
-        #* APLICAR TIPOGRAFÍAS
         if manrope_family and source_family:
             estilos_actuales = self.ui.styleSheet()
-            estilos_tipografias = estilos_fuentes(source_family,manrope_family)
+            estilos_tipografias = estilos_fuentes(
+                source_family, manrope_family
+            )
             self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
         else:
             print("Advertencia: No se pudieron cargar correctamente las fuentes.")
-        #* Cargar páginas
         self.cargar_paginas()
-        #* Conectar botones
-        #cerrar sesion
+
         self.btnLogout.clicked.connect(self.cerrar_sesion)
-        #manejar stackedWidget
         self.btnHome.clicked.connect(self.mostrar_home)
         self.btnCargarDatos.clicked.connect(self.mostar_cargar_datos)
         self.btnAnalisis.clicked.connect(self.mostrar_analisis)
@@ -107,36 +121,51 @@ class VentanaDashboard(QWidget):
         self.btnInformes.clicked.connect(self.mostrar_informes)
         self.btnConfiguracion.clicked.connect(self.mostrar_configuracion)
         self.btnMonitoreo.clicked.connect(self.mostrar_monitoreo)
-        #Mostrar el home al iniciar
         self.mostrar_home()
-        #*MOSTRAR VENTANA
         self.showMaximized()
-    #*Función para cerrar sesión
+
+    def configurar_permisos_interfaz(self):
+        rol = self.userBusiness.role
+        permisos = self.PERMISOS_PAGINAS.get(rol, set())
+        botones_por_pagina = {
+            "analisis": self.btnAnalisis,
+            "recomendaciones": self.btnRecomendaciones,
+            "informes": self.btnInformes,
+            "configuracion": self.btnConfiguracion,
+            "monitoreo": self.btnMonitoreo,
+        }
+        for pagina, boton in botones_por_pagina.items():
+            if boton is not None:
+                boton.setVisible(pagina in permisos)
+
+    def tiene_permiso(self, pagina):
+        rol = self.userBusiness.role
+        permisos = self.PERMISOS_PAGINAS.get(rol, set())
+        paginas_comunes = {"home", "cargar_datos", "movimientos"}
+        if pagina in paginas_comunes:
+            return True
+        return pagina in permisos
+
     def cerrar_sesion(self):
-        respuesta=QMessageBox.question(
-            self,"Cerrar Sesión","¿Desea Salir?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        respuesta = QMessageBox.question(
+            self,"Cerrar Sesión","¿Desea salir?",QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
         )
         if respuesta == QMessageBox.StandardButton.Yes:
             self.logout_requested.emit()
-        else:
-            return
     def cambiar_vista(self, nuevo_widget):
-        # Ajustar la política de tamaño para que solo la vista activa mande sobre el alto
         for i in range(self.stackedWidget.count()):
             widget = self.stackedWidget.widget(i)
             if widget == nuevo_widget:
-                widget.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+                widget.setSizePolicy(QSizePolicy.Policy.Expanding,QSizePolicy.Policy.Preferred,)
             else:
-                widget.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
-        # Asignar la vista actual
+                widget.setSizePolicy(QSizePolicy.Policy.Ignored,QSizePolicy.Policy.Ignored,)
         self.stackedWidget.setCurrentWidget(nuevo_widget)
-        # Forzar el recalculo del tamaño del ScrollArea
         self.stackedWidget.adjustSize()
         if hasattr(self.ui, "scrollAreaWidgetContents"):
             self.ui.scrollAreaWidgetContents.adjustSize()
+
     def cargar_paginas(self):
-        self.dashboard_home = DashboardHome(self.userBusiness, self.home_dashboard_controller)
+        self.dashboard_home = DashboardHome(self.userBusiness,self.home_dashboard_controller,)
         self.stackedWidget.addWidget(self.dashboard_home)
         self.cargar_datos = None
         self.analisis = None
@@ -145,49 +174,65 @@ class VentanaDashboard(QWidget):
         self.informes = None
         self.monitoreo = None
         self.configuracion = None
-    # *Mostrar Home
+
     def mostrar_home(self):
+        if not self.tiene_permiso("home"):
+            return
         self.cambiar_vista(self.dashboard_home)
-    # *Mostrar Cargar Datos
+
     def mostar_cargar_datos(self):
+        if not self.tiene_permiso("cargar_datos"):
+            return
         if self.cargar_datos is None:
             self.cargar_datos = CargarDatos(self.userBusiness)
             self.stackedWidget.addWidget(self.cargar_datos)
         self.cambiar_vista(self.cargar_datos)
-    # *Mostrar Análisis
+
     def mostrar_analisis(self):
+        if not self.tiene_permiso("analisis"):
+            return
         if self.analisis is None:
-            self.analisis = Analisis(self.userBusiness,self.analysis_controller)
+            self.analisis = Analisis(self.userBusiness,self.analysis_controller,)
             self.stackedWidget.addWidget(self.analisis)
         self.cambiar_vista(self.analisis)
-    # *Mostrar Movimientos
+
     def mostrar_movimientos(self):
+        if not self.tiene_permiso("movimientos"):
+            return
         if self.movimientos is None:
-            self.movimientos = Movimientos(self.userBusiness,self.consultation_controller)
+            self.movimientos = Movimientos(self.userBusiness,self.consultation_controller,)
             self.stackedWidget.addWidget(self.movimientos)
         self.cambiar_vista(self.movimientos)
-    # *Mostrar Recomendaciones
+
     def mostrar_recomendaciones(self):
+        if not self.tiene_permiso("recomendaciones"):
+            return
         if self.recomendaciones is None:
-            self.recomendaciones = Recomendaciones(self.userBusiness,self.recommendation_controller)
+            self.recomendaciones = Recomendaciones(self.userBusiness,self.recommendation_controller,)
             self.stackedWidget.addWidget(self.recomendaciones)
         self.cambiar_vista(self.recomendaciones)
-    # *Mostrar Informes
+
     def mostrar_informes(self):
+        if not self.tiene_permiso("informes"):
+            return
         if self.informes is None:
             self.informes = Informes(self.userBusiness)
             self.stackedWidget.addWidget(self.informes)
         self.cambiar_vista(self.informes)
-    # *Mostrar Configuración
+
     def mostrar_configuracion(self):
+        if not self.tiene_permiso("configuracion"):
+            return
         if self.configuracion is None:
-            self.configuracion = Configuracion(self.userBusiness,self.configuration_controller)
+            self.configuracion = Configuracion(self.userBusiness,self.configuration_controller,)
             self.configuracion.choose_business_requested.connect(self.choose_business_requested.emit)
             self.stackedWidget.addWidget(self.configuracion)
         self.cambiar_vista(self.configuracion)
-    # *Mostrar Monitoreo
+
     def mostrar_monitoreo(self):
+        if not self.tiene_permiso("monitoreo"):
+            return
         if self.monitoreo is None:
-            self.monitoreo = Monitoreo(self.userBusiness)
+            self.monitoreo = Monitoreo(self.userBusiness,self.monitoring_controller)
             self.stackedWidget.addWidget(self.monitoreo)
         self.cambiar_vista(self.monitoreo)

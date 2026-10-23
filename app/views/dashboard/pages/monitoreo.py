@@ -1,17 +1,19 @@
 import os
-from PySide6.QtWidgets import QWidget,QVBoxLayout
+from PySide6.QtWidgets import QWidget,QVBoxLayout,QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from PySide6.QtCore import Qt,Signal
+from app.controllers.monitoring_controller import MonitoringController
 
 class Monitoreo(QWidget):
-    def __init__(self, userBusiness):
+    def __init__(self, userBusiness,monitoring_controller:MonitoringController):
         super().__init__()
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
+        self.controller=monitoring_controller
         #*OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*CARGAR ARCHIVO .UI
@@ -43,6 +45,7 @@ class Monitoreo(QWidget):
             familias = QFontDatabase.applicationFontFamilies(font_id_manrope)
             if familias:
                 manrope_family = familias[0]
+        self.llenar_labels()
 
         if font_id_source != -1:
             familias = QFontDatabase.applicationFontFamilies(font_id_source)
@@ -59,6 +62,40 @@ class Monitoreo(QWidget):
                 manrope_family
             )
             self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
+        #*Conectar acciones
+        self.ui.comprobarIntegridad.clicked.connect(self.comprobar_integridad)
+        self.ui.optimizadorTablas.clicked.connect(self.optimizar_tablas)
 
-        else:
-            print("Advertencia: No se pudieron cargar correctamente las fuentes.")
+    def enviar_datos(self):
+        return self.controller.send_data(self.business.business_id)
+    def llenar_labels(self):
+        resultado=self.enviar_datos()
+        if not resultado["success"]:
+            QMessageBox.warning(self,"Error",resultado["message"])
+            return
+        self.ui.usuarios.setText(f"{str(resultado["empleados"])}")
+        self.ui.ventas.setText(f"{str(resultado["ventas"])}")
+        self.ui.movimientos.setText(f"{str(resultado["movimientos"])}")
+        self.ui.importaciones.setText(f"{str(resultado["importaciones"])}")
+    def comprobar_integridad(self):
+        resultado = self.controller.check_database_health()
+        if not resultado["success"]:
+            QMessageBox.warning(self, "Error", resultado["message"])
+            return
+        labels = {
+            "Importaciones": self.ui.importacionesIntegridad,
+            "Movimientos": self.ui.movimientosIntegridad,
+            "Ventas": self.ui.ventasIntegridad,
+            "Negocios": self.ui.negociosIntegridad,
+            "Empleados": self.ui.empleadosIntegridad,
+        }
+        for tabla in resultado["tables"]:
+            label = labels.get(tabla["name"])
+            if label:
+                label.setText(tabla["message"])
+    def optimizar_tablas(self):
+        resultado=self.controller.optimize_tables()
+        if not resultado["success"]:
+            QMessageBox.warning(self, "Error", resultado["message"])
+            return
+        QMessageBox.information(self,"Optimización Éxitosa",resultado["message"])

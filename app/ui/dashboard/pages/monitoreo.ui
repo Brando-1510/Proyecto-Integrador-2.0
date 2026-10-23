@@ -613,7 +613,27 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
 </string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_2">
-                    <item row="3" column="1">
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_13">
+                      <property name="text">
+                       <string>Ventas</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Descripcion</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLabel" name="label_17">
+                      <property name="text">
+                       <string>Importaciones</string>
+                      </property>
+                      <property name="texto" stdset="0">
+                       <string>Descripcion</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
                      <widget class="QLabel" name="movimientos">
                       <property name="text">
                        <string>0</string>
@@ -628,13 +648,6 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                      </widget>
                     </item>
                     <item row="1" column="1">
-                     <widget class="QLabel" name="negocios">
-                      <property name="text">
-                       <string>0</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
                      <widget class="QLabel" name="ventas">
                       <property name="text">
                        <string>0</string>
@@ -644,14 +657,14 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                     <item row="0" column="0">
                      <widget class="QLabel" name="label_8">
                       <property name="text">
-                       <string>Usuarios</string>
+                       <string>Empleados</string>
                       </property>
                       <property name="texto" stdset="0">
                        <string>Descripcion</string>
                       </property>
                      </widget>
                     </item>
-                    <item row="3" column="0">
+                    <item row="2" column="0">
                      <widget class="QLabel" name="label_15">
                       <property name="text">
                        <string>Movimientos</string>
@@ -661,40 +674,10 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_11">
-                      <property name="text">
-                       <string>Negocios</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>Descripcion</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_13">
-                      <property name="text">
-                       <string>Ventas</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>Descripcion</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QLabel" name="label_18">
+                    <item row="3" column="1">
+                     <widget class="QLabel" name="importaciones">
                       <property name="text">
                        <string>0</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QLabel" name="label_17">
-                      <property name="text">
-                       <string>Importaciones</string>
-                      </property>
-                      <property name="texto" stdset="0">
-                       <string>Descripcion</string>
                       </property>
                      </widget>
                     </item>
@@ -734,7 +717,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton">
+                  <widget class="QPushButton" name="optimizadorTablas">
                    <property name="text">
                     <string>Optimizar Tablas</string>
                    </property>
@@ -792,7 +775,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_2">
+                  <widget class="QPushButton" name="comprobarIntegridad">
                    <property name="text">
                     <string>Comprobar Integridad</string>
                    </property>
@@ -827,30 +810,30 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                 </property>
                 <layout class="QGridLayout" name="gridLayout_3">
                  <item row="0" column="1">
-                  <widget class="QLabel" name="usuarios_2">
+                  <widget class="QLabel" name="empleadosIntegridad">
                    <property name="text">
-                    <string>Sin problemas</string>
+                    <string>No se ha comprobado la integridad.</string>
                    </property>
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QLabel" name="ventas_2">
+                  <widget class="QLabel" name="ventasIntegridad">
                    <property name="text">
-                    <string>Sin problemas</string>
+                    <string>No se ha comprobado la integridad.</string>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QLabel" name="negocios_2">
+                  <widget class="QLabel" name="negociosIntegridad">
                    <property name="text">
-                    <string>Sin problemas</string>
+                    <string>No se ha comprobado la integridad.</string>
                    </property>
                   </widget>
                  </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="label_19">
                    <property name="text">
-                    <string>Usuarios</string>
+                    <string>Empleados</string>
                    </property>
                    <property name="texto" stdset="0">
                     <string>Descripcion</string>
@@ -868,9 +851,9 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                   </widget>
                  </item>
                  <item row="4" column="1">
-                  <widget class="QLabel" name="label_23">
+                  <widget class="QLabel" name="importacionesIntegridad">
                    <property name="text">
-                    <string>Sin problemas</string>
+                    <string>No se ha comprobado la integridad.</string>
                    </property>
                   </widget>
                  </item>
@@ -895,9 +878,9 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
                   </widget>
                  </item>
                  <item row="3" column="1">
-                  <widget class="QLabel" name="movimientos_2">
+                  <widget class="QLabel" name="movimientosIntegridad">
                    <property name="text">
-                    <string>Sin problemas</string>
+                    <string>No se ha comprobado la integridad.</string>
                    </property>
                   </widget>
                  </item>

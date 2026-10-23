@@ -11,6 +11,7 @@ from app.repositories.movement_repository import MovementRepository
 from app.repositories.analysis_repository import AnalysisRepository
 from app.repositories.recommendation_repository import RecommendationRepository
 from app.repositories.configuration_repository import ConfigurationRepository
+from app.repositories.monitoring_repository import MonitoringRepository
 #*Services
 from app.services.user_services import UserService
 from app.services.recovery_services import RecoveryService
@@ -24,6 +25,7 @@ from app.services.consultation_service import ConsultationService
 from app.services.analysis_service import AnalysisService
 from app.services.recommendation_service import RecommendationService
 from app.services.configuration_service import ConfigurationService
+from app.services.monitoring_service import MonitoringService
 #*Controllers
 from app.controllers.user_controller import UserController
 from app.controllers.recovery_controller import RecoveryController
@@ -34,6 +36,7 @@ from app.controllers.consultation_controller import ConsultationController
 from app.controllers.analysis_controller import AnalysisController
 from app.controllers.recommendation_controller import RecommendationController
 from app.controllers.configuration_controller import ConfigurationController
+from app.controllers.monitoring_controller import MonitoringController
 
 class AppContainer:
     def __init__(self):
@@ -50,6 +53,7 @@ class AppContainer:
         self.analysis_repository=AnalysisRepository(self.session)
         self.recommendation_repository=RecommendationRepository(self.session)
         self.configuration_repository=ConfigurationRepository(self.session)
+        self.monitoring_repository=MonitoringRepository(self.session)
         #*UserBusiness
         self.userBusiness_service = UserBusinessService(self.userBusiness_repository)
         self.userBusiness_controller = ChooseBusinessController(self.userBusiness_service)
@@ -89,5 +93,8 @@ class AppContainer:
         #*Configuracion
         self.configuration_service=ConfigurationService(self.configuration_repository)
         self.configuration_controller=ConfigurationController(self.configuration_service)
+        #*Monitoreo
+        self.monitoring_service=MonitoringService(self.monitoring_repository)
+        self.monitoring_controller=MonitoringController(self.monitoring_service)
     def close(self):
         self.session.close()

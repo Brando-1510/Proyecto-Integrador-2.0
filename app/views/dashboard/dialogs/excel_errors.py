@@ -16,13 +16,14 @@ class ExcelErrorsUI:
 
         #* CARGAR ARCHIVO .UI
         ruta_ui = os.path.normpath(os.path.join(
-            directorio_actual,"../../ui//dashboard/qdialog/ExcelErrors.ui"
+            directorio_actual,"../../../ui/dashboard/qdialog/ExcelErrors.ui"
         ))
         loader = QUiLoader()
-        self.ui = loader.load(ruta_ui,self)
+        self.ui = loader.load(ruta_ui)
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
             return
+        self.ui.setWindowTitle("Errores del archivo Excel")
         #* CARGAR TIPOGRAFÍAS
         # Manrope
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
@@ -47,11 +48,11 @@ class ExcelErrorsUI:
         self.llenar_scrollarea()
     def llenar_scrollarea(self):
         layout_ventas = self.ui.scrollAreaWidgetContents.layout()
-        layout_movimientos = self.ui.scrollAreaWidgetContents2.layout()
+        layout_movimientos = self.ui.scrollAreaWidgetContents_2.layout()
         if layout_ventas is None or layout_movimientos is None:
             raise RuntimeError("Los contenedores de errores deben tener un layout.")
-        self.ui.lblVentas.setVisible(bool(self.erroresVentas))
-        self.ui.lblMovimientos.setVisible(bool(self.erroresMovimientos))
+        self.ui.lblVentas.setVisible(not bool(self.erroresVentas))
+        self.ui.lblMovimientos.setVisible(not bool(self.erroresMovimientos))
         for error in self.erroresVentas:
             layout_ventas.addWidget(self._crear_label_error(error))
         for error in self.erroresMovimientos:

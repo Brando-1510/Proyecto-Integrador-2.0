@@ -14,7 +14,10 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">Dialog{
+   <string notr="true">QDialog{
+background-color:#f7f7f7;
+}
+QWidget{
 background-color:#f7f7f7;
 }
 QLabel{
@@ -199,10 +202,9 @@ QScrollArea {
 	border-radius:0px;
 }
 
-/* Widget que está dentro del ScrollArea */
-/*QScrollArea &gt; QWidget &gt; QWidget {
-    background-color: #F9F9FC;
-}*/
+QScrollArea &gt; QWidget &gt; QWidget {
+    background-color: #f7f7f7;
+}
 
 /* Scrollbar vertical */
 QScrollBar:vertical {
