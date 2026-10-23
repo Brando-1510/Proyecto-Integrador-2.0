@@ -1,5 +1,6 @@
 from app.models.imports import Import
 from app.utils.hash_utils import calculate_sha256
+from app.errors.import_errors import DuplicateImportError
 
 class ImportService:
     def __init__(self, import_repository):
@@ -11,7 +12,9 @@ class ImportService:
             .get_by_business_and_hash(business_id,file_hash)
         )
         if existing_import:
-            raise ValueError("El archivo que intenta registrar ya existe en la base de datos.")
+            raise DuplicateImportError(
+                "El archivo que intenta registrar ya existe en la base de datos."
+            )
         import_obj = Import(
             user_id=user_id,business_id=business_id,file_name=file_name,file_hash=file_hash
         )

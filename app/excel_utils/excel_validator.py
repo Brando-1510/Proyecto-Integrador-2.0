@@ -1,7 +1,8 @@
 import pandas as pd
 from app.errors.import_errors import ImportErrorResult, ImportErrorType
 from app.utils.date_utils import DateUtils
-from app.models.movement import MovementType, PaymentMethod
+from app.models.movement import MovementType,PaymentMethod,IncomeCategory,ExpenseCategory
+
 
 class ExcelValidator:
     SALES_COLUMNS = [
@@ -23,6 +24,9 @@ class ExcelValidator:
     ]
     VALID_MOVEMENT_TYPES = {item.value.casefold() for item in MovementType}
     VALID_PAYMENT_METHODS = {item.value.casefold() for item in PaymentMethod}
+    VALID_INCOME_CATEGORIES = {item.value.casefold() for item in IncomeCategory}
+    VALID_EXPENSE_CATEGORIES = {item.value.casefold() for item in ExpenseCategory}
+
     def validate(self, sales_df: pd.DataFrame | None, movements_df: pd.DataFrame | None) -> list[ImportErrorResult]:
         errors: list[ImportErrorResult] = []
         if sales_df is not None:
@@ -55,7 +59,7 @@ class ExcelValidator:
         self, df: pd.DataFrame, required_columns: list[str], sheet_name: str
     ) -> list[ImportErrorResult]:
         errors: list[ImportErrorResult] = []
-        columns = [str(column).strip() for column in df.columns]
+        columns = [" ".join(str(column).split()) for column in df.columns]
         duplicated_columns = {column for column in columns if columns.count(column) > 1}
         if duplicated_columns:
             duplicated = ", ".join(sorted(duplicated_columns))
@@ -187,7 +191,9 @@ class ExcelValidator:
                         "Movimientos", row_number, "Tipo",
                     )
                 )
-            if self._is_missing(row["Categoría"]):
+                #*
+            category = row["Categoría"]
+            if self._is_missing(category):
                 errors.append(
                     self._build_error(
                         "La categoría es obligatoria.",
@@ -195,6 +201,27 @@ class ExcelValidator:
                         "Movimientos", row_number, "Categoría",
                     )
                 )
+            else:
+                movement_type_value = str(movement_type).strip().casefold()
+                category_value = str(category).strip().casefold()
+                if movement_type_value == MovementType.INCOME.value.casefold():
+                    valid_categories = self.VALID_INCOME_CATEGORIES
+                elif movement_type_value == MovementType.EXPENSE.value.casefold():
+                    valid_categories = self.VALID_EXPENSE_CATEGORIES
+                else:
+                    valid_categories = None
+                if (
+                    valid_categories is not None
+                    and category_value not in valid_categories
+                ):
+                    errors.append(
+                        self._build_error(
+                            f"La categoría '{category}' no es válida para "
+                            f"el tipo de movimiento '{movement_type}'.",
+                            ImportErrorType.INVALID_DATA,
+                            "Movimientos", row_number, "Categoría",
+                        )
+                    )
             if self._is_missing(row["Descripción"]):
                 errors.append(
                     self._build_error(

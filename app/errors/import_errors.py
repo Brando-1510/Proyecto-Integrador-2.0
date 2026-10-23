@@ -19,3 +19,10 @@ class ImportErrorResult:
     sheet_name: str | None = None
     row_number: int | None = None
     column_name: str | None = None
+
+class DuplicateImportError(Exception):
+    #*El archivo ya fue importado para este negocio.
+    pass
+class CategoryNotFoundError(Exception):
+    #*La categoría de una venta no existe para el negocio.
+    pass

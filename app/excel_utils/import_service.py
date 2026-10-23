@@ -51,21 +51,46 @@ class ImportService:
         # Normalizar encabezados y textos.
         notify(30, "Normalizando formato de datos...")
         sales_df, movements_df = self.transformer.normalize_excel(sales_df,movements_df,)
+        if sales_df is None and movements_df is None:
+            return ExcelImportResult(
+                success=False,
+                errors=[
+                    ImportErrorResult(
+                        error_type=ImportErrorType.INVALID_DATA,
+                        message=(
+                            "El archivo no contiene datos procesables en las hojas "
+                            "'Ventas' o 'Movimientos'."
+                        ),
+                    )
+                ],
+            )
         # Validar los datos normalizados.
         notify(50, "Validando datos...")
         errors = self.validator.validate(sales_df, movements_df)
         if errors:
+            notify(100, "Se encontraron errores en el archivo.")
+            return ExcelImportResult(success=False,errors=errors,)
+        # Convertir los datos validados.
+        notify(70, "Preparando los datos...")
+        try:
+            sales_df, movements_df = self.transformer.transform_excel(sales_df,movements_df,)
+        except (ValueError, TypeError, KeyError, OverflowError) as e:
             return ExcelImportResult(
                 success=False,
-                errors=errors,
+                errors=[
+                    ImportErrorResult(
+                        error_type=ImportErrorType.INVALID_DATA,
+                        message=(
+                            "No fue posible convertir los datos del archivo. "
+                            "Revisa las fechas y los valores numéricos."
+                        ),
+                        technical_message=str(e),
+                    )
+                ],
             )
-        # Transformar los tipos de datos.
-        notify(80, "Transformando tipos de datos...")
-        sales_df, movements_df = self.transformer.transform_excel(sales_df,movements_df,)
-        # Devolver únicamente las hojas que contenían datos.
         notify(100, "Procesamiento completado.")
         return ExcelImportResult(
             success=True,
-            sales=sales_df if has_sales else None,
-            movements=movements_df if has_movements else None,
+            sales=sales_df,
+            movements=movements_df,
         )

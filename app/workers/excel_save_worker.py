@@ -7,7 +7,8 @@ from app.repositories.category_repository import CategoryRepository
 from app.services.import_service import ImportService
 from app.services.category_service import CategoryService
 from app.services.transaction_import_service import TransactionImportService
-from app.errors.import_errors import (ImportErrorResult,ImportErrorType,)
+from app.errors.import_errors import (ImportErrorResult,ImportErrorType,DuplicateImportError,
+                                    CategoryNotFoundError)
 
 class ExcelSaveWorker(QObject):
     finished = Signal()
@@ -56,44 +57,50 @@ class ExcelSaveWorker(QObject):
 
             self.message.emit("Datos guardados correctamente.")
             self.finished.emit()
+
+        except DuplicateImportError as e:
+            session.rollback()
+            self.error.emit(
+                ImportErrorResult(
+                    error_type=ImportErrorType.FILE_ALREADY_EXISTS,
+                    message=(
+                        "Este archivo ya fue importado anteriormente "
+                        "para este negocio."
+                    ),
+                    technical_message=str(e),
+                )
+            )
+
+        except CategoryNotFoundError as e:
+            session.rollback()
+            self.error.emit(
+                ImportErrorResult(
+                    error_type=ImportErrorType.CATEGORY_NOT_FOUND,
+                    message=str(e),
+                    technical_message=str(e),
+                )
+            )
+
         except ValueError as e:
+            session.rollback()
+            error_message = str(e)
+
             self.error.emit(
                 ImportErrorResult(
                     error_type=ImportErrorType.INVALID_DATA,
-                    message=str(e),
-                    technical_message=str(e)
+                    message=error_message,
+                    technical_message=error_message,
                 )
             )
+
         except Exception as e:
-            error_message = str(e)
-            if "ya existe en la base de datos" in error_message:
-                self.error.emit(
-                    ImportErrorResult(
-                        error_type=ImportErrorType.FILE_ALREADY_EXISTS,
-                        message=(
-                            "Este archivo ya fue importado "
-                            "anteriormente para este negocio."
-                        ),
-                        technical_message=error_message
-                    )
+            session.rollback()
+            self.error.emit(
+                ImportErrorResult(
+                    error_type=ImportErrorType.DATABASE_ERROR,
+                    message="No fue posible guardar los datos.",
+                    technical_message=str(e),
                 )
-            elif "no existe para este negocio" in error_message:
-                self.error.emit(
-                    ImportErrorResult(
-                        error_type=ImportErrorType.CATEGORY_NOT_FOUND,
-                        message=error_message,
-                        technical_message=error_message
-                    )
-                )
-            else:
-                self.error.emit(
-                    ImportErrorResult(
-                        error_type=ImportErrorType.DATABASE_ERROR,
-                        message=(
-                            "No fue posible guardar los datos."
-                        ),
-                        technical_message=error_message
-                    )
-                )
+            )
         finally:
             session.close()

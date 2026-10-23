@@ -6,6 +6,7 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QSizePolicy, QVBoxLayout, QWidget
 
 from app.errors.import_errors import ImportErrorType
+from app.views.dashboard.dialogs.excel_errors import ExcelErrorsUI
 from app.generated import resources_rc
 from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_table_model import SalesTableModel
@@ -150,8 +151,6 @@ class CargarDatos(QWidget):
     def save_import(self):
         if self._is_processing():
             return
-        if self.df_ventas is None or self.df_movimientos is None:
-            return
         if not self.selected_file_path or not self.selected_file_name:
             return
         respuesta=QMessageBox.question(
@@ -193,28 +192,22 @@ class CargarDatos(QWidget):
 
     @Slot(object)
     def import_finished(self, result):
-        if not getattr(result, "success", False):
-            error = getattr(result, "error", None)
-            if error:
-                self.import_error(error)
+        if not result.success:
+            if result.errors:
+                self._show_import_errors(result.errors)
             else:
                 self._show_unknown_import_error()
             return
-
         self.selected_file_name = self.pending_file_name
         self.selected_file_path = self.pending_file_path
         self.pending_file_name = None
         self.pending_file_path = None
-
         self.df_ventas = result.sales
         self.df_movimientos = result.movements
-
         self.sales_model.set_data(self.df_ventas)
         self.movements_model.set_data(self.df_movimientos)
-
         if hasattr(self.ui, "lblNombreArchivo"):
             self.ui.lblNombreArchivo.setText(self.selected_file_name)
-
         self.ui.frameArchivo.show()
         self.altura_cambiada.emit(1000)
         self._hide_progress()
@@ -232,26 +225,27 @@ class CargarDatos(QWidget):
 
     @Slot()
     def save_finished(self):
-        QMessageBox.information(self, "Importación exitosa", "Los datos se guardaron correctamente.")
-
+        QMessageBox.information(
+            self,
+            "Importación exitosa",
+            "Los datos se guardaron correctamente."
+        )
         self._clear_data_state()
         self.ui.frameArchivo.hide()
         self.altura_cambiada.emit(689)
         self._hide_progress()
         self._toggle_buttons(enabled=True, accept_enabled=False)
 
-    @Slot(object)
-    def save_error(self, error):
-        self._show_save_error(error)
-        self._hide_progress()
+        @Slot(object)
+        def save_error(self, error):
+            self._show_save_error(error)
+            self._hide_progress()
 
-        self._toggle_buttons(enabled=True, accept_enabled=True)
+            self._toggle_buttons(enabled=True, accept_enabled=True)
 
     def _show_import_error(self, error):
         if error.error_type == ImportErrorType.INVALID_FILE:
             QMessageBox.warning(self, "Archivo inválido", error.message)
-        elif error.error_type == ImportErrorType.FILE_NOT_FOUND:
-            QMessageBox.warning(self, "Archivo no encontrado", error.message)
         elif error.error_type == ImportErrorType.INVALID_DATA:
             QMessageBox.warning(self, "Datos inválidos", error.message)
         else:
@@ -296,6 +290,14 @@ class CargarDatos(QWidget):
     def _is_processing(self) -> bool:
         return self.thread is not None and self.thread.isRunning()
 
+
+    @Slot(object)
+    def save_error(self, error):
+        self._show_save_error(error)
+        self._hide_progress()
+        self._toggle_buttons(enabled=True, accept_enabled=True)
+
+
     @Slot()
     def _cleanup_thread(self):
         if self.worker:
@@ -338,3 +340,29 @@ class CargarDatos(QWidget):
         self.ui.btnCambiarArchivo.setEnabled(enabled)
         self.ui.btnCancelar.setEnabled(enabled)
         self.ui.btnAceptar.setEnabled(enabled if accept_enabled else False)
+
+    def _show_import_errors(self, errors):
+        errores_por_hoja = {
+            "ventas": [],
+            "movimientos": [],
+            "generales": [],
+        }
+        for error in errors:
+            if error.sheet_name == "Ventas":
+                errores_por_hoja["ventas"].append(error)
+            elif error.sheet_name == "Movimientos":
+                errores_por_hoja["movimientos"].append(error)
+            else:
+                errores_por_hoja["generales"].append(error)
+        # Mostrar los errores de las hojas en el diálogo.
+        if errores_por_hoja["ventas"] or errores_por_hoja["movimientos"]:
+            dialog = ExcelErrorsUI(errores_por_hoja)
+            dialog.ui.exec()
+        # Mostrar los errores que no pertenecen a una hoja.
+        if errores_por_hoja["generales"]:
+            mensajes = "\n\n".join(error.message for error in errores_por_hoja["generales"])
+            QMessageBox.warning(self,"Error durante la importación",mensajes,)
+        self._hide_progress()
+        self.pending_file_name = None
+        self.pending_file_path = None
+        self._toggle_buttons(enabled=True, accept_enabled=False)

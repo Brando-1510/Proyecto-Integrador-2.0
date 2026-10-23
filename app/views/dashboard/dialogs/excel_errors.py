@@ -1,16 +1,16 @@
 import os
 from PySide6.QtWidgets import QLabel,QMessageBox
+from app.errors.import_errors import ImportErrorResult
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtGui import QIcon,QAction
-from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 
 class ExcelErrorsUI:
-    def __init__(self,errores:dict):
+    def __init__(self,errores: dict[str, list[ImportErrorResult]]):
         self.errores=errores
         self.erroresVentas=errores.get("ventas",[])
         self.erroresMovimientos=errores.get("movimientos",[])
+        self.erroresGenerales = errores.get("generales", [])
         #* OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
 
@@ -44,16 +44,25 @@ class ExcelErrorsUI:
             estilos_actuales = self.ui.styleSheet()
             estilos_tipografias=estilos_fuentes(source_family,manrope_family)
             self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
+        self.llenar_scrollarea()
     def llenar_scrollarea(self):
         layout_ventas = self.ui.scrollAreaWidgetContents.layout()
-        layout_movimientos= self.ui.scrollAreaWidgetContents2.layout()
-        if self.erroresVentas:
-            self.ui.lblVentas.hide()
-            for error in self.erroresVentas:
-                lbl = QLabel(error)
-                layout_ventas.addWidget(lbl)
-        if self.erroresMovimientos:
-            self.ui.lblMovimientos.hide()
-            for error in self.erroresVentas:
-                lbl = QLabel(error)
-                layout_movimientos.addWidget(lbl)
+        layout_movimientos = self.ui.scrollAreaWidgetContents2.layout()
+        if layout_ventas is None or layout_movimientos is None:
+            raise RuntimeError("Los contenedores de errores deben tener un layout.")
+        self.ui.lblVentas.setVisible(bool(self.erroresVentas))
+        self.ui.lblMovimientos.setVisible(bool(self.erroresMovimientos))
+        for error in self.erroresVentas:
+            layout_ventas.addWidget(self._crear_label_error(error))
+        for error in self.erroresMovimientos:
+            layout_movimientos.addWidget(self._crear_label_error(error))
+    @staticmethod
+    def _crear_label_error(error: ImportErrorResult) -> QLabel:
+        if error.row_number is not None:
+            texto = f"Fila {error.row_number}: {error.message}"
+        else:
+            texto = error.message
+        label = QLabel(texto)
+        label.setWordWrap(True)
+        return label
+
