@@ -4,9 +4,11 @@ from PySide6.QtCore import QThread, Slot,Signal
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QSizePolicy, QVBoxLayout, QWidget
+from app.models.user_business import Role
 
 from app.errors.import_errors import ImportErrorType
 from app.views.dashboard.dialogs.excel_errors import ExcelErrorsUI
+from app.views.dashboard.dialogs.excel_categories import ExcelCategoriesUI
 from app.generated import resources_rc
 from app.views.dashboard.table_models.movements_table_model import MovementsTableModel
 from app.views.dashboard.table_models.sales_table_model import SalesTableModel
@@ -35,6 +37,8 @@ class CargarDatos(QWidget):
 
         self.thread = None
         self.worker = None
+        self._categories_to_create_pending = None
+        self._categories_dialog_open = False
 
         self._setup_ui()
         self._cargar_fuentes()
@@ -148,40 +152,65 @@ class CargarDatos(QWidget):
         self.worker.error.connect(self.thread.quit)
         self.thread.finished.connect(self._cleanup_thread)
         self.thread.start()
+
     def save_import(self):
         if self._is_processing():
             return
+
         if not self.selected_file_path or not self.selected_file_name:
             return
-        respuesta=QMessageBox.question(
-            self,"Guardar Importación","¿Desea Guardar la Importación?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+
+        respuesta = QMessageBox.question(
+            self,
+            "Guardar Importación",
+            "¿Desea guardar la importación?",
+            QMessageBox.StandardButton.Yes
+            | QMessageBox.StandardButton.No,
         )
-        if respuesta == QMessageBox.StandardButton.Yes:
-            self._show_progress("Preparando guardado...")
-            self._toggle_buttons(enabled=False)
-            self.thread = QThread(self)
-            self.worker = ExcelSaveWorker(
-                user_id=self.user.user_id,
-                business_id=self.business.business_id,
-                file_path=self.selected_file_path,
-                file_name=self.selected_file_name,
-                df_sales=self.df_ventas,
-                df_movements=self.df_movimientos,
-            )
-            self.worker.moveToThread(self.thread)
-            self.thread.started.connect(self.worker.run)
-            self.worker.progress.connect(self.update_progress)
-            self.worker.message.connect(self.update_message)
-            self.worker.finished.connect(self.save_finished)
-            self.worker.error.connect(self.save_error)
-            self.worker.finished.connect(self.thread.quit)
-            self.worker.error.connect(self.thread.quit)
-            self.thread.finished.connect(self._cleanup_thread)
-            self.thread.start()
-        else:
+
+        if respuesta != QMessageBox.StandardButton.Yes:
             return
 
+        self._start_save_worker()
+
+    def _start_save_worker(
+        self,
+        categories_to_create: list[str] | None = None,
+    ):
+        if self._is_processing():
+            return
+
+        self._show_progress("Preparando guardado...")
+        self._toggle_buttons(enabled=False)
+
+        self.thread = QThread(self)
+
+        self.worker = ExcelSaveWorker(
+            user_id=self.user.user_id,
+            business_id=self.business.business_id,
+            file_path=self.selected_file_path,
+            file_name=self.selected_file_name,
+            df_sales=self.df_ventas,
+            df_movements=self.df_movimientos,
+            categories_to_create=categories_to_create,
+        )
+
+        self.worker.moveToThread(self.thread)
+
+        self.thread.started.connect(self.worker.run)
+
+        self.worker.progress.connect(self.update_progress)
+        self.worker.message.connect(self.update_message)
+
+        self.worker.finished.connect(self.save_finished)
+        self.worker.error.connect(self.save_error)
+
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.error.connect(self.thread.quit)
+
+        self.thread.finished.connect(self._cleanup_thread)
+
+        self.thread.start()
     @Slot(int)
     def update_progress(self, value: int):
         self.ui.progressBar.setValue(value)
@@ -236,12 +265,102 @@ class CargarDatos(QWidget):
         self._hide_progress()
         self._toggle_buttons(enabled=True, accept_enabled=False)
 
-        @Slot(object)
-        def save_error(self, error):
-            self._show_save_error(error)
-            self._hide_progress()
 
-            self._toggle_buttons(enabled=True, accept_enabled=True)
+    @Slot(object)
+    def save_error(self, error):
+        self._hide_progress()
+
+        if error.error_type == ImportErrorType.CATEGORY_NOT_FOUND:
+            missing_categories = error.missing_categories or []
+
+            if not missing_categories:
+                self._show_save_error(error)
+                self._toggle_buttons(enabled=True, accept_enabled=True)
+                return
+
+            # Solo el gerente puede autorizar la creación.
+            if self.userBusiness.role != Role.MANAGER:
+                QMessageBox.warning(
+                    self,
+                    "Categorías no encontradas",
+                    "El archivo contiene categorías de ventas que "
+                    "no existen para este negocio.\n\n"
+                    "Solicite al gerente que cree las categorías "
+                    "o que realice la importación.",
+                )
+                self._toggle_buttons(
+                    enabled=True,
+                    accept_enabled=False,
+                )
+                return
+
+            # Mostrar el diálogo personalizado.
+            dialog = ExcelCategoriesUI(
+                categorias=missing_categories,
+                parent=self,
+            )
+
+            dialog.create_category_requested.connect(
+                self._on_create_categories_requested
+            )
+            dialog.cancel_importation_requested.connect(
+                self._on_cancel_categories_requested
+            )
+
+            self._categories_dialog_open = True
+            dialog.ui.exec()
+            self._categories_dialog_open = False
+
+            # Si el hilo anterior ya terminó, inicia el segundo intento.
+            # Si todavía existe, _cleanup_thread se encargará de hacerlo.
+            if self._categories_to_create_pending is not None:
+                self._try_start_pending_save()
+            else:
+                # El gerente canceló. Se conserva la vista previa.
+                self._toggle_buttons(
+                    enabled=True,
+                    accept_enabled=True,
+                )
+
+            return
+
+        # Los demás errores siguen el flujo habitual.
+        self._show_save_error(error)
+        self._toggle_buttons(
+            enabled=True,
+            accept_enabled=True,
+        )
+
+
+    @Slot(object)
+    def _on_create_categories_requested(self, categories: list[str]):
+        """Guarda las categorías autorizadas para el siguiente intento."""
+        self._categories_to_create_pending = categories.copy()
+
+
+    @Slot()
+    def _on_cancel_categories_requested(self):
+        """Cancela la creación de categorías sin guardar la importación."""
+        self._categories_to_create_pending = None
+
+
+    def _try_start_pending_save(self):
+        """
+        Inicia el segundo intento únicamente cuando el hilo anterior
+        ha sido limpiado y ya no existe una operación de guardado activa.
+        """
+        if self._categories_to_create_pending is None:
+            return
+
+        # No sustituir las referencias de un hilo anterior todavía existente.
+        if self.thread is not None:
+            return
+
+        categories = self._categories_to_create_pending
+        self._categories_to_create_pending = None
+
+        self._start_save_worker(categories_to_create=categories)
+
 
     def _show_import_error(self, error):
         if error.error_type == ImportErrorType.INVALID_FILE:
@@ -291,11 +410,7 @@ class CargarDatos(QWidget):
         return self.thread is not None and self.thread.isRunning()
 
 
-    @Slot(object)
-    def save_error(self, error):
-        self._show_save_error(error)
-        self._hide_progress()
-        self._toggle_buttons(enabled=True, accept_enabled=True)
+
 
 
     @Slot()
@@ -307,6 +422,10 @@ class CargarDatos(QWidget):
         if self.thread:
             self.thread.deleteLater()
             self.thread = None
+
+        # Si el gerente autorizó las categorías, continuar el guardado.
+        self._try_start_pending_save()
+
 
     def _clear_data_state(self):
         self.df_ventas = None

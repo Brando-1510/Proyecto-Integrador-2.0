@@ -36,6 +36,7 @@ class TransactionImportService:
         file_name: str,
         df_sales: DataFrame | None,
         df_movements: DataFrame | None,
+        categories_to_create: list[str] | None = None,
     ):
         try:
             if (
@@ -45,11 +46,21 @@ class TransactionImportService:
                 raise ValueError(
                     "No hay datos para guardar en la importación."
                 )
+
+            # Solo crea categorías cuando el usuario ya lo autorizó.
+            if categories_to_create:
+                self.category_service.create_missing_categories(
+                    business_id=business_id,
+                    category_names=categories_to_create,
+                )
+
+            # Comprueba que las categorías existan antes de guardar
+            # el registro de importación.
             category_map = self._get_sales_category_map(
-                df_sales, business_id
+                df_sales,
+                business_id,
             )
 
-            # Registrar los metadatos del archivo.
             import_created = self.import_service.save_import(
                 user_id=user_id,
                 business_id=business_id,
@@ -57,7 +68,6 @@ class TransactionImportService:
                 file_name=file_name,
             )
 
-            # Guardar únicamente las hojas que contienen datos.
             self.save_sales(
                 df_sales=df_sales,
                 business_id=business_id,
@@ -73,7 +83,6 @@ class TransactionImportService:
                 user_id=user_id,
             )
 
-            # Confirmar todos los cambios en una sola transacción.
             self.session.commit()
             return import_created
 
@@ -83,7 +92,7 @@ class TransactionImportService:
 
     def _get_sales_category_map(
         self,
-        df_sales: DataFrame | None,
+        df_sales,
         business_id: int,
     ) -> dict:
         if df_sales is None or df_sales.empty:
@@ -93,18 +102,22 @@ class TransactionImportService:
             business_id
         )
 
-        # Comprobar que cada categoría exista en el negocio.
-        for index, row in df_sales.iterrows():
-            category_name = normalize_category_name(
-                row["Categoría"]
-            )
+        missing_categories = {}
 
-            if category_name not in category_map:
-                raise CategoryNotFoundError(
-                    f"La categoría '{row['Categoría']}' "
-                    f"no existe para este negocio "
-                    f"(fila {index + 4}, hoja Ventas)."
+        for _, row in df_sales.iterrows():
+            original_name = str(row["Categoría"]).strip()
+            normalized_name = normalize_category_name(original_name)
+
+            if normalized_name not in category_map:
+                missing_categories.setdefault(
+                    normalized_name,
+                    original_name,
                 )
+
+        if missing_categories:
+            raise CategoryNotFoundError(
+                list(missing_categories.values())
+            )
 
         return category_map
 

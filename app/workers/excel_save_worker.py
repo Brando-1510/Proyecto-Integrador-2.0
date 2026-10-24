@@ -10,12 +10,16 @@ from app.services.transaction_import_service import TransactionImportService
 from app.errors.import_errors import (ImportErrorResult,ImportErrorType,DuplicateImportError,
                                     CategoryNotFoundError)
 
+
 class ExcelSaveWorker(QObject):
     finished = Signal()
     error = Signal(object)
     progress = Signal(int)
     message = Signal(str)
-    def __init__(self,user_id: int,business_id: int,file_path: str,file_name: str,df_sales,df_movements):
+    def __init__(
+        self,user_id: int,business_id: int,file_path: str,file_name: str,df_sales,df_movements,
+        categories_to_create: list[str] | None = None,
+    ):
         super().__init__()
         self.user_id = user_id
         self.business_id = business_id
@@ -23,6 +27,7 @@ class ExcelSaveWorker(QObject):
         self.file_name = file_name
         self.df_sales = df_sales
         self.df_movements = df_movements
+        self.categories_to_create = categories_to_create
     @Slot()
     def run(self):
         session = SessionLocal()
@@ -33,7 +38,7 @@ class ExcelSaveWorker(QObject):
             category_repository = CategoryRepository(session)
             sale_repository = SaleRepository(session)
             movement_repository = MovementRepository(session)
-            # Services de ESTA sesión
+            # Services de esta sesión
             import_service = ImportService(import_repository)
             category_service = CategoryService(category_repository)
             transaction_service = TransactionImportService(
@@ -41,7 +46,7 @@ class ExcelSaveWorker(QObject):
                 import_service=import_service,
                 sale_repository=sale_repository,
                 movement_repository=movement_repository,
-                category_service=category_service
+                category_service=category_service,
             )
             self.message.emit("Guardando datos...")
             self.progress.emit(20)
@@ -51,7 +56,8 @@ class ExcelSaveWorker(QObject):
                 file_path=self.file_path,
                 file_name=self.file_name,
                 df_sales=self.df_sales,
-                df_movements=self.df_movements
+                df_movements=self.df_movements,
+                categories_to_create=self.categories_to_create,
             )
             self.progress.emit(100)
 
@@ -73,11 +79,13 @@ class ExcelSaveWorker(QObject):
 
         except CategoryNotFoundError as e:
             session.rollback()
+
             self.error.emit(
                 ImportErrorResult(
                     error_type=ImportErrorType.CATEGORY_NOT_FOUND,
                     message=str(e),
                     technical_message=str(e),
+                    missing_categories=e.missing_categories,
                 )
             )
 
