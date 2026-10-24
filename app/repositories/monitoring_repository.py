@@ -9,7 +9,6 @@ from app.models.imports import Import
 from app.models.user_business import UserBusiness
 from sqlalchemy.exc import SQLAlchemyError
 
-
 class MonitoringRepository:
     def __init__(self,session):
         self.session=session

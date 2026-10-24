@@ -18,6 +18,7 @@ from app.workers.excel_save_worker import ExcelSaveWorker
 
 
 class CargarDatos(QWidget):
+    importacion_exitosa = Signal()
     altura_cambiada = Signal(int)
     def __init__(self, userBusiness, parent=None):
         super().__init__(parent)
@@ -254,6 +255,7 @@ class CargarDatos(QWidget):
 
     @Slot()
     def save_finished(self):
+        self.importacion_exitosa.emit()
         QMessageBox.information(
             self,
             "Importación exitosa",

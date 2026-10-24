@@ -77,21 +77,19 @@ class AppContainer:
         self.transaction_import_service = TransactionImportService(
         self.session,self.import_service,self.sale_repository,self.movement_repository,self.category_service)
         #*Home Dashboard
-        self.home_dashboard_service=HomeDashboardService(self.sale_repository,self.movement_repository)
+        self.home_dashboard_service=HomeDashboardService()
         self.home_dashboard_controller=HomeDashboardController(self.home_dashboard_service)
         #*Consultation Controlller
-        self.consultation_service=ConsultationService(
-            self.sale_repository,self.movement_repository,self.import_repository
-        )
+        self.consultation_service=ConsultationService()
         self.consultation_controller=ConsultationController(self.consultation_service)
         #*Analysis
-        self.analysis_service=AnalysisService(self.analysis_repository)
+        self.analysis_service=AnalysisService()
         self.analysis_controller=AnalysisController(self.analysis_service)
         #*Recommendations
-        self.recommendation_service=RecommendationService(self.recommendation_repository)
+        self.recommendation_service=RecommendationService()
         self.recommendation_controller=RecommendationController(self.recommendation_service)
         #*Configuracion
-        self.configuration_service=ConfigurationService(self.configuration_repository)
+        self.configuration_service=ConfigurationService()
         self.configuration_controller=ConfigurationController(self.configuration_service)
         #*Monitoreo
         self.monitoring_service=MonitoringService(self.monitoring_repository)

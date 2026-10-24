@@ -114,7 +114,7 @@ class VentanaDashboard(QWidget):
 
         self.btnLogout.clicked.connect(self.cerrar_sesion)
         self.btnHome.clicked.connect(self.mostrar_home)
-        self.btnCargarDatos.clicked.connect(self.mostar_cargar_datos)
+        self.btnCargarDatos.clicked.connect(self.mostrar_cargar_datos)
         self.btnAnalisis.clicked.connect(self.mostrar_analisis)
         self.btnMovimientos.clicked.connect(self.mostrar_movimientos)
         self.btnRecomendaciones.clicked.connect(self.mostrar_recomendaciones)
@@ -180,11 +180,12 @@ class VentanaDashboard(QWidget):
             return
         self.cambiar_vista(self.dashboard_home)
 
-    def mostar_cargar_datos(self):
+    def mostrar_cargar_datos(self):
         if not self.tiene_permiso("cargar_datos"):
             return
         if self.cargar_datos is None:
             self.cargar_datos = CargarDatos(self.userBusiness)
+            self.cargar_datos.importacion_exitosa.connect(self._actualizar_datos_tras_importacion)
             self.stackedWidget.addWidget(self.cargar_datos)
         self.cambiar_vista(self.cargar_datos)
 
@@ -203,6 +204,7 @@ class VentanaDashboard(QWidget):
             self.movimientos = Movimientos(self.userBusiness,self.consultation_controller,)
             self.stackedWidget.addWidget(self.movimientos)
         self.cambiar_vista(self.movimientos)
+        self.movimientos.actualizar_interfaz(self.movimientos.ui.tabWidget.currentIndex())
 
     def mostrar_recomendaciones(self):
         if not self.tiene_permiso("recomendaciones"):
@@ -236,3 +238,22 @@ class VentanaDashboard(QWidget):
             self.monitoreo = Monitoreo(self.userBusiness,self.monitoring_controller)
             self.stackedWidget.addWidget(self.monitoreo)
         self.cambiar_vista(self.monitoreo)
+
+    def _actualizar_datos_tras_importacion(self):
+        # Actualizar movimientos.
+        if self.movimientos is not None:
+            self.movimientos.actualizar_interfaz(
+                self.movimientos.ui.tabWidget.currentIndex()
+            )
+
+        # Actualizar dashboard principal.
+        if self.dashboard_home is not None:
+            self.dashboard_home.actualizar_datos()
+
+        # Actualizar análisis financiero.
+        if self.analisis is not None:
+            self.analisis.actualizar_interfaz()
+
+        # Actualizar recomendaciones.
+        if self.recomendaciones is not None:
+            self.recomendaciones.actualizar_interfaz()

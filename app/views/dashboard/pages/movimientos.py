@@ -108,6 +108,7 @@ class Movimientos(QWidget):
         self.ui.periodoImportacion.currentTextChanged.connect(self.mostrar_dateEdits)
         #*Cambios en la interfaz relacionado al controller
         self.conectar_acciones_informacion()
+        self.ui.tabWidget.currentChanged.connect(self.actualizar_interfaz)
         self.actualizar_interfaz(0)
         self.actualizar_interfaz(1)
         self.actualizar_interfaz(2)
@@ -125,8 +126,7 @@ class Movimientos(QWidget):
         self.ui.lblPersonalizarImp.setVisible(es_personalizado_importaciones)
         self.ui.contenedorFechasImp.setVisible(es_personalizado_importaciones)
 
-    def obtener_datos(self):
-        tab_actual = self.ui.tabWidget.currentIndex()
+    def obtener_datos(self,tab_actual):
         datos = {}
         datos["business_id"]=self.business.business_id
         if tab_actual == 0:
@@ -153,7 +153,7 @@ class Movimientos(QWidget):
                 datos["rango_final"] = (self.ui.rangoFinalImp.date().toPython())
         return datos
     def enviar_datos(self,tab_actual):
-        datos=self.obtener_datos()
+        datos=self.obtener_datos(tab_actual)
         if tab_actual==0:
             resultado=self.controller.mostrar_movimientos(datos)
         elif tab_actual==1:

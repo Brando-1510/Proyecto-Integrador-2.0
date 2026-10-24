@@ -102,18 +102,28 @@ class DashboardHome(QWidget):
         self.configurar_grafica()
         self.cambios_ui_controller()
         self.mostrar_evolucion_ventas()
+
     def cambios_ui_controller(self):
-        self.ui.lblVentasValor.setText(f"C${str(self.resultado["ventas"])}")
-        self.ui.lblGastosValor.setText(f"C${str(self.resultado["gastos"])}")
-        self.ui.lblIngresosValor.setText(f"C${str(self.resultado["ingresos"])}")
-        self.ui.lblUtilidadValor.setText(f"C${str(self.resultado["utilidad"])}")
+        self.ui.lblVentasValor.setText(f"C${self.resultado['ventas']}")
+        self.ui.lblGastosValor.setText(f"C${self.resultado['gastos']}")
+        self.ui.lblIngresosValor.setText(f"C${self.resultado['ingresos']}")
+        self.ui.lblUtilidadValor.setText(f"C${self.resultado['utilidad']}")
+
         for lbl in (
-            self.ui.lblVentasPeriodo,self.ui.lblGastosPeriodo,self.ui.lblIngresosPeriodo,
-            self.ui.lblUtilidadPeriodo
+            self.ui.lblVentasPeriodo,
+            self.ui.lblGastosPeriodo,
+            self.ui.lblIngresosPeriodo,
+            self.ui.lblUtilidadPeriodo,
         ):
             lbl.setText(self.resultado["rango_fecha"])
-        self.movements_model.set_data(self.resultado["movimientos_recientes"])
-        self.sales_model.set_data(self.resultado["ventas_recientes"])
+
+        self.movements_model.set_data(
+            self.resultado["movimientos_recientes"]
+        )
+        self.sales_model.set_data(
+            self.resultado["ventas_recientes"]
+        )
+
     #Metodos para crear la gráfica
     def configurar_grafica(self):
         self.figure = Figure(figsize=(8, 4))
@@ -163,3 +173,22 @@ class DashboardHome(QWidget):
         self.figure.autofmt_xdate()
         self.figure.tight_layout()
         self.canvas.draw()
+
+    def actualizar_datos(self):
+        """Vuelve a consultar y actualizar los datos del dashboard."""
+        resultado = self.home_dashboard_controller.datos_dashboard(
+            self.business.business_id
+        )
+
+        if not resultado or not resultado.get("success", False):
+            print("No se pudieron actualizar los datos del dashboard.")
+            return
+
+        # Guardar el resultado más reciente.
+        self.resultado = resultado
+
+        # Actualizar tarjetas y tablas.
+        self.cambios_ui_controller()
+
+        # Redibujar la gráfica con los nuevos datos.
+        self.mostrar_evolucion_ventas()

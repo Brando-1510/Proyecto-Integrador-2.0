@@ -102,27 +102,6 @@ class ConfigurationController:
                 "message": "No se pudo completar la eliminación de la Importación."
             }
 
-    def delete_import(self, business_id, import_id):
-        datos = {
-            "business_id": business_id,
-            "import_id": import_id
-        }
-        try:
-            if self.service.delete_import(datos):
-                return {
-                    "success": True,
-                    "message": "La importación fue eliminada correctamente"
-                }
-            return {
-                "success": False,
-                "message": "No se encontró la importación en este negocio."
-            }
-        except Exception:
-            return {
-                "success": False,
-                "message": "No se pudo completar la eliminación de la importación."
-            }
-
     def delete_business(self, business_id, user_id):
         datos = {
             "business_id": business_id,
@@ -148,4 +127,24 @@ class ConfigurationController:
                 "success": False,
                 "message": "No se pudo completar la eliminación del negocio."
             }
+    def get_business(self, business_id: int):
+        try:
+            business = self.service.get_business(business_id)
 
+            if business is None:
+                return {
+                    "success": False,
+                    "message": "No se encontró el negocio.",
+                }
+
+            return {
+                "success": True,
+                "business": business,
+                "categories": list(business.categories),
+            }
+
+        except Exception:
+            return {
+                "success": False,
+                "message": "No se pudo consultar la información del negocio.",
+            }

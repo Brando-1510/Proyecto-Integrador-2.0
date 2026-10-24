@@ -212,6 +212,8 @@ class Configuracion(QWidget):
             categories_to_delete=cambios.get("categories_to_delete", []),
         )
         if resultado["success"]:
+            self.business = resultado["business"]
+            self.categories = list(self.business.categories)
             QMessageBox.information(self,"Cambios guardados",resultado["message"])
             # Actualizar la referencia del negocio
             self.business = resultado["business"]
