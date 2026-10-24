@@ -55,19 +55,16 @@ class AppContainer:
         self.configuration_repository=ConfigurationRepository(self.session)
         self.monitoring_repository=MonitoringRepository(self.session)
         #*UserBusiness
-        self.userBusiness_service = UserBusinessService(self.userBusiness_repository)
+        self.userBusiness_service = UserBusinessService(session_factory=SessionLocal)
         self.userBusiness_controller = ChooseBusinessController(self.userBusiness_service)
         #*User
-        self.user_service = UserService(
-            self.user_repository,self.business_repository,self.userBusiness_repository
-        )
+        self.user_service = UserService(session_factory=SessionLocal)
         self.user_controller = UserController(self.user_service)
         #*Business
-        self.business_service = BusinessService(
-            self.business_repository,self.category_repository,self.user_repository,self.userBusiness_repository)
+        self.business_service = BusinessService(session_factory=SessionLocal)
         self.business_controller = BusinessController(self.business_service)
         #*Recovery
-        self.recovery_service = RecoveryService(self.recovery_repository,self.user_repository)
+        self.recovery_service = RecoveryService(session_factory=SessionLocal)
         self.recovery_controller = RecoveryController(self.recovery_service)
         #*Imports
         self.import_service=ImportService(self.import_repository)

@@ -150,7 +150,7 @@ class ConfigurationRepository:
         result = self.session.execute(stmt)
         return (result.rowcount or 0) > 0
     def delete_import(self,business_id: int,import_id: int,) -> bool:
-        #* Verificar que la importación pertenezca al negocio.
+        #Verificar que la importación pertenezca al negocio.
         stmt = select(Import.import_id).where(
             Import.import_id == import_id,
             Import.business_id == business_id,
@@ -178,11 +178,10 @@ class ConfigurationRepository:
                 Import.business_id == business_id,
             )
         )
-        #* El servicio confirma o revierte la transacción.
         return True
 
     def delete_business(self, business_id: int) -> bool:
-        #* Verificar que el negocio exista.
+        #Verificar que el negocio exista.
         stmt = select(Business.business_id).where(Business.business_id == business_id)
         if self.session.scalar(stmt) is None:
             return False
@@ -199,5 +198,4 @@ class ConfigurationRepository:
         self.session.execute(delete(UserBusiness).where(UserBusiness.business_id == business_id))
         #* Eliminar el negocio.
         self.session.execute(delete(Business).where(Business.business_id == business_id))
-        #* El servicio confirma o revierte la transacción.
         return True
