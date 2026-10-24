@@ -7,10 +7,8 @@ class ExcelReader:
     REQUIRED_SHEETS = ("Ventas", "Movimientos")
     def read(self, path: str) -> dict[str, pd.DataFrame | None] | None:
         """
-        Lee las hojas disponibles del archivo Excel.
-        Retorna None si la ruta, el archivo o la lectura son
-        inválidos. Las hojas ausentes o vacías se representan
-        con None.
+        Lee las hojas disponibles del archivo Excel. Retorna None si la ruta, el archivo o la lectura son
+        inválidos. Las hojas ausentes o vacías se representan con None.
         """
         if not path:
             return None
@@ -28,11 +26,7 @@ class ExcelReader:
                 for sheet in self.REQUIRED_SHEETS:
                     if sheet not in excel.sheet_names:
                         continue
-                    df = pd.read_excel(
-                        excel,
-                        sheet_name=sheet,
-                        header=2,
-                    )
+                    df = pd.read_excel(excel,sheet_name=sheet,header=2,)
                     # Ignorar filas completamente vacías.
                     df = df.dropna(how="all")
                     if df.empty:
@@ -40,7 +34,5 @@ class ExcelReader:
                     result[sheet] = df
                 return result
         except Exception:
-            logger.exception(
-                "No se pudo leer el archivo Excel: %s",file_path,
-            )
+            logger.exception("No se pudo leer el archivo Excel: %s",file_path,)
             return None

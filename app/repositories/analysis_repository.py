@@ -128,6 +128,7 @@ class AnalysisRepository:
         )
         resultados = self.session.execute(stmt).all()
         return resultados
+    #*Métodos relacionados al método de Imports
     #Obtener los importes individuales de venta
     def individual_sales_amount(self,business_id:int,start_date:date,end_date:date):
         stmt=(

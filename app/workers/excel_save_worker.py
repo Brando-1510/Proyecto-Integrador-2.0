@@ -8,8 +8,7 @@ from app.services.import_service import ImportService
 from app.services.category_service import CategoryService
 from app.services.transaction_import_service import TransactionImportService
 from app.errors.import_errors import (ImportErrorResult,ImportErrorType,DuplicateImportError,
-                                    CategoryNotFoundError)
-
+                        CategoryNotFoundError)
 
 class ExcelSaveWorker(QObject):
     finished = Signal()
@@ -38,7 +37,7 @@ class ExcelSaveWorker(QObject):
             category_repository = CategoryRepository(session)
             sale_repository = SaleRepository(session)
             movement_repository = MovementRepository(session)
-            # Services de esta sesión
+            #*Services de esta sesión
             import_service = ImportService(import_repository)
             category_service = CategoryService(category_repository)
             transaction_service = TransactionImportService(
@@ -60,10 +59,8 @@ class ExcelSaveWorker(QObject):
                 categories_to_create=self.categories_to_create,
             )
             self.progress.emit(100)
-
             self.message.emit("Datos guardados correctamente.")
             self.finished.emit()
-
         except DuplicateImportError as e:
             session.rollback()
             self.error.emit(
@@ -76,10 +73,8 @@ class ExcelSaveWorker(QObject):
                     technical_message=str(e),
                 )
             )
-
         except CategoryNotFoundError as e:
             session.rollback()
-
             self.error.emit(
                 ImportErrorResult(
                     error_type=ImportErrorType.CATEGORY_NOT_FOUND,
@@ -88,11 +83,9 @@ class ExcelSaveWorker(QObject):
                     missing_categories=e.missing_categories,
                 )
             )
-
         except ValueError as e:
             session.rollback()
             error_message = str(e)
-
             self.error.emit(
                 ImportErrorResult(
                     error_type=ImportErrorType.INVALID_DATA,
@@ -100,7 +93,6 @@ class ExcelSaveWorker(QObject):
                     technical_message=error_message,
                 )
             )
-
         except Exception as e:
             session.rollback()
             self.error.emit(

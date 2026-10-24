@@ -1,6 +1,4 @@
-from datetime import date
-from decimal import Decimal
-from sqlalchemy import select, func, case, desc,text
+from sqlalchemy import select, func,text
 from app.models.movement import Movement, MovementType
 from app.models.sale import Sale
 from app.models.users import Users

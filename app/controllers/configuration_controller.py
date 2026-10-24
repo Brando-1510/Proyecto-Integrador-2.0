@@ -4,7 +4,6 @@ from app.models.user_business import Role
 class ConfigurationController:
     def __init__(self, service:ConfigurationService):
         self.service = service
-
     def save_business_changes(
         self,business_id: int,business_name: str | None = None,type_of_business=None,
         description: str | None = None,categories_to_add: list[str] | None = None,
@@ -101,7 +100,6 @@ class ConfigurationController:
                 "success": False,
                 "message": "No se pudo completar la eliminación de la Importación."
             }
-
     def delete_business(self, business_id, user_id):
         datos = {
             "business_id": business_id,
@@ -130,19 +128,16 @@ class ConfigurationController:
     def get_business(self, business_id: int):
         try:
             business = self.service.get_business(business_id)
-
             if business is None:
                 return {
                     "success": False,
                     "message": "No se encontró el negocio.",
                 }
-
             return {
                 "success": True,
                 "business": business,
                 "categories": list(business.categories),
             }
-
         except Exception:
             return {
                 "success": False,

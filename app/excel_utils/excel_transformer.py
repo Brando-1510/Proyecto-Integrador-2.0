@@ -22,13 +22,14 @@ class ExcelTransformer:
         "monto ($)": "Monto",
         "metodo de pago": "Método de Pago",
     }
-    def normalize_excel(self,sales_df: pd.DataFrame | None,movements_df: pd.DataFrame | None,) -> tuple[pd.DataFrame | None, pd.DataFrame | None]:
+    def normalize_excel(
+        self,sales_df: pd.DataFrame | None,movements_df: pd.DataFrame | None
+        ) -> tuple[pd.DataFrame | None, pd.DataFrame | None]:
         if sales_df is not None:
             sales_df = self._normalize_columns(sales_df, self.SALES_COLUMNS)
             sales_df = self._clean_text(sales_df)
             if sales_df.empty:
                 sales_df = None
-
         if movements_df is not None:
             movements_df = self._normalize_columns(movements_df, self.MOVEMENTS_COLUMNS)
             movements_df = self._clean_text(movements_df)

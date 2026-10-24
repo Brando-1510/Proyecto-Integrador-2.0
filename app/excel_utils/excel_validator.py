@@ -3,7 +3,6 @@ from app.errors.import_errors import ImportErrorResult, ImportErrorType
 from app.utils.date_utils import DateUtils
 from app.models.movement import MovementType,PaymentMethod,IncomeCategory,ExpenseCategory
 
-
 class ExcelValidator:
     SALES_COLUMNS = [
         "Fecha",
@@ -27,7 +26,9 @@ class ExcelValidator:
     VALID_INCOME_CATEGORIES = {item.value.casefold() for item in IncomeCategory}
     VALID_EXPENSE_CATEGORIES = {item.value.casefold() for item in ExpenseCategory}
 
-    def validate(self, sales_df: pd.DataFrame | None, movements_df: pd.DataFrame | None) -> list[ImportErrorResult]:
+    def validate(
+        self, sales_df: pd.DataFrame | None, movements_df: pd.DataFrame | None
+        ) -> list[ImportErrorResult]:
         errors: list[ImportErrorResult] = []
         if sales_df is not None:
             errors.extend(self.validate_columns(sales_df, self.SALES_COLUMNS, "Ventas"))
@@ -42,11 +43,8 @@ class ExcelValidator:
         return errors
     @staticmethod
     def _build_error(
-        message: str,
-        error_type: ImportErrorType,
-        sheet_name: str | None = None,
-        row_number: int | None = None,
-        column_name: str | None = None,
+        message: str,error_type: ImportErrorType,sheet_name: str | None = None,
+        row_number: int | None = None,column_name: str | None = None,
     ) -> ImportErrorResult:
         return ImportErrorResult(
             error_type=error_type,
@@ -191,7 +189,6 @@ class ExcelValidator:
                         "Movimientos", row_number, "Tipo",
                     )
                 )
-                #*
             category = row["Categoría"]
             if self._is_missing(category):
                 errors.append(

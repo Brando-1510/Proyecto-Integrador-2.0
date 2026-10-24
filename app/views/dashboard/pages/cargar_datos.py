@@ -1,11 +1,9 @@
 import os
-
 from PySide6.QtCore import QThread, Slot,Signal
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QSizePolicy, QVBoxLayout, QWidget
 from app.models.user_business import Role
-
 from app.errors.import_errors import ImportErrorType
 from app.views.dashboard.dialogs.excel_errors import ExcelErrorsUI
 from app.views.dashboard.dialogs.excel_categories import ExcelCategoriesUI
@@ -16,31 +14,24 @@ from app.views.estilosTipografia import estilos_fuentes
 from app.workers.excel_import_worker import ExcelImportWorker
 from app.workers.excel_save_worker import ExcelSaveWorker
 
-
 class CargarDatos(QWidget):
     importacion_exitosa = Signal()
     altura_cambiada = Signal(int)
     def __init__(self, userBusiness, parent=None):
         super().__init__(parent)
-
         self.userBusiness = userBusiness
         self.user = userBusiness.user
         self.business = userBusiness.business
-
         self.df_movimientos = None
         self.df_ventas = None
-
         self.selected_file_name = None
         self.selected_file_path = None
-
         self.pending_file_name = None
         self.pending_file_path = None
-
         self.thread = None
         self.worker = None
         self._categories_to_create_pending = None
         self._categories_dialog_open = False
-
         self._setup_ui()
         self._cargar_fuentes()
         self._setup_models()
@@ -50,20 +41,15 @@ class CargarDatos(QWidget):
     def _setup_ui(self):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta_ui = os.path.normpath(os.path.join(directorio_actual, "../../../ui/dashboard/pages/cargar_datos.ui"))
-
         loader = QUiLoader()
         self.ui = loader.load(ruta_ui, self)
-
         if not self.ui:
             raise RuntimeError(f"No se pudo cargar el archivo UI en: {ruta_ui}")
-
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
         self.altura_cambiada.emit(689)
-
         self.ui.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-
         if hasattr(self.ui, "tabWidget"):
             self.ui.tabWidget.setTabBarAutoHide(False)
             self.ui.tabWidget.tabBar().setExpanding(True)
@@ -103,13 +89,11 @@ class CargarDatos(QWidget):
         self.tabla_ventas = getattr(self.ui, "ventasTable", getattr(self.ui, "tableVentas", None))
         self.tabla_movimientos.setMinimumHeight(400)
         self.tabla_movimientos.setMinimumHeight(400)
-
         for tabla, model in [(self.tabla_movimientos, self.movements_model), (self.tabla_ventas, self.sales_model)]:
             if tabla:
                 tabla.setModel(model)
                 tabla.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
                 tabla.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-
 
     def _connect_signals(self):
         self.ui.btnSeleccionarArchivo.clicked.connect(self.select_excel_file)
@@ -157,35 +141,22 @@ class CargarDatos(QWidget):
     def save_import(self):
         if self._is_processing():
             return
-
         if not self.selected_file_path or not self.selected_file_name:
             return
-
         respuesta = QMessageBox.question(
-            self,
-            "Guardar Importación",
-            "¿Desea guardar la importación?",
-            QMessageBox.StandardButton.Yes
-            | QMessageBox.StandardButton.No,
+            self,"Guardar Importación","¿Desea guardar la importación?",
+            QMessageBox.StandardButton.Yes| QMessageBox.StandardButton.No,
         )
-
         if respuesta != QMessageBox.StandardButton.Yes:
             return
-
         self._start_save_worker()
 
-    def _start_save_worker(
-        self,
-        categories_to_create: list[str] | None = None,
-    ):
+    def _start_save_worker(self,categories_to_create: list[str] | None = None,):
         if self._is_processing():
             return
-
         self._show_progress("Preparando guardado...")
         self._toggle_buttons(enabled=False)
-
         self.thread = QThread(self)
-
         self.worker = ExcelSaveWorker(
             user_id=self.user.user_id,
             business_id=self.business.business_id,
@@ -195,22 +166,15 @@ class CargarDatos(QWidget):
             df_movements=self.df_movimientos,
             categories_to_create=categories_to_create,
         )
-
         self.worker.moveToThread(self.thread)
-
         self.thread.started.connect(self.worker.run)
-
         self.worker.progress.connect(self.update_progress)
         self.worker.message.connect(self.update_message)
-
         self.worker.finished.connect(self.save_finished)
         self.worker.error.connect(self.save_error)
-
         self.worker.finished.connect(self.thread.quit)
         self.worker.error.connect(self.thread.quit)
-
         self.thread.finished.connect(self._cleanup_thread)
-
         self.thread.start()
     @Slot(int)
     def update_progress(self, value: int):
@@ -219,7 +183,6 @@ class CargarDatos(QWidget):
     @Slot(str)
     def update_message(self, message: str):
         self.ui.lblEstadoImportacion.setText(message)
-
     @Slot(object)
     def import_finished(self, result):
         if not result.success:
@@ -242,45 +205,34 @@ class CargarDatos(QWidget):
         self.altura_cambiada.emit(1000)
         self._hide_progress()
         self._toggle_buttons(enabled=True)
-
     @Slot(object)
     def import_error(self, error):
         self._show_import_error(error)
         self._hide_progress()
-
         self.pending_file_name = None
         self.pending_file_path = None
-
         self._toggle_buttons(enabled=True, accept_enabled=False)
 
     @Slot()
     def save_finished(self):
         self.importacion_exitosa.emit()
-        QMessageBox.information(
-            self,
-            "Importación exitosa",
-            "Los datos se guardaron correctamente."
-        )
+        QMessageBox.information(self,"Importación exitosa","Los datos se guardaron correctamente.")
         self._clear_data_state()
         self.ui.frameArchivo.hide()
         self.altura_cambiada.emit(689)
         self._hide_progress()
         self._toggle_buttons(enabled=True, accept_enabled=False)
 
-
     @Slot(object)
     def save_error(self, error):
         self._hide_progress()
-
         if error.error_type == ImportErrorType.CATEGORY_NOT_FOUND:
             missing_categories = error.missing_categories or []
-
             if not missing_categories:
                 self._show_save_error(error)
                 self._toggle_buttons(enabled=True, accept_enabled=True)
                 return
-
-            # Solo el gerente puede autorizar la creación.
+            #*Solo el gerente puede autorizar la creación.
             if self.userBusiness.role != Role.MANAGER:
                 QMessageBox.warning(
                     self,
@@ -290,25 +242,12 @@ class CargarDatos(QWidget):
                     "Solicite al gerente que cree las categorías "
                     "o que realice la importación.",
                 )
-                self._toggle_buttons(
-                    enabled=True,
-                    accept_enabled=False,
-                )
+                self._toggle_buttons(enabled=True,accept_enabled=False,)
                 return
-
-            # Mostrar el diálogo personalizado.
-            dialog = ExcelCategoriesUI(
-                categorias=missing_categories,
-                parent=self,
-            )
-
-            dialog.create_category_requested.connect(
-                self._on_create_categories_requested
-            )
-            dialog.cancel_importation_requested.connect(
-                self._on_cancel_categories_requested
-            )
-
+            #*Mostrar el diálogo personalizado.
+            dialog = ExcelCategoriesUI(categorias=missing_categories,parent=self,)
+            dialog.create_category_requested.connect(self._on_create_categories_requested)
+            dialog.cancel_importation_requested.connect(self._on_cancel_categories_requested)
             self._categories_dialog_open = True
             dialog.ui.exec()
             self._categories_dialog_open = False
@@ -319,32 +258,22 @@ class CargarDatos(QWidget):
                 self._try_start_pending_save()
             else:
                 # El gerente canceló. Se conserva la vista previa.
-                self._toggle_buttons(
-                    enabled=True,
-                    accept_enabled=True,
-                )
-
+                self._toggle_buttons(enabled=True,accept_enabled=True,)
             return
 
         # Los demás errores siguen el flujo habitual.
         self._show_save_error(error)
-        self._toggle_buttons(
-            enabled=True,
-            accept_enabled=True,
-        )
-
+        self._toggle_buttons(enabled=True,accept_enabled=True,)
 
     @Slot(object)
     def _on_create_categories_requested(self, categories: list[str]):
-        """Guarda las categorías autorizadas para el siguiente intento."""
+        #*Guarda las categorías autorizadas para el siguiente intento
         self._categories_to_create_pending = categories.copy()
-
 
     @Slot()
     def _on_cancel_categories_requested(self):
-        """Cancela la creación de categorías sin guardar la importación."""
+        #!Cancela la creación de categorías sin guardar la importación
         self._categories_to_create_pending = None
-
 
     def _try_start_pending_save(self):
         """
@@ -353,16 +282,11 @@ class CargarDatos(QWidget):
         """
         if self._categories_to_create_pending is None:
             return
-
-        # No sustituir las referencias de un hilo anterior todavía existente.
         if self.thread is not None:
             return
-
         categories = self._categories_to_create_pending
         self._categories_to_create_pending = None
-
         self._start_save_worker(categories_to_create=categories)
-
 
     def _show_import_error(self, error):
         if error.error_type == ImportErrorType.INVALID_FILE:
@@ -371,7 +295,6 @@ class CargarDatos(QWidget):
             QMessageBox.warning(self, "Datos inválidos", error.message)
         else:
             QMessageBox.critical(self, "Error al importar", error.message)
-
     def _show_save_error(self, error):
         if error.error_type == ImportErrorType.FILE_ALREADY_EXISTS:
             QMessageBox.warning(self, "Archivo ya registrado", error.message)
@@ -383,10 +306,8 @@ class CargarDatos(QWidget):
             QMessageBox.critical(self, "Error al guardar", error.message)
         else:
             QMessageBox.critical(self, "Error inesperado", error.message)
-
     def _show_unknown_import_error(self):
         QMessageBox.critical(self, "Error inesperado", "Ocurrió un error inesperado durante la importación del archivo.")
-
         self._hide_progress()
         self.pending_file_name = None
         self.pending_file_path = None
@@ -407,38 +328,27 @@ class CargarDatos(QWidget):
             self._toggle_buttons(enabled=True, accept_enabled=False)
         else:
             return
-
     def _is_processing(self) -> bool:
         return self.thread is not None and self.thread.isRunning()
-
-
-
-
 
     @Slot()
     def _cleanup_thread(self):
         if self.worker:
             self.worker.deleteLater()
             self.worker = None
-
         if self.thread:
             self.thread.deleteLater()
             self.thread = None
-
-        # Si el gerente autorizó las categorías, continuar el guardado.
+        # Si el gerente autoriza las categorías entonces se continua el guardado
         self._try_start_pending_save()
-
 
     def _clear_data_state(self):
         self.df_ventas = None
         self.df_movimientos = None
-
         self.selected_file_name = None
         self.selected_file_path = None
-
         self.pending_file_name = None
         self.pending_file_path = None
-
         self.sales_model.set_data(None)
         self.movements_model.set_data(None)
 
@@ -446,7 +356,6 @@ class CargarDatos(QWidget):
         self.ui.progressBar.setValue(0)
         self.ui.lblPorcentaje.setText("0%")
         self.ui.lblEstadoImportacion.setText(message)
-
         self.ui.progressBar.show()
         self.ui.lblEstadoImportacion.show()
         self.ui.lblPorcentaje.show()
@@ -475,11 +384,11 @@ class CargarDatos(QWidget):
                 errores_por_hoja["movimientos"].append(error)
             else:
                 errores_por_hoja["generales"].append(error)
-        # Mostrar los errores de las hojas en el diálogo.
+        #*Mostrar los errores de las hojas en el diálogo.
         if errores_por_hoja["ventas"] or errores_por_hoja["movimientos"]:
             dialog = ExcelErrorsUI(errores_por_hoja)
             dialog.ui.exec()
-        # Mostrar los errores que no pertenecen a una hoja.
+        #*Mostrar los errores que no pertenecen a una hoja.
         if errores_por_hoja["generales"]:
             mensajes = "\n\n".join(error.message for error in errores_por_hoja["generales"])
             QMessageBox.warning(self,"Error durante la importación",mensajes,)

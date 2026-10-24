@@ -5,7 +5,6 @@ from app.excel_utils.excel_transformer import ExcelTransformer
 from app.excel_utils.excel_result import ExcelImportResult
 from app.errors.import_errors import ImportErrorResult, ImportErrorType
 
-
 class ImportService:
     def __init__(self):
         self.reader = ExcelReader()

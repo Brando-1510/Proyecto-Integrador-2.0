@@ -3,7 +3,7 @@ from app.services.analysis_service import AnalysisService
 class AnalysisController:
     def __init__(self, service: AnalysisService):
         self.service = service
-    # Ejecuta el análisis financiero del período seleccionado.
+    #*Ejecuta el análisis financiero del período seleccionado.
     def analyze_period(self, datos: dict) -> dict | None:
         try:
             resultado = self.service.analyze_period(datos)
