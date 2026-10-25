@@ -38,9 +38,12 @@ class BusinessService:
                     user_business_repository.create_relationship(
                         user_id=user_id,
                         business_id=business_created.business_id,
-                        role=Role.MANAGER
+                        role=Role.MANAGER,
                     )
                 )
+                session.flush()
+                _=manager_created.user
+                _=manager_created.business
                 #*Vincular a los administradores del sistema.
                 admins = user_repository.get_admin_users()
                 if not admins:
@@ -67,7 +70,7 @@ class BusinessService:
                 result = {
                     "success": True,
                     "business": business_created,
-                    "manager": manager_created,
+                    "userBusiness": manager_created,
                     "admins": admin_relationships,
                     "categories": categories_created
                 }

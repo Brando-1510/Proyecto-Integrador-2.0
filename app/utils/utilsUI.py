@@ -10,7 +10,10 @@ def obtener_icono(negocio):
         "Pulperia": ":/images/businessIcons/shop.png",
         "Otro": ":/images/businessIcons/shop.png"
     }
-    return iconos.get(negocio.business.type_of_business.value,":/icons/default.png")
+    tipo_negocio = negocio.business.type_of_business
+    if hasattr(tipo_negocio, "value"):
+        tipo_negocio = tipo_negocio.value
+    return iconos.get(tipo_negocio, ":/icons/default.png")
 def llenar_datos_usuarios(tabla, user_businesses):
     tabla.setRowCount(0)
     for user_business in user_businesses:

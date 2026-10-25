@@ -1,11 +1,21 @@
 from sqlalchemy import select
 from app.models.user_business import UserBusiness
+from app.models.business import Business
+from sqlalchemy.orm import joinedload,selectinload
 class UserBusinessRepository:
     def __init__(self, session):
         self.session = session
     def get_businesses_by_user(self, user_id: int):
-        stmt = select(UserBusiness).where(
-            UserBusiness.user_id == user_id)
+        stmt = (
+            select(UserBusiness)
+            .options(
+                joinedload(UserBusiness.business).selectinload(
+                    Business.categories
+                ),
+                joinedload(UserBusiness.user),
+            )
+            .where(UserBusiness.user_id == user_id)
+        )
         result = self.session.scalars(stmt)
         return result.all()
     def create_relationship(self, user_id, business_id, role):
@@ -15,4 +25,5 @@ class UserBusinessRepository:
             role=role
         )
         self.session.add(user_business)
+        self.session.flush()
         return user_business

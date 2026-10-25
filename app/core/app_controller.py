@@ -115,6 +115,3 @@ class AppController:
             self.createBusiness_window = None
         self.current_user = None
         self.show_login()
-    #*Crear Aplicación
-    def close(self):
-        self.container.close()

@@ -14,5 +14,4 @@ if __name__ == "__main__":
     app_controller = AppController(container)
     app_controller.start()
     exit_code = app.exec()
-    app_controller.close()
     sys.exit(exit_code)
