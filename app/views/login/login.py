@@ -104,7 +104,7 @@ class VentanaLogin(QWidget):
         accion_ojo.toggled.connect(cambiar_visibilidad)
     def verificar(self):
         if not V.tienen_contenido([self.ui.txtContrasena,self.ui.txtCorreo]):
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para iniciar sesión")
+            QMessageBox.critical(self.ui, "Error", "Debe llenar todos los campos para iniciar sesión")
             return
     def login(self):
         self.verificar()
@@ -113,14 +113,14 @@ class VentanaLogin(QWidget):
         result=self.controller.login(email,password)
         if result["success"]:
             QMessageBox.information(
-                self,
+                self.ui,
                 "Éxito",
                 result["message"]
             )
             self.login_successful.emit(result["user"])
         else:
             QMessageBox.warning(
-                self,
+                self.ui,
                 "Error",
                 result["message"]
             )

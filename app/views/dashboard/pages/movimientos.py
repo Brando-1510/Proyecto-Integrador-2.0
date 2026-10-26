@@ -164,7 +164,7 @@ class Movimientos(QWidget):
     def actualizar_interfaz(self,tab_actual):
         resultado=self.enviar_datos(tab_actual)
         if not resultado["success"]:
-            QMessageBox.warning(self,"Error al Cargar Datos",resultado["message"])
+            QMessageBox.warning(self.ui,"Error al Cargar Datos",resultado["message"])
             return
         if resultado["tipo"] == "Movimientos":
             movimientos = resultado["movimientos"]
@@ -172,7 +172,7 @@ class Movimientos(QWidget):
             self.ui.lblPeriodo.setText(resultado["rango_fecha"])
             if not movimientos:
                 QMessageBox.information(
-                    self,"No hay datos","No hay registros para mostrar en la tabla"
+                    self.ui,"No hay datos","No hay registros para mostrar en la tabla"
                 )
         elif resultado["tipo"] == "Ventas":
             ventas = resultado["ventas"]

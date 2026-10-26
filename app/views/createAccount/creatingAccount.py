@@ -166,15 +166,15 @@ class VentanaCrearCuenta(QWidget):
         if V.tienen_contenido(*args):
             self.cambiar_pagina(index)
         else:
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para avanzar")
+            QMessageBox.critical(self.ui, "Error", "Debe llenar todos los campos para avanzar")
     def guardar(self):
         if not VD.validar_correo(self.ui.inputCorreo.text()):
-            QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
+            QMessageBox.critical(self.ui, "Error", "El Correo no cumple con un formato correcto")
             return
         password = self.ui.inputContrasena.text()
         password_confirmar = self.ui.inputContrasenaConfirmar.text()
         if password != password_confirmar:
-            QMessageBox.critical(self,"Error","Las Contraseñas deben de coincidir")
+            QMessageBox.critical(self.ui,"Error","Las Contraseñas deben de coincidir")
             return
         password_hash = hp.hash_password(password)
 

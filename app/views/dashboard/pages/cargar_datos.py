@@ -144,7 +144,7 @@ class CargarDatos(QWidget):
         if not self.selected_file_path or not self.selected_file_name:
             return
         respuesta = QMessageBox.question(
-            self,"Guardar Importación","¿Desea guardar la importación?",
+            self.ui,"Guardar Importación","¿Desea guardar la importación?",
             QMessageBox.StandardButton.Yes| QMessageBox.StandardButton.No,
         )
         if respuesta != QMessageBox.StandardButton.Yes:
@@ -216,7 +216,7 @@ class CargarDatos(QWidget):
     @Slot()
     def save_finished(self):
         self.importacion_exitosa.emit()
-        QMessageBox.information(self,"Importación exitosa","Los datos se guardaron correctamente.")
+        QMessageBox.information(self.ui,"Importación exitosa","Los datos se guardaron correctamente.")
         self._clear_data_state()
         self.ui.frameArchivo.hide()
         self.altura_cambiada.emit(689)
@@ -235,7 +235,7 @@ class CargarDatos(QWidget):
             #*Solo el gerente puede autorizar la creación.
             if self.userBusiness.role != Role.MANAGER:
                 QMessageBox.warning(
-                    self,
+                    self.ui,
                     "Categorías no encontradas",
                     "El archivo contiene categorías de ventas que "
                     "no existen para este negocio.\n\n"
@@ -290,24 +290,24 @@ class CargarDatos(QWidget):
 
     def _show_import_error(self, error):
         if error.error_type == ImportErrorType.INVALID_FILE:
-            QMessageBox.warning(self, "Archivo inválido", error.message)
+            QMessageBox.warning(self.ui, "Archivo inválido", error.message)
         elif error.error_type == ImportErrorType.INVALID_DATA:
-            QMessageBox.warning(self, "Datos inválidos", error.message)
+            QMessageBox.warning(self.ui, "Datos inválidos", error.message)
         else:
-            QMessageBox.critical(self, "Error al importar", error.message)
+            QMessageBox.critical(self.ui, "Error al importar", error.message)
     def _show_save_error(self, error):
         if error.error_type == ImportErrorType.FILE_ALREADY_EXISTS:
-            QMessageBox.warning(self, "Archivo ya registrado", error.message)
+            QMessageBox.warning(self.ui, "Archivo ya registrado", error.message)
         elif error.error_type == ImportErrorType.CATEGORY_NOT_FOUND:
-            QMessageBox.warning(self, "Categoría no encontrada", error.message)
+            QMessageBox.warning(self.ui, "Categoría no encontrada", error.message)
         elif error.error_type == ImportErrorType.INVALID_DATA:
-            QMessageBox.warning(self, "Datos inválidos", error.message)
+            QMessageBox.warning(self.ui, "Datos inválidos", error.message)
         elif error.error_type == ImportErrorType.DATABASE_ERROR:
-            QMessageBox.critical(self, "Error al guardar", error.message)
+            QMessageBox.critical(self.ui, "Error al guardar", error.message)
         else:
-            QMessageBox.critical(self, "Error inesperado", error.message)
+            QMessageBox.critical(self.ui, "Error inesperado", error.message)
     def _show_unknown_import_error(self):
-        QMessageBox.critical(self, "Error inesperado", "Ocurrió un error inesperado durante la importación del archivo.")
+        QMessageBox.critical(self.ui, "Error inesperado", "Ocurrió un error inesperado durante la importación del archivo.")
         self._hide_progress()
         self.pending_file_name = None
         self.pending_file_path = None
@@ -317,7 +317,7 @@ class CargarDatos(QWidget):
         if self._is_processing():
             return
         respuesta=QMessageBox.question(
-            self,"Cancelar Importación","¿Desea cancelar la importación?",
+            self.ui,"Cancelar Importación","¿Desea cancelar la importación?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if respuesta == QMessageBox.StandardButton.Yes:
@@ -391,7 +391,7 @@ class CargarDatos(QWidget):
         #*Mostrar los errores que no pertenecen a una hoja.
         if errores_por_hoja["generales"]:
             mensajes = "\n\n".join(error.message for error in errores_por_hoja["generales"])
-            QMessageBox.warning(self,"Error durante la importación",mensajes,)
+            QMessageBox.warning(self.ui,"Error durante la importación",mensajes,)
         self._hide_progress()
         self.pending_file_name = None
         self.pending_file_path = None

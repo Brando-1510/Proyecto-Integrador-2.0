@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">Dialog{
+   <string notr="true">QDialog{
 background-color:#f7f7f7;
 }
 QLabel{
@@ -27,7 +27,7 @@ font-size: 16px;
 font-weight: bold;
 }
 QLabel[texto=&quot;TituloPrincipal&quot;]{
-font-size:18px;
+font-size:20px;
 font-weight:bold;
 }
 QLabel[texto=&quot;Valor&quot;]{
@@ -87,12 +87,147 @@ QPushButton[boton=&quot;Secundario&quot;]:hover {
 QPushButton[boton=&quot;Secundario&quot;]:pressed {
     background-color: rgba(131, 117, 174, 0.9);
 }
+/* --- BOTÓN TEXTO --- */
 
+QPushButton[boton=&quot;BotonTexto&quot;] {
+    border: none;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+    color: #0E042F;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:hover {
+    color: #6C6686;
+    background: transparent;
+}
+
+QPushButton[boton=&quot;BotonTexto&quot;]:pressed,
+QPushButton[boton=&quot;BotonTexto&quot;]:focus {
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Inputs
+-----------------------------------------------------------------------------------------------------*/
+/* --- ESTADO BASE --- */
+QLineEdit, QDateEdit, QPlainTextEdit, QComboBox {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+
+/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
+QLineEdit:hover, QDateEdit:hover, QPlainTextEdit:hover, QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
+QLineEdit:focus, QDateEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
+QLineEdit:disabled, QDateEdit:disabled, QPlainTextEdit:disabled, QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #D1D5DB;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- ESTILO DEL QCOMBOBOX --- */
+QComboBox {
+    background-color: #F8F9FA;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
+    padding-right: 30px;
+    color: #333333;
+}
+
+QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- BOTÓN DE DESPLEGAR --- */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #D1D5DB;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- FLECHA --- */
+QComboBox::down-arrow {
+    image: url(:/icons/chevron.svg);
+    width: 12px;
+    height: 12px;
+}
+/* --- LISTA DESPLEGABLE DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 4px;
+    color: #333333;
+    selection-background-color: #744bcc;
+    selection-color: #FFFFFF;
+}
+
+/* --- HOVER DE LOS ELEMENTOS DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView::item:hover {
+    background-color: #F3F4F6;
+    color: #333333;
+}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>10</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">qproperty-alignment: 'AlignCenter';
+</string>
+     </property>
      <property name="text">
       <string>Perfil</string>
      </property>
@@ -102,150 +237,335 @@ QPushButton[boton=&quot;Secundario&quot;]:pressed {
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>257</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Habilitar Edición</string>
-        </property>
-        <property name="boton" stdset="0">
-         <string>Primario</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>257</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>TextLabel</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">QTabWidget {
+    background-color: transparent;
+}
+
+QTabWidget::pane {
+    border: none;
+    background-color: transparent;
+}
+
+QTabWidget &gt; QWidget {
+    background-color: transparent;
+}
+
+QTabBar {
+    background-color: transparent;
+    qproperty-drawBase: 0;
+}
+
+QTabBar::tab {
+    background: transparent;
+    color: #79668E;
+    padding: 8px 16px;
+    border: none;
+    border-bottom: 2px solid transparent;
+   
+    min-width: 180px; 
+    
+    margin-right: 0px; /* Cambiar a 0px ayuda a que no queden huecos feos */
+    font-family: &quot;Manrope&quot;, &quot;Segoe UI&quot;, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+QTabBar::tab:hover {
+    color: #16094C;
+    border-bottom: 2px solid #D6CEE5; /* Línea tenue al pasar el ratón */
+}
+
+QTabBar::tab:selected {
+    background: transparent;
+    color: #16094C; /* Púrpura oscuro para texto activo */
+    border-bottom: 3px solid #16094C; /* Indicador de línea activa */
+}</string>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="enabled">
-      <bool>false</bool>
+     <property name="currentIndex">
+      <number>1</number>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="lineEdit_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QDateEdit" name="dateEdit">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="lineEdit_3">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QWidget" name="widget_2" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLineEdit" name="lineEdit_4">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_5">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Datos Personales</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>100</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>257</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="habilitarEdicion">
+            <property name="text">
+             <string>Habilitar Edición</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Primario</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>257</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Nombre de Usuario</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="nombreUsuario">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Email</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="email">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Fecha de Nacimiento</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDateEdit" name="inputFecha">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_4" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Confirmar</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Secundario</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Operaciones Críticas</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Cambiar Contraseña</string>
+         </property>
+         <property name="texto" stdset="0">
+          <string>Destacado</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="habilitarContrasena">
+         <property name="text">
+          <string>Habilitar Edición</string>
+         </property>
+         <property name="boton" stdset="0">
+          <string>BotonTexto</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLineEdit" name="contra">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="confirmarContra">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_5" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="cambiarContrasena">
+            <property name="text">
+             <string>Cambiar Contraseña</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Primario</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Eliminar Cuenta</string>
+         </property>
+         <property name="texto" stdset="0">
+          <string>Destacado</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Esta acción no puede revertirse.</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_6" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QPushButton" name="pushButton_5">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Eliminar Cuenta</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Secundario</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
     <widget class="QWidget" name="widget_3" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Confirmar</string>
-        </property>
-        <property name="boton" stdset="0">
-         <string>Secundario</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <layout class="QHBoxLayout" name="horizontalLayout_2"/>
     </widget>
    </item>
   </layout>

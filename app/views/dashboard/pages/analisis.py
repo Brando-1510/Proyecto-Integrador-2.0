@@ -247,7 +247,7 @@ class Analisis(QWidget):
     def actualizar_interfaz(self):
         resultado=self.enviar_datos()
         if not resultado["success"]:
-            QMessageBox.warning(self,"Error al Cargar Datos",resultado["message"])
+            QMessageBox.warning(self.ui,"Error al Cargar Datos",resultado["message"])
             return
         self.llenar_datos_tarjetas(resultado)
         self.charts.actualizar(resultado)

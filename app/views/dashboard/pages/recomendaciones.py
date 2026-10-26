@@ -83,10 +83,10 @@ class Recomendaciones(QWidget):
         try:
             resultado = self.controller.get_recommendations(datos)
         except Exception as error:
-            QMessageBox.warning(self,"Error al cargar datos",str(error),)
+            QMessageBox.warning(self.ui,"Error al cargar datos",str(error),)
             return
         if not resultado.get("success", False):
-            QMessageBox.warning(self,"Error al cargar datos",
+            QMessageBox.warning(self.ui,"Error al cargar datos",
                 resultado.get("message","No fue posible obtener las recomendaciones.",),
             )
             return

@@ -1,49 +1,96 @@
-def estilos_fuentes(source_family,manrope_family):
+def estilos_fuentes(source_family, manrope_family):
     return f"""
     /* =========================
-    FUENTE GENERAL
+       FUENTE GENERAL
     ========================= */
-        QWidget {{
-            font-family: "{source_family}";
-        }}
+    QWidget {{
+        font-family: "{source_family}";
+    }}
+
     /* =========================
-        TÍTULOS PRINCIPALES
+       TÍTULOS PRINCIPALES
     ========================= */
-        QLabel[texto="Principal"], QLabel[texto="TituloPrincipal"],
-        QLabel[texto="Destacado"], QLabel[texto="DestacadoArriba] {{
-            font-family: "{manrope_family}";
-            font-weight: bold;
-        }}
+    QLabel[texto="Principal"],
+    QLabel[texto="TituloPrincipal"],
+    QLabel[texto="Destacado"],
+    QLabel[texto="DestacadoArriba"] {{
+        font-family: "{manrope_family}";
+        font-weight: bold;
+    }}
+
     /* =========================
-    BOTONES
+       BOTONES DE QMESSAGEBOX
     ========================= */
-        QPushButton {{
-            font-family: "{source_family}";
-        }}
+    QMessageBox QPushButton {{
+        font-family: "{source_family}";
+        font-size: 12px;
+        font-weight: bold;
+
+        color: #F7F7F7;
+        background-color: #5D38BB;
+
+        border: none;
+        border-radius: 5px;
+
+        min-width: 80px;
+        max-width: 120px;
+
+        min-height: 28px;
+        max-height: 28px;
+
+        padding: 0px;
+    }}
+
+    QMessageBox QPushButton:hover {{
+        background-color: #744BCC;
+    }}
+
+    QMessageBox QPushButton:pressed {{
+        background-color: #472A8F;
+    }}
+
     /* =========================
-    TÍTULOS DE SECCIÓN
+       TÍTULOS DE SECCIÓN
     ========================= */
-        QLabel[texto="InputTexto"],QPushButton[boton="BotonTexto"] {{
-            font-family: "{manrope_family}";
-            font-weight: bold;
-        }}
+    QLabel[texto="InputTexto"],
+    QPushButton[boton="BotonTexto"] {{
+        font-family: "{manrope_family}";
+        font-weight: bold;
+    }}
+
     /* =========================
-    TÍTULOS SECUNDARIOS
+       TÍTULOS SECUNDARIOS
     ========================= */
-        QLabel[styleClass="tituloSecundario"] {{
-            font-family: "{source_family}";
-        }}
+    QLabel[styleClass="tituloSecundario"] {{
+        font-family: "{source_family}";
+    }}
+
     /* =========================
-    LABELS GENERALES
+       LABELS GENERALES
     ========================= */
-        QLabel {{
-            font-family: "{source_family}";
-        }}
+    QLabel {{
+        font-family: "{source_family}";
+    }}
+
     /* =========================
-    INPUTS
+       INPUTS
     ========================= */
-        QLineEdit,QDateEdit,QComboBox {{
-            font-family: "{source_family}";
-            font-size: 14px;
-        }}
-"""
+    QLineEdit,
+    QDateEdit,
+    QComboBox {{
+        font-family: "{source_family}";
+        font-size: 14px;
+    }}
+
+    /* =========================
+       QMESSAGEBOX
+    ========================= */
+    QMessageBox {{
+        background-color: #F7F7F7;
+    }}
+
+    QMessageBox QLabel {{
+        font-family: "{source_family}";
+        font-weight: 600;
+    }}
+    """

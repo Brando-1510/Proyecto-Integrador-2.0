@@ -19,6 +19,7 @@ from app.views.dashboard.pages.recomendaciones import Recomendaciones
 from app.views.dashboard.pages.informes import Informes
 from app.views.dashboard.pages.configuracion import Configuracion
 from app.views.dashboard.pages.monitoreo import Monitoreo
+from app.views.profile.profile import Profile
 
 
 class VentanaDashboard(QWidget):
@@ -48,7 +49,8 @@ class VentanaDashboard(QWidget):
 
     def __init__(
         self,userBusiness,home_dashboard_controller,consultation_controler,analysis_controller,
-        recommendation_controller,configuration_controller,monitoring_controller
+        recommendation_controller,configuration_controller,monitoring_controller,
+        user_controller
     ):
         super().__init__()
         self.user = userBusiness.user
@@ -61,6 +63,7 @@ class VentanaDashboard(QWidget):
         self.recommendation_controller = recommendation_controller
         self.configuration_controller = configuration_controller
         self.monitoring_controller=monitoring_controller
+        self.user_controller=user_controller
 
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta_ui = os.path.normpath(
@@ -77,6 +80,7 @@ class VentanaDashboard(QWidget):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
+        self.dialog_open=False
 
         self.stackedWidget = self.ui.findChild(QStackedWidget, "stackedWidget")
         self.btnHome = self.ui.findChild(QPushButton, "btnHome")
@@ -88,6 +92,7 @@ class VentanaDashboard(QWidget):
         self.btnConfiguracion = self.ui.findChild(QPushButton, "BtnConfiguracion")
         self.btnMonitoreo = self.ui.findChild(QPushButton, "BtnMonitoreo")
         self.btnLogout = self.ui.findChild(QPushButton, "BtnCerrarSesion")
+        self.btnPefil=self.ui.findChild(QPushButton,"BtnPerfil")
         self.configurar_permisos_interfaz()
 
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
@@ -121,6 +126,7 @@ class VentanaDashboard(QWidget):
         self.btnInformes.clicked.connect(self.mostrar_informes)
         self.btnConfiguracion.clicked.connect(self.mostrar_configuracion)
         self.btnMonitoreo.clicked.connect(self.mostrar_monitoreo)
+        self.btnPefil.clicked.connect(self.mostrar_perfil)
         self.mostrar_home()
         self.showMaximized()
 
@@ -148,7 +154,7 @@ class VentanaDashboard(QWidget):
 
     def cerrar_sesion(self):
         respuesta = QMessageBox.question(
-            self,"Cerrar Sesión","¿Desea salir?",QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            self.ui,"Cerrar Sesión","¿Desea salir?",QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
         )
         if respuesta == QMessageBox.StandardButton.Yes:
             self.logout_requested.emit()
@@ -174,6 +180,12 @@ class VentanaDashboard(QWidget):
         self.informes = None
         self.monitoreo = None
         self.configuracion = None
+
+    def mostrar_perfil(self):
+        if not self.dialog_open:
+            dialog=Profile(self.user,self.user_controller)
+            dialog.ui.exec()
+            self.dialog_open=False
 
     def mostrar_home(self):
         if not self.tiene_permiso("home"):

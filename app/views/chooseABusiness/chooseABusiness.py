@@ -109,7 +109,7 @@ class VentanaChooseBusiness(QWidget):
         self.limpiar_tarjetas()
         resultado = self.controller.load_businesses(self.user.user_id)
         if not resultado["success"]:
-            QMessageBox.critical(self,"Error",resultado["message"])
+            QMessageBox.critical(self.ui,"Error",resultado["message"])
             return
         userBusinesses = resultado["userBusinesses"]
         self.cambiar_lbl(self.user.username)

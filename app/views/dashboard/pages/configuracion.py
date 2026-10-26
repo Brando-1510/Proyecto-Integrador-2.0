@@ -163,7 +163,7 @@ class Configuracion(QWidget):
     #*Cuando el usuario lo decida, se habilitan los campos
     def _habilitar_campos(self):
         respuesta=QMessageBox.question(
-            self,"Habilitar Modo de Edición",
+            self.ui,"Habilitar Modo de Edición",
             "Todos los cambios que se generen en esta\nventana afectaran a su negocio\n¿Desea Continuar?"
         )
         if respuesta == QMessageBox.StandardButton.Yes:
@@ -176,7 +176,7 @@ class Configuracion(QWidget):
     #*añadir categoria al listwidget
     def _añadir_categoria(self):
         categoria, ok = QInputDialog.getText(
-            self,"Añadir nueva categoría","Introduce el nombre de la categoría"
+            self.ui,"Añadir nueva categoría","Introduce el nombre de la categoría"
         )
         if not ok or not categoria.strip():
             return
@@ -187,7 +187,7 @@ class Configuracion(QWidget):
         }
         if categoria.casefold() in elementos:
             QMessageBox.warning(
-                self,"La categoría ya existe","La categoría que intenta agregar ya está en la lista."
+                self.ui,"La categoría ya existe","La categoría que intenta agregar ya está en la lista."
             )
             return
         self.ui.listaCategorias.addItem(categoria)
@@ -201,7 +201,7 @@ class Configuracion(QWidget):
     def guardar_cambios_informacion(self):
         cambios = self._obtener_cambios_informacion()
         if not cambios:
-            QMessageBox.information(self,"Sin cambios","No se han realizado modificaciones.")
+            QMessageBox.information(self.ui,"Sin cambios","No se han realizado modificaciones.")
             return
         resultado = self.controller.save_business_changes(
             business_id=self.business.business_id,
@@ -214,18 +214,18 @@ class Configuracion(QWidget):
         if resultado["success"]:
             self.business = resultado["business"]
             self.categories = list(self.business.categories)
-            QMessageBox.information(self,"Cambios guardados",resultado["message"])
+            QMessageBox.information(self.ui,"Cambios guardados",resultado["message"])
             # Actualizar la referencia del negocio
             self.business = resultado["business"]
             self._recargar_datos_informacion()
             self._desabilitar_campos()
         else:
-            QMessageBox.warning(self,"Error al guardar",resultado["message"])
+            QMessageBox.warning(self.ui,"Error al guardar",resultado["message"])
 
     #! Metodo para cuando el usuario cancela
     def cancelar_cambios_informacion(self):
         respuesta = QMessageBox.question(
-            self,"Cancelar cambios","¿Desea descartar todos los cambios realizados?"
+            self.ui,"Cancelar cambios","¿Desea descartar todos los cambios realizados?"
         )
         if respuesta != QMessageBox.StandardButton.Yes:
             return
@@ -263,15 +263,15 @@ class Configuracion(QWidget):
         self.ui.buscarEmpleadoAgregar.textChanged.connect(self._ver_usuarios)
     def agregar_empleado(self):
         if self.ui.lblCorreo.text().strip()=="":
-            QMessageBox.warning(self,"Acción Inválida","Debe seleccionar un usuario de la tabla")
+            QMessageBox.warning(self.ui,"Acción Inválida","Debe seleccionar un usuario de la tabla")
             return
         resultado=self.controller.link_user(
             self.business.business_id,self.ui.lblCorreo.text(),self.ui.lblRol.text()
         )
         if resultado["success"]:
-            QMessageBox.information(self,"Éxito",resultado["message"])
+            QMessageBox.information(self.ui,"Éxito",resultado["message"])
             return
-        QMessageBox.warning(self,"No se pudo realizar la acción",resultado["message"])
+        QMessageBox.warning(self.ui,"No se pudo realizar la acción",resultado["message"])
     #*Ver usuarios
     def _ver_usuarios(self):
         usuarios=self.controller.get_users(self.ui.buscarEmpleadoAgregar.text().strip())
@@ -295,15 +295,15 @@ class Configuracion(QWidget):
     #
     def eliminar_empleado(self):
         if self.ui.correo.text().strip()=="" or self.ui.rolSeleccionado.text().strip()=="":
-            QMessageBox.warning(self,"Acción Inválida","Debe seleccionar un usuario de la tabla")
+            QMessageBox.warning(self.ui,"Acción Inválida","Debe seleccionar un usuario de la tabla")
             return
         resultado=self.controller.unlink_user(
             self.business.business_id,self.ui.correo.text()
         )
         if resultado["success"]:
-            QMessageBox.information(self,"Éxito",resultado["message"])
+            QMessageBox.information(self.ui,"Éxito",resultado["message"])
             return
-        QMessageBox.warning(self,"No se pudo realizar la acción",resultado["message"])
+        QMessageBox.warning(self.ui,"No se pudo realizar la acción",resultado["message"])
 
     #TODOS los metodos relacionados a la tab de operaciones criticas
     def operaciones_criticas_tab(self):
@@ -316,22 +316,22 @@ class Configuracion(QWidget):
         self.ui.idImportacion.setValidator(validador)
     def eliminar_importacion(self):
         if not ValidadoresUI.tienen_contenido(self.ui.idImportacion):
-            QMessageBox.warning(self,"Error","Debe ingresar un id de importación para\nrealizar esta operación")
+            QMessageBox.warning(self.ui,"Error","Debe ingresar un id de importación para\nrealizar esta operación")
             return
         respuesta = QMessageBox.question(
-            self,"Confirmación","¿Deseas eliminar la importación?\nEsta operación no puede revertirse",
+            self.ui,"Confirmación","¿Deseas eliminar la importación?\nEsta operación no puede revertirse",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if respuesta == QMessageBox.StandardButton.Yes:
             importacion=int(self.ui.idImportacion.text())
             resultado=self.controller.delete_import(self.business.business_id,importacion)
             if resultado["success"]:
-                QMessageBox.information(self,"Éxito",resultado["message"])
+                QMessageBox.information(self.ui,"Éxito",resultado["message"])
                 return
-            QMessageBox.warning(self,"Error",resultado["message"])
+            QMessageBox.warning(self.ui,"Error",resultado["message"])
     def eliminar_negocio(self):
         respuesta = QMessageBox.question(
-            self,"Confirmación","¿Deseas eliminar el Negocio?\nEsta operación no puede revertirse",
+            self.ui,"Confirmación","¿Deseas eliminar el Negocio?\nEsta operación no puede revertirse",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if respuesta == QMessageBox.StandardButton.Yes:
@@ -339,7 +339,7 @@ class Configuracion(QWidget):
                 self.business.business_id,self.user.user_id
             )
             if resultado["success"]:
-                QMessageBox.information(self,"Éxito",resultado["message"])
+                QMessageBox.information(self.ui,"Éxito",resultado["message"])
                 self.choose_business_requested.emit(self.user)
                 return
-            QMessageBox.warning(self,"Error",resultado["message"])
+            QMessageBox.warning(self.ui,"Error",resultado["message"])

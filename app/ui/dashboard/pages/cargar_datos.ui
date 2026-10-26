@@ -35,9 +35,6 @@ QLabel{
 background-color:transparent;
 color: #0E042F;
 }
-QMessageBox QLabel {
-    color: #f7f7f7;
-}
 QLabel[texto=&quot;InputTexto&quot;]{
 font-size: 16px;
 font-weight: bold;

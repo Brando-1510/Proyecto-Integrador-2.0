@@ -24,3 +24,6 @@ class UserRepository:
     def get_admin_users(self):
         stmt = select(Users).where(Users.is_admin == True)
         return self.session.scalars(stmt).all()
+    #*Metodos para el modulo de perfil
+    def modify_user():
+        pass

@@ -71,7 +71,7 @@ class Monitoreo(QWidget):
     def llenar_labels(self):
         resultado=self.enviar_datos()
         if not resultado["success"]:
-            QMessageBox.warning(self,"Error",resultado["message"])
+            QMessageBox.warning(self.ui,"Error",resultado["message"])
             return
         self.ui.usuarios.setText(f"{str(resultado["empleados"])}")
         self.ui.ventas.setText(f"{str(resultado["ventas"])}")
@@ -80,7 +80,7 @@ class Monitoreo(QWidget):
     def comprobar_integridad(self):
         resultado = self.controller.check_database_health()
         if not resultado["success"]:
-            QMessageBox.warning(self, "Error", resultado["message"])
+            QMessageBox.warning(self.ui, "Error", resultado["message"])
             return
         labels = {
             "Importaciones": self.ui.importacionesIntegridad,
@@ -96,6 +96,6 @@ class Monitoreo(QWidget):
     def optimizar_tablas(self):
         resultado=self.controller.optimize_tables()
         if not resultado["success"]:
-            QMessageBox.warning(self, "Error", resultado["message"])
+            QMessageBox.warning(self.ui, "Error", resultado["message"])
             return
-        QMessageBox.information(self,"Optimización Éxitosa",resultado["message"])
+        QMessageBox.information(self.ui,"Optimización Éxitosa",resultado["message"])

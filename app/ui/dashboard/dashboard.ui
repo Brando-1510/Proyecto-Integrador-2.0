@@ -75,7 +75,7 @@ font-size:16px;
 QPushButton 
 ----------------------------------------------------------------------------------*/
 /* Estilo general para todos los botones del menú */
-QPushButton {
+QPushButton[boton=&quot;Dashboard&quot;] {
     background-color: transparent; /* Fondo transparente por defecto */
     color: #ffffff;               /* Texto blanco */
     font-size: 16px;              /* Tamaño de fuente */
@@ -88,12 +88,12 @@ QPushButton {
 }
 
 /* Efecto al pasar el cursor por encima (Hover) */
-QPushButton:hover {
+QPushButton[boton=&quot;Dashboard&quot;]:hover {
     background-color: rgba(255, 255, 255, 0.1); 
 }
 
 /* Estado activo/seleccionado (como el botón &quot;Home&quot; morado) */
-QPushButton:checked, QPushButton:pressed {
+QPushButton[boton=&quot;Dashboard&quot;]:checked, QPushButton[boton=&quot;Dashboard&quot;]:pressed {
     background-color: #5d51f2;    /* Color morado de tu imagen */
 }
 
@@ -227,6 +227,9 @@ para tu negocio</string>
                <height>25</height>
               </size>
              </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -243,6 +246,9 @@ para tu negocio</string>
                <width>20</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
              </property>
             </widget>
            </item>
@@ -261,6 +267,9 @@ para tu negocio</string>
                <height>20</height>
               </size>
              </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -277,6 +286,9 @@ para tu negocio</string>
                <width>20</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
              </property>
             </widget>
            </item>
@@ -295,6 +307,9 @@ para tu negocio</string>
                <height>20</height>
               </size>
              </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -311,6 +326,9 @@ para tu negocio</string>
                <width>20</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
              </property>
             </widget>
            </item>
@@ -329,6 +347,9 @@ para tu negocio</string>
                <height>20</height>
               </size>
              </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -345,6 +366,9 @@ para tu negocio</string>
                <width>20</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
              </property>
             </widget>
            </item>
@@ -382,6 +406,9 @@ para tu negocio</string>
                <height>20</height>
               </size>
              </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -398,6 +425,9 @@ para tu negocio</string>
                <width>20</width>
                <height>20</height>
               </size>
+             </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
              </property>
             </widget>
            </item>

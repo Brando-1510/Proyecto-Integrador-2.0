@@ -96,12 +96,12 @@ class VentanaCreateBusiness(QWidget):
         if V.tienen_contenido(*args):
             self.cambiar_pagina(index)
         else:
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para avanzar")
+            QMessageBox.critical(self.ui, "Error", "Debe llenar todos los campos para avanzar")
     def validar_campos(self):
         if not V.tienen_contenido(
             self.ui.inputNegocio,self.ui.descripcionInput
         ):
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear el Negocio")
+            QMessageBox.critical(self.ui, "Error", "Debe llenar todos los campos para Crear el Negocio")
             return None
     def guardar_negocio(self):
         user_id=self.user.user_id
@@ -114,14 +114,14 @@ class VentanaCreateBusiness(QWidget):
         )
         if result["success"]:
             QMessageBox.information(
-                self,
+                self.ui,
                 "Éxito",
                 result["message"]
             )
             self.dashboard_requested.emit(result["userBusiness"])
         else:
             QMessageBox.warning(
-                self,
+                self.ui,
                 "Error",
                 result["message"]
             )

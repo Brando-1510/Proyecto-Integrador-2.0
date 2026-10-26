@@ -93,7 +93,7 @@ class VentanaRecuperarContra(QWidget):
     def enviarCodigo(self):
         if not V.tienen_contenido(self.ui.inputCoreo):
             QMessageBox.critical(
-                self,
+                self.ui,
                 "Error",
                 "Debe llenar el campo solicitado para enviar el código"
             )
@@ -104,7 +104,7 @@ class VentanaRecuperarContra(QWidget):
         if not self.respuesta["success"]:
             self.ui.btnEnviar.setEnabled(True)
             QMessageBox.warning(
-                self,
+                self.ui,
                 "Error",
                 self.respuesta["message"]
             )
@@ -121,26 +121,26 @@ class VentanaRecuperarContra(QWidget):
         self.email_thread.start()
 
     def correoEnviado(self):
-        QMessageBox.information(self,"Éxito","El código fue enviado correctamente.")
+        QMessageBox.information(self.ui,"Éxito","El código fue enviado correctamente.")
         self.ui.btnEnviar.setEnabled(True)
 
     def errorCorreo(self, mensaje):
-        QMessageBox.warning(self,"Error",mensaje)
+        QMessageBox.warning(self.ui,"Error",mensaje)
         self.ui.btnEnviar.setEnabled(True)
 
 
     def verificar_codigo(self):
         if not V.tienen_contenido(self.ui.inputCodigo):
-            QMessageBox.critical(self,"Error","Debe llenar el campo necesario")
+            QMessageBox.critical(self.ui,"Error","Debe llenar el campo necesario")
             return
         codigo = self.ui.inputCodigo.text().strip()
         result = self.controller.verify_recovery_code(self.user_id,codigo)
         if result["success"]:
             self.recovery = result["recovery"]
-            QMessageBox.information(self,"Éxito",result["message"])
+            QMessageBox.information(self.ui,"Éxito",result["message"])
             self.ui.stacked.setCurrentIndex(1)
         else:
-            QMessageBox.warning(self,"Error",result["message"])
+            QMessageBox.warning(self.ui,"Error",result["message"])
 
 
     def cambiarContrasena(self):
@@ -148,7 +148,7 @@ class VentanaRecuperarContra(QWidget):
             self.ui.inputCambiarContra.text().strip(),
             self.ui.inputConfirmarContra.text().strip()
         ):
-            QMessageBox.critical(self,"Error","Debe llenar el campo necesario")
+            QMessageBox.critical(self.ui,"Error","Debe llenar el campo necesario")
             return
         password = self.ui.inputCambiarContra.text().strip()
         password_confirmar = self.ui.inputConfirmarContra.text().strip()
@@ -157,7 +157,7 @@ class VentanaRecuperarContra(QWidget):
             return
         result = self.controller.change_password(self.recovery,password)
         if result["success"]:
-            QMessageBox.information(self,"Éxito",result["message"])
+            QMessageBox.information(self.ui,"Éxito",result["message"])
             self.close()
         else:
-            QMessageBox.warning(self,"Error",result["message"])
+            QMessageBox.warning(self.ui,"Error",result["message"])

@@ -1,3 +1,4 @@
+from datetime import date
 class UserController:
     def __init__(self, service):
         self.service = service
@@ -43,3 +44,26 @@ class UserController:
                 "success": False,
                 "message": "Ocurrió un error al iniciar sesión"
             }
+
+    def verify_user(self,email,password):
+        try:
+            user=self.service.login_user(email,password)
+            return{
+                "success": True,
+                "message": "Usuario confirmado"
+            }
+        except ValueError as e:
+            return {
+                "success": False,
+                "message": str(e)
+            }
+        except Exception:
+            return {
+                "success": False,
+                "message": "Ocurrió un error al confirmar al usuario"
+            }
+    def save_changes(
+        self,user_id:int,username:str | None=None,email:str | None=None,
+        fecha:date | None=None
+    ):
+        pass

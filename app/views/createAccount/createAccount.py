@@ -116,10 +116,10 @@ class VentanaCrearCuenta(QWidget):
             self.ui.inputNombre,self.ui.inputCorreo,
             self.ui.inputContrasena,self.ui.inputContrasenaConfirmar
         ):
-            QMessageBox.critical(self, "Error", "Debe llenar todos los campos para Crear la Cuenta")
+            QMessageBox.critical(self.ui, "Error", "Debe llenar todos los campos para Crear la Cuenta")
             return
         if not VD.validar_correo(self.ui.inputCorreo.text()):
-            QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
+            QMessageBox.critical(self.ui, "Error", "El Correo no cumple con un formato correcto")
             return
         password = self.ui.inputContrasena.text().strip()
         password_confirmar = self.ui.inputContrasenaConfirmar.text().strip()
@@ -136,14 +136,14 @@ class VentanaCrearCuenta(QWidget):
         )
         if result["success"]:
             QMessageBox.information(
-                self,
+                self.ui,
                 "Éxito",
                 result["message"]
             )
             self.register_successful.emit(result["user"])
         else:
             QMessageBox.warning(
-                self,
+                self.ui,
                 "Error",
                 result["message"]
             )
