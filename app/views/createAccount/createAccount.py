@@ -121,11 +121,13 @@ class VentanaCrearCuenta(QWidget):
         if not VD.validar_correo(self.ui.inputCorreo.text()):
             QMessageBox.critical(self.ui, "Error", "El Correo no cumple con un formato correcto")
             return
+        if not VD.validar_nombre(self.ui,self.ui.inputNombre.text().strip()):
+            return
         password = self.ui.inputContrasena.text().strip()
         password_confirmar = self.ui.inputContrasenaConfirmar.text().strip()
-        if not VD.evaluar_contrasena(self,password):
+        if not VD.evaluar_contrasena(self.ui,password):
             return
-        if not VD.comparar_contraseñas(self,password,password_confirmar):
+        if not VD.comparar_contraseñas(self.ui,password,password_confirmar):
             return
         name=self.ui.inputNombre.text().strip()
         email=self.ui.inputCorreo.text().strip()

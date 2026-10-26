@@ -1,6 +1,7 @@
 from datetime import date
+from app.services.user_services import UserService
 class UserController:
-    def __init__(self, service):
+    def __init__(self, service:UserService):
         self.service = service
     def register_user(self, name, email, date, password):
         try:
@@ -66,4 +67,29 @@ class UserController:
         self,user_id:int,username:str | None=None,email:str | None=None,
         fecha:date | None=None
     ):
-        pass
+        try:
+            return self.service.save_changes(
+                user_id=user_id,username=username,email=email,fecha=fecha
+            )
+        except Exception:
+            return {
+                "success": False,
+                "message": "No se pudo procesar la solicitud.",
+            }
+    def change_password(self,user_id,password):
+        try:
+            if self.service.change_password(user_id,password):
+                return {
+                    "success": True,
+                    "message": "La contraseña fue cambiada."
+                }
+        except ValueError as e:
+            return {
+                "success": False,
+                "message": str(e)
+            }
+        except Exception:
+            return {
+                "success": False,
+                "message": "Ocurrió un error al cambiar la contraseña."
+            }

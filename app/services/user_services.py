@@ -5,6 +5,7 @@ from app.core.security.password import HashPassword as hp
 from app.repositories.user_repository import UserRepository
 from app.repositories.business_repository import BusinessRepository
 from app.repositories.user_business_repository import UserBusinessRepository
+from datetime import date
 
 class UserService:
     def __init__(self, session_factory=SessionLocal):
@@ -88,3 +89,51 @@ class UserService:
                     "success": False,
                     "message": str(e)
                 }
+    def save_changes(
+        self,user_id:int,username:str | None,email:str | None,fecha: date | None
+    ):
+        with self.session_factory() as session:
+            repository=UserRepository(session)
+            if username is None and email is None and fecha is None:
+                raise ValueError("No hay cambios para guardar")
+            try:
+                #*Modificar la informacion del usuario
+                user=repository.modify_user(
+                    user_id=user_id,
+                    username=username,
+                    email=email,
+                    fecha=fecha
+                )
+                if user is None:
+                    raise ValueError("El usuario no existe.")
+                session.commit()
+                session.expunge(user)
+                return {
+                    "success": True,
+                    "usuario": user,
+                    "message": ("Información actualizada correctamente."),
+                }
+            except ValueError as e:
+                session.rollback()
+                return {
+                    "success": False,
+                    "message": str(e),
+                }
+            except Exception:
+                session.rollback()
+                return {
+                    "success": False,
+                    "message": (
+                        "Ocurrió un error al guardar los cambios."
+                    ),
+                }
+    def change_password(self,user_id:int,password:str):
+        with self.session_factory.begin() as session:
+            user_repository = UserRepository(session)
+            user = user_repository.get_by_id(user_id)
+            if not user:
+                raise ValueError("El usuario no existe.")
+            password_hash = hp.hash_password(password)
+            user_repository.update_password(user,password_hash)
+        return True
+

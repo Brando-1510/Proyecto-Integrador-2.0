@@ -183,9 +183,15 @@ class VentanaDashboard(QWidget):
 
     def mostrar_perfil(self):
         if not self.dialog_open:
+            self.dialog_open=True
             dialog=Profile(self.user,self.user_controller)
+            if not dialog.autorizado:
+                dialog.ui.close()
+                self.dialog_open = False
+                return
+            dialog.user_changed.connect(self.actualizar_usuario)
+            self.dialog_open = False
             dialog.ui.exec()
-            self.dialog_open=False
 
     def mostrar_home(self):
         if not self.tiene_permiso("home"):
@@ -269,3 +275,7 @@ class VentanaDashboard(QWidget):
         # Actualizar recomendaciones.
         if self.recomendaciones is not None:
             self.recomendaciones.actualizar_interfaz()
+    def actualizar_usuario(self, nuevo_usuario):
+        if nuevo_usuario:
+            self.user = nuevo_usuario
+            self.dashboard_home.actualizar_label(self.user.username)

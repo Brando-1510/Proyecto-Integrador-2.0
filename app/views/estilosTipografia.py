@@ -21,7 +21,8 @@ def estilos_fuentes(source_family, manrope_family):
     /* =========================
        BOTONES DE QMESSAGEBOX
     ========================= */
-    QMessageBox QPushButton {{
+    QMessageBox QPushButton,
+    QInputDialog QPushButton{{
         font-family: "{source_family}";
         font-size: 12px;
         font-weight: bold;
@@ -41,11 +42,13 @@ def estilos_fuentes(source_family, manrope_family):
         padding: 0px;
     }}
 
-    QMessageBox QPushButton:hover {{
+    QMessageBox QPushButton:hover 
+    QInputDialog QPushButton:hover{{
         background-color: #744BCC;
     }}
 
-    QMessageBox QPushButton:pressed {{
+    QMessageBox QPushButton:pressed 
+    QInputDialog QPushButton:pressed{{
         background-color: #472A8F;
     }}
 
@@ -85,11 +88,12 @@ def estilos_fuentes(source_family, manrope_family):
     /* =========================
        QMESSAGEBOX
     ========================= */
-    QMessageBox {{
+    QMessageBox,QInputDialog {{
         background-color: #F7F7F7;
     }}
 
-    QMessageBox QLabel {{
+    QMessageBox QLabel,
+    QInputDialog QLabel{{
         font-family: "{source_family}";
         font-weight: 600;
     }}

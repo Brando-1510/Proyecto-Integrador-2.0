@@ -152,8 +152,8 @@ class VentanaRecuperarContra(QWidget):
             return
         password = self.ui.inputCambiarContra.text().strip()
         password_confirmar = self.ui.inputConfirmarContra.text().strip()
-        VD.evaluar_contrasena(self, password)
-        if not VD.comparar_contraseñas(self,password,password_confirmar):
+        VD.evaluar_contrasena(self.ui, password)
+        if not VD.comparar_contraseñas(self.ui,password,password_confirmar):
             return
         result = self.controller.change_password(self.recovery,password)
         if result["success"]:

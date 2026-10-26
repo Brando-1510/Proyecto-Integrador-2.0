@@ -59,3 +59,18 @@ class ValidadoresDatos:
         else:
             QMessageBox.warning(ventana,"Problema con la Contraseña","Contraseña débil (revisa los requisitos)")
             return False
+    @staticmethod
+    def validar_nombre(ventana, nombre: str) -> bool:
+        nombre = nombre.strip()
+        if not nombre:
+            QMessageBox.warning(ventana,"Nombre inválido","El nombre no puede estar vacío.")
+            return False
+        if not re.fullmatch(r"[^\W\d_]+(?:[ '-][^\W\d_]+)*", nombre, re.UNICODE):
+            QMessageBox.warning(
+                ventana,"Nombre inválido",
+                "El nombre solo puede contener letras, espacios, "
+                "guiones y apóstrofes. No se permiten números "
+                "ni otros caracteres especiales."
+            )
+            return False
+        return True

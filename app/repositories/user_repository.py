@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from app.models.users import Users
-
+from datetime import date
 class UserRepository:
     def __init__(self, session):
         self.session = session
@@ -25,5 +25,14 @@ class UserRepository:
         stmt = select(Users).where(Users.is_admin == True)
         return self.session.scalars(stmt).all()
     #*Metodos para el modulo de perfil
-    def modify_user():
-        pass
+    def modify_user(
+        self,user_id:int,username:str | None=None,email:str | None=None,fecha:date | None=None
+    ) -> Users | None:
+        user=self.session.get(Users,user_id)
+        if username is not None:
+            user.username=username
+        if email is not None:
+            user.email=email
+        if fecha is not None:
+            user.birth_date=fecha
+        return user

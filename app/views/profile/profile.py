@@ -12,6 +12,7 @@ from app.controllers.user_controller import UserController
 
 class Profile(QObject):
     login_requested=Signal
+    user_changed=Signal(object)
     def __init__(self,user:Users,controller:UserController, parent=None):
         super().__init__(parent)
         self.user=user
@@ -28,7 +29,6 @@ class Profile(QObject):
         self.ui = loader.load(ruta_ui)
         if not self.ui:
             raise RuntimeError(f"No se pudo cargar el archivo UI: {ruta_ui}")
-        self.confirmacion()
         self.ui.setWindowTitle("Perfil")
         self.datos_originales={
             "nombre":user.username,
@@ -37,6 +37,8 @@ class Profile(QObject):
         }
         self._cargar_fuentes()
         self.tab_datos()
+        self.tab_operaciones()
+        self.autorizado = self.confirmacion()
     def _cargar_fuentes(self):
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
         font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
@@ -51,12 +53,14 @@ class Profile(QObject):
     def _habilitar_edicion(self,*widgets):
         if self.habilitado:
             return
+        self.habilitado=True
         respuesta=QMessageBox.question(
-            self,"Habilitar Edición",
+            self.ui,"Habilitar Edición",
             "Todos los cambios que se confirmen durante el modo de edición seran\nalmacenados permanentemente",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if respuesta == QMessageBox.StandardButton.No:
+            self.habilitado=False
             return
         for widget in widgets:
             if isinstance(widget,(QLineEdit,QDateEdit)):
@@ -64,18 +68,17 @@ class Profile(QObject):
             else:
                 continue
     def confirmacion(self):
-        password,ok=QInputDialog.getText(
+        password, ok = QInputDialog.getText(
             self.ui,"Confirma que eres tú","Introduce tu contraseña",QLineEdit.EchoMode.Password
         )
         if not ok or not password.strip():
-            return
-        password=password.strip()
-        resultado=self.controller.verifiy_user(self.user.email,password)
-        if not resultado["success"]:
-            QMessageBox.warning(self,"Error",resultado["message"])
-            return
-        else:
-            QMessageBox.information(self,"Éxito",resultado["message"])
+            return False
+        password = password.strip()
+        resultado = self.controller.verify_user(self.user.email, password)
+        if not resultado.get("success", False):
+            QMessageBox.warning(self.ui, "Error", resultado.get("message", "Contraseña incorrecta"))
+            return False
+        return True
     def configurar_password(self, input_password):
         input_password.setEchoMode(QLineEdit.EchoMode.Password)
         accion_ojo = QAction(input_password)
@@ -107,13 +110,15 @@ class Profile(QObject):
         self.ui.nombreUsuario.setText(self.datos_originales.get("nombre",""))
         self.ui.email.setText(self.datos_originales.get("email",""))
         self.ui.inputFecha.setDate(self.datos_originales.get("fecha",""))
+        #*Conectar las acciones
+        self.ui.confirmar.clicked.connect(self.guardar_cambios)
     def _obtener_cambios(self):
         cambios={}
         nombre=self.ui.nombreUsuario.text().strip().title()
         email=self.ui.email.text().strip()
         fecha = self.ui.inputFecha.date().toPython()
         if not ValidadoresDatos.validar_correo(email):
-            QMessageBox.critical(self, "Error", "El Correo no cumple con un formato correcto")
+            QMessageBox.critical(self.ui, "Error", "El Correo no cumple con un formato correcto")
             return
         if nombre !=self.datos_originales["nombre"]:
             cambios["nombre"]=nombre
@@ -125,7 +130,7 @@ class Profile(QObject):
     def guardar_cambios(self):
         cambios = self._obtener_cambios()
         if not cambios:
-            QMessageBox.information(self,"Sin cambios","No se han realizado modificaciones.")
+            QMessageBox.information(self.ui,"Sin cambios","No se han realizado modificaciones.")
             return
         resultado=self.controller.save_changes(
             user_id=self.user.user_id,
@@ -134,9 +139,10 @@ class Profile(QObject):
             fecha=cambios.get("fecha")
         )
         if resultado["success"]:
-            QMessageBox.information(self,"Cambios guardados",resultado["message"])
+            QMessageBox.information(self.ui,"Cambios guardados",resultado["message"])
+            self.user_changed.emit(resultado.get("usuario"))
         else:
-            QMessageBox.warning(self,"Error al guardar",resultado["message"])
+            QMessageBox.warning(self.ui,"Error al guardar",resultado["message"])
 
     #*Tab de operaciones criticas
     def tab_operaciones(self):
@@ -147,29 +153,35 @@ class Profile(QObject):
         )
         self.configurar_password(self.ui.contra)
         self.configurar_password(self.ui.confirmarContra)
+        #*Acciones
+        self.ui.habilitarContrasena.clicked.connect(
+            lambda: self._habilitar_edicion(self.ui.contra,self.ui.confirmarContra)
+        )
+        self.ui.cambiarContrasena.clicked.connect(self.cambiarContrasena)
 
     def cambiarContrasena(self):
         if not ValidadoresUI.tienen_contenido(
             self.ui.contra.text().strip(),
             self.ui.confirmarContra.text().strip()
         ):
-            QMessageBox.critical(self,"Error","Debe llenar el campo necesario")
+            QMessageBox.critical(self.ui,"Error","Debe llenar el campo necesario")
             return
         password = self.ui.contra.text().strip()
         password_confirmar = self.ui.confirmarContra.text().strip()
-        ValidadoresDatos.evaluar_contrasena(self, password)
-        if not ValidadoresDatos.comparar_contraseñas(self,password,password_confirmar):
+        if not ValidadoresDatos.evaluar_contrasena(self.ui, password):
+            return
+        if not ValidadoresDatos.comparar_contraseñas(self.ui,password,password_confirmar):
             return
         result = self.controller.change_password(self.user.user_id,password)
         if result["success"]:
-            QMessageBox.information(self,"Éxito",result["message"])
+            QMessageBox.information(self.ui,"Éxito",result["message"])
             return
         else:
-            QMessageBox.warning(self,"Error",result["message"])
+            QMessageBox.warning(self.ui,"Error",result["message"])
 
     def eliminar_cuenta(self):
         respuesta=QMessageBox.question(
-            self,"Eliminar Cuenta",
+            self.ui,"Eliminar Cuenta",
             "¿Estas seguro que quieres eliminar la cuenta?\nEsta acción no puede revertirse",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )

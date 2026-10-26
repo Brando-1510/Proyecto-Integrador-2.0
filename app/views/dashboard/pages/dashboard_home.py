@@ -175,20 +175,17 @@ class DashboardHome(QWidget):
         self.canvas.draw()
 
     def actualizar_datos(self):
-        """Vuelve a consultar y actualizar los datos del dashboard."""
+        #*Vuelve a consultar y actualizar los datos del dashboard
         resultado = self.home_dashboard_controller.datos_dashboard(
             self.business.business_id
         )
-
         if not resultado or not resultado.get("success", False):
-            print("No se pudieron actualizar los datos del dashboard.")
             return
-
         # Guardar el resultado más reciente.
         self.resultado = resultado
-
         # Actualizar tarjetas y tablas.
         self.cambios_ui_controller()
-
         # Redibujar la gráfica con los nuevos datos.
         self.mostrar_evolucion_ventas()
+    def actualizar_label(self,username):
+        self.ui.lblSaludo.setText(f"Bienvenido, {username}")
