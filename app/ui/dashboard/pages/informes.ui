@@ -518,7 +518,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="generarInforme">
            <property name="text">
             <string>Generar Informe</string>
            </property>

@@ -5,13 +5,15 @@ from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from PySide6.QtCore import Qt,Signal,QDate
+from app.controllers.report_controller import ReportController
 
 class Informes(QWidget):
-    def __init__(self, userBusiness):
+    def __init__(self, userBusiness,controller:ReportController):
         super().__init__()
         self.user = userBusiness.user
         self.business = userBusiness.business
         self.userBusiness = userBusiness
+        self.controller=controller
         #*obtener directorio actual
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         #*cargar archivo .ui
@@ -37,6 +39,7 @@ class Informes(QWidget):
         self._cargar_fuentes()
         #*Conectar las acciones
         self.ui.periodo.currentTextChanged.connect(self.mostrar_dateEdits)
+        self.ui.generarInforme.clicked.connect(self.enviar_datos)
     def mostrar_dateEdits(self):
         es_personalizado= (self.ui.periodo.currentText() == "Personalizado")
         self.ui.lblPersonalizar.setVisible(es_personalizado)
@@ -72,3 +75,6 @@ class Informes(QWidget):
             datos["rango_inicio"] = (self.ui.rangoInicio.date().toPython())
             datos["rango_final"] = (self.ui.rangoFinal.date().toPython())
         return datos
+    def enviar_datos(self):
+        datos=self.obtener_datos()
+        self.controller.generar_informe(datos,parent=self.ui)

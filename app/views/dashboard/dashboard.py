@@ -50,7 +50,7 @@ class VentanaDashboard(QWidget):
     def __init__(
         self,userBusiness,home_dashboard_controller,consultation_controler,analysis_controller,
         recommendation_controller,configuration_controller,monitoring_controller,
-        user_controller
+        user_controller,report_controller
     ):
         super().__init__()
         self.user = userBusiness.user
@@ -64,6 +64,7 @@ class VentanaDashboard(QWidget):
         self.configuration_controller = configuration_controller
         self.monitoring_controller=monitoring_controller
         self.user_controller=user_controller
+        self.report_controller=report_controller
 
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta_ui = os.path.normpath(
@@ -236,7 +237,7 @@ class VentanaDashboard(QWidget):
         if not self.tiene_permiso("informes"):
             return
         if self.informes is None:
-            self.informes = Informes(self.userBusiness)
+            self.informes = Informes(self.userBusiness,self.report_controller)
             self.stackedWidget.addWidget(self.informes)
         self.cambiar_vista(self.informes)
 

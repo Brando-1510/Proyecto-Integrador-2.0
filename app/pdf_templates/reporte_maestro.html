@@ -1,29 +1,29 @@
-
 {% extends "base_reporte.html" %}
 
-{# Título del documento PDF #}
 {% block titulo %}
     Reporte financiero - {{ negocio }}
 {% endblock %}
-
 
 {% block contenido %}
 
     {% include "secciones/portada.html" %}
 
     {% if tipo_reporte in ("general", "ventas") %}
-        <div class="page-break"></div>
-        {% include "secciones/ventas.html" %}
+        <div class="page-break">
+            {% include "secciones/ventas.html" %}
+        </div>
     {% endif %}
 
     {% if tipo_reporte in ("general", "ingresos") %}
-        <div class="page-break"></div>
-        {% include "secciones/ingresos.html" %}
+        <div class="page-break">
+            {% include "secciones/ingresos.html" %}
+        </div>
     {% endif %}
 
     {% if tipo_reporte in ("general", "gastos") %}
-        <div class="page-break"></div>
-        {% include "secciones/gastos.html" %}
+        <div class="page-break">
+            {% include "secciones/gastos.html" %}
+        </div>
     {% endif %}
 
 {% endblock %}

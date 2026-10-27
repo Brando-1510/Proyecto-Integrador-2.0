@@ -58,7 +58,7 @@
                         <tr>
                             <th>Categoría</th>
                             <th class="amount">Total</th>
-                            <th class="amount">%</th>
+                            <th class="amount"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,7 @@
                                 {{ categoria.total }}
                             </td>
                             <td class="amount">
-                                {{ categoria.porcentaje }}%
+                                {{ categoria.porcentaje }}
                             </td>
                         </tr>
                         {% else %}
@@ -114,7 +114,6 @@
 </section>
 <style>
     .ingresos {
-        min-height: 257mm;
         display: flex;
         flex-direction: column;
     }
@@ -136,16 +135,20 @@
         color: var(--color-plum);
     }
     /* Indicadores */
-    .ingresos-kpis {
+    .ingresos-kpis,
+    .gastos-kpis {
         display: grid;
         grid-template-columns: 1.2fr 1fr;
-        gap: 12pt;
-        margin-bottom: 20pt;
+        gap: 10pt;
+        margin-bottom: 12pt;
+        align-items: start;
     }
-    .ingresos-kpi {
+
+    .ingresos-kpi,
+    .gastos-kpi {
         min-width: 0;
-        min-height: 95pt;
-        padding: 16pt 12pt;
+        min-height: 0;
+        padding: 10pt 10pt;
         border: 1pt solid var(--color-border);
         border-top: 3pt solid var(--color-plum-medium);
         border-radius: 7pt;
@@ -155,24 +158,34 @@
         justify-content: center;
         text-align: center;
         break-inside: avoid;
+        height: auto;
     }
-    .ingresos-kpi .kpi-value {
-        margin: 0 0 7pt;
-        color: var(--color-plum-dark);
-        font-size: 23pt;
-        font-weight: 700;
+
+    .ingresos-kpi .kpi-value,
+    .gastos-kpi .kpi-value {
+        margin: 0 0 3pt;
+        font-size: 17pt;
         line-height: 1.2;
         overflow-wrap: anywhere;
+        order: 1;
     }
-    .ingresos-kpi .kpi-categoria {
-        font-size: 18pt;
-        text-transform: uppercase;
+
+    .ingresos-kpi .kpi-categoria,
+    .gastos-kpi .kpi-categoria {
+        margin: 0 0 3pt;
+        font-size: 14pt;
+        font-weight: 700;
+        color: var(--color-plum-dark);
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+        order: 1;
     }
-    .ingresos-kpi .kpi-label {
+
+    .ingresos-kpi .kpi-label,
+    .gastos-kpi .kpi-label {
         margin: 0;
-        color: var(--color-muted);
-        font-size: 9pt;
-        font-weight: 600;
+        font-size: 8pt;
+        order:2;
     }
     /* Bloques */
     .ingresos-bloque {
@@ -218,10 +231,13 @@
     }
     /* Tabla y gráfica de pastel */
     .ingresos-distribucion-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 10pt;
-        align-items: stretch;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12pt;
+    align-items: start;
+    }
+    .ingresos-grafica-pastel {
+        height: 180pt;
     }
     .ingresos-tabla-contenedor {
         min-width: 0;

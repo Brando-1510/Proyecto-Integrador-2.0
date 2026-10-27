@@ -112,7 +112,7 @@ class CargarDatos(QWidget):
         if self._is_processing():
             return
         file_path, _ = QFileDialog.getOpenFileName(
-            self, "Seleccionar archivo Excel", "", "Archivos de Excel (*.xlsx *.xls);;Todos los archivos (*)"
+            self.ui, "Seleccionar archivo Excel", "", "Archivos de Excel (*.xlsx *.xls);;Todos los archivos (*)"
         )
         if file_path:
             self.start_import(file_path)

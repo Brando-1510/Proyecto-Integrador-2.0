@@ -11,6 +11,7 @@ from app.services.analysis_service import AnalysisService
 from app.services.recommendation_service import RecommendationService
 from app.services.configuration_service import ConfigurationService
 from app.services.monitoring_service import MonitoringService
+from app.services.report_service import ReportService
 
 from app.controllers.user_controller import UserController
 from app.controllers.recovery_controller import RecoveryController
@@ -22,6 +23,7 @@ from app.controllers.analysis_controller import AnalysisController
 from app.controllers.recommendation_controller import RecommendationController
 from app.controllers.configuration_controller import ConfigurationController
 from app.controllers.monitoring_controller import MonitoringController
+from app.controllers.report_controller import ReportController
 
 class AppContainer:
     def __init__(self):
@@ -72,3 +74,7 @@ class AppContainer:
         #*Monitoring
         self.monitoring_service = MonitoringService()
         self.monitoring_controller = MonitoringController(self.monitoring_service)
+
+        #*Reportes
+        self.report_service=ReportService()
+        self.report_controller=ReportController(self.report_service)

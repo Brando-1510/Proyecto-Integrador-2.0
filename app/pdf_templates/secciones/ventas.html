@@ -89,7 +89,6 @@
 </section>
 <style>
     .ventas {
-        min-height: 257mm;
         display: flex;
         flex-direction: column;
     }
@@ -115,21 +114,27 @@
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10pt;
-        margin-bottom: 20pt;
+        margin-bottom: 12pt;
+        align-items: start;
     }
     .ventas-kpi {
         min-width: 0;
-        padding: 13pt 8pt;
+        padding: 12pt 10pt;
         border: 1pt solid var(--color-border);
         border-top: 3pt solid var(--color-plum-medium);
         border-radius: 7pt;
         background: var(--color-white);
         text-align: center;
         break-inside: avoid;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .kpi-label {
-        min-height: 24pt;
-        margin: 0 0 7pt;
+        min-height: 0;
+        margin: 0 0 6pt 0;
         color: var(--color-muted);
         font-size: 8pt;
         font-weight: 600;
@@ -137,7 +142,7 @@
     .kpi-value {
         margin: 0;
         color: var(--color-plum-dark);
-        font-size: 17pt;
+        font-size: 16pt;
         font-weight: 700;
         line-height: 1.2;
         overflow-wrap: anywhere;
@@ -172,7 +177,7 @@
         object-fit: contain;
     }
     .ventas-grafica-lineal {
-        height: 205pt;
+        height: 175pt;
     }
     .grafica-vacia {
         margin: 0;
@@ -183,12 +188,12 @@
     /* Dos gráficas inferiores */
     .ventas-graficas-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
         gap: 12pt;
-        margin-top: 18pt;
+        margin-top: 12pt;
     }
     .ventas-graficas-grid .ventas-grafica {
-        height: 205pt;
+        height: 180pt;
     }
     /* Pie */
     .ventas-footer {
