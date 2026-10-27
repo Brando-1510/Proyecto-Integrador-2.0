@@ -1,0 +1,202 @@
+<section class="reporte-section ventas">
+    <!-- Encabezado -->
+    <header class="ventas-header">
+        <h2 class="section-title">REPORTE DE VENTAS</h2>
+        <p class="ventas-periodo">
+            <strong>Período:</strong>
+            {{ periodo_inicio }} - {{ periodo_fin }}
+        </p>
+    </header>
+    <!-- Indicadores principales -->
+    <div class="ventas-kpis">
+        <div class="ventas-kpi">
+            <p class="kpi-label">Total vendido</p>
+            <p class="kpi-value">
+                {{ total_vendido }}
+            </p>
+        </div>
+        <div class="ventas-kpi">
+            <p class="kpi-label">Ticket promedio</p>
+            <p class="kpi-value">
+                {{ ticket_promedio }}
+            </p>
+        </div>
+        <div class="ventas-kpi">
+            <p class="kpi-label">Ventas realizadas</p>
+            <p class="kpi-value">
+                {{ ventas_realizadas }}
+            </p>
+        </div>
+    </div>
+    <!-- Evolución de ventas -->
+    <section class="ventas-bloque">
+        <h3 class="ventas-subtitulo">EVOLUCIÓN DE VENTAS</h3>
+        <div class="ventas-grafica ventas-grafica-lineal">
+            {% if grafica_evolucion %}
+                <img
+                    src="{{ grafica_evolucion }}"
+                    alt="Gráfica de líneas de la evolución de ventas"
+                >
+            {% else %}
+                <p class="grafica-vacia">
+                    No hay datos disponibles para mostrar
+                    la evolución de ventas.
+                </p>
+            {% endif %}
+        </div>
+    </section>
+    <!-- Análisis por categoría y producto -->
+    <div class="ventas-graficas-grid">
+        <section class="ventas-bloque">
+            <h3 class="ventas-subtitulo">
+                VENTAS POR CATEGORÍA
+            </h3>
+            <div class="ventas-grafica">
+                {% if grafica_categorias %}
+                    <img
+                        src="{{ grafica_categorias }}"
+                        alt="Gráfica de barras verticales de ventas por categoría"
+                    >
+                {% else %}
+                    <p class="grafica-vacia">
+                        No hay datos disponibles por categoría.
+                    </p>
+                {% endif %}
+            </div>
+        </section>
+        <section class="ventas-bloque">
+            <h3 class="ventas-subtitulo">
+                PRODUCTOS / SERVICIOS
+            </h3>
+            <div class="ventas-grafica">
+                {% if grafica_productos %}
+                    <img
+                        src="{{ grafica_productos }}"
+                        alt="Gráfica de barras horizontales de productos y servicios"
+                    >
+                {% else %}
+                    <p class="grafica-vacia">
+                        No hay datos disponibles de productos o servicios.
+                    </p>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+    <!-- Pie -->
+    <footer class="ventas-footer">
+        Finanzen
+    </footer>
+</section>
+<style>
+    .ventas {
+        min-height: 257mm;
+        display: flex;
+        flex-direction: column;
+    }
+    /* Encabezado */
+    .ventas-header {
+        margin-bottom: 16pt;
+    }
+    .ventas-header .section-title {
+        margin-bottom: 5pt;
+        font-size: 19pt;
+        color: var(--color-plum-dark);
+    }
+    .ventas-periodo {
+        margin: 0;
+        color: var(--color-muted);
+        font-size: 9pt;
+    }
+    .ventas-periodo strong {
+        color: var(--color-plum);
+    }
+    /* Indicadores */
+    .ventas-kpis {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10pt;
+        margin-bottom: 20pt;
+    }
+    .ventas-kpi {
+        min-width: 0;
+        padding: 13pt 8pt;
+        border: 1pt solid var(--color-border);
+        border-top: 3pt solid var(--color-plum-medium);
+        border-radius: 7pt;
+        background: var(--color-white);
+        text-align: center;
+        break-inside: avoid;
+    }
+    .kpi-label {
+        min-height: 24pt;
+        margin: 0 0 7pt;
+        color: var(--color-muted);
+        font-size: 8pt;
+        font-weight: 600;
+    }
+    .kpi-value {
+        margin: 0;
+        color: var(--color-plum-dark);
+        font-size: 17pt;
+        font-weight: 700;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+    /* Bloques de gráficas */
+    .ventas-bloque {
+        min-width: 0;
+        break-inside: avoid;
+    }
+    .ventas-subtitulo {
+        margin: 0 0 8pt;
+        color: var(--color-plum);
+        font-size: 10pt;
+        font-weight: 700;
+    }
+    .ventas-grafica {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        height: 220pt;
+        padding: 8pt;
+        border: 1pt solid var(--color-border);
+        border-radius: 7pt;
+        background: var(--color-white);
+        overflow: hidden;
+    }
+    .ventas-grafica img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .ventas-grafica-lineal {
+        height: 205pt;
+    }
+    .grafica-vacia {
+        margin: 0;
+        color: var(--color-muted);
+        font-size: 9pt;
+        text-align: center;
+    }
+    /* Dos gráficas inferiores */
+    .ventas-graficas-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12pt;
+        margin-top: 18pt;
+    }
+    .ventas-graficas-grid .ventas-grafica {
+        height: 205pt;
+    }
+    /* Pie */
+    .ventas-footer {
+        margin-top: auto;
+        padding-top: 12pt;
+        color: var(--color-plum-soft);
+        font-size: 9pt;
+        font-weight: 700;
+        text-align: center;
+    }
+</style>

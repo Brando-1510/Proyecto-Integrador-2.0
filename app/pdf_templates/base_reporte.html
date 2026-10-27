@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Informe financiero{% endblock %}</title>
+    <style>
+        /* =========================================================
+           FINANZEN · Estilos globales para reportes PDF
+           Paleta basada en Midnight Plum, con fondo blanco.
+           ========================================================= */
+        :root {
+            --color-plum: #3B153A;          /* Midnight Plum: identidad principal */
+            --color-plum-dark: #281027;      /* Títulos principales */
+            --color-plum-medium: #60305F;    /* Subtítulos */
+            --color-plum-soft: #815A80;      /* Etiquetas y acentos */
+            --color-lilac: #F1EAF2;          /* Fondos suaves */
+            --color-lilac-light: #F8F5F8;    /* Filas alternas / superficies */
+            --color-white: #FFFFFF;
+            --color-text: #352D35;           /* Texto de lectura */
+            --color-muted: #746B74;          /* Texto secundario */
+            --color-border: #E3DCE4;
+            --color-positive: #287A55;
+            --color-negative: #B23B52;
+            --font-family: Arial, Helvetica, sans-serif;
+            --font-size-base: 10pt;
+            --line-height-base: 1.45;
+        }
+        /* Configuración de página para WeasyPrint */
+        @page {
+            size: A4;
+            margin: 18mm 16mm 20mm;
+            /* Reservar espacio si luego se agregan encabezados/pies fijos */
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+                color: var(--color-muted);
+                font-family: var(--font-family);
+                font-size: 8pt;
+            }
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-text);
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-base);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin: 0 0 0.55em;
+            color: var(--color-plum);
+            line-height: 1.2;
+            break-after: avoid;
+        }
+        h1 {
+            color: var(--color-plum-dark);
+            font-size: 25pt;
+            font-weight: 700;
+        }
+        h2 {
+            color: var(--color-plum);
+            font-size: 17pt;
+            font-weight: 700;
+        }
+        h3 {
+            color: var(--color-plum-medium);
+            font-size: 12pt;
+            font-weight: 700;
+        }
+        h4 {
+            color: var(--color-plum-soft);
+            font-size: 10pt;
+            font-weight: 700;
+        }
+        p {
+            margin: 0 0 0.8em;
+        }
+        strong {
+            color: var(--color-plum-dark);
+        }
+        .text-muted {
+            color: var(--color-muted);
+        }
+        .text-plum {
+            color: var(--color-plum);
+        }
+        .section-title {
+            margin-bottom: 12pt;
+            padding-bottom: 7pt;
+            border-bottom: 1.5pt solid var(--color-plum);
+            color: var(--color-plum-dark);
+        }
+        .eyebrow {
+            margin-bottom: 5pt;
+            color: var(--color-plum-soft);
+            font-size: 8pt;
+            font-weight: 700;
+            letter-spacing: 1.2pt;
+            text-transform: uppercase;
+        }
+        /* Superficies y elementos destacados */
+        .card {
+            padding: 12pt;
+            border: 1pt solid var(--color-border);
+            border-radius: 7pt;
+            background: var(--color-white);
+        }
+        .card-soft {
+            padding: 12pt;
+            border: 1pt solid var(--color-lilac);
+            border-radius: 7pt;
+            background: var(--color-lilac-light);
+        }
+        .highlight {
+            padding: 10pt 12pt;
+            border-left: 3pt solid var(--color-plum-medium);
+            background: var(--color-lilac);
+        }
+        /* Tablas de datos */
+        table {
+            width: 100%;
+            margin: 8pt 0 14pt;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+        thead {
+            display: table-header-group;
+        }
+        th {
+            padding: 8pt 7pt;
+            background: var(--color-plum);
+            color: var(--color-white);
+            font-weight: 700;
+            text-align: left;
+            vertical-align: middle;
+        }
+        td {
+            padding: 7pt;
+            border-bottom: 0.6pt solid var(--color-border);
+            color: var(--color-text);
+            vertical-align: top;
+        }
+        tbody tr:nth-child(even) {
+            background: var(--color-lilac-light);
+        }
+        tr {
+            break-inside: avoid;
+        }
+        .number,
+        .amount {
+            text-align: right;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        /* Indicadores */
+        .metric-label {
+            margin-bottom: 3pt;
+            color: var(--color-muted);
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .metric-value {
+            color: var(--color-plum-dark);
+            font-size: 20pt;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+        .positive {
+            color: var(--color-positive);
+        }
+        .negative {
+            color: var(--color-negative);
+        }
+        /* Saltos y composición para PDF */
+        .page-break {
+            break-before: page;
+        }
+        .avoid-break {
+            break-inside: avoid;
+        }
+        .report-section {
+            width: 100%;
+        }
+        img,
+        svg {
+            max-width: 100%;
+        }
+        /* Los enlaces no necesitan apariencia interactiva en papel */
+        a {
+            color: var(--color-plum-medium);
+            text-decoration: none;
+        }
+        @media screen {
+            body {
+                background: #F2F0F3;
+            }
+            .report-preview {
+                width: 210mm;
+                min-height: 297mm;
+                margin: 16px auto;
+                padding: 18mm 16mm 20mm;
+                background: var(--color-white);
+                box-shadow: 0 2px 14px rgba(59, 21, 58, 0.12);
+            }
+        }
+    </style>
+    {% block estilos_extra %}{% endblock %}
+</head>
+<body>
+    {% block contenido %}{% endblock %}
+</body>
+</html>

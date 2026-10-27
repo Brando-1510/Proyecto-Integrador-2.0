@@ -114,150 +114,41 @@ QPushButton[boton=&quot;Secundario&quot;]:pressed {
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_12">
-     <property name="spacing">
-      <number>20</number>
+    <widget class="QLabel" name="lblTitulo">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="leftMargin">
-      <number>30</number>
+     <property name="text">
+      <string>Informes</string>
      </property>
-     <property name="topMargin">
-      <number>25</number>
+     <property name="texto" stdset="0">
+      <string>TituloPrincipal</string>
      </property>
-     <property name="rightMargin">
-      <number>30</number>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblDescripcion">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
      </property>
-     <property name="bottomMargin">
-      <number>25</number>
+     <property name="text">
+      <string>Genera reportes financieros de tu negocio</string>
      </property>
-     <item>
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="styleSheet">
-        <string notr="true">/*
------------------------------------------------------------------------------------------------------
-ScrollArea
------------------------------------------------------------------------------------------------------
-*/
-#scrollAreaWidgetContents {
-    background-color: transparent;
-}
-QScrollArea {
-    background-color: transparent;
-    border: none;
-	border-radius:0px;
-}
-
-/* Widget que está dentro del ScrollArea */
-/*QScrollArea &gt; QWidget &gt; QWidget {
-    background-color: #F9F9FC;
-}*/
-
-/* Scrollbar vertical */
-QScrollBar:vertical {
-    background-color: transparent;
-    width: 8px;
-    margin: 4px 2px 4px 0px;
-}
-
-/* Parte que se puede arrastrar */
-QScrollBar::handle:vertical {
-    background-color: #C9C1D5;
-    border-radius: 4px;
-    min-height: 40px;
-}
-
-/* Al pasar el mouse */
-QScrollBar::handle:vertical:hover {
-    background-color: #A99DB8;
-}
-
-/* Ocultar botones de arriba y abajo */
-QScrollBar::add-line:vertical,
-QScrollBar::sub-line:vertical {
-    height: 0px;
-}
-
-/* Espacio antes/después del handle */
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: transparent;
-}</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>995</width>
-          <height>630</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="leftMargin">
-          <number>9</number>
-         </property>
-         <property name="topMargin">
-          <number>9</number>
-         </property>
-         <property name="rightMargin">
-          <number>9</number>
-         </property>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <property name="spacing">
-            <number>20</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="lblTitulo">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Informes</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>TituloPrincipal</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="lblDescripcion">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Genera reportes financieros de tu negocio</string>
-             </property>
-             <property name="texto" stdset="0">
-              <string>Descripcion</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QFrame" name="frame_7">
-             <property name="styleSheet">
-              <string notr="true">/* --- ESTADO BASE --- */
+     <property name="texto" stdset="0">
+      <string>Descripcion</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame_7">
+     <property name="styleSheet">
+      <string notr="true">/* --- ESTADO BASE --- */
 QLineEdit, QDateEdit, QPlainTextEdit, QComboBox {
     background-color: #F8F9FA; 
     border: 1px solid #D1D5DB; 
@@ -481,177 +372,200 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
 }
 
 </string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <property name="carta" stdset="0">
-              <string>Dashboard</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_14">
-              <item>
-               <widget class="QLabel" name="label_9">
-                <property name="text">
-                 <string>Generar Informes</string>
-                </property>
-                <property name="texto" stdset="0">
-                 <string>TituloSecundario</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>Tipo de Informe</string>
-                </property>
-                <property name="texto" stdset="0">
-                 <string>Destacado</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="comboBox">
-                <item>
-                 <property name="text">
-                  <string>Informe Financiero General</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Informe de Gastos</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Informe de Ventas</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_2">
-                <property name="text">
-                 <string>Período</string>
-                </property>
-                <property name="texto" stdset="0">
-                 <string>Destacado</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QWidget" name="widget" native="true">
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-    qproperty-alignment: AlignCenter;
-}
-</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout">
-                 <item>
-                  <widget class="QDateEdit" name="dateEdit"/>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_3">
-                   <property name="text">
-                    <string>Hasta</string>
-                   </property>
-                   <property name="texto" stdset="0">
-                    <string>Descripcion</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QDateEdit" name="dateEdit_2"/>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_4">
-                <property name="text">
-                 <string>Incluir en el Informe</string>
-                </property>
-                <property name="texto" stdset="0">
-                 <string>Destacado</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox">
-                <property name="text">
-                 <string>Resumen Financiero</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_2">
-                <property name="text">
-                 <string>Gráficas</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_3">
-                <property name="text">
-                 <string>Recomendaciones</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QWidget" name="widget_2" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <item>
-                  <spacer name="horizontalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton">
-                   <property name="text">
-                    <string>Generar Informe</string>
-                   </property>
-                   <property name="boton" stdset="0">
-                    <string>Primario</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_2">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="carta" stdset="0">
+      <string>Dashboard</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_14">
+      <item>
+       <widget class="QLabel" name="label_9">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Generar Informes</string>
+        </property>
+        <property name="texto" stdset="0">
+         <string>TituloSecundario</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Tipo de Informe</string>
+        </property>
+        <property name="texto" stdset="0">
+         <string>Destacado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>Informe Financiero General</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Informe de Ingresos</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Informe de Gastos</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Informe de Ventas</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="formLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="labelAlignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="formAlignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="horizontalSpacing">
+         <number>30</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Período:</string>
+          </property>
+          <property name="texto" stdset="0">
+           <string>Destacado</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="periodo">
+          <item>
+           <property name="text">
+            <string>Esta Semana</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Este Mes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Los Últimos 3 Meses</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Último Año</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Personalizado</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="lblPersonalizarV">
+          <property name="text">
+           <string>Personaliza el Rango:</string>
+          </property>
+          <property name="texto" stdset="0">
+           <string>Destacado</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QWidget" name="contenedorFechasV" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>50</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QDateEdit" name="rangoInicio"/>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="rangoFinal"/>
            </item>
           </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_2" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Generar Informe</string>
+           </property>
+           <property name="boton" stdset="0">
+            <string>Primario</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
-      </widget>
-     </item>
-    </layout>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
