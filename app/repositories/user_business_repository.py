@@ -27,3 +27,9 @@ class UserBusinessRepository:
         self.session.add(user_business)
         self.session.flush()
         return user_business
+    def exists_relationship(self, user_id: int, business_id: int) -> bool:
+        stmt = select(UserBusiness.user_id).where(
+            UserBusiness.user_id == user_id,
+            UserBusiness.business_id == business_id,
+        ).limit(1)
+        return self.session.scalar(stmt) is not None

@@ -1,6 +1,7 @@
 from app.models.movement import Movement
 from sqlalchemy import select,func,case
 from datetime import date
+from app.models.movement import Movement, MovementType
 
 class MovementRepository:
     def __init__(self, session):
@@ -57,3 +58,40 @@ class MovementRepository:
             stmt=stmt.limit(limit)
         resultado = self.session.scalars(stmt).all()
         return resultado
+
+    def get_movements_by_category(
+        self,business_id: int,start_date: date,end_date: date,movement_type: MovementType,
+    ):
+        stmt = (
+            select(
+                Movement.category,
+                func.sum(Movement.amount).label("total"),
+            )
+            .where(
+                Movement.business_id == business_id,
+                Movement.date.between(start_date, end_date),
+                Movement.type == movement_type,
+            )
+            .group_by(Movement.category)
+            .order_by(func.sum(Movement.amount).desc())
+        )
+        return self.session.execute(stmt).all()
+
+
+    def get_movement_evolution(self,business_id: int,start_date: date,end_date: date,
+    ):
+        stmt = (
+            select(
+                Movement.date,
+                Movement.type,
+                func.sum(Movement.amount).label("total"),
+            )
+            .where(
+                Movement.business_id == business_id,
+                Movement.date.between(start_date, end_date),
+            )
+            .group_by(Movement.date, Movement.type)
+            .order_by(Movement.date)
+        )
+        return self.session.execute(stmt).all()
+

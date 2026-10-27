@@ -2,6 +2,8 @@ from datetime import date
 from sqlalchemy import select, func
 from sqlalchemy.orm import joinedload
 from app.models.sale import Sale
+from app.models.category import Category
+
 
 class SaleRepository:
     def __init__(self, session):
@@ -60,3 +62,45 @@ class SaleRepository:
         if limit is not None:
             stmt = stmt.limit(limit)
         return self.session.scalars(stmt).all()
+
+    def get_sales_by_category(self,business_id: int,start_date: date,end_date: date,):
+        stmt = (
+            select(
+                Category.name,
+                func.sum(Sale.total).label("total"),
+            )
+            .join(Sale.category)
+            .where(
+                Sale.business_id == business_id,
+                Sale.date.between(start_date, end_date),
+            )
+            .group_by(Category.category_id, Category.name)
+            .order_by(func.sum(Sale.total).desc())
+        )
+        return self.session.execute(stmt).all()
+
+    def get_sales_by_product(self,business_id: int,start_date: date,end_date: date,):
+        stmt = (
+            select(
+                Sale.product_service,
+                func.sum(Sale.total).label("total"),
+            )
+            .where(
+                Sale.business_id == business_id,
+                Sale.date.between(start_date, end_date),
+            )
+            .group_by(Sale.product_service)
+            .order_by(func.sum(Sale.total).desc())
+        )
+        return self.session.execute(stmt).all()
+
+    def get_sales_count(self,business_id: int,start_date: date,end_date: date,):
+        stmt = (
+            select(func.count(Sale.sale_id))
+            .where(
+                Sale.business_id == business_id,
+                Sale.date.between(start_date, end_date),
+            )
+        )
+        return self.session.scalar(stmt)
+

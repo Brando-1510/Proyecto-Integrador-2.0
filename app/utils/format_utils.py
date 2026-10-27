@@ -1,32 +1,15 @@
+from decimal import Decimal
 from datetime import date
+
 class FormatUtils:
     MONTHS = [
-        "enero",
-        "febrero",
-        "marzo",
-        "abril",
-        "mayo",
-        "junio",
-        "julio",
-        "agosto",
-        "septiembre",
-        "octubre",
-        "noviembre",
-        "diciembre",
+        "enero", "febrero", "marzo", "abril",
+        "mayo", "junio", "julio", "agosto",
+        "septiembre", "octubre", "noviembre", "diciembre",
     ]
     MONTHS_SHORT = [
-        "ene",
-        "feb",
-        "mar",
-        "abr",
-        "may",
-        "jun",
-        "jul",
-        "ago",
-        "sep",
-        "oct",
-        "nov",
-        "dic",
+        "ene", "feb", "mar", "abr", "may", "jun",
+        "jul", "ago", "sep", "oct", "nov", "dic",
     ]
     @staticmethod
     def short_date(value: date) -> str:
@@ -47,3 +30,13 @@ class FormatUtils:
             f"{FormatUtils.long_date(start_date)} - "
             f"{FormatUtils.long_date(end_date)}"
         )
+    @staticmethod
+    def format_currency(value) -> str:
+        amount = Decimal(str(value or 0))
+        return f"C$ {amount:,.2f}"
+    @staticmethod
+    def format_percentage(value) -> str:
+        return f"{float(value or 0):.2f}%"
+    @staticmethod
+    def format_report_date(value: date) -> str:
+        return value.strftime("%d/%m/%Y")
