@@ -2,7 +2,7 @@
 
 #  Sistema de Análisis Financiero
 
-### Desarrollo de una aplicación de escritorio utilizando lenguaje de programación Python, interfaz visual PySide6 y gestión de datos mediante SQLAlchemy enfocada en la visualización y análisis de información financiera de pequeños negocios mediante un modelo predictivo basado en Pandas y Numpy. 
+### Desarrollo de una aplicación de escritorio utilizando lenguaje de programación Python, interfaz visual PySide6 y gestión de datos mediante SQLAlchemy enfocada en la visualización y análisis de información financiera de pequeños negocios mediante un modelo predictivo basado en Pandas y Matplotlib. 
 
 <br>
 
