@@ -1,3 +1,4 @@
+
 {% extends "base_reporte.html" %}
 
 {% block titulo %}
@@ -9,21 +10,15 @@
     {% include "secciones/portada.html" %}
 
     {% if tipo_reporte in ("general", "ventas") %}
-        <div class="page-break">
-            {% include "secciones/ventas.html" %}
-        </div>
+        {% include "secciones/ventas.html" %}
     {% endif %}
 
     {% if tipo_reporte in ("general", "ingresos") %}
-        <div class="page-break">
-            {% include "secciones/ingresos.html" %}
-        </div>
+        {% include "secciones/ingresos.html" %}
     {% endif %}
 
     {% if tipo_reporte in ("general", "gastos") %}
-        <div class="page-break">
-            {% include "secciones/gastos.html" %}
-        </div>
+        {% include "secciones/gastos.html" %}
     {% endif %}
 
 {% endblock %}

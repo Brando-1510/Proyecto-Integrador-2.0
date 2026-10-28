@@ -132,7 +132,7 @@ class ReportController:
             "total_gastos": FormatUtils.format_currency(expenses["total_gastos"]),
             "categoria_mayor_gasto": (expenses["categoria_mayor_gasto"] or "Sin datos"),
             "grafica_evolucion_gastos": evolution_chart,
-            "grafica_categorias": category_chart,
+            "grafica_categorias_gastos": category_chart,
             "gastos_por_categoria": categories,
         }
     #*Gráficas
@@ -156,27 +156,59 @@ class ReportController:
             values.append(float(item["total"]))
         fig, ax = plt.subplots(figsize=(9, 3.5))
         try:
+            color = "#744BCC"
             ax.plot(
                 range(len(values)),
                 values,
                 marker="o",
                 linewidth=2,
+                markersize=5,
+                color=color,
+                markerfacecolor=color,
+                markeredgecolor="white",
+                markeredgewidth=1,
             )
-            ax.set_title(title)
-            ax.set_ylabel("Monto (C$)")
+            ax.set_title(
+                title,
+                color="#343047",
+                fontsize=12,
+                fontweight="bold",
+            )
+            ax.set_ylabel("Monto (C$)", color="#5E5A6E")
             ax.set_xticks(range(len(labels)))
             ax.set_xticklabels(
                 labels,
                 rotation=45,
                 ha="right",
                 fontsize=8,
+                color="#5E5A6E",
             )
-            ax.grid(axis="y", alpha=0.25)
+            ax.tick_params(axis="y", colors="#5E5A6E")
+            ax.grid(
+                axis="y",
+                color="#E8E5EF",
+                linewidth=0.8,
+                alpha=0.8,
+            )
+            ax.set_axisbelow(True)
+            # Ocultar bordes superiores y derechos
+            ax.spines["top"].set_visible(False)
+            ax.spines["right"].set_visible(False)
+            ax.spines["left"].set_color("#E8E5EF")
+            ax.spines["bottom"].set_color("#E8E5EF")
+            fig.patch.set_facecolor("white")
+            ax.set_facecolor("white")
             fig.tight_layout()
-            fig.savefig(output_path, dpi=150, bbox_inches="tight")
+            fig.savefig(
+                output_path,
+                dpi=150,
+                bbox_inches="tight",
+                facecolor="white",
+            )
         finally:
             plt.close(fig)
         return output_path.resolve().as_uri()
+
     @staticmethod
     def _create_category_chart(categories: list[dict],output_path: Path,title: str,) -> str:
         if not categories:
@@ -185,12 +217,40 @@ class ReportController:
         values = [float(item["total"]) for item in categories]
         fig, ax = plt.subplots(figsize=(8, 4))
         try:
-            ax.barh(names[::-1], values[::-1])
-            ax.set_title(title)
-            ax.set_xlabel("Monto (C$)")
-            ax.grid(axis="x", alpha=0.25)
+            ax.barh(
+                names[::-1],
+                values[::-1],
+                color="#744BCC",
+                height=0.65,
+            )
+            ax.set_title(
+                title,
+                color="#343047",
+                fontsize=12,
+                fontweight="bold",
+            )
+            ax.set_xlabel("Monto (C$)", color="#5E5A6E")
+            ax.tick_params(axis="both", colors="#5E5A6E")
+            ax.grid(
+                axis="x",
+                color="#E8E5EF",
+                linewidth=0.8,
+                alpha=0.8,
+            )
+            ax.set_axisbelow(True)
+            ax.spines["top"].set_visible(False)
+            ax.spines["right"].set_visible(False)
+            ax.spines["left"].set_color("#E8E5EF")
+            ax.spines["bottom"].set_color("#E8E5EF")
+            fig.patch.set_facecolor("white")
+            ax.set_facecolor("white")
             fig.tight_layout()
-            fig.savefig(output_path, dpi=150, bbox_inches="tight")
+            fig.savefig(
+                output_path,
+                dpi=150,
+                bbox_inches="tight",
+                facecolor="white",
+            )
         finally:
             plt.close(fig)
         return output_path.resolve().as_uri()

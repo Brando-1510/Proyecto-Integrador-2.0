@@ -1,4 +1,4 @@
-<section class="reporte-section ventas">
+<section class="reporte-section ventas page-break">
     <!-- Encabezado -->
     <header class="ventas-header">
         <h2 class="section-title">REPORTE DE VENTAS</h2>
@@ -11,31 +11,25 @@
     <div class="ventas-kpis">
         <div class="ventas-kpi">
             <p class="kpi-label">Total vendido</p>
-            <p class="kpi-value">
-                {{ total_vendido }}
-            </p>
+            <p class="kpi-value">{{ total_vendido }}</p>
         </div>
         <div class="ventas-kpi">
             <p class="kpi-label">Ticket promedio</p>
-            <p class="kpi-value">
-                {{ ticket_promedio }}
-            </p>
+            <p class="kpi-value">{{ ticket_promedio }}</p>
         </div>
         <div class="ventas-kpi">
             <p class="kpi-label">Ventas realizadas</p>
-            <p class="kpi-value">
-                {{ ventas_realizadas }}
-            </p>
+            <p class="kpi-value">{{ ventas_realizadas }}</p>
         </div>
     </div>
     <!-- Evolución de ventas -->
-    <section class="ventas-bloque">
+    <section class="ventas-bloque ventas-evolucion">
         <h3 class="ventas-subtitulo">EVOLUCIÓN DE VENTAS</h3>
         <div class="ventas-grafica ventas-grafica-lineal">
             {% if grafica_evolucion %}
                 <img
                     src="{{ grafica_evolucion }}"
-                    alt="Gráfica de líneas de la evolución de ventas"
+                    alt="Evolución de ventas durante el período seleccionado"
                 >
             {% else %}
                 <p class="grafica-vacia">
@@ -45,59 +39,54 @@
             {% endif %}
         </div>
     </section>
-    <!-- Análisis por categoría y producto -->
-    <div class="ventas-graficas-grid">
-        <section class="ventas-bloque">
-            <h3 class="ventas-subtitulo">
-                VENTAS POR CATEGORÍA
-            </h3>
-            <div class="ventas-grafica">
-                {% if grafica_categorias %}
-                    <img
-                        src="{{ grafica_categorias }}"
-                        alt="Gráfica de barras verticales de ventas por categoría"
-                    >
-                {% else %}
-                    <p class="grafica-vacia">
-                        No hay datos disponibles por categoría.
-                    </p>
-                {% endif %}
-            </div>
-        </section>
-        <section class="ventas-bloque">
-            <h3 class="ventas-subtitulo">
-                PRODUCTOS / SERVICIOS
-            </h3>
-            <div class="ventas-grafica">
-                {% if grafica_productos %}
-                    <img
-                        src="{{ grafica_productos }}"
-                        alt="Gráfica de barras horizontales de productos y servicios"
-                    >
-                {% else %}
-                    <p class="grafica-vacia">
-                        No hay datos disponibles de productos o servicios.
-                    </p>
-                {% endif %}
-            </div>
-        </section>
-    </div>
-    <!-- Pie -->
-    <footer class="ventas-footer">
-        Finanzen
-    </footer>
+    <!-- Ventas por categoría -->
+    <section class="ventas-bloque ventas-categorias">
+        <h3 class="ventas-subtitulo">VENTAS POR CATEGORÍA</h3>
+        <div class="ventas-grafica">
+            {% if grafica_categorias %}
+                <img
+                    src="{{ grafica_categorias }}"
+                    alt="Distribución de ventas por categoría"
+                >
+            {% else %}
+                <p class="grafica-vacia">
+                    No hay datos disponibles por categoría.
+                </p>
+            {% endif %}
+        </div>
+    </section>
+    <!-- Productos / servicios -->
+    <section class="ventas-bloque ventas-productos">
+        <h3 class="ventas-subtitulo">PRODUCTOS / SERVICIOS</h3>
+        <div class="ventas-grafica">
+            {% if grafica_productos %}
+                <img
+                    src="{{ grafica_productos }}"
+                    alt="Ventas de productos y servicios"
+                >
+            {% else %}
+                <p class="grafica-vacia">
+                    No hay datos disponibles de productos o servicios.
+                </p>
+            {% endif %}
+        </div>
+    </section>
 </section>
+
 <style>
+    /* CONTENEDOR PRINCIPAL */
     .ventas {
+        width: 100%;
         display: flex;
         flex-direction: column;
     }
-    /* Encabezado */
+    /* ENCABEZADO */
     .ventas-header {
-        margin-bottom: 16pt;
+        margin-bottom: 12pt;
     }
     .ventas-header .section-title {
         margin-bottom: 5pt;
+        padding-bottom: 6pt;
         font-size: 19pt;
         color: var(--color-plum-dark);
     }
@@ -109,32 +98,27 @@
     .ventas-periodo strong {
         color: var(--color-plum);
     }
-    /* Indicadores */
+    /* INDICADORES KPI */
     .ventas-kpis {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10pt;
+        display: flex;
+        width: 100%;
+        gap: 9pt;
         margin-bottom: 12pt;
-        align-items: start;
+        align-items: stretch;
     }
     .ventas-kpi {
+        flex: 1 1 0;
         min-width: 0;
-        padding: 12pt 10pt;
+        padding: 9pt 6pt;
         border: 1pt solid var(--color-border);
         border-top: 3pt solid var(--color-plum-medium);
-        border-radius: 7pt;
+        border-radius: 6pt;
         background: var(--color-white);
         text-align: center;
         break-inside: avoid;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
     .kpi-label {
-        min-height: 0;
-        margin: 0 0 6pt 0;
+        margin: 0 0 5pt;
         color: var(--color-muted);
         font-size: 8pt;
         font-weight: 600;
@@ -142,33 +126,38 @@
     .kpi-value {
         margin: 0;
         color: var(--color-plum-dark);
-        font-size: 16pt;
+        font-size: 15pt;
         font-weight: 700;
         line-height: 1.2;
         overflow-wrap: anywhere;
     }
-    /* Bloques de gráficas */
+    /* BLOQUES DE GRÁFICAS */
     .ventas-bloque {
+        width: 100%;
         min-width: 0;
+        margin-bottom: 14pt;
         break-inside: avoid;
     }
     .ventas-subtitulo {
-        margin: 0 0 8pt;
+        margin: 0 0 6pt;
         color: var(--color-plum);
         font-size: 10pt;
         font-weight: 700;
+        line-height: 1.2;
+        break-after: avoid;
     }
     .ventas-grafica {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 0;
+        width: 100%;
         height: 220pt;
-        padding: 8pt;
+        padding: 5pt;
         border: 1pt solid var(--color-border);
-        border-radius: 7pt;
+        border-radius: 6pt;
         background: var(--color-white);
         overflow: hidden;
+        break-inside: avoid;
     }
     .ventas-grafica img {
         display: block;
@@ -176,32 +165,24 @@
         height: 100%;
         object-fit: contain;
     }
-    .ventas-grafica-lineal {
-        height: 175pt;
+    /* GRÁFICA PRINCIPAL */
+    .ventas-evolucion {
+        margin-bottom: 14pt;
     }
+    .ventas-grafica-lineal {
+        height: 260pt;
+    }
+    /* GRÁFICAS SECUNDARIAS */
+    .ventas-categorias,
+    .ventas-productos {
+        width: 100%;
+    }
+    /* GRÁFICAS SIN DATOS */
     .grafica-vacia {
         margin: 0;
+        padding: 8pt;
         color: var(--color-muted);
         font-size: 9pt;
-        text-align: center;
-    }
-    /* Dos gráficas inferiores */
-    .ventas-graficas-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 12pt;
-        margin-top: 12pt;
-    }
-    .ventas-graficas-grid .ventas-grafica {
-        height: 180pt;
-    }
-    /* Pie */
-    .ventas-footer {
-        margin-top: auto;
-        padding-top: 12pt;
-        color: var(--color-plum-soft);
-        font-size: 9pt;
-        font-weight: 700;
         text-align: center;
     }
 </style>

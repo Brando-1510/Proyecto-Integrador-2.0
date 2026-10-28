@@ -1,4 +1,4 @@
-<section class="reporte-section ingresos">
+<section class="reporte-section ingresos page-break">
     <!-- Encabezado -->
     <header class="ingresos-header">
         <h2 class="section-title">REPORTE DE INGRESOS</h2>
@@ -10,32 +10,24 @@
     <!-- Indicadores principales -->
     <div class="ingresos-kpis">
         <div class="ingresos-kpi">
-            <p class="kpi-value">
-                {{ total_ingresos }}
-            </p>
-            <p class="kpi-label">
-                Total de ingresos
-            </p>
+            <p class="kpi-value">{{ total_ingresos }}</p>
+            <p class="kpi-label">Total de ingresos</p>
         </div>
         <div class="ingresos-kpi">
             <p class="kpi-value kpi-categoria">
                 {{ categoria_mayor_ingreso }}
             </p>
-            <p class="kpi-label">
-                Categoría con mayor ingreso
-            </p>
+            <p class="kpi-label">Categoría con mayor ingreso</p>
         </div>
     </div>
     <!-- Evolución de ingresos -->
-    <section class="ingresos-bloque">
-        <h3 class="ingresos-subtitulo">
-            EVOLUCIÓN DE INGRESOS
-        </h3>
+    <section class="ingresos-bloque ingresos-evolucion">
+        <h3 class="ingresos-subtitulo">EVOLUCIÓN DE INGRESOS</h3>
         <div class="ingresos-grafica ingresos-grafica-lineal">
             {% if grafica_evolucion_ingresos %}
                 <img
                     src="{{ grafica_evolucion_ingresos }}"
-                    alt="Gráfica de líneas de la evolución de ingresos"
+                    alt="Evolución de ingresos durante el período seleccionado"
                 >
             {% else %}
                 <p class="grafica-vacia">
@@ -47,82 +39,74 @@
     </section>
     <!-- Ingresos por categoría -->
     <section class="ingresos-bloque ingresos-distribucion">
-        <h3 class="ingresos-subtitulo">
-            INGRESOS POR CATEGORÍA
-        </h3>
+        <h3 class="ingresos-subtitulo">INGRESOS POR CATEGORÍA</h3>
         <div class="ingresos-distribucion-grid">
-            <!-- Tabla de categorías -->
+            <!-- Tabla -->
             <div class="ingresos-tabla-contenedor">
                 <table class="ingresos-tabla">
                     <thead>
                         <tr>
                             <th>Categoría</th>
                             <th class="amount">Total</th>
-                            <th class="amount"></th>
+                            <th class="amount">%</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for categoria in ingresos_por_categoria %}
-                        <tr>
-                            <td>{{ categoria.nombre }}</td>
-                            <td class="amount">
-                                {{ categoria.total }}
-                            </td>
-                            <td class="amount">
-                                {{ categoria.porcentaje }}
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ categoria.nombre }}</td>
+                                <td class="amount">{{ categoria.total }}</td>
+                                <td class="amount">{{ categoria.porcentaje }}</td>
+                            </tr>
                         {% else %}
-                        <tr>
-                            <td colspan="3" class="ingresos-sin-datos">
-                                No hay ingresos registrados.
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="3" class="ingresos-sin-datos">
+                                    No hay ingresos registrados.
+                                </td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>Total</th>
-                            <th class="amount">
-                                {{ total_ingresos }}
-                            </th>
+                            <th class="amount">{{ total_ingresos }}</th>
                             <th></th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-            <!-- Gráfica de pastel -->
+            <!-- Gráfica debajo de la tabla -->
             <div class="ingresos-grafica ingresos-grafica-pastel">
                 {% if grafica_categorias_ingresos %}
                     <img
                         src="{{ grafica_categorias_ingresos }}"
-                        alt="Gráfica de pastel de ingresos por categoría"
+                        alt="Distribución de ingresos por categoría"
                     >
                 {% else %}
                     <p class="grafica-vacia">
-                        No hay datos disponibles
-                        para mostrar la distribución.
+                        No hay datos disponibles para mostrar
+                        la distribución de ingresos.
                     </p>
                 {% endif %}
             </div>
         </div>
     </section>
-    <!-- Pie -->
-    <footer class="ingresos-footer">
-        Finanzen
-    </footer>
 </section>
+
 <style>
+    /* CONTENEDOR PRINCIPAL */
     .ingresos {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
-    /* Encabezado */
+    /* ENCABEZADO */
     .ingresos-header {
-        margin-bottom: 16pt;
+        margin-bottom: 12pt;
     }
     .ingresos-header .section-title {
         margin-bottom: 5pt;
+        padding-bottom: 6pt;
         font-size: 19pt;
         color: var(--color-plum-dark);
     }
@@ -134,153 +118,167 @@
     .ingresos-periodo strong {
         color: var(--color-plum);
     }
-    /* Indicadores */
-    .ingresos-kpis,
-    .gastos-kpis {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
+    /* INDICADORES KPI */
+    .ingresos-kpis {
+        display: flex;
+        width: 100%;
         gap: 10pt;
         margin-bottom: 12pt;
-        align-items: start;
+        align-items: stretch;
     }
-
-    .ingresos-kpi,
-    .gastos-kpi {
+    .ingresos-kpi {
+        flex: 1 1 0;
         min-width: 0;
-        min-height: 0;
-        padding: 10pt 10pt;
+        padding: 9pt 8pt;
         border: 1pt solid var(--color-border);
         border-top: 3pt solid var(--color-plum-medium);
-        border-radius: 7pt;
+        border-radius: 6pt;
+        background: var(--color-white);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         break-inside: avoid;
-        height: auto;
     }
-
-    .ingresos-kpi .kpi-value,
-    .gastos-kpi .kpi-value {
-        margin: 0 0 3pt;
-        font-size: 17pt;
-        line-height: 1.2;
-        overflow-wrap: anywhere;
+    .ingresos-kpi .kpi-value {
         order: 1;
-    }
-
-    .ingresos-kpi .kpi-categoria,
-    .gastos-kpi .kpi-categoria {
-        margin: 0 0 3pt;
-        font-size: 14pt;
-        font-weight: 700;
+        margin: 0 0 4pt;
         color: var(--color-plum-dark);
+        font-size: 16pt;
+        font-weight: 700;
         line-height: 1.2;
         overflow-wrap: anywhere;
-        order: 1;
     }
-
-    .ingresos-kpi .kpi-label,
-    .gastos-kpi .kpi-label {
+    .ingresos-kpi .kpi-categoria {
+        font-size: 13pt;
+    }
+    .ingresos-kpi .kpi-label {
+        order: 2;
         margin: 0;
+        color: var(--color-muted);
         font-size: 8pt;
-        order:2;
+        font-weight: 600;
     }
-    /* Bloques */
+    /* BLOQUES Y SUBTÍTULOS */
     .ingresos-bloque {
         min-width: 0;
         break-inside: avoid;
     }
     .ingresos-subtitulo {
-        margin: 0 0 8pt;
+        margin: 0 0 6pt;
         color: var(--color-plum);
         font-size: 10pt;
         font-weight: 700;
+        line-height: 1.2;
+        break-after: avoid;
     }
-    /* Gráficas */
+    /* GRÁFICAS */
     .ingresos-grafica {
-        min-width: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 8pt;
+        width: 100%;
+        min-width: 0;
+        padding: 5pt;
         border: 1pt solid var(--color-border);
-        border-radius: 7pt;
+        border-radius: 6pt;
         background: var(--color-white);
         overflow: hidden;
+        break-inside: avoid;
     }
     .ingresos-grafica img {
         display: block;
+        max-width: 100%;
+        max-height: 100%;
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
+    /* Gráfica principal */
+    .ingresos-evolucion {
+        margin-bottom: 12pt;
+    }
     .ingresos-grafica-lineal {
-        height: 175pt;
-        margin-bottom: 17pt;
+        height: 155pt;
     }
-    .ingresos-grafica-pastel {
-        height: 205pt;
-    }
-    .grafica-vacia {
-        margin: 0;
-        color: var(--color-muted);
-        font-size: 9pt;
-        text-align: center;
-    }
-    /* Tabla y gráfica de pastel */
+    /* TABLA Y PASTEL EN VERTICAL */
     .ingresos-distribucion-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12pt;
-    align-items: start;
-    }
-    .ingresos-grafica-pastel {
-        height: 180pt;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10pt;
+        align-items: stretch;
     }
     .ingresos-tabla-contenedor {
+        width: 100%;
         min-width: 0;
     }
+    .ingresos-grafica-pastel {
+        width: 100%;
+        height: 190pt;
+        min-width: 0;
+    }
+    /* TABLA DE INGRESOS */
     .ingresos-tabla {
         width: 100%;
         margin: 0;
         border-collapse: collapse;
+        table-layout: fixed;
         font-size: 8pt;
     }
     .ingresos-tabla th {
-        padding: 7pt 5pt;
+        padding: 6pt 5pt;
         background: var(--color-plum);
         color: var(--color-white);
         font-size: 7.5pt;
+        font-weight: 700;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .ingresos-tabla th:first-child {
+        width: 48%;
+    }
+    .ingresos-tabla th:nth-child(2) {
+        width: 34%;
+    }
+    .ingresos-tabla th:nth-child(3) {
+        width: 18%;
     }
     .ingresos-tabla td {
-        padding: 7pt 5pt;
+        padding: 6pt 5pt;
         border-bottom: 0.6pt solid var(--color-border);
+        vertical-align: top;
         overflow-wrap: anywhere;
     }
     .ingresos-tabla tbody tr:nth-child(even) {
         background: var(--color-lilac-light);
     }
+    .ingresos-tabla th.amount,
+    .ingresos-tabla td.amount {
+        text-align: right;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-variant-numeric: tabular-nums;
+    }
     .ingresos-tabla tfoot th {
-        padding: 8pt 5pt;
+        padding: 7pt 5pt;
         border-top: 1.2pt solid var(--color-plum);
         background: var(--color-lilac);
         color: var(--color-plum-dark);
         font-weight: 700;
     }
     .ingresos-tabla .ingresos-sin-datos {
-        padding: 15pt 5pt;
+        padding: 12pt 5pt;
         color: var(--color-muted);
         text-align: center;
     }
-    /* Pie */
-    .ingresos-footer {
-        margin-top: auto;
-        padding-top: 12pt;
-        color: var(--color-plum-soft);
+    /* ESTADO SIN DATOS */
+    .grafica-vacia {
+        margin: 0;
+        padding: 8pt;
+        color: var(--color-muted);
         font-size: 9pt;
-        font-weight: 700;
         text-align: center;
     }
 </style>

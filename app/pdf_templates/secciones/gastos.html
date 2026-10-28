@@ -1,5 +1,5 @@
-<section class="reporte-section gastos">
-    <!--*Encabezado -->
+<section class="reporte-section gastos page-break">
+    <!-- Encabezado -->
     <header class="gastos-header">
         <h2 class="section-title">REPORTE DE GASTOS</h2>
         <p class="gastos-periodo">
@@ -7,35 +7,27 @@
             {{ periodo_inicio }} - {{ periodo_fin }}
         </p>
     </header>
-    <!--*Indicadores principales -->
+    <!-- Indicadores principales -->
     <div class="gastos-kpis">
         <div class="gastos-kpi">
-            <p class="kpi-value">
-                {{ total_gastos }}
-            </p>
-            <p class="kpi-label">
-                Total de gastos
-            </p>
+            <p class="kpi-label">Total de gastos</p>
+            <p class="kpi-value">{{ total_gastos }}</p>
         </div>
         <div class="gastos-kpi">
+            <p class="kpi-label">Categoría con mayor gasto</p>
             <p class="kpi-value kpi-categoria">
                 {{ categoria_mayor_gasto }}
             </p>
-            <p class="kpi-label">
-                Categoría con mayor gasto
-            </p>
         </div>
     </div>
-    <!--*Evolución de gastos -->
-    <section class="gastos-bloque">
-        <h3 class="gastos-subtitulo">
-            EVOLUCIÓN DE GASTOS
-        </h3>
+    <!-- Evolución de gastos -->
+    <section class="gastos-bloque gastos-evolucion">
+        <h3 class="gastos-subtitulo">EVOLUCIÓN DE GASTOS</h3>
         <div class="gastos-grafica gastos-grafica-lineal">
             {% if grafica_evolucion_gastos %}
                 <img
                     src="{{ grafica_evolucion_gastos }}"
-                    alt="Gráfica de líneas de la evolución de gastos"
+                    alt="Evolución de gastos durante el período seleccionado"
                 >
             {% else %}
                 <p class="grafica-vacia">
@@ -45,13 +37,11 @@
             {% endif %}
         </div>
     </section>
-    <!--*Distribución de gastos -->
+    <!-- Distribución de gastos -->
     <section class="gastos-bloque gastos-distribucion">
-        <h3 class="gastos-subtitulo">
-            GASTOS POR CATEGORÍA
-        </h3>
+        <h3 class="gastos-subtitulo">GASTOS POR CATEGORÍA</h3>
         <div class="gastos-distribucion-grid">
-            <!-- Tabla -->
+            <!-- Tabla de categorías -->
             <div class="gastos-tabla-contenedor">
                 <table class="gastos-tabla">
                     <thead>
@@ -63,67 +53,64 @@
                     </thead>
                     <tbody>
                         {% for categoria in gastos_por_categoria %}
-                        <tr>
-                            <td>{{ categoria.nombre }}</td>
-                            <td class="amount">
-                                {{ categoria.total }}
-                            </td>
-                            <td class="amount">
-                                {{ categoria.porcentaje }}
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ categoria.nombre }}</td>
+                                <td class="amount">
+                                    {{ categoria.total }}
+                                </td>
+                                <td class="amount">
+                                    {{ categoria.porcentaje }}
+                                </td>
+                            </tr>
                         {% else %}
-                        <tr>
-                            <td colspan="3" class="gastos-sin-datos">
-                                No hay gastos registrados.
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="3" class="gastos-sin-datos">
+                                    No hay gastos registrados.
+                                </td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>Total</th>
-                            <th class="amount">
-                                {{ total_gastos }}
-                            </th>
+                            <th class="amount">{{ total_gastos }}</th>
                             <th></th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-            <!-- Gráfica de pastel -->
+            <!-- Gráfica de distribución -->
             <div class="gastos-grafica gastos-grafica-pastel">
-                {% if grafica_categorias %}
+                {% if grafica_categorias_gastos %}
                     <img
-                        src="{{ grafica_categorias }}"
-                        alt="Gráfica de pastel de gastos por categoría"
+                        src="{{ grafica_categorias_gastos }}"
+                        alt="Distribución porcentual de gastos por categoría"
                     >
                 {% else %}
                     <p class="grafica-vacia">
-                        No hay datos disponibles
-                        para mostrar la distribución.
+                        No hay datos disponibles para mostrar
+                        la distribución de gastos.
                     </p>
                 {% endif %}
             </div>
         </div>
     </section>
-    <!-- Pie -->
-    <footer class="gastos-footer">
-        Finanzen
-    </footer>
 </section>
 
 <style>
+    /* CONTENEDOR PRINCIPAL */
     .gastos {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
-    /* Encabezado */
+    /* ENCABEZADO */
     .gastos-header {
-        margin-bottom: 16pt;
+        margin-bottom: 12pt;
     }
     .gastos-header .section-title {
         margin-bottom: 5pt;
+        padding-bottom: 6pt;
         font-size: 19pt;
         color: var(--color-plum-dark);
     }
@@ -135,153 +122,167 @@
     .gastos-periodo strong {
         color: var(--color-plum);
     }
-    /* Indicadores */
-    .ingresos-kpis,
+    /* INDICADORES KPI */
     .gastos-kpis {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
+        display: flex;
+        width: 100%;
         gap: 10pt;
         margin-bottom: 12pt;
-        align-items: start;
+        align-items: stretch;
     }
-
-    .ingresos-kpi,
     .gastos-kpi {
+        flex: 1 1 0;
         min-width: 0;
-        min-height: 0;
-        padding: 10pt 10pt;
+        padding: 9pt 8pt;
         border: 1pt solid var(--color-border);
         border-top: 3pt solid var(--color-plum-medium);
-        border-radius: 7pt;
+        border-radius: 6pt;
+        background: var(--color-white);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         break-inside: avoid;
-        height: auto;
     }
-
-    .ingresos-kpi .kpi-value,
-    .gastos-kpi .kpi-value {
-        margin: 0 0 3pt;
-        font-size: 17pt;
-        line-height: 1.2;
-        overflow-wrap: anywhere;
-        order: 1;
-    }
-
-    .ingresos-kpi .kpi-categoria,
-    .gastos-kpi .kpi-categoria {
-        margin: 0 0 3pt;
-        font-size: 14pt;
-        font-weight: 700;
-        color: var(--color-plum-dark);
-        line-height: 1.2;
-        overflow-wrap: anywhere;
-        order: 1;
-    }
-
-    .ingresos-kpi .kpi-label,
     .gastos-kpi .kpi-label {
+        order: 2;
         margin: 0;
+        color: var(--color-muted);
         font-size: 8pt;
-        order:2;
+        font-weight: 600;
     }
-    /* Bloques */
+    .gastos-kpi .kpi-value {
+        order: 1;
+        margin: 0 0 4pt;
+        color: var(--color-plum-dark);
+        font-size: 16pt;
+        font-weight: 700;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+    .gastos-kpi .kpi-categoria {
+        font-size: 13pt;
+    }
+    /* BLOQUES Y SUBTÍTULOS */
     .gastos-bloque {
         min-width: 0;
         break-inside: avoid;
     }
     .gastos-subtitulo {
-        margin: 0 0 8pt;
+        margin: 0 0 6pt;
         color: var(--color-plum);
         font-size: 10pt;
         font-weight: 700;
+        line-height: 1.2;
+        break-after: avoid;
     }
-    /* Gráficas */
+    /* CONTENEDORES DE GRÁFICAS */
     .gastos-grafica {
-        min-width: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 8pt;
+        min-width: 0;
+        padding: 5pt;
         border: 1pt solid var(--color-border);
-        border-radius: 7pt;
+        border-radius: 6pt;
         background: var(--color-white);
         overflow: hidden;
+        break-inside: avoid;
     }
     .gastos-grafica img {
         display: block;
+        max-width: 100%;
+        max-height: 100%;
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
+    /* Gráfica principal */
+    .gastos-evolucion {
+        margin-bottom: 12pt;
+    }
     .gastos-grafica-lineal {
-        height: 175pt;
-        margin-bottom: 17pt;
+        height: 155pt;
     }
-    .gastos-grafica-pastel {
-        height: 205pt;
-    }
-    .grafica-vacia {
-        margin: 0;
-        color: var(--color-muted);
-        font-size: 9pt;
-        text-align: center;
-    }
-    /* Tabla + pastel */
+    /* TABLA Y GRÁFICA VERTICALES */
     .gastos-distribucion-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12pt;
-    align-items: start;
-    }
-    .gastos-grafica-pastel {
-        height: 180pt;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10pt;
+        align-items: stretch;
     }
     .gastos-tabla-contenedor {
+        width: 100%;
         min-width: 0;
     }
+    /* Gráfica debajo de la tabla */
+    .gastos-grafica-pastel {
+        width: 100%;
+        height: 190pt;
+        min-width: 0;
+    }
+    /* TABLA DE GASTOS */
     .gastos-tabla {
         width: 100%;
         margin: 0;
         border-collapse: collapse;
+        table-layout: fixed;
         font-size: 8pt;
     }
     .gastos-tabla th {
-        padding: 7pt 5pt;
+        padding: 6pt 5pt;
         background: var(--color-plum);
         color: var(--color-white);
         font-size: 7.5pt;
+        font-weight: 700;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .gastos-tabla th:first-child {
+        width: 48%;
+    }
+    .gastos-tabla th:nth-child(2) {
+        width: 34%;
+    }
+    .gastos-tabla th:nth-child(3) {
+        width: 18%;
     }
     .gastos-tabla td {
-        padding: 7pt 5pt;
+        padding: 6pt 5pt;
         border-bottom: 0.6pt solid var(--color-border);
+        vertical-align: top;
         overflow-wrap: anywhere;
     }
     .gastos-tabla tbody tr:nth-child(even) {
         background: var(--color-lilac-light);
     }
+    .gastos-tabla th.amount,
+    .gastos-tabla td.amount {
+        text-align: right;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-variant-numeric: tabular-nums;
+    }
     .gastos-tabla tfoot th {
-        padding: 8pt 5pt;
+        padding: 7pt 5pt;
         border-top: 1.2pt solid var(--color-plum);
         background: var(--color-lilac);
         color: var(--color-plum-dark);
         font-weight: 700;
     }
     .gastos-tabla .gastos-sin-datos {
-        padding: 15pt 5pt;
+        padding: 12pt 5pt;
         color: var(--color-muted);
         text-align: center;
     }
-    /* Pie */
-    .gastos-footer {
-        margin-top: auto;
-        padding-top: 12pt;
-        color: var(--color-plum-soft);
+    /* ESTADO SIN DATOS */
+    .grafica-vacia {
+        margin: 0;
+        padding: 8pt;
+        color: var(--color-muted);
         font-size: 9pt;
-        font-weight: 700;
         text-align: center;
     }
 </style>

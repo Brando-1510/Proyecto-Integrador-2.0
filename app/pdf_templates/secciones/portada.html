@@ -1,93 +1,172 @@
 <section class="portada">
+    <!-- Elemento decorativo superior -->
+    <div class="portada-acento"></div>
     <!-- Bloque central de la portada -->
     <div class="portada-contenido">
-        <p class="portada-etiqueta">FINANZEN</p>
+        <p class="portada-etiqueta">
+            FINANZEN
+        </p>
+        <div class="portada-separador">
+            <span></span>
+        </div>
         <h1 class="portada-titulo">
             REPORTE<br>
             FINANCIERO
         </h1>
+        <p class="portada-descripcion">
+            Análisis y resumen del desempeño financiero
+        </p>
+        <!-- Período del reporte -->
         <div class="portada-periodo">
-            <p>
+            <p class="portada-periodo-etiqueta">
+                PERÍODO DEL REPORTE
+            </p>
+            <p class="portada-periodo-fecha">
                 {{ periodo_inicio }} - {{ periodo_fin }}
             </p>
             <div class="portada-linea"></div>
         </div>
+        <!-- Información del negocio -->
         <div class="portada-informacion">
-            <p>
-                <strong>Negocio:</strong>
-                {{ negocio }}
-            </p>
-            <p>
-                <strong>Creado por:</strong>
-                {{ creado_por }}
-            </p>
+            <div class="portada-informacion-item">
+                <span class="portada-info-etiqueta">
+                    NEGOCIO
+                </span>
+                <p>{{ negocio }}</p>
+            </div>
+            <div class="portada-informacion-item">
+                <span class="portada-info-etiqueta">
+                    REPORTE PREPARADO POR
+                </span>
+                <p>{{ creado_por }}</p>
+            </div>
         </div>
     </div>
-    <!-- Pie de la portada -->
+    <!-- Pie fijado al final de la página -->
     <footer class="portada-footer">
-        Reporte financiero creado en Finanzen
+        <span>Reporte financiero creado en Finanzen</span>
     </footer>
 </section>
 <style>
     .portada {
+        box-sizing: border-box;
+        min-height: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         align-items: center;
+        position: relative;
         text-align: center;
         color: var(--color-plum);
-        position: relative;
+        padding: 0 24pt;
+    }
+    /* Acento decorativo superior */
+    .portada-acento {
+        width: 100%;
+        height: 5pt;
+        background-color: var(--color-plum);
+        margin-bottom: 30pt;
     }
     .portada-contenido {
         width: 100%;
         margin: auto 0;
-        padding: 20pt 0;
+        padding: 24pt 0;
     }
     .portada-etiqueta {
-        color: var(--color-plum-soft);
-        font-size: 9pt;
+        color: var(--color-plum);
+        font-size: 11pt;
         font-weight: 700;
-        letter-spacing: 3pt;
-        margin-bottom: 20pt;
+        letter-spacing: 5pt;
+        margin: 0 0 14pt 5pt;
+    }
+    .portada-separador {
+        margin: 0 auto 24pt;
+        width: 90pt;
+        height: 2pt;
+        background-color: var(--color-border);
+    }
+    .portada-separador span {
+        display: block;
+        width: 35pt;
+        height: 2pt;
+        margin: 0 auto;
+        background-color: var(--color-plum);
     }
     .portada-titulo {
         color: var(--color-plum-dark);
-        font-size: 32pt;
+        font-size: 36pt;
         font-weight: 700;
         line-height: 1.15;
-        letter-spacing: 1pt;
-        margin-bottom: 28pt;
+        letter-spacing: 1.5pt;
+        margin: 0 0 12pt;
     }
+    .portada-descripcion {
+        color: var(--color-muted);
+        font-size: 10pt;
+        margin: 0 0 34pt;
+    }
+    /* Bloque del período */
     .portada-periodo {
-        margin-bottom: 26pt;
+        background-color: var(--color-surface);
+        border: 0.8pt solid var(--color-border);
+        padding: 17pt 12pt;
+        margin: 0 auto 30pt;
+        width: 85%;
+        box-sizing: border-box;
     }
-    .portada-periodo p {
-        color: var(--color-plum-medium);
-        font-size: 12pt;
-        font-weight: 600;
-        margin-bottom: 12pt;
+    .portada-periodo-etiqueta {
+        color: var(--color-plum-soft);
+        font-size: 8pt;
+        font-weight: 700;
+        letter-spacing: 1.5pt;
+        margin: 0 0 9pt;
+    }
+    .portada-periodo-fecha {
+        color: var(--color-plum-dark);
+        font-size: 13pt;
+        font-weight: 700;
+        margin: 0;
     }
     .portada-linea {
-        width: 100pt;
+        width: 42pt;
         height: 2pt;
         background-color: var(--color-plum);
-        margin: 0 auto;
+        margin: 13pt auto 0;
     }
+    /* Información del negocio */
     .portada-informacion {
-        margin-top: 0;
+        width: 85%;
+        margin: 0 auto;
+        text-align: left;
         color: var(--color-text);
-        font-size: 10.5pt;
-        line-height: 1.8;
+        font-size: 10pt;
     }
-    .portada-informacion p {
-        margin-bottom: 4pt;
+    .portada-informacion-item {
+        padding: 0 0 12pt;
+        margin-bottom: 12pt;
+        border-bottom: 0.6pt solid var(--color-border);
     }
-    .portada-informacion strong {
-        color: var(--color-plum);
+    .portada-info-etiqueta {
+        display: block;
+        color: var(--color-plum-soft);
+        font-size: 8pt;
+        font-weight: 700;
+        letter-spacing: 1pt;
+        margin-bottom: 5pt;
     }
+    .portada-informacion-item p {
+        color: var(--color-plum-dark);
+        font-size: 11pt;
+        font-weight: 600;
+        overflow-wrap: break-word;
+        margin: 0;
+    }
+    /* Pie al final de la hoja */
     .portada-footer {
         width: 100%;
-        padding-top: 12pt;
+        box-sizing: border-box;
+        margin-top: auto;
+        padding: 12pt 0 0;
         border-top: 0.8pt solid var(--color-border);
         color: var(--color-muted);
         font-size: 9pt;

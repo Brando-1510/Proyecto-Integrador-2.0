@@ -77,7 +77,8 @@ class SaleRepository:
             .group_by(Category.category_id, Category.name)
             .order_by(func.sum(Sale.total).desc())
         )
-        return self.session.execute(stmt).all()
+        result=self.session.execute(stmt).all()
+        return result
 
     def get_sales_by_product(self,business_id: int,start_date: date,end_date: date,):
         stmt = (
