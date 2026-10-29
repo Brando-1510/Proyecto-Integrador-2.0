@@ -352,6 +352,26 @@ para tu negocio</string>
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="btnMensajes">
+             <property name="text">
+              <string>Mensajes</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../../resources/resources.qrc">
+               <normaloff>:/icons/menuIcons/email.svg</normaloff>:/icons/menuIcons/email.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="boton" stdset="0">
+              <string>Dashboard</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="BtnMonitoreo">
              <property name="text">
               <string>Monitoreo</string>
@@ -456,7 +476,7 @@ border-radius: 20px;
 QLabel
 ------------------------------------------------------------*/
 QLabel{
-	color: #6C6686;
+	color: #0E042F;
 	font-size: 14px;
 }
 QLabel[texto=&quot;Principal&quot;]{

@@ -94,6 +94,7 @@ def estilos_fuentes(source_family, manrope_family):
 
     QMessageBox QLabel,
     QInputDialog QLabel{{
+        color: #0E042F;
         font-family: "{source_family}";
         font-weight: 600;
     }}

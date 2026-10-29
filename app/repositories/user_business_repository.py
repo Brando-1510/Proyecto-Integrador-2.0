@@ -1,6 +1,7 @@
 from sqlalchemy import select
 from app.models.user_business import UserBusiness
 from app.models.business import Business
+from app.models.users import Users
 from sqlalchemy.orm import joinedload,selectinload
 class UserBusinessRepository:
     def __init__(self, session):
@@ -33,3 +34,16 @@ class UserBusinessRepository:
             UserBusiness.business_id == business_id,
         ).limit(1)
         return self.session.scalar(stmt) is not None
+    def get_employees(self,business_id:int,user_id:int):
+        stmt=(
+            select(
+                Users.username.label("Username"),UserBusiness.role.label("Rol"),
+                Users.email.label("Email")
+            )
+            .where(
+                UserBusiness.business_id == business_id, Users.user_id != user_id
+            )
+            .join(Users, UserBusiness.user_id == Users.user_id)
+        )
+        resultados = self.session.execute(stmt).all()
+        return resultados

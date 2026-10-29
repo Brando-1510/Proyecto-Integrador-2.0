@@ -93,7 +93,7 @@ class AppController:
             self.container.consultation_controller,self.container.analysis_controller,
             self.container.recommendation_controller,self.container.configuration_controller,
             self.container.monitoring_controller,self.container.user_controller,
-            self.container.report_controller
+            self.container.report_controller,self.container.email_controller
         )
         self.dashboard_window.logout_requested.connect(self.logout)
         self.dashboard_window.choose_business_requested.connect(

@@ -20,6 +20,7 @@ from app.views.dashboard.pages.informes import Informes
 from app.views.dashboard.pages.configuracion import Configuracion
 from app.views.dashboard.pages.monitoreo import Monitoreo
 from app.views.profile.profile import Profile
+from app.views.dashboard.pages.emails import EmailSender
 
 
 class VentanaDashboard(QWidget):
@@ -50,7 +51,7 @@ class VentanaDashboard(QWidget):
     def __init__(
         self,userBusiness,home_dashboard_controller,consultation_controler,analysis_controller,
         recommendation_controller,configuration_controller,monitoring_controller,
-        user_controller,report_controller
+        user_controller,report_controller,email_controller
     ):
         super().__init__()
         self.user = userBusiness.user
@@ -65,6 +66,7 @@ class VentanaDashboard(QWidget):
         self.monitoring_controller=monitoring_controller
         self.user_controller=user_controller
         self.report_controller=report_controller
+        self.email_controller=email_controller
 
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta_ui = os.path.normpath(
@@ -94,6 +96,7 @@ class VentanaDashboard(QWidget):
         self.btnMonitoreo = self.ui.findChild(QPushButton, "BtnMonitoreo")
         self.btnLogout = self.ui.findChild(QPushButton, "BtnCerrarSesion")
         self.btnPefil=self.ui.findChild(QPushButton,"BtnPerfil")
+        self.btnMensaje=self.ui.findChild(QPushButton,"btnMensajes")
         self.configurar_permisos_interfaz()
 
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
@@ -128,6 +131,7 @@ class VentanaDashboard(QWidget):
         self.btnConfiguracion.clicked.connect(self.mostrar_configuracion)
         self.btnMonitoreo.clicked.connect(self.mostrar_monitoreo)
         self.btnPefil.clicked.connect(self.mostrar_perfil)
+        self.btnMensaje.clicked.connect(self.mostrar_emails)
         self.mostrar_home()
         self.showMaximized()
 
@@ -148,7 +152,7 @@ class VentanaDashboard(QWidget):
     def tiene_permiso(self, pagina):
         rol = self.userBusiness.role
         permisos = self.PERMISOS_PAGINAS.get(rol, set())
-        paginas_comunes = {"home", "cargar_datos", "movimientos"}
+        paginas_comunes = {"home", "cargar_datos", "movimientos","email"}
         if pagina in paginas_comunes:
             return True
         return pagina in permisos
@@ -181,6 +185,7 @@ class VentanaDashboard(QWidget):
         self.informes = None
         self.monitoreo = None
         self.configuracion = None
+        self.email=None
 
     def mostrar_perfil(self):
         if not self.dialog_open:
@@ -257,6 +262,15 @@ class VentanaDashboard(QWidget):
             self.monitoreo = Monitoreo(self.userBusiness,self.monitoring_controller)
             self.stackedWidget.addWidget(self.monitoreo)
         self.cambiar_vista(self.monitoreo)
+
+    def mostrar_emails(self):
+        if not self.tiene_permiso("email"):
+            return
+        if self.email is None:
+            self.email = EmailSender(self.userBusiness,self.email_controller)
+            self.stackedWidget.addWidget(self.email)
+        self.cambiar_vista(self.email)
+
 
     def _actualizar_datos_tras_importacion(self):
         # Actualizar movimientos.

@@ -12,3 +12,8 @@ class UserBusinessService:
             for user_business in result:
                 session.expunge(user_business)
             return result
+    def get_employees(self,business_id:int,user_id:int):
+        with self.session_factory() as session:
+            repository=UserBusinessRepository(session)
+            result=repository.get_employees(business_id,user_id)
+            return result

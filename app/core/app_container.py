@@ -24,12 +24,14 @@ from app.controllers.recommendation_controller import RecommendationController
 from app.controllers.configuration_controller import ConfigurationController
 from app.controllers.monitoring_controller import MonitoringController
 from app.controllers.report_controller import ReportController
+from app.controllers.emails_controller import EmailController
 
 class AppContainer:
     def __init__(self):
         #*UserBusiness
         self.userBusiness_service = UserBusinessService()
         self.userBusiness_controller = ChooseBusinessController(self.userBusiness_service)
+        self.email_controller=EmailController(self.userBusiness_service)
 
         #*User
         self.user_service = UserService()

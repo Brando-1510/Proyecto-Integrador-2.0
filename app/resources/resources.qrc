@@ -46,6 +46,7 @@
     <file>icons/menuIcons/leave.svg</file>
     <file>icons/menuIcons/settings.svg</file>
     <file>icons/menuIcons/profile.svg</file>
+    <file>icons/menuIcons/email.svg</file>
 
     <!-- Fuentes añadidas -->
     <file>fonts/Manrope-Bold.ttf</file>

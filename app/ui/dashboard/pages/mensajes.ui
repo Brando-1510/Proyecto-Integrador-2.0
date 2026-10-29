@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Analisis</class>
+ <widget class="QWidget" name="Analisis">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1073</width>
+    <height>698</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame[carta=&quot;Dashboard&quot;] {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E0EA;
+    border-radius: 12px;
+}
+#CargarDatos{
+background-color:#f7f7f7;
+}
+QFrame{
+background-color:#f7f7f7;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Textos
+-----------------------------------------------------------------------------------------------------*/
+QLabel{
+background-color: transparent;
+font-size: 14px;
+color: #0E042F;
+}
+QLabel[texto=&quot;InputTexto&quot;]{
+font-size: 16px;
+color: #46315c;
+
+}
+QLabel[texto=&quot;TituloPrincipal&quot;]{
+font-size:20px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Valor&quot;]{
+font-size:20px;
+}
+QLabel[texto=&quot;TituloSecundario&quot;]{
+font-size:18px;
+font-weight:bold;
+}
+QLabel[texto=&quot;Positivo&quot;]{
+color: #15803D;
+}
+QLabel[texto=&quot;Negativo&quot;]{
+color: #B91C1C;
+}
+QLabel[texto=&quot;Descripcion&quot;]{
+font-size:16px;
+color: #46315c;
+}
+QLabel[texto=&quot;Destacado&quot;]{
+font-size:16px;
+color: #0E042F;
+font-weight: bold;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+Inputs
+-----------------------------------------------------------------------------------------------------*/
+/* --- ESTADO BASE --- */
+QLineEdit, QDateEdit, QPlainTextEdit, QComboBox,QTextEdit {
+    background-color: #F8F9FA; 
+    border: 1px solid #D1D5DB; 
+    border-radius: 8px;     
+    padding: 8px 12px;         
+    color: #333333;          
+}
+
+/* --- CUANDO EL MOUSE ESTÁ ENCIMA (HOVER) --- */
+QLineEdit:hover, QDateEdit:hover, QPlainTextEdit:hover, QComboBox:hover
+,QTextEdit:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CUANDO TIENE EL FOCO / SE ESTÁ ESCRIBIENDO (FOCUS) --- */
+QLineEdit:focus, QDateEdit:focus, QPlainTextEdit:focus, QComboBox:focus,QTextEdit:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+/* --- CUANDO EL CAMPO ESTÁ DESHABILITADO (DISABLED) --- */
+QLineEdit:disabled, QDateEdit:disabled, QPlainTextEdit:disabled, QComboBox:disabled,QTextEdit:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- ESTILO ESPECÍFICO PARA EL BOTÓN DE FLECHA EN QDATEEDIT --- */
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #D1D5DB;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- ESTILO DEL QCOMBOBOX --- */
+QComboBox {
+    background-color: #F8F9FA;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 8px 12px;
+    padding-right: 30px;
+    color: #333333;
+}
+
+QComboBox:hover {
+    border: 1px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+QComboBox:focus {
+    border: 2px solid #744bcc;
+    background-color: #FFFFFF;
+}
+
+QComboBox:disabled {
+    background-color: #E5E7EB;
+    color: #9CA3AF;
+    border: 1px solid #D1D5DB;
+}
+
+/* --- BOTÓN DE DESPLEGAR --- */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #D1D5DB;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* --- FLECHA --- */
+QComboBox::down-arrow {
+    image: url(:/icons/chevron.svg);
+    width: 12px;
+    height: 12px;
+}
+/* --- LISTA DESPLEGABLE DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 4px;
+    color: #333333;
+    selection-background-color: #744bcc;
+    selection-color: #FFFFFF;
+}
+
+/* --- HOVER DE LOS ELEMENTOS DEL QCOMBOBOX --- */
+QComboBox QAbstractItemView::item:hover {
+    background-color: #F3F4F6;
+    color: #333333;
+}
+/*
+-----------------------------------------------------------------------------------------------------
+Botones
+-----------------------------------------------------------------------------------------------------*/
+
+/* --- BOTÓN PRIMARIO --- */
+QPushButton[boton=&quot;Primario&quot;] {
+    border-radius: 10px;
+    background-color: #5D38BB;
+    font-weight: bold;
+    color: #f7f7f7;
+    font-size: 12pt;
+width:300px;
+height:50px;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:hover {
+    background-color: #744bcc;
+}
+
+QPushButton[boton=&quot;Primario&quot;]:pressed {
+    background-color: #472a8f;
+}
+
+
+/* --- BOTÓN SECUNDARIO --- */
+QPushButton[boton=&quot;Secundario&quot;] {
+    border-radius: 10px;
+    background-color: rgba(161, 147, 204, 0.7);
+    font-weight: bold;
+    color: #5D38BB;
+    font-size: 18px;
+width:300px;
+height:50px;
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:hover {
+    background-color: rgba(161, 147, 204, 0.9); 
+}
+
+QPushButton[boton=&quot;Secundario&quot;]:pressed {
+    background-color: rgba(131, 117, 174, 0.9);
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>15</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="lblTitulo">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Envía Mensajes a tus Compañeros</string>
+     </property>
+     <property name="texto" stdset="0">
+      <string>TituloPrincipal</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Destinatario</string>
+     </property>
+     <property name="texto" stdset="0">
+      <string>InputTexto</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="destinatario"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Asunto</string>
+     </property>
+     <property name="texto" stdset="0">
+      <string>InputTexto</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="asunto">
+     <property name="styleSheet">
+      <string notr="true">color: #0E042F;
+</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Cuerpo del Mensaje</string>
+     </property>
+     <property name="texto" stdset="0">
+      <string>InputTexto</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="cuerpo">
+     <property name="styleSheet">
+      <string notr="true">color: #0E042F;
+</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="enviar">
+        <property name="text">
+         <string>Enviar Mensaje</string>
+        </property>
+        <property name="boton" stdset="0">
+         <string>Primario</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../../resources/resources.qrc"/>
+  <include location="../../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
