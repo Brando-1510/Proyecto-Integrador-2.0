@@ -78,3 +78,7 @@ class Informes(QWidget):
     def enviar_datos(self):
         datos=self.obtener_datos()
         self.controller.generar_informe(datos,parent=self.ui)
+    def actualizar_usuario(self,user):
+        self.user=user
+    def actualizar_business(self,business):
+        self.business=business

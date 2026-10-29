@@ -252,6 +252,7 @@ class VentanaDashboard(QWidget):
         if self.configuracion is None:
             self.configuracion = Configuracion(self.userBusiness,self.configuration_controller,)
             self.configuracion.choose_business_requested.connect(self.choose_business_requested.emit)
+            self.configuracion.update_ui.connect(self.actualizar_ui)
             self.stackedWidget.addWidget(self.configuracion)
         self.cambiar_vista(self.configuracion)
 
@@ -294,3 +295,11 @@ class VentanaDashboard(QWidget):
         if nuevo_usuario:
             self.user = nuevo_usuario
             self.dashboard_home.actualizar_label(self.user.username)
+            self.informes.actualizar_usuario(self.user)
+            self.email.actualizar_usuario(self.user)
+    def actualizar_negocio(self,nuevo_negocio):
+        if nuevo_negocio:
+            self.business=nuevo_negocio
+            self.informes.actualizar_business(self.business)
+    def actualizar_ui(self):
+        self.email.actualizar_interfaz()

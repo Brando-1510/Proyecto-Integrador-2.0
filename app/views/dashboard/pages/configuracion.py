@@ -14,6 +14,8 @@ from app.views.dashboard.table_models.table_widgets import populate_table
 
 class Configuracion(QWidget):
     choose_business_requested=Signal(object)
+    update_business=Signal(object)
+    update_ui=Signal()
     def __init__(self, userBusiness,controller:ConfigurationController):
         super().__init__()
         self.user = userBusiness.user
@@ -213,6 +215,7 @@ class Configuracion(QWidget):
         )
         if resultado["success"]:
             self.business = resultado["business"]
+            self.update_business.emit(self.business)
             self.categories = list(self.business.categories)
             QMessageBox.information(self.ui,"Cambios guardados",resultado["message"])
             # Actualizar la referencia del negocio
@@ -270,6 +273,7 @@ class Configuracion(QWidget):
         )
         if resultado["success"]:
             QMessageBox.information(self.ui,"Éxito",resultado["message"])
+            self.update_ui.emit()
             return
         QMessageBox.warning(self.ui,"No se pudo realizar la acción",resultado["message"])
     #*Ver usuarios
@@ -302,6 +306,7 @@ class Configuracion(QWidget):
         )
         if resultado["success"]:
             QMessageBox.information(self.ui,"Éxito",resultado["message"])
+            self.update_ui.emit()
             return
         QMessageBox.warning(self.ui,"No se pudo realizar la acción",resultado["message"])
 

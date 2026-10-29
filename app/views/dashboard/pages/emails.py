@@ -45,9 +45,7 @@ class EmailSender(QWidget):
             self.ui.setStyleSheet(
                 self.ui.styleSheet()+ estilos_fuentes(source[0], manrope[0])
             )
-    def actualizar_interfaz(self,user: Users | None=None):
-        if user is not None:
-            self.user=user
+    def actualizar_interfaz(self):
         self.ui.destinatario.clear()
         resultado = self.controller.get_data(self.business.business_id, self.user.user_id)
         if resultado["success"]:
@@ -80,3 +78,5 @@ class EmailSender(QWidget):
     def error_email(self, mensaje: str):
         self.ui.enviar.setDisabled(False)
         QMessageBox.warning(self.ui,"Error",mensaje)
+    def actualizar_usuario(self,user):
+        self.user=user
