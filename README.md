@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="app/resources/images/bck.png" width="200">
+</p>
  <div align="center">
 
 # Finanzen — Sistema de Análisis Financiero
