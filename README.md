@@ -1,239 +1,281 @@
-<div align="center">
+ <div align="center">
 
-#  Sistema de Análisis Financiero
+# Finanzen — Sistema de Análisis Financiero
 
-### Desarrollo de una aplicación de escritorio utilizando lenguaje de programación Python, interfaz visual PySide6 y gestión de datos mediante SQLAlchemy enfocada en la visualización y análisis de información financiera de pequeños negocios mediante un modelo predictivo basado en Pandas y Matplotlib. 
+**Transforma los registros de tu negocio en información útil para tomar mejores decisiones.**
+
+Finanzen es una aplicación de escritorio desarrollada en Python que permite a micro y pequeños negocios importar información financiera desde archivos Excel, analizar sus ventas, ingresos y gastos, visualizar indicadores y obtener recomendaciones basadas en reglas de negocio.
+
+La aplicación busca facilitar la comprensión del comportamiento financiero de un negocio mediante gráficos, estadísticas, comparaciones entre períodos y reportes financieros en PDF, sin requerir conocimientos avanzados de contabilidad o análisis de datos.
 
 <br>
 
-![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![PySide6](https://img.shields.io/badge/PySide6-Qt-41CD52?style=for-the-badge\&logo=qt\&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-1.x-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?style=for-the-badge)
-![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge\&logo=mysql\&logoColor=white)
-![Estado](https://img.shields.io/badge/Estado-En%20definición-yellow?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PySide6](https://img.shields.io/badge/PySide6-Qt-41CD52?style=for-the-badge&logo=qt&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data_Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-Numerical_Computing-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-11557C?style=for-the-badge)
+![Jinja2](https://img.shields.io/badge/Jinja2-Templates-B41717?style=for-the-badge)
+![WeasyPrint](https://img.shields.io/badge/WeasyPrint-PDF_Reports-2B5797?style=for-the-badge)
+![OpenPyXL](https://img.shields.io/badge/OpenPyXL-Excel_Processing-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
 
 </div>
 
 ---
 
-## 📖 Descripción
+## Descripción
 
-Este proyecto consiste en una aplicación de escritorio de inteligencia financiera operativa para micro y pequeños negocios, diseñada para transformar registros financieros y comerciales en información clara, útil y accionable para la toma de decisiones.
+Los pequeños negocios generan información diariamente mediante sus ventas, ingresos y gastos. Sin embargo, registrar estos datos en hojas de cálculo no siempre es suficiente para comprender su comportamiento financiero y tomar decisiones fundamentadas.
 
-El sistema estará orientado a responder tres necesidades principales: determinar cuánto puede gastar el negocio sin comprometer su operación, evaluar si realmente está obteniendo rentabilidad de lo que vende e identificar posibles fugas, anomalías o incrementos de costos que estén afectando sus resultados.
+**Finanzen** busca cerrar esa brecha mediante una herramienta que procesa los registros del negocio y los convierte en indicadores, gráficos, comparaciones y observaciones fáciles de interpretar.
 
-La aplicación integrará herramientas para importar y procesar información financiera, analizar el comportamiento del negocio y generar proyecciones y alertas relevantes. Los resultados se presentarán de forma clara, visual y explicable, facilitando la comprensión del estado financiero sin requerir conocimientos avanzados de contabilidad o análisis de datos.
+La aplicación permite centralizar la información importada, consultar los movimientos registrados, evaluar variaciones entre períodos e identificar situaciones que podrían requerir atención.
 
-> El proyecto no busca sustituir un sistema contable, ERP o plataforma de gestión empresarial. Su propósito es proporcionar una herramienta accesible de análisis y apoyo a decisiones para pequeños negocios, enfocada en liquidez, rentabilidad y detección temprana de situaciones que requieran atención.
+Finanzen está orientado al análisis financiero operativo y al apoyo en la toma de decisiones. No pretende sustituir un sistema contable, un ERP ni los servicios de un profesional de contabilidad.
 
----
+## Problema que aborda
 
-## 🎯 Problema identificado
+Muchos micro y pequeños negocios utilizan hojas de cálculo para almacenar sus registros, pero tienen dificultades para aprovechar esa información de manera sistemática.
 
-Muchos pequeños negocios utilizan Excel únicamente para almacenar registros, sin aprovechar los datos para:
+Entre los problemas que busca abordar el proyecto se encuentran:
 
-* Identificar tendencias de ventas.
-* Evaluar el crecimiento de ingresos y gastos.
-* Detectar productos con mayor o menor rendimiento.
-* Reconocer variaciones importantes entre periodos.
-* Identificar posibles inconsistencias en los registros.
-* Tomar decisiones basadas en evidencia.
+- Dificultad para interpretar la evolución de las ventas.
+- Falta de claridad sobre el comportamiento de los ingresos y gastos.
+- Complicaciones para comparar resultados entre diferentes períodos.
+- Dificultad para identificar categorías con variaciones relevantes.
+- Errores e inconsistencias en los registros importados.
+- Falta de herramientas accesibles para generar informes financieros.
+- Toma de decisiones basada principalmente en la intuición y no en datos organizados.
 
-Como consecuencia, numerosas decisiones se realizan utilizando únicamente la experiencia, la intuición o percepciones subjetivas.
+## Objetivo general
 
----
+Desarrollar una aplicación de escritorio que permita importar, almacenar, analizar y visualizar información financiera de micro y pequeños negocios, generando indicadores, comparaciones, recomendaciones y reportes que faciliten la interpretación de sus resultados y apoyen la toma de decisiones.
 
-## 💡 Objetivo general
+## Funcionalidades principales
 
-Desarrollar una aplicación de escritorio que permita importar, procesar, analizar y visualizar información financiera básica almacenada en hojas de cálculo, facilitando la interpretación de los datos y apoyando la toma de decisiones en pequeños negocios.
+### 1. Importación y validación de archivos Excel
 
----
+Permite importar información financiera desde archivos `.xlsx`, validando su estructura y los datos contenidos en las hojas correspondientes.
 
-## 👥 Usuarios objetivo
+Entre sus funcionalidades se encuentran:
 
-El sistema está pensado principalmente para:
+- Validación de columnas y registros.
+- Comprobación de tipos y valores.
+- Normalización de datos y nombres de categorías.
+- Identificación de errores y advertencias.
+- Detección de importaciones duplicadas mediante la identificación del archivo.
+- Identificación de categorías que necesitan crearse o corregirse.
+- Almacenamiento de la información validada en la base de datos.
 
-* Pulperías.
-* Cafeterías.
-* Pequeños restaurantes.
-* Tiendas de ropa.
-* Ferreterías.
-* Emprendimientos.
-* Negocios familiares.
-* Personas que están iniciando una actividad comercial.
+### 2. Gestión de usuarios y negocios
 
-No será necesario que los usuarios posean conocimientos avanzados de contabilidad, estadística o análisis de datos.
+Permite administrar el acceso a la aplicación y organizar la información según los negocios registrados.
 
----
+Incluye funcionalidades relacionadas con:
 
-## 🧩 Módulos previstos
+- Registro e inicio de sesión.
+- Administración de usuarios.
+- Gestión de negocios.
+- Asignación de roles y permisos.
+- Asociación de usuarios con sus negocios.
 
-<table>
-  <thead>
-    <tr>
-      <th>Módulo</th>
-      <th>Descripción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Importación de datos</strong></td>
-      <td>Carga, validación y procesamiento de archivos Excel.</td>
-    </tr>
-    <tr>
-      <td><strong>Gestión de usuarios</strong></td>
-      <td>Registro, inicio de sesión y administración de la información de cada negocio.</td>
-    </tr>
-    <tr>
-      <td><strong>Análisis financiero</strong></td>
-      <td>Cálculo de indicadores, estadísticas, tendencias y comparaciones entre periodos.</td>
-    </tr>
-    <tr>
-      <td><strong>Visualización</strong></td>
-      <td>Presentación de resultados mediante gráficos, tablas y tarjetas informativas.</td>
-    </tr>
-    <tr>
-      <td><strong>Recomendaciones</strong></td>
-      <td>Generación de observaciones y sugerencias mediante reglas de negocio verificables.</td>
-    </tr>
-  </tbody>
-</table>
+Los permisos determinan las operaciones disponibles para cada usuario dentro de la aplicación.
 
----
+### 3. Panel principal
 
-## 🔄 Flujo general
+Presenta un resumen de la actividad financiera del negocio mediante indicadores, gráficos y tablas.
 
-```text
-Archivo Excel
-      ↓
-Validación de estructura
-      ↓
-Limpieza y normalización
-      ↓
-Almacenamiento de datos
-      ↓
-Análisis financiero
-      ↓
-Gráficos, indicadores y observaciones
-```
+Permite consultar información relevante, como:
 
----
+- Total de ventas de un período.
+- Ingresos y gastos registrados.
+- Evolución de las ventas.
+- Transacciones recientes.
+- Resumen de la actividad del negocio.
 
-## 🛠️ Tecnologías previstas
+### 4. Análisis financiero
 
-| Área                      | Tecnología   |
-| ------------------------- | ------------ |
-| Lenguaje principal        | Python       |
-| Interfaz gráfica          | PySide6      |
-| ORM                       | SQLAlchemy   |
-| Base de datos             | MySQL        |
-| Procesamiento de datos    | Pandas       |
-| Lectura de archivos Excel | OpenPyXL     |
-| Visualización de datos    | Matplotlib   |
-| Control de versiones      | Git y GitHub |
+Procesa los registros almacenados para ofrecer una visión más detallada del comportamiento financiero del negocio.
 
-La selección tecnológica podrá ajustarse conforme se definan los requisitos funcionales, el volumen de datos y la arquitectura definitiva del sistema.
+Incluye:
 
----
+- Análisis de ingresos y gastos.
+- Comparaciones entre períodos.
+- Análisis de variaciones porcentuales.
+- Estadísticas descriptivas.
+- Análisis de categorías.
+- Evaluación de la variabilidad de las ventas.
+- Indicadores como el ticket promedio.
+- Visualización de tendencias y distribución de los datos.
 
-## 📌 Alcance inicial
+Los períodos de análisis pueden seleccionarse mediante filtros disponibles en la interfaz, según las opciones implementadas.
 
-La primera versión contempla:
+### 5. Recomendaciones financieras
 
-* Importación de archivos `.xlsx`.
-* Validación básica de columnas y registros.
-* Almacenamiento de datos procesados.
-* Consulta y filtrado de transacciones.
-* Análisis de ventas, ingresos y gastos.
-* Comparación entre periodos.
-* Generación de indicadores.
-* Visualización mediante gráficos y tablas.
-* Creación de observaciones basadas en reglas.
-* Gestión básica de usuarios y negocios.
+Genera observaciones y sugerencias a partir de reglas de negocio definidas y resultados estadísticos.
 
----
+Estas recomendaciones pueden ayudar a identificar:
 
-## 🚫 Fuera del alcance inicial
+- Incrementos relevantes en los gastos.
+- Variaciones importantes en las ventas.
+- Cambios en los ingresos.
+- Comportamientos que merecen una revisión.
+- Oportunidades de mejora a partir de los registros disponibles.
 
-En esta etapa el sistema no incluirá:
+Las recomendaciones se basan en condiciones y cálculos verificables. No constituyen predicciones infalibles ni sustituyen el criterio del responsable del negocio.
 
-* Facturación electrónica.
-* Declaraciones fiscales.
-* Nómina.
-* Gestión de inventarios.
-* Integraciones bancarias.
-* Contabilidad empresarial completa.
-* Sincronización en la nube.
-* Aplicación web o móvil.
+### 6. Generación de reportes PDF
 
----
+Permite generar informes financieros a partir de la información procesada por la aplicación.
 
-## 🚧 Estado actual
+La generación de documentos utiliza plantillas HTML y CSS para estructurar la presentación de los resultados y convertirlos en archivos PDF.
 
-El proyecto se encuentra en la etapa de:
+Las tecnologías empleadas para este proceso son:
 
-* Definición de la problemática.
-* Justificación inicial.
-* Delimitación del alcance.
-* Identificación de usuarios.
-* Selección preliminar de tecnologías.
-* Definición inicial de módulos.
+- **Jinja2:** construcción de documentos HTML mediante plantillas dinámicas.
+- **WeasyPrint:** conversión de documentos HTML y CSS a PDF.
 
-La arquitectura, el modelo de datos, los requisitos funcionales y el diseño de interfaz todavía se encuentran en proceso de análisis.
+Este enfoque permite organizar los informes en secciones y presentar indicadores, tablas, gráficos y resultados de manera estructurada.
 
----
-
-## 📂 Estructura provisional
+## Flujo general del sistema
 
 ```text
-project/
-├── app/
-│   ├── core/
-│   ├── models/
-│   ├── repositories/
-│   ├── services/
-│   ├── analytics/
-│   ├── ui/
-│   └── utils/
-├── tests/
-├── resources/
-├── requirements.txt
-├── README.md
-└── main.py
+        Archivo Excel (.xlsx)
+                 |
+                 v
+       Lectura del archivo
+                 |
+                 v
+     Validación de estructura
+       y contenido de los datos
+                 |
+                 v
+     Limpieza y normalización
+                 |
+                 v
+      Almacenamiento en MySQL
+                 |
+                 v
+       Consultas a la base
+            de datos
+                 |
+                 v
+       Análisis financiero
+                 |
+                 v
+   Indicadores, gráficos y reglas
+          de recomendación
+                 |
+                 v
+       Visualización de datos
+                 |
+                 v
+        Generación de PDF
 ```
 
----
+## Tecnologías utilizadas
 
-## 🎓 Contexto académico
+| Tecnología | Propósito |
+|---|---|
+| Python | Lenguaje principal de desarrollo. |
+| PySide6 | Desarrollo de la interfaz gráfica de escritorio. |
+| SQLAlchemy | Mapeo objeto-relacional y acceso a la base de datos. |
+| MySQL | Almacenamiento persistente de la información. |
+| Pandas | Lectura, transformación y procesamiento tabular de datos. |
+| NumPy | Cálculos y operaciones estadísticas. |
+| OpenPyXL | Lectura y procesamiento de archivos Excel. |
+| Matplotlib | Generación de gráficos financieros. |
+| Jinja2 | Renderizado de plantillas HTML para los reportes. |
+| WeasyPrint | Generación de archivos PDF desde HTML y CSS. |
+| Git y GitHub | Control de versiones y colaboración en el desarrollo. |
 
-Este proyecto se desarrolla como examen final, con el propósito de integrar conocimientos relacionados con:
+## Arquitectura del proyecto
 
-* Programación orientada a objetos.
-* Desarrollo de interfaces gráficas.
-* Bases de datos relacionales.
-* Procesamiento de archivos.
-* Análisis de datos.
-* Visualización de información.
-* Arquitectura modular de software.
+Finanzen organiza sus componentes en módulos y capas para separar las responsabilidades del sistema y facilitar su mantenimiento.
 
----
+La arquitectura contempla las siguientes responsabilidades:
 
-## 👥 Equipo
-| Integrante | correo electrónico | GitHub |
+- **Interfaz de usuario:** interacción con el usuario y presentación de los resultados.
+- **Controladores:** coordinación de las acciones solicitadas desde la interfaz y orquestación de los procesos correspondientes.
+- **Servicios:** ejecución de los casos de uso, coordinación de operaciones y gestión de sesiones de base de datos.
+- **Repositorios:** consultas y operaciones de persistencia mediante SQLAlchemy.
+- **Modelos:** representación de las entidades almacenadas en la base de datos.
+- **Funciones de análisis:** cálculos estadísticos, comparaciones y generación de hallazgos.
+- **Utilidades:** funciones auxiliares para fechas, formatos y otras operaciones comunes.
+- **Plantillas de reportes:** estructura y presentación de los documentos PDF.
+
+Esta separación permite mantener la lógica de análisis independiente de la interfaz y de los mecanismos de almacenamiento.
+
+## Usuarios objetivo
+
+Finanzen está dirigido principalmente a micro y pequeños negocios, entre ellos:
+
+- Pulperías y tiendas de barrio.
+- Cafeterías y pequeños restaurantes.
+- Tiendas de ropa.
+- Ferreterías.
+- Emprendimientos y negocios familiares.
+- Pequeños comercios que administran sus registros mediante Excel.
+
+La aplicación busca presentar la información de manera comprensible, incluso para usuarios sin conocimientos avanzados de estadística o contabilidad.
+
+## Alcance del proyecto
+
+El sistema se enfoca en el análisis de información financiera registrada y almacenada en la aplicación.
+
+Dentro de su alcance se encuentran la importación de archivos Excel, la gestión de usuarios y negocios, la consulta de transacciones, el análisis de ventas, ingresos y gastos, la visualización de indicadores, las recomendaciones basadas en reglas y la generación de reportes financieros en PDF.
+
+### Fuera del alcance
+
+Finanzen no pretende ofrecer, como parte de su alcance actual:
+
+- Contabilidad empresarial completa.
+- Facturación electrónica.
+- Declaraciones fiscales.
+- Gestión integral de inventarios.
+- Administración de nóminas.
+- Integraciones bancarias automáticas.
+- Sustitución de un sistema ERP.
+- Predicciones basadas en modelos de aprendizaje automático entrenados.
+
+## Instalación y ejecución
+
+Los pasos exactos de instalación dependen de la configuración del proyecto y de los archivos de dependencias incluidos en el repositorio.
+
+En términos generales, se requiere:
+
+- Python compatible con las dependencias del proyecto.
+- Un servidor MySQL.
+- Las bibliotecas de Python utilizadas por la aplicación.
+- La configuración de conexión a la base de datos.
+
+Una vez preparado el entorno, el proceso general consiste en instalar las dependencias, configurar la conexión a MySQL, preparar el esquema de la base de datos y ejecutar el punto de entrada de la aplicación.
+
+Consulta los archivos de configuración y las instrucciones de instalación del repositorio para conocer los comandos y requisitos específicos.
+
+## Contexto académico
+
+Finanzen se desarrolla como proyecto integrador de Ingeniería en Sistemas, con el propósito de aplicar conocimientos de programación orientada a objetos, interfaces gráficas, bases de datos relacionales, procesamiento de archivos, análisis de datos y arquitectura de software.
+
+El proyecto integra estas áreas en una aplicación orientada a resolver una necesidad práctica de los micro y pequeños negocios.
+
+## Equipo de desarrollo
+
+| Integrante | Correo electrónico | GitHub |
 |---|---|---|
 | **Brandon Reynaldo Rodríguez Téllez** | `brandonbrt2020@gmail.com` | [@Brando-1510](https://github.com/Brando-1510) |
 | **Leonardo Antonio Tellería Trujillo** | `telleriatrujilloleonardoanti@gmail.com` | [@LeonardoTelleria](https://github.com/LeonardoTelleria) |
 | **Jorge Luis Antón Henández** | `luisjorgeantonhernandez@gmail.com` | [@luis-hdz7](https://github.com/luis-hdz7) |
 | **Luis Carlos Castillo Gómez** | `luis1284ufd4@gmail.com` | [@luiscastillo-18c](https://github.com/luiscastillo-18c) |
 
-
+---
 
 <div align="center">
 
-### Proyecto en construcción
+**Finanzen — Información financiera para tomar mejores decisiones.**
 
-La documentación y las funcionalidades serán actualizadas conforme avance el análisis y desarrollo del sistema.
+*Proyecto académico en desarrollo.*
 
 </div>
