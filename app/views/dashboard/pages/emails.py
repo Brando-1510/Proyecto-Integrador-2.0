@@ -39,6 +39,12 @@ class EmailSender(QWidget):
         font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
         if font_id_manrope == -1 or font_id_source == -1:
             return
+        manrope = QFontDatabase.applicationFontFamilies(font_id_manrope)
+        source = QFontDatabase.applicationFontFamilies(font_id_source)
+        if manrope and source:
+            self.ui.setStyleSheet(
+                self.ui.styleSheet()+ estilos_fuentes(source[0], manrope[0])
+            )
     def actualizar_interfaz(self,user: Users | None=None):
         if user is not None:
             self.user=user

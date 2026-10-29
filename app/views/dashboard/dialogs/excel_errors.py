@@ -23,6 +23,7 @@ class ExcelErrorsUI:
         if not self.ui:
             raise RuntimeError(f"No se pudo cargar el archivo UI: {ruta_ui}")
         self.ui.setWindowTitle("Errores del archivo Excel")
+        self._cargar_fuentes()
         self.llenar_scrollarea()
     def llenar_scrollarea(self):
         layout_ventas = self.ui.scrollAreaWidgetContents.layout()

@@ -40,43 +40,7 @@ class VentanaCrearCuenta(QWidget):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
-
-        #* CARGAR TIPOGRAFÍAS
-        # Manrope
-        font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
-        # Source Sans 3
-        font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-
-        #* VERIFICAR TIPOGRAFÍAS
-
-        if font_id_manrope == -1:
-            print("Advertencia: No se pudo cargar Manrope.")
-
-        if font_id_source == -1:
-            print("Advertencia: No se pudo cargar Source Sans 3.")
-
-        #* OBTENER FAMILIAS REALES
-        manrope_family = None
-        source_family = None
-        if font_id_manrope != -1:
-            familias = QFontDatabase.applicationFontFamilies(font_id_manrope)
-            if familias:
-                manrope_family = familias[0]
-        if font_id_source != -1:
-            familias = QFontDatabase.applicationFontFamilies(font_id_source)
-            if familias:
-                source_family = familias[0]
-        # Mostrar familias detectadas
-        print("Manrope:", manrope_family)
-        print("Source Sans 3:", source_family)
-
-        #* APLICAR TIPOGRAFÍAS
-        if manrope_family and source_family:
-            estilos_actuales = self.ui.styleSheet()
-            estilos_tipografias = estilos_fuentes(source_family,manrope_family)
-            self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
-        else:
-            print("Advertencia: No se pudieron cargar correctamente las fuentes.")
+        self._cargar_fuentes()
 
         #* CAMBIANDO LOS INPUTS
         #relacionado a las contraseñas
@@ -96,6 +60,17 @@ class VentanaCrearCuenta(QWidget):
         #* MOSTRAR VENTANA
         self.showMaximized()
 
+    def _cargar_fuentes(self):
+        font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
+        font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
+        if font_id_manrope == -1 or font_id_source == -1:
+            return
+        manrope = QFontDatabase.applicationFontFamilies(font_id_manrope)
+        source = QFontDatabase.applicationFontFamilies(font_id_source)
+        if manrope and source:
+            self.ui.setStyleSheet(
+                self.ui.styleSheet()+ estilos_fuentes(source[0], manrope[0])
+            )
     def configurar_password(self, input_password):
         input_password.setEchoMode(QLineEdit.EchoMode.Password)
         accion_ojo = QAction(input_password)

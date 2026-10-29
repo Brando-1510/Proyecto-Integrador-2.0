@@ -33,40 +33,7 @@ class Analisis(QWidget):
         frame_ingresos_gastos=self.ui.frameIngresosGastos,frame_distribucion=self.ui.frameDistribucion,
         frame_evolucion=self.ui.frameEvolucion,
         )
-        #*CARGAR TIPOGRAFÍAS
-        # Manrope
-        font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
-        # Source Sans 3
-        font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-        # VERIFICAR TIPOGRAFÍAS
-        if font_id_manrope == -1:
-            print("Advertencia: No se pudo cargar Manrope.")
-        if font_id_source == -1:
-            print("Advertencia: No se pudo cargar Source Sans 3.")
-
-        # OBTENER FAMILIAS REALES
-        manrope_family = None
-        source_family = None
-        if font_id_manrope != -1:
-            familias = QFontDatabase.applicationFontFamilies(font_id_manrope)
-            if familias:
-                manrope_family = familias[0]
-
-        if font_id_source != -1:
-            familias = QFontDatabase.applicationFontFamilies(font_id_source)
-            if familias:
-                source_family = familias[0]
-        # Mostrar familias detectadas
-        print("Manrope:", manrope_family)
-        print("Source Sans 3:", source_family)
-        # APLICAR TIPOGRAFÍAS
-        if manrope_family and source_family:
-            estilos_actuales = self.ui.styleSheet()
-            estilos_tipografias = estilos_fuentes(
-                source_family,
-                manrope_family
-            )
-            self.ui.setStyleSheet(estilos_actuales + estilos_tipografias)
+        self._cargar_fuentes()
         #*Cambios en la interfaz
         self.ui.lblPersonalizar.hide()
         self.ui.contenedorFechas.hide()
@@ -75,6 +42,17 @@ class Analisis(QWidget):
         #* llenar los datos proveniente del controller
         self.actualizar_interfaz()
         self.ui.periodo.currentTextChanged.connect(self.actualizar_interfaz)
+    def _cargar_fuentes(self):
+        font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
+        font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
+        if font_id_manrope == -1 or font_id_source == -1:
+            return
+        manrope = QFontDatabase.applicationFontFamilies(font_id_manrope)
+        source = QFontDatabase.applicationFontFamilies(font_id_source)
+        if manrope and source:
+            self.ui.setStyleSheet(
+                self.ui.styleSheet()+ estilos_fuentes(source[0], manrope[0])
+            )
     def mostrar_dateEdits(self):
         es_personalizado=(self.ui.periodo.currentText()=="Personalizado")
         self.ui.lblPersonalizar.setVisible(es_personalizado)
