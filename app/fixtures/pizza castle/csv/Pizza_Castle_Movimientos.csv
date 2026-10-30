@@ -1,0 +1,161 @@
+﻿Fecha;Tipo;Categoría;Descripción;Monto ($);Método de Pago
+2026-04-29;Gasto;Compras;Compra de queso mozzarella;7159.06;Transferencia
+2026-05-01;Gasto;Compras;Compra de queso mozzarella;5276.28;Efectivo
+2026-05-03;Ingreso;Servicios;Servicio de catering para reunión familiar;8500.00;Transferencia
+2026-05-05;Gasto;Alquiler;Pago mensual del local;18633.43;Transferencia
+2026-05-05;Gasto;Otros;Materiales de limpieza y suministros;1071.51;Efectivo
+2026-05-06;Gasto;Compras;Compra de queso mozzarella;6355.24;Efectivo
+2026-05-06;Gasto;Compras;Compra de queso mozzarella;4876.84;Tarjeta
+2026-05-06;Gasto;Personal;Pago de salarios del personal;26284.38;Transferencia
+2026-05-07;Gasto;Servicios básicos;Factura de electricidad;6022.89;Transferencia
+2026-05-08;Gasto;Compras;Compra de harina para pizza;4402.21;Transferencia
+2026-05-08;Gasto;Compras;Compra de salsa de tomate e ingredientes;3034.00;Transferencia
+2026-05-08;Gasto;Servicios básicos;Factura de agua;923.78;Efectivo
+2026-05-09;Gasto;Servicios básicos;Servicio de internet y telefonía;1422.04;Tarjeta
+2026-05-10;Gasto;Compras;Compra de cajas y empaques;2221.55;Tarjeta
+2026-05-10;Gasto;Publicidad;Campaña publicitaria en redes sociales;2770.61;Tarjeta
+2026-05-11;Gasto;Compras;Compra de queso mozzarella;8121.87;Tarjeta
+2026-05-11;Gasto;Transporte;Entrega de insumos y transporte;1269.06;Efectivo
+2026-05-12;Gasto;Compras;Compra de cajas y empaques;1817.70;Tarjeta
+2026-05-12;Gasto;Mantenimiento;Mantenimiento de horno y equipo;3352.20;Transferencia
+2026-05-13;Gasto;Compras;Compra de bebidas para inventario;1394.66;Transferencia
+2026-05-13;Gasto;Compras;Compra de carnes y embutidos;4979.52;Transferencia
+2026-05-13;Gasto;Impuestos;Pago de obligaciones tributarias;3989.82;Transferencia
+2026-05-16;Gasto;Compras;Compra de bebidas para inventario;1417.59;Efectivo
+2026-05-18;Gasto;Compras;Compra de vegetales frescos;1681.28;Efectivo
+2026-05-18;Ingreso;Otros ingresos;Ingreso por alquiler de equipo para evento;1800.00;Otro
+2026-05-22;Gasto;Compras;Compra de harina para pizza;4385.41;Tarjeta
+2026-05-23;Gasto;Compras;Compra de carnes y embutidos;4274.16;Transferencia
+2026-05-24;Gasto;Compras;Compra de salsa de tomate e ingredientes;2660.73;Transferencia
+2026-05-25;Gasto;Compras;Compra de carnes y embutidos;3032.87;Efectivo
+2026-05-26;Gasto;Compras;Compra de bebidas para inventario;1159.07;Efectivo
+2026-05-26;Gasto;Compras;Compra de cajas y empaques;1606.58;Efectivo
+2026-05-29;Gasto;Compras;Compra de cajas y empaques;1660.33;Efectivo
+2026-05-29;Gasto;Compras;Compra de harina para pizza;3166.78;Otro
+2026-06-02;Ingreso;Servicios;Servicio de catering para evento privado;8750.00;Transferencia
+2026-06-03;Gasto;Compras;Compra de cajas y empaques;2595.32;Efectivo
+2026-06-03;Gasto;Compras;Compra de carnes y embutidos;4570.55;Transferencia
+2026-06-03;Gasto;Compras;Compra de salsa de tomate e ingredientes;2134.47;Transferencia
+2026-06-04;Gasto;Compras;Compra de queso mozzarella;4917.81;Transferencia
+2026-06-05;Gasto;Alquiler;Pago mensual del local;18486.75;Transferencia
+2026-06-05;Gasto;Otros;Materiales de limpieza y suministros;1054.12;Efectivo
+2026-06-06;Gasto;Compras;Compra de bebidas para inventario;1470.58;Tarjeta
+2026-06-06;Gasto;Personal;Pago de salarios del personal;26220.87;Transferencia
+2026-06-07;Gasto;Compras;Compra de cajas y empaques;1693.71;Transferencia
+2026-06-07;Gasto;Servicios básicos;Factura de electricidad;5891.29;Transferencia
+2026-06-08;Gasto;Servicios básicos;Factura de agua;987.09;Efectivo
+2026-06-09;Gasto;Compras;Compra de bebidas para inventario;1864.32;Efectivo
+2026-06-09;Gasto;Servicios básicos;Servicio de internet y telefonía;1405.14;Tarjeta
+2026-06-10;Gasto;Publicidad;Campaña publicitaria en redes sociales;2901.24;Tarjeta
+2026-06-11;Gasto;Compras;Compra de queso mozzarella;7685.64;Transferencia
+2026-06-11;Gasto;Transporte;Entrega de insumos y transporte;1199.51;Efectivo
+2026-06-12;Gasto;Mantenimiento;Mantenimiento de horno y equipo;3497.95;Transferencia
+2026-06-13;Gasto;Impuestos;Pago de obligaciones tributarias;3971.96;Transferencia
+2026-06-14;Gasto;Compras;Compra de vegetales frescos;1222.89;Efectivo
+2026-06-15;Gasto;Compras;Compra de harina para pizza;3089.05;Efectivo
+2026-06-15;Gasto;Compras;Compra de salsa de tomate e ingredientes;2361.87;Tarjeta
+2026-06-17;Gasto;Compras;Compra de vegetales frescos;1509.86;Otro
+2026-06-18;Gasto;Compras;Compra de salsa de tomate e ingredientes;2220.90;Tarjeta
+2026-06-28;Gasto;Compras;Compra de vegetales frescos;1483.56;Efectivo
+2026-07-02;Gasto;Compras;Compra de harina para pizza;4675.05;Otro
+2026-07-02;Gasto;Compras;Compra de salsa de tomate e ingredientes;3219.35;Transferencia
+2026-07-03;Gasto;Compras;Compra de salsa de tomate e ingredientes;3127.36;Tarjeta
+2026-07-03;Ingreso;Servicios;Servicio de catering para celebración;8300.00;Efectivo
+2026-07-05;Gasto;Alquiler;Pago mensual del local;18049.61;Transferencia
+2026-07-05;Gasto;Compras;Compra de salsa de tomate e ingredientes;3282.11;Efectivo
+2026-07-05;Gasto;Otros;Materiales de limpieza y suministros;1082.84;Efectivo
+2026-07-06;Gasto;Personal;Pago de salarios del personal;24579.78;Transferencia
+2026-07-07;Gasto;Servicios básicos;Factura de electricidad;6090.60;Transferencia
+2026-07-08;Gasto;Servicios básicos;Factura de agua;968.55;Efectivo
+2026-07-09;Gasto;Servicios básicos;Servicio de internet y telefonía;1387.95;Tarjeta
+2026-07-10;Gasto;Compras;Compra de salsa de tomate e ingredientes;2639.45;Efectivo
+2026-07-10;Gasto;Publicidad;Campaña publicitaria en redes sociales;2843.19;Tarjeta
+2026-07-11;Gasto;Compras;Compra de harina para pizza;4410.58;Transferencia
+2026-07-11;Gasto;Transporte;Entrega de insumos y transporte;1133.71;Efectivo
+2026-07-12;Gasto;Compras;Compra de bebidas para inventario;1219.37;Transferencia
+2026-07-12;Gasto;Mantenimiento;Mantenimiento de horno y equipo;3596.00;Transferencia
+2026-07-13;Gasto;Compras;Compra de vegetales frescos;1124.78;Efectivo
+2026-07-13;Gasto;Impuestos;Pago de obligaciones tributarias;4257.33;Transferencia
+2026-07-16;Gasto;Compras;Compra de carnes y embutidos;5106.01;Transferencia
+2026-07-18;Gasto;Compras;Compra de vegetales frescos;1314.68;Transferencia
+2026-07-20;Ingreso;Otros ingresos;Recuperación de depósito de proveedor;1500.00;Transferencia
+2026-07-21;Gasto;Compras;Compra de harina para pizza;3443.73;Transferencia
+2026-07-22;Gasto;Compras;Compra de cajas y empaques;2318.36;Transferencia
+2026-07-23;Gasto;Compras;Compra de queso mozzarella;6076.30;Transferencia
+2026-07-24;Gasto;Compras;Compra de vegetales frescos;1070.20;Efectivo
+2026-07-26;Gasto;Compras;Compra de carnes y embutidos;5125.73;Transferencia
+2026-07-27;Gasto;Compras;Compra de salsa de tomate e ingredientes;3063.95;Tarjeta
+2026-08-02;Gasto;Compras;Compra de carnes y embutidos;2885.81;Transferencia
+2026-08-02;Ingreso;Servicios;Servicio de catering para evento empresarial;8600.00;Transferencia
+2026-08-05;Gasto;Alquiler;Pago mensual del local;18552.01;Transferencia
+2026-08-05;Gasto;Compras;Compra de salsa de tomate e ingredientes;2069.53;Efectivo
+2026-08-05;Gasto;Otros;Materiales de limpieza y suministros;1069.06;Efectivo
+2026-08-06;Gasto;Personal;Pago de salarios del personal;27227.92;Transferencia
+2026-08-07;Gasto;Servicios básicos;Factura de electricidad;6099.03;Transferencia
+2026-08-08;Gasto;Compras;Compra de harina para pizza;2641.27;Efectivo
+2026-08-08;Gasto;Compras;Compra de salsa de tomate e ingredientes;3295.85;Tarjeta
+2026-08-08;Gasto;Servicios básicos;Factura de agua;920.35;Efectivo
+2026-08-09;Gasto;Servicios básicos;Servicio de internet y telefonía;1448.98;Tarjeta
+2026-08-10;Gasto;Compras;Compra de harina para pizza;2810.73;Transferencia
+2026-08-10;Gasto;Publicidad;Campaña publicitaria en redes sociales;2965.37;Tarjeta
+2026-08-11;Gasto;Transporte;Entrega de insumos y transporte;1258.66;Efectivo
+2026-08-12;Gasto;Compras;Compra de vegetales frescos;1021.95;Efectivo
+2026-08-12;Gasto;Mantenimiento;Mantenimiento de horno y equipo;3618.94;Transferencia
+2026-08-13;Gasto;Impuestos;Pago de obligaciones tributarias;4426.98;Transferencia
+2026-08-14;Gasto;Compras;Compra de bebidas para inventario;1139.99;Transferencia
+2026-08-21;Gasto;Compras;Compra de queso mozzarella;6436.46;Efectivo
+2026-08-21;Gasto;Compras;Compra de salsa de tomate e ingredientes;2098.73;Transferencia
+2026-08-22;Gasto;Compras;Compra de cajas y empaques;2516.72;Efectivo
+2026-08-23;Gasto;Compras;Compra de carnes y embutidos;5111.59;Otro
+2026-08-23;Gasto;Compras;Compra de harina para pizza;2864.71;Transferencia
+2026-08-31;Gasto;Compras;Compra de queso mozzarella;7600.15;Efectivo
+2026-09-03;Ingreso;Servicios;Servicio de catering para reunión empresarial;8450.00;Transferencia
+2026-09-05;Gasto;Alquiler;Pago mensual del local;18928.25;Transferencia
+2026-09-05;Gasto;Compras;Compra de carnes y embutidos;3296.51;Transferencia
+2026-09-05;Gasto;Otros;Materiales de limpieza y suministros;1150.78;Efectivo
+2026-09-06;Gasto;Personal;Pago de salarios del personal;24639.40;Transferencia
+2026-09-07;Gasto;Servicios básicos;Factura de electricidad;6303.80;Transferencia
+2026-09-08;Gasto;Compras;Compra de harina para pizza;2793.69;Transferencia
+2026-09-08;Gasto;Servicios básicos;Factura de agua;964.27;Efectivo
+2026-09-09;Gasto;Servicios básicos;Servicio de internet y telefonía;1386.17;Tarjeta
+2026-09-10;Gasto;Publicidad;Campaña publicitaria en redes sociales;2816.07;Tarjeta
+2026-09-11;Gasto;Transporte;Entrega de insumos y transporte;1160.03;Efectivo
+2026-09-12;Gasto;Mantenimiento;Mantenimiento de horno y equipo;3457.20;Transferencia
+2026-09-13;Gasto;Impuestos;Pago de obligaciones tributarias;4314.60;Transferencia
+2026-09-15;Gasto;Compras;Compra de bebidas para inventario;1274.47;Transferencia
+2026-09-16;Gasto;Compras;Compra de vegetales frescos;1652.69;Transferencia
+2026-09-16;Ingreso;Otros ingresos;Ingreso por colaboración en evento local;2200.00;Tarjeta
+2026-09-17;Gasto;Compras;Compra de bebidas para inventario;1698.75;Efectivo
+2026-09-17;Gasto;Compras;Compra de carnes y embutidos;3820.97;Tarjeta
+2026-09-20;Gasto;Compras;Compra de bebidas para inventario;1772.75;Efectivo
+2026-09-20;Gasto;Compras;Compra de vegetales frescos;1604.04;Otro
+2026-09-22;Gasto;Compras;Compra de vegetales frescos;2023.34;Efectivo
+2026-09-25;Gasto;Compras;Compra de queso mozzarella;6947.82;Efectivo
+2026-10-02;Gasto;Compras;Compra de queso mozzarella;4965.07;Efectivo
+2026-10-03;Ingreso;Servicios;Servicio de catering para evento familiar;8700.00;Tarjeta
+2026-10-05;Gasto;Alquiler;Pago mensual del local;17539.63;Transferencia
+2026-10-05;Gasto;Compras;Compra de cajas y empaques;1319.68;Efectivo
+2026-10-05;Gasto;Compras;Compra de queso mozzarella;7718.35;Efectivo
+2026-10-05;Gasto;Otros;Materiales de limpieza y suministros;1055.69;Efectivo
+2026-10-06;Gasto;Compras;Compra de carnes y embutidos;5156.30;Transferencia
+2026-10-06;Gasto;Personal;Pago de salarios del personal;27000.03;Transferencia
+2026-10-07;Gasto;Servicios básicos;Factura de electricidad;6044.78;Transferencia
+2026-10-08;Gasto;Servicios básicos;Factura de agua;898.12;Efectivo
+2026-10-09;Gasto;Servicios básicos;Servicio de internet y telefonía;1470.32;Tarjeta
+2026-10-10;Gasto;Publicidad;Campaña publicitaria en redes sociales;2788.73;Tarjeta
+2026-10-11;Gasto;Transporte;Entrega de insumos y transporte;1180.49;Efectivo
+2026-10-12;Gasto;Compras;Compra de queso mozzarella;6389.56;Tarjeta
+2026-10-12;Gasto;Mantenimiento;Mantenimiento de horno y equipo;3440.96;Transferencia
+2026-10-13;Gasto;Compras;Compra de vegetales frescos;1570.43;Transferencia
+2026-10-13;Gasto;Impuestos;Pago de obligaciones tributarias;4305.69;Transferencia
+2026-10-14;Gasto;Compras;Compra de cajas y empaques;2033.53;Efectivo
+2026-10-15;Gasto;Compras;Compra de salsa de tomate e ingredientes;2675.09;Transferencia
+2026-10-17;Gasto;Compras;Compra de cajas y empaques;2264.37;Transferencia
+2026-10-17;Ingreso;Otros ingresos;Ingreso por servicio extraordinario;1950.00;Transferencia
+2026-10-19;Gasto;Compras;Compra de vegetales frescos;1493.11;Transferencia
+2026-10-24;Gasto;Compras;Compra de bebidas para inventario;1817.28;Transferencia
+2026-10-25;Gasto;Compras;Compra de salsa de tomate e ingredientes;2046.76;Tarjeta
+2026-10-27;Gasto;Compras;Compra de salsa de tomate e ingredientes;1822.72;Efectivo
+2026-10-28;Gasto;Compras;Compra de cajas y empaques;1950.52;Transferencia
+2026-10-28;Gasto;Compras;Compra de queso mozzarella;5139.41;Transferencia
+2026-10-28;Gasto;Compras;Compra de vegetales frescos;1889.77;Transferencia

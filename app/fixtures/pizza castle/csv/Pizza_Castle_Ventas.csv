@@ -1,0 +1,974 @@
+﻿Fecha;Producto / Servicio;Categoría;Cantidad;Precio Unitario ($);Total ($)
+2026-04-29;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-04-29;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-04-29;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-04-29;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-04-29;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-04-29;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-04-30;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-04-30;Papas con Queso;Complementos;1;135.00;135.00
+2026-04-30;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-04-30;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-04-30;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-04-30;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-01;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-01;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-01;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-01;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-05-01;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-01;Pan de Ajo;Complementos;2;95.00;190.00
+2026-05-01;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-02;Alitas BBQ;Complementos;2;185.00;370.00
+2026-05-02;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-02;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-05-02;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-02;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-02;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-03;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-05-03;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-03;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-05-03;Combo Personal;Combos;1;275.00;275.00
+2026-05-03;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-05-04;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-04;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-04;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-04;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-04;Combo Personal;Combos;1;275.00;275.00
+2026-05-04;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-05-05;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-05;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-05;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-05;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-05;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-05;Alitas BBQ;Complementos;1;185.00;185.00
+2026-05-06;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-06;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-06;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-05-06;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-07;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-07;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-07;Combo Familiar;Combos;1;790.00;790.00
+2026-05-07;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-07;Alitas BBQ;Complementos;1;185.00;185.00
+2026-05-08;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-08;Alitas BBQ;Complementos;1;185.00;185.00
+2026-05-08;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-08;Alitas BBQ;Complementos;1;185.00;185.00
+2026-05-08;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-08;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-09;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-05-09;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-09;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-09;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-05-09;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-09;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-10;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-10;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-10;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-10;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-05-10;Combo Familiar;Combos;1;790.00;790.00
+2026-05-11;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-11;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-11;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-11;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-12;Agua Embotellada;Bebidas;3;30.00;90.00
+2026-05-12;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-12;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-12;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-13;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-13;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-13;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-13;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-13;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-13;Combo Familiar;Combos;1;790.00;790.00
+2026-05-13;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-14;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-05-14;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-14;Alitas BBQ;Complementos;1;185.00;185.00
+2026-05-14;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-15;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-15;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-15;Alitas BBQ;Complementos;1;185.00;185.00
+2026-05-15;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-15;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-15;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-16;Combo Personal;Combos;1;275.00;275.00
+2026-05-16;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-16;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-16;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-16;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-17;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-17;Combo Familiar;Combos;1;790.00;790.00
+2026-05-17;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-18;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-18;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-18;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-18;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-05-19;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-19;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-19;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-19;Gaseosa 355 ml;Bebidas;2;40.00;80.00
+2026-05-20;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-20;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-05-20;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-20;Combo Personal;Combos;1;275.00;275.00
+2026-05-20;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-21;Combo Personal;Combos;1;275.00;275.00
+2026-05-21;Combo Personal;Combos;1;275.00;275.00
+2026-05-21;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-21;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-05-21;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-21;Combo Personal;Combos;1;261.25;261.25
+2026-05-21;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-22;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-22;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-22;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-22;Agua Embotellada;Bebidas;3;30.00;90.00
+2026-05-22;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-23;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-23;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-23;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-23;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-23;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-05-23;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-23;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-24;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-24;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-24;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-05-24;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-05-24;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-24;Combo Personal;Combos;1;275.00;275.00
+2026-05-25;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-25;Papas con Queso;Complementos;1;135.00;135.00
+2026-05-25;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-05-25;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-25;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-26;Papas con Queso;Complementos;1;135.00;135.00
+2026-05-26;Combo Personal;Combos;1;275.00;275.00
+2026-05-26;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-27;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-27;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-27;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-27;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-27;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-05-28;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-28;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-28;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-28;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-28;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-28;Combo Familiar;Combos;1;790.00;790.00
+2026-05-28;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-05-28;Combo Personal;Combos;1;275.00;275.00
+2026-05-29;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-29;Agua Embotellada;Bebidas;2;30.00;60.00
+2026-05-29;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-05-29;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-05-30;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-30;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-05-30;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-30;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-05-30;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-05-30;Combo Familiar;Combos;1;790.00;790.00
+2026-05-31;Combo Personal;Combos;1;275.00;275.00
+2026-05-31;Pan de Ajo;Complementos;1;95.00;95.00
+2026-05-31;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-31;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-05-31;Combo Familiar;Combos;1;790.00;790.00
+2026-06-01;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-01;Papas con Queso;Complementos;2;135.00;270.00
+2026-06-01;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-01;Combo Familiar;Combos;1;790.00;790.00
+2026-06-02;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-02;Papas con Queso;Complementos;1;135.00;135.00
+2026-06-02;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-02;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-02;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-06-03;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-03;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-03;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-03;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-04;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-04;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-04;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-04;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-04;Combo Personal;Combos;1;275.00;275.00
+2026-06-04;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-04;Combo Personal;Combos;1;275.00;275.00
+2026-06-05;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-05;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-05;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-05;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-05;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-05;Combo Personal;Combos;1;275.00;275.00
+2026-06-05;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-05;Combo Personal;Combos;1;275.00;275.00
+2026-06-06;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-06;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-06;Combo Personal;Combos;1;275.00;275.00
+2026-06-06;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-06-06;Combo Familiar;Combos;1;790.00;790.00
+2026-06-07;Combo Familiar;Combos;1;790.00;790.00
+2026-06-07;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-07;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-07;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-07;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-07;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-08;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-08;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-08;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-08;Pan de Ajo;Complementos;1;95.00;95.00
+2026-06-09;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-06-09;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-09;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-06-10;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-10;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-10;Gaseosa 1.5 L;Bebidas;2;85.00;170.00
+2026-06-10;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-11;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-11;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-06-11;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-06-11;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-06-12;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-12;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-12;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-12;Pan de Ajo;Complementos;1;95.00;95.00
+2026-06-12;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-06-12;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-13;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-13;Alitas BBQ;Complementos;1;185.00;185.00
+2026-06-13;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-13;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-13;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-14;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-14;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-14;Alitas BBQ;Complementos;1;185.00;185.00
+2026-06-14;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-14;Combo Personal;Combos;1;275.00;275.00
+2026-06-14;Alitas BBQ;Complementos;1;185.00;185.00
+2026-06-15;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-15;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-15;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-15;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-15;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-06-16;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-16;Combo Familiar;Combos;1;790.00;790.00
+2026-06-16;Combo Personal;Combos;1;275.00;275.00
+2026-06-16;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-17;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-06-17;Papas con Queso;Complementos;1;135.00;135.00
+2026-06-17;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-17;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-17;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-18;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-18;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-18;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-18;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-18;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-19;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-19;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-19;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-19;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-19;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-20;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-20;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-20;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-20;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-21;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-06-21;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-21;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-06-21;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-21;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-21;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-21;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-06-22;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-22;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-22;Alitas BBQ;Complementos;1;185.00;185.00
+2026-06-22;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-22;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-23;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-06-23;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-23;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-24;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-24;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-24;Combo Personal;Combos;1;275.00;275.00
+2026-06-24;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-24;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-25;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-06-25;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-06-25;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-26;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-26;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-26;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-26;Pan de Ajo;Complementos;1;95.00;95.00
+2026-06-26;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-06-26;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-06-27;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-27;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-27;Combo Personal;Combos;1;275.00;275.00
+2026-06-27;Pan de Ajo;Complementos;1;95.00;95.00
+2026-06-28;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-28;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-28;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-06-28;Pan de Ajo;Complementos;1;95.00;95.00
+2026-06-28;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-06-28;Combo Personal;Combos;1;275.00;275.00
+2026-06-29;Alitas BBQ;Complementos;1;185.00;185.00
+2026-06-29;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-29;Alitas BBQ;Complementos;1;185.00;185.00
+2026-06-29;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-30;Alitas BBQ;Complementos;1;185.00;185.00
+2026-06-30;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-06-30;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-06-30;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-06-30;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-06-30;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-07-01;Combo Familiar;Combos;1;790.00;790.00
+2026-07-01;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-01;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-01;Papas con Queso;Complementos;1;135.00;135.00
+2026-07-01;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-07-02;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-02;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-02;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-02;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-02;Combo Personal;Combos;1;275.00;275.00
+2026-07-02;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-03;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-03;Combo Personal;Combos;1;275.00;275.00
+2026-07-03;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-03;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-03;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-03;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-03;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-04;Combo Familiar;Combos;1;790.00;790.00
+2026-07-04;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-04;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-04;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-04;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-05;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-05;Pan de Ajo;Complementos;1;95.00;95.00
+2026-07-05;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-05;Alitas BBQ;Complementos;1;185.00;185.00
+2026-07-05;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-05;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-06;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-06;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-07-06;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-06;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-06;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-07;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-07;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-07;Alitas BBQ;Complementos;2;185.00;370.00
+2026-07-07;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-08;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-08;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-08;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-08;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-07-09;Agua Embotellada;Bebidas;2;30.00;60.00
+2026-07-09;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-09;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-09;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-09;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-10;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-10;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-10;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-10;Combo Familiar;Combos;1;790.00;790.00
+2026-07-10;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-11;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-11;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-11;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-07-11;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-11;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-12;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-12;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-12;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-12;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-12;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-13;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-13;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-13;Pan de Ajo;Complementos;1;95.00;95.00
+2026-07-13;Combo Familiar;Combos;1;790.00;790.00
+2026-07-14;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-07-14;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-14;Combo Personal;Combos;1;275.00;275.00
+2026-07-14;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-14;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-15;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-15;Papas con Queso;Complementos;1;135.00;135.00
+2026-07-15;Gaseosa 355 ml;Bebidas;2;40.00;80.00
+2026-07-16;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-16;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-16;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-17;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-17;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-17;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-17;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-17;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-07-17;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-18;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-18;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-18;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-18;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-19;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-19;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-07-19;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-19;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-19;Papas con Queso;Complementos;1;135.00;135.00
+2026-07-19;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-19;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-19;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-19;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-20;Combo Personal;Combos;1;275.00;275.00
+2026-07-20;Combo Personal;Combos;1;275.00;275.00
+2026-07-20;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-20;Combo Personal;Combos;1;275.00;275.00
+2026-07-21;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-21;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-21;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-07-21;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-21;Alitas BBQ;Complementos;1;185.00;185.00
+2026-07-22;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-22;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-22;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-22;Alitas BBQ;Complementos;1;185.00;185.00
+2026-07-22;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-07-23;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-23;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-23;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-07-23;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-24;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-24;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-24;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-24;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-07-24;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-24;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-25;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-25;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-25;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-25;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-25;Combo Familiar;Combos;1;790.00;790.00
+2026-07-25;Alitas BBQ;Complementos;1;185.00;185.00
+2026-07-25;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-26;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-26;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-26;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-26;Combo Personal;Combos;1;275.00;275.00
+2026-07-26;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-27;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-27;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-27;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-27;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-07-27;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-07-27;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-28;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-28;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-28;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-29;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-29;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-07-29;Pan de Ajo;Complementos;1;95.00;95.00
+2026-07-29;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-29;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-07-29;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-30;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-07-30;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-07-30;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-07-31;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-31;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-31;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-31;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-31;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-07-31;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-07-31;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-01;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-01;Pan de Ajo;Complementos;1;95.00;95.00
+2026-08-01;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-01;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-02;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-02;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-02;Papas con Queso;Complementos;1;135.00;135.00
+2026-08-02;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-02;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-02;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-08-03;Gaseosa 355 ml;Bebidas;2;40.00;80.00
+2026-08-03;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-03;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-03;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-08-03;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-03;Alitas BBQ;Complementos;1;185.00;185.00
+2026-08-04;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-04;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-04;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-04;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-04;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-05;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-05;Pan de Ajo;Complementos;1;95.00;95.00
+2026-08-05;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-05;Combo Personal;Combos;1;275.00;275.00
+2026-08-05;Papas con Queso;Complementos;1;135.00;135.00
+2026-08-05;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-05;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-06;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-06;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-06;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-06;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-06;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-06;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-08-07;Combo Personal;Combos;1;275.00;275.00
+2026-08-07;Agua Embotellada;Bebidas;2;30.00;60.00
+2026-08-07;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-07;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-07;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-07;Combo Familiar;Combos;1;790.00;790.00
+2026-08-08;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-08;Agua Embotellada;Bebidas;2;30.00;60.00
+2026-08-08;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-08;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-08;Combo Familiar;Combos;1;790.00;790.00
+2026-08-08;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-08;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-09;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-09;Combo Personal;Combos;1;275.00;275.00
+2026-08-09;Alitas BBQ;Complementos;1;185.00;185.00
+2026-08-09;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-09;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-09;Pan de Ajo;Complementos;2;95.00;190.00
+2026-08-10;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-10;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-08-10;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-10;Combo Personal;Combos;1;275.00;275.00
+2026-08-10;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-11;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-11;Papas con Queso;Complementos;1;135.00;135.00
+2026-08-11;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-11;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-11;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-12;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-12;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-12;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-12;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-12;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-12;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-12;Alitas BBQ;Complementos;1;185.00;185.00
+2026-08-13;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-13;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-13;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-13;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-13;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-13;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-14;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-14;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-08-14;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-14;Combo Personal;Combos;1;275.00;275.00
+2026-08-14;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-14;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-15;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-15;Alitas BBQ;Complementos;1;185.00;185.00
+2026-08-15;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-15;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-15;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-15;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-08-15;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-16;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-16;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-16;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-16;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-16;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-16;Combo Familiar;Combos;1;790.00;790.00
+2026-08-16;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-17;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-17;Alitas BBQ;Complementos;1;185.00;185.00
+2026-08-17;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-17;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-17;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-17;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-18;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-18;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-18;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-18;Combo Personal;Combos;1;261.25;261.25
+2026-08-18;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-18;Combo Personal;Combos;1;275.00;275.00
+2026-08-19;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-19;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-19;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-19;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-20;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-20;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-20;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-20;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-20;Combo Familiar;Combos;1;790.00;790.00
+2026-08-21;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-21;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-21;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-21;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-21;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-21;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-21;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-22;Combo Personal;Combos;1;275.00;275.00
+2026-08-22;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-22;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-22;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-22;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-22;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-22;Papas con Queso;Complementos;2;135.00;270.00
+2026-08-23;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-23;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-23;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-23;Combo Familiar;Combos;1;790.00;790.00
+2026-08-23;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-24;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-24;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-08-24;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-24;Alitas BBQ;Complementos;2;185.00;370.00
+2026-08-25;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-25;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-25;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-25;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-25;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-26;Pan de Ajo;Complementos;1;95.00;95.00
+2026-08-26;Papas con Queso;Complementos;1;135.00;135.00
+2026-08-26;Combo Familiar;Combos;1;790.00;790.00
+2026-08-26;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-27;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-27;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-27;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-08-27;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-27;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-28;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-08-28;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-28;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-28;Gaseosa 355 ml;Bebidas;3;40.00;120.00
+2026-08-28;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-29;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-08-29;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-29;Combo Personal;Combos;1;275.00;275.00
+2026-08-29;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-08-29;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-08-29;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-29;Combo Personal;Combos;1;261.25;261.25
+2026-08-30;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-30;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-08-30;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-30;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-08-31;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-08-31;Combo Familiar;Combos;1;790.00;790.00
+2026-08-31;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-08-31;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-08-31;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-01;Pan de Ajo;Complementos;1;95.00;95.00
+2026-09-01;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-01;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-01;Combo Personal;Combos;1;275.00;275.00
+2026-09-02;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-02;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-02;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-02;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-02;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-02;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-03;Combo Familiar;Combos;1;790.00;790.00
+2026-09-03;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-03;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-03;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-04;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-04;Pan de Ajo;Complementos;2;95.00;190.00
+2026-09-04;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-04;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-04;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-04;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-04;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-04;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-05;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-05;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-05;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-05;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-05;Alitas BBQ;Complementos;1;185.00;185.00
+2026-09-05;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-06;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-06;Combo Personal;Combos;1;275.00;275.00
+2026-09-06;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-06;Combo Personal;Combos;1;275.00;275.00
+2026-09-06;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-07;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-07;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-07;Pan de Ajo;Complementos;1;95.00;95.00
+2026-09-08;Pan de Ajo;Complementos;2;95.00;190.00
+2026-09-08;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-08;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-08;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-08;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-09;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-09;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-09;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-09-09;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-10;Combo Familiar;Combos;1;790.00;790.00
+2026-09-10;Pan de Ajo;Complementos;1;95.00;95.00
+2026-09-10;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-09-10;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-11;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-11;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-09-11;Combo Familiar;Combos;1;790.00;790.00
+2026-09-11;Combo Personal;Combos;1;261.25;261.25
+2026-09-11;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-11;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-11;Combo Personal;Combos;1;275.00;275.00
+2026-09-12;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-12;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-12;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-09-12;Pan de Ajo;Complementos;1;95.00;95.00
+2026-09-12;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-12;Pan de Ajo;Complementos;1;95.00;95.00
+2026-09-12;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-12;Combo Familiar;Combos;1;790.00;790.00
+2026-09-13;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-13;Alitas BBQ;Complementos;1;185.00;185.00
+2026-09-13;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-13;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-14;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-14;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-14;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-14;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-14;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-14;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-15;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-15;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-15;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-15;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-15;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-16;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-16;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-16;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-16;Pan de Ajo;Complementos;1;95.00;95.00
+2026-09-16;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-17;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-17;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-17;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-18;Gaseosa 355 ml;Bebidas;3;40.00;120.00
+2026-09-18;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-18;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-18;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-18;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-18;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-18;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-19;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-09-19;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-19;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-19;Combo Personal;Combos;1;275.00;275.00
+2026-09-19;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-19;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-09-19;Combo Familiar;Combos;1;790.00;790.00
+2026-09-19;Gaseosa 355 ml;Bebidas;2;40.00;80.00
+2026-09-20;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-20;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-20;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-20;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-20;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-20;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-20;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-21;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-21;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-21;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-21;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-21;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-21;Gaseosa 1.5 L;Bebidas;2;85.00;170.00
+2026-09-22;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-22;Combo Personal;Combos;1;275.00;275.00
+2026-09-22;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-23;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-23;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-23;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-23;Combo Familiar;Combos;1;790.00;790.00
+2026-09-24;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-24;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-24;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-24;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-09-24;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-24;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-25;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-25;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-25;Papas con Queso;Complementos;1;135.00;135.00
+2026-09-25;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-25;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-26;Gaseosa 355 ml;Bebidas;3;40.00;120.00
+2026-09-26;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-09-26;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-09-26;Papas con Queso;Complementos;1;135.00;135.00
+2026-09-26;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-27;Combo Personal;Combos;1;275.00;275.00
+2026-09-27;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-27;Combo Personal;Combos;1;261.25;261.25
+2026-09-27;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-09-27;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-27;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-28;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-28;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-28;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-09-28;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-28;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-29;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-09-29;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-09-29;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-09-29;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-09-29;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-30;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-30;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-09-30;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-09-30;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-10-01;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-01;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-01;Papas con Queso;Complementos;1;135.00;135.00
+2026-10-01;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-01;Pan de Ajo;Complementos;2;95.00;190.00
+2026-10-01;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-02;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-02;Gaseosa 1.5 L;Bebidas;1;85.00;85.00
+2026-10-02;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-02;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-02;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-02;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-03;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-03;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-03;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-10-03;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-10-04;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-04;Combo Familiar;Combos;1;790.00;790.00
+2026-10-04;Agua Embotellada;Bebidas;1;30.00;30.00
+2026-10-04;Combo Personal;Combos;1;275.00;275.00
+2026-10-05;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-05;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-10-05;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-05;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-06;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-06;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-06;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-06;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-06;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-07;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-07;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-07;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-07;Alitas BBQ;Complementos;1;185.00;185.00
+2026-10-08;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-08;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-08;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-10-08;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-08;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-09;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-09;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-09;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-09;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-10-09;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-10;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-10-10;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-10;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-10-10;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-10;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-10-10;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-10;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-11;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-11;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-11;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-11;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-11;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-11;Combo Personal;Combos;1;275.00;275.00
+2026-10-12;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-12;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-12;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-13;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-10-13;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-13;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-10-14;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-14;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00
+2026-10-14;Alitas BBQ;Complementos;1;185.00;185.00
+2026-10-14;Alitas BBQ;Complementos;1;185.00;185.00
+2026-10-14;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-14;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-15;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-10-15;Papas con Queso;Complementos;2;135.00;270.00
+2026-10-15;Pizza Cuatro Quesos Mediana;Pizzas especiales;1;440.00;440.00
+2026-10-15;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-15;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-15;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-15;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-15;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-16;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-16;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-16;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-10-16;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-16;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-16;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-16;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-17;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-17;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-17;Combo Familiar;Combos;1;790.00;790.00
+2026-10-17;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-18;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-18;Gaseosa 355 ml;Bebidas;2;40.00;80.00
+2026-10-18;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-18;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-18;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-18;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-19;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-10-19;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-19;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-19;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-20;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-20;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-20;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-20;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-20;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-21;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-21;Gaseosa 1.5 L;Bebidas;3;85.00;255.00
+2026-10-21;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-21;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-10-21;Combo Personal;Combos;1;275.00;275.00
+2026-10-21;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-22;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-22;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-22;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-22;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-22;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-22;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-10-22;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-22;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-23;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-23;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-23;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-23;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-23;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-24;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-24;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-24;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-24;Alitas BBQ;Complementos;1;185.00;185.00
+2026-10-24;Pizza Suprema Familiar;Pizzas familiares;1;590.00;590.00
+2026-10-24;Combo Personal;Combos;1;275.00;275.00
+2026-10-25;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-25;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-25;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-25;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-25;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-25;Gaseosa 355 ml;Bebidas;1;40.00;40.00
+2026-10-26;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-26;Pizza Suprema Mediana;Pizzas especiales;1;430.00;430.00
+2026-10-26;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-26;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-26;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-27;Pizza Pepperoni Familiar;Pizzas familiares;1;540.00;540.00
+2026-10-27;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-27;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-27;Combo Personal;Combos;1;275.00;275.00
+2026-10-27;Alitas BBQ;Complementos;1;185.00;185.00
+2026-10-27;Combo Personal;Combos;1;275.00;275.00
+2026-10-28;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-28;Pizza Hawaiana Mediana;Pizzas clásicas;1;370.00;370.00
+2026-10-28;Combo Familiar;Combos;1;790.00;790.00
+2026-10-28;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-28;Combo Personal;Combos;1;275.00;275.00
+2026-10-28;Combo Familiar;Combos;1;790.00;790.00
+2026-10-28;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-28;Pan de Ajo;Complementos;1;95.00;95.00
+2026-10-28;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-29;Pizza Pepperoni Mediana;Pizzas clásicas;1;360.00;360.00
+2026-10-29;Gaseosa 1.5 L;Bebidas;2;85.00;170.00
+2026-10-29;Pizza Hawaiana Personal;Pizzas clásicas;1;230.00;230.00
+2026-10-29;Combo Personal;Combos;1;275.00;275.00
+2026-10-29;Alitas BBQ;Complementos;1;185.00;185.00
+2026-10-29;Pizza Margarita Personal;Pizzas clásicas;1;190.00;190.00
+2026-10-29;Pizza Pepperoni Personal;Pizzas clásicas;1;220.00;220.00

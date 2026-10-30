@@ -93,6 +93,7 @@ QPushButton[boton=&quot;Secundario&quot;] {
     color: #5D38BB;
     font-size: 18px;
     min-height: 40px;
+	width: 300px;
 }
 
 QPushButton[boton=&quot;Secundario&quot;]:hover {

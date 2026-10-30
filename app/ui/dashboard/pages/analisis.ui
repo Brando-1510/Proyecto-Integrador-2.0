@@ -385,6 +385,9 @@ qproperty-alignment: AlignCenter;
          </item>
          <item>
           <widget class="QLabel" name="estadoIngresos">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="text">
             <string>▲ 8.4% vs Período Anterior</string>
            </property>
@@ -490,86 +493,74 @@ qproperty-alignment: AlignCenter;
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="contenedorGraficos" native="true">
+    <widget class="QFrame" name="frameDistribucion">
      <property name="maximumSize">
       <size>
        <width>1060</width>
        <height>16777215</height>
       </size>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="carta" stdset="0">
+      <string>Dashboard</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_7">
       <item>
-       <widget class="QFrame" name="frameIngresosGastos">
+       <widget class="QLabel" name="label_3">
         <property name="maximumSize">
          <size>
-          <width>521</width>
-          <height>16777215</height>
+          <width>16777215</width>
+          <height>20</height>
          </size>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+        <property name="text">
+         <string>Distribución de Gastos</string>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+        <property name="texto" stdset="0">
+         <string>TituloSecundario</string>
         </property>
-        <property name="carta" stdset="0">
-         <string>Dashboard</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Ingresos vs Gastos</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>TituloSecundario</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </widget>
       </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frameIngresosGastos">
+     <property name="maximumSize">
+      <size>
+       <width>1060</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="carta" stdset="0">
+      <string>Dashboard</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <widget class="QFrame" name="frameDistribucion">
+       <widget class="QLabel" name="label_2">
         <property name="maximumSize">
          <size>
-          <width>521</width>
-          <height>16777215</height>
+          <width>16777215</width>
+          <height>20</height>
          </size>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+        <property name="text">
+         <string>Ingresos vs Gastos</string>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+        <property name="texto" stdset="0">
+         <string>TituloSecundario</string>
         </property>
-        <property name="carta" stdset="0">
-         <string>Dashboard</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Distribución de Gastos</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>TituloSecundario</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </widget>
       </item>
      </layout>

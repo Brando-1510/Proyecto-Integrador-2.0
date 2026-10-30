@@ -154,10 +154,7 @@ QComboBox QAbstractItemView::item:hover {
 -----------------------------------------------------------------------------------------------------
 Botones
 -----------------------------------------------------------------------------------------------------*/
-QPushButton{
-width:300px;
-height:50px;
-}
+
 /* --- BOTÓN PRIMARIO --- */
 QPushButton[boton=&quot;Primario&quot;] {
     border-radius: 10px;
@@ -165,6 +162,8 @@ QPushButton[boton=&quot;Primario&quot;] {
     font-weight: bold;
     color: #f7f7f7;
     font-size: 12pt;
+width:300px;
+height:50px;
 }
 
 QPushButton[boton=&quot;Primario&quot;]:hover {
@@ -183,6 +182,8 @@ QPushButton[boton=&quot;Secundario&quot;] {
     font-weight: bold;
     color: #5D38BB;
     font-size: 18px;
+width:300px;
+height:50px;
 }
 
 QPushButton[boton=&quot;Secundario&quot;]:hover {

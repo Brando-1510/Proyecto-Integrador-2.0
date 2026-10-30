@@ -77,17 +77,17 @@ class Analisis(QWidget):
         balance=resultado["comparisons"]["balance"]
         estadisticas=resultado["sales_statistics"]
         #*Ingresos tarjeta
-        self.ui.valorIngresos.setText(f"C${ingresos["current_value"]}")
+        self.ui.valorIngresos.setText(f"C$ {ingresos["current_value"]}")
         variacion_ing=self.comparar_periodo_anterior(ingresos["percentage_variation"])
         self.establecer_color_aumento(ingresos["direction"],self.ui.estadoIngresos)
         self.ui.estadoIngresos.setText(variacion_ing)
         #*Gastos tarjeta
-        self.ui.valorGastos.setText(f"C${gastos["current_value"]}")
+        self.ui.valorGastos.setText(f"C$ {gastos["current_value"]}")
         variacion_gas=self.comparar_periodo_anterior(gastos["percentage_variation"])
         self.establecer_color_disminucion(ingresos["direction"],self.ui.estadoGastos)
         self.ui.estadoGastos.setText(variacion_gas)
         #*Balance tarjeta
-        self.ui.valorBalance.setText(f"C${balance["current_value"]}")
+        self.ui.valorBalance.setText(f"C$ {balance["current_value"]}")
         variacion_bal=self.comparar_periodo_anterior(balance["percentage_variation"])
         self.establecer_color_aumento(balance["direction"],self.ui.estadoBalance)
         self.ui.estadoBalance.setText(variacion_bal)
@@ -96,9 +96,9 @@ class Analisis(QWidget):
             self.ui.frameTicket.hide()
             self.ui.valorTicket.setText("No hay datos suficientes para \ncalcular la media.")
         else:
-            self.ui.valorTicket.setText(str(estadisticas["average_ticket"]))
+            self.ui.valorTicket.setText(f"{estadisticas['average_ticket']:.2f}")
         self.ui.valorTotalVentas.setText(str(estadisticas["total_sales"]))
-        self.ui.valorGeneradoVentas.setText(str(estadisticas["total_amount"]))
+        self.ui.valorGeneradoVentas.setText(f"{estadisticas['total_amount']:.2f}")
 
     def hallazgos(self, resultado):
         hallazgos = resultado.get("findings", [])
