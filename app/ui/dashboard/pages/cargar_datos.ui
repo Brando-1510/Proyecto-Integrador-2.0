@@ -496,22 +496,6 @@ qproperty-alignment: 'AlignCenter';
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>245 Registros Encontrados</string>
-              </property>
-              <property name="texto" stdset="0">
-               <string>Descripcion</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </widget>
          </item>

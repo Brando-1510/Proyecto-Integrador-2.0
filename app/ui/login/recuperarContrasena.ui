@@ -99,7 +99,7 @@ QLabel[texto=&quot;Descripcion&quot;] {
 
 QLabel[texto=&quot;InputTexto&quot;] {
     font-size: 16px;
-    color: #6C6686;
+    color: #46315c;
 }
 
 QLabel[texto=&quot;Destacado&quot;] {
@@ -186,7 +186,7 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
    <item>
     <widget class="QStackedWidget" name="stacked">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_2">

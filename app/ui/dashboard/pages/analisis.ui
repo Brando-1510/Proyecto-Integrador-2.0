@@ -287,11 +287,6 @@ QComboBox QAbstractItemView::item:hover {
        </item>
        <item>
         <property name="text">
-         <string>Mes Anterior</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
          <string>Los Últimos 3 Meses</string>
         </property>
        </item>

@@ -74,7 +74,7 @@ QLabel[texto=&quot;TituloPrincipal&quot;] {
 
 QLabel[texto=&quot;Descripcion&quot;], QLabel[texto=&quot;InputTexto&quot;] {
     font-size: 15px;
-    color: #6C6686;
+    color: #46315c;
 }
 
 QLabel[texto=&quot;Destacado&quot;] {
