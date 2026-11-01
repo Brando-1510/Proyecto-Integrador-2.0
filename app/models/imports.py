@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Annotated, TYPE_CHECKING
-from sqlalchemy import ForeignKey, String,func,UniqueConstraint
+from sqlalchemy import ForeignKey, String,func,UniqueConstraint,Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.base import Base
 
@@ -24,5 +24,12 @@ class Import(Base):
     movements: Mapped[list["Movement"]] = relationship(back_populates="import_record")
     sales: Mapped[list["Sale"]] = relationship(back_populates="import_record")
     __table_args__ = (
-        UniqueConstraint("business_id","file_hash",name="uq_import_business_hash"),
+        UniqueConstraint(
+            "business_id",
+"file_hash",
+            name="uq_import_business_hash"
+        ),
+        Index(
+            "idx_import_business_date","business_id","imported_at"
+        ),
     )

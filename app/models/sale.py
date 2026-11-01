@@ -1,7 +1,7 @@
 from datetime import date as dt_date, datetime
 from decimal import Decimal
 from typing import Annotated, TYPE_CHECKING
-from sqlalchemy import ForeignKey,String,Numeric,func
+from sqlalchemy import ForeignKey,String,Numeric,func,Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.base import Base
 
@@ -33,3 +33,8 @@ class Sale(Base):
     creator: Mapped["Users"] = relationship(back_populates="created_sales",foreign_keys=[created_by])
     updater: Mapped["Users | None"] = relationship(
     back_populates="updated_sales",foreign_keys=[updated_by])
+    __table_args__ = (
+        Index(
+            "idx_sales_business_date","business_id","date"
+        ),
+    )

@@ -3,7 +3,7 @@ from decimal import Decimal
 from enum import Enum
 from typing import Annotated, TYPE_CHECKING
 from sqlalchemy import (
-    ForeignKey,String,Text,Numeric,Enum as SQLEnum,func
+    ForeignKey,String,Text,Numeric,Enum as SQLEnum,func,Index
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.base import Base
@@ -85,4 +85,9 @@ class Movement(Base):
     updater: Mapped["Users | None"] = relationship(
         back_populates="updated_movements",
         foreign_keys=[updated_by]
+    )
+    __table_args__ = (
+        Index(
+            "idx_movements_business_date","business_id","date"
+        ),
     )
