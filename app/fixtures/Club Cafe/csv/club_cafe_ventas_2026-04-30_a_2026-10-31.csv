@@ -1,0 +1,851 @@
+﻿Fecha;Producto / Servicio;Categoría;Cantidad;Precio Unitario (C$);Total (C$)
+2026-04-30;Café latte;Productos;4;80;320
+2026-04-30;Café latte;Productos;4;80;320
+2026-04-30;Café latte;Productos;1;80;80
+2026-04-30;Pan dulce;Productos;2;25;50
+2026-05-01;Café helado;Productos;1;75;75
+2026-05-01;Cappuccino;Productos;1;75;75
+2026-05-01;Croissant;Productos;1;50;50
+2026-05-01;Croissant;Productos;2;50;100
+2026-05-02;Café americano;Productos;1;55;55
+2026-05-02;Café latte;Productos;2;80;160
+2026-05-02;Cheesecake;Productos;2;95;190
+2026-05-02;Frappé;Productos;2;100;200
+2026-05-02;Sándwich;Productos;2;105;210
+2026-05-03;Café americano;Productos;1;55;55
+2026-05-03;Cappuccino;Productos;1;75;75
+2026-05-03;Croissant;Productos;2;50;100
+2026-05-03;Espresso;Productos;4;45;180
+2026-05-03;Frappé;Productos;1;100;100
+2026-05-03;Muffin;Productos;1;45;45
+2026-05-04;Cappuccino;Productos;1;75;75
+2026-05-04;Muffin;Productos;1;45;45
+2026-05-04;Muffin;Productos;2;45;90
+2026-05-05;Cappuccino;Productos;1;75;75
+2026-05-05;Espresso;Productos;1;45;45
+2026-05-05;Sándwich;Productos;2;105;210
+2026-05-06;Café americano;Productos;2;55;110
+2026-05-06;Cappuccino;Productos;2;75;150
+2026-05-06;Frappé;Productos;2;100;200
+2026-05-06;Sándwich;Productos;1;105;105
+2026-05-07;Café latte;Productos;2;80;160
+2026-05-07;Cappuccino;Productos;2;75;150
+2026-05-07;Croissant;Productos;1;50;50
+2026-05-07;Té frío;Productos;2;50;100
+2026-05-08;Café americano;Productos;2;55;110
+2026-05-08;Café latte;Productos;1;80;80
+2026-05-08;Espresso;Productos;2;45;90
+2026-05-08;Sándwich;Productos;1;105;105
+2026-05-09;Café americano;Productos;1;55;55
+2026-05-09;Cappuccino;Productos;2;75;150
+2026-05-09;Frappé;Productos;1;100;100
+2026-05-09;Pan dulce;Productos;1;25;25
+2026-05-09;Té frío;Productos;2;50;100
+2026-05-10;Café helado;Productos;3;75;225
+2026-05-10;Croissant;Productos;2;50;100
+2026-05-10;Espresso;Productos;1;45;45
+2026-05-10;Espresso;Productos;2;45;90
+2026-05-10;Sándwich;Productos;1;105;105
+2026-05-11;Café latte;Productos;1;80;80
+2026-05-11;Cappuccino;Productos;3;75;225
+2026-05-11;Pan dulce;Productos;1;25;25
+2026-05-12;Espresso;Productos;1;45;45
+2026-05-12;Frappé;Productos;3;100;300
+2026-05-12;Muffin;Productos;4;45;180
+2026-05-12;Té frío;Productos;4;50;200
+2026-05-13;Cappuccino;Productos;3;75;225
+2026-05-13;Cappuccino;Productos;3;75;225
+2026-05-13;Jugo natural;Productos;2;65;130
+2026-05-13;Sándwich;Productos;1;105;105
+2026-05-14;Frappé;Productos;1;100;100
+2026-05-14;Jugo natural;Productos;1;65;65
+2026-05-14;Jugo natural;Productos;2;65;130
+2026-05-14;Mocaccino;Productos;3;90;270
+2026-05-14;Muffin;Productos;1;45;45
+2026-05-15;Cappuccino;Productos;1;75;75
+2026-05-15;Croissant;Productos;1;50;50
+2026-05-15;Té frío;Productos;4;50;200
+2026-05-15;Té frío;Productos;1;50;50
+2026-05-16;Café americano;Productos;4;55;220
+2026-05-16;Cappuccino;Productos;1;75;75
+2026-05-16;Jugo natural;Productos;1;65;65
+2026-05-16;Mocaccino;Productos;1;90;90
+2026-05-16;Pan dulce;Productos;2;25;50
+2026-05-16;Té caliente;Productos;2;40;80
+2026-05-17;Cappuccino;Productos;4;75;300
+2026-05-17;Espresso;Productos;1;45;45
+2026-05-17;Jugo natural;Productos;3;65;195
+2026-05-17;Sándwich;Productos;1;105;105
+2026-05-18;Café americano;Productos;1;55;55
+2026-05-18;Espresso;Productos;3;45;135
+2026-05-18;Pan dulce;Productos;4;25;100
+2026-05-18;Sándwich;Productos;2;105;210
+2026-05-19;Café helado;Productos;3;75;225
+2026-05-19;Espresso;Productos;1;45;45
+2026-05-19;Muffin;Productos;3;45;135
+2026-05-19;Sándwich;Productos;1;105;105
+2026-05-19;Té frío;Productos;2;50;100
+2026-05-20;Cappuccino;Productos;2;75;150
+2026-05-20;Croissant;Productos;3;50;150
+2026-05-20;Croissant;Productos;2;50;100
+2026-05-20;Mocaccino;Productos;1;90;90
+2026-05-21;Cappuccino;Productos;1;75;75
+2026-05-21;Cheesecake;Productos;1;95;95
+2026-05-21;Jugo natural;Productos;2;65;130
+2026-05-21;Muffin;Productos;1;45;45
+2026-05-21;Té frío;Productos;1;50;50
+2026-05-22;Café helado;Productos;2;75;150
+2026-05-22;Cappuccino;Productos;2;75;150
+2026-05-22;Croissant;Productos;1;50;50
+2026-05-22;Croissant;Productos;2;50;100
+2026-05-23;Café latte;Productos;2;80;160
+2026-05-23;Cappuccino;Productos;2;75;150
+2026-05-23;Cheesecake;Productos;1;95;95
+2026-05-23;Sándwich;Productos;1;105;105
+2026-05-24;Café latte;Productos;1;80;80
+2026-05-24;Café latte;Productos;2;80;160
+2026-05-24;Croissant;Productos;2;50;100
+2026-05-24;Frappé;Productos;2;100;200
+2026-05-24;Pan dulce;Productos;1;25;25
+2026-05-24;Porción de pastel;Productos;2;80;160
+2026-05-25;Café latte;Productos;2;80;160
+2026-05-25;Cappuccino;Productos;2;75;150
+2026-05-25;Cappuccino;Productos;2;75;150
+2026-05-25;Porción de pastel;Productos;1;80;80
+2026-05-26;Café latte;Productos;2;80;160
+2026-05-26;Croissant;Productos;3;50;150
+2026-05-26;Jugo natural;Productos;3;65;195
+2026-05-26;Pan dulce;Productos;1;25;25
+2026-05-26;Sándwich;Productos;1;105;105
+2026-05-27;Café americano;Productos;2;55;110
+2026-05-27;Espresso;Productos;1;45;45
+2026-05-27;Pan dulce;Productos;1;25;25
+2026-05-27;Pan dulce;Productos;1;25;25
+2026-05-28;Café americano;Productos;3;55;165
+2026-05-28;Cappuccino;Productos;1;75;75
+2026-05-28;Cheesecake;Productos;3;95;285
+2026-05-28;Espresso;Productos;3;45;135
+2026-05-28;Porción de pastel;Productos;2;80;160
+2026-05-29;Café americano;Productos;1;55;55
+2026-05-29;Café helado;Productos;2;75;150
+2026-05-29;Pan dulce;Productos;1;25;25
+2026-05-29;Sándwich;Productos;3;105;315
+2026-05-30;Café americano;Productos;3;55;165
+2026-05-30;Café americano;Productos;3;55;165
+2026-05-30;Café latte;Productos;2;80;160
+2026-05-30;Croissant;Productos;1;50;50
+2026-05-30;Sándwich;Productos;2;105;210
+2026-05-31;Pan dulce;Productos;2;25;50
+2026-05-31;Porción de pastel;Productos;1;80;80
+2026-05-31;Porción de pastel;Productos;2;80;160
+2026-05-31;Porción de pastel;Productos;3;80;240
+2026-05-31;Porción de pastel;Productos;1;80;80
+2026-06-01;Cappuccino;Productos;3;75;225
+2026-06-01;Croissant;Productos;2;50;100
+2026-06-01;Té caliente;Productos;4;40;160
+2026-06-02;Café americano;Productos;1;55;55
+2026-06-02;Café helado;Productos;1;75;75
+2026-06-02;Frappé;Productos;4;100;400
+2026-06-02;Muffin;Productos;1;45;45
+2026-06-03;Café helado;Productos;2;75;150
+2026-06-03;Café helado;Productos;2;75;150
+2026-06-03;Frappé;Productos;1;100;100
+2026-06-04;Café americano;Productos;2;55;110
+2026-06-04;Cappuccino;Productos;1;75;75
+2026-06-04;Croissant;Productos;1;50;50
+2026-06-04;Sándwich;Productos;1;105;105
+2026-06-05;Café americano;Productos;2;55;110
+2026-06-05;Cappuccino;Productos;1;75;75
+2026-06-05;Mocaccino;Productos;1;90;90
+2026-06-05;Sándwich;Productos;2;105;210
+2026-06-06;Café americano;Productos;1;55;55
+2026-06-06;Frappé;Productos;1;100;100
+2026-06-06;Mocaccino;Productos;1;90;90
+2026-06-06;Muffin;Productos;1;45;45
+2026-06-06;Sándwich;Productos;2;105;210
+2026-06-06;Té caliente;Productos;3;40;120
+2026-06-07;Café americano;Productos;1;55;55
+2026-06-07;Cheesecake;Productos;2;95;190
+2026-06-07;Muffin;Productos;1;45;45
+2026-06-07;Pan dulce;Productos;1;25;25
+2026-06-07;Sándwich;Productos;2;105;210
+2026-06-08;Café helado;Productos;2;75;150
+2026-06-08;Croissant;Productos;1;50;50
+2026-06-08;Frappé;Productos;1;100;100
+2026-06-08;Pan dulce;Productos;3;25;75
+2026-06-08;Té frío;Productos;1;50;50
+2026-06-09;Café americano;Productos;1;55;55
+2026-06-09;Espresso;Productos;3;45;135
+2026-06-09;Frappé;Productos;3;100;300
+2026-06-09;Mocaccino;Productos;3;90;270
+2026-06-09;Sándwich;Productos;2;105;210
+2026-06-10;Café americano;Productos;3;55;165
+2026-06-10;Café americano;Productos;2;55;110
+2026-06-10;Café latte;Productos;3;80;240
+2026-06-10;Croissant;Productos;1;50;50
+2026-06-11;Café helado;Productos;2;75;150
+2026-06-11;Café latte;Productos;3;80;240
+2026-06-11;Espresso;Productos;3;45;135
+2026-06-11;Té caliente;Productos;1;40;40
+2026-06-12;Muffin;Productos;1;45;45
+2026-06-12;Muffin;Productos;1;45;45
+2026-06-12;Pan dulce;Productos;2;25;50
+2026-06-12;Porción de pastel;Productos;3;80;240
+2026-06-12;Té caliente;Productos;3;40;120
+2026-06-13;Café latte;Productos;4;80;320
+2026-06-13;Cappuccino;Productos;2;75;150
+2026-06-13;Croissant;Productos;1;50;50
+2026-06-13;Jugo natural;Productos;1;65;65
+2026-06-13;Pan dulce;Productos;2;25;50
+2026-06-13;Sándwich;Productos;2;105;210
+2026-06-14;Café americano;Productos;2;55;110
+2026-06-14;Café americano;Productos;2;55;110
+2026-06-14;Cappuccino;Productos;2;75;150
+2026-06-14;Cheesecake;Productos;2;95;190
+2026-06-14;Pan dulce;Productos;2;25;50
+2026-06-15;Café americano;Productos;2;55;110
+2026-06-15;Muffin;Productos;2;45;90
+2026-06-15;Té frío;Productos;3;50;150
+2026-06-15;Té frío;Productos;1;50;50
+2026-06-16;Cheesecake;Productos;3;95;285
+2026-06-16;Muffin;Productos;2;45;90
+2026-06-16;Sándwich;Productos;2;105;210
+2026-06-16;Té caliente;Productos;2;40;80
+2026-06-17;Café latte;Productos;1;80;80
+2026-06-17;Croissant;Productos;3;50;150
+2026-06-17;Frappé;Productos;2;100;200
+2026-06-17;Pan dulce;Productos;2;25;50
+2026-06-17;Té caliente;Productos;2;40;80
+2026-06-18;Café latte;Productos;2;80;160
+2026-06-18;Cheesecake;Productos;2;95;190
+2026-06-18;Croissant;Productos;1;50;50
+2026-06-18;Frappé;Productos;1;100;100
+2026-06-19;Cappuccino;Productos;1;75;75
+2026-06-19;Cheesecake;Productos;1;95;95
+2026-06-19;Mocaccino;Productos;1;90;90
+2026-06-19;Muffin;Productos;2;45;90
+2026-06-19;Sándwich;Productos;2;105;210
+2026-06-20;Café americano;Productos;2;55;110
+2026-06-20;Café helado;Productos;2;75;150
+2026-06-20;Croissant;Productos;2;50;100
+2026-06-20;Frappé;Productos;2;100;200
+2026-06-20;Té caliente;Productos;1;40;40
+2026-06-21;Croissant;Productos;1;50;50
+2026-06-21;Croissant;Productos;3;50;150
+2026-06-21;Jugo natural;Productos;1;65;65
+2026-06-21;Jugo natural;Productos;1;65;65
+2026-06-22;Café americano;Productos;2;55;110
+2026-06-22;Café helado;Productos;3;75;225
+2026-06-22;Cheesecake;Productos;1;95;95
+2026-06-22;Espresso;Productos;1;45;45
+2026-06-22;Pan dulce;Productos;1;25;25
+2026-06-23;Café helado;Productos;3;75;225
+2026-06-23;Café latte;Productos;2;80;160
+2026-06-23;Cappuccino;Productos;2;75;150
+2026-06-23;Frappé;Productos;2;100;200
+2026-06-24;Café americano;Productos;2;55;110
+2026-06-24;Café americano;Productos;1;55;55
+2026-06-24;Mocaccino;Productos;1;90;90
+2026-06-24;Pan dulce;Productos;2;25;50
+2026-06-24;Sándwich;Productos;1;105;105
+2026-06-25;Croissant;Productos;1;50;50
+2026-06-25;Frappé;Productos;1;100;100
+2026-06-25;Mocaccino;Productos;2;90;180
+2026-06-25;Porción de pastel;Productos;2;80;160
+2026-06-26;Café americano;Productos;3;55;165
+2026-06-26;Café helado;Productos;2;75;150
+2026-06-26;Cappuccino;Productos;1;75;75
+2026-06-26;Pan dulce;Productos;2;25;50
+2026-06-27;Café helado;Productos;1;75;75
+2026-06-27;Cappuccino;Productos;3;75;225
+2026-06-27;Frappé;Productos;1;100;100
+2026-06-27;Jugo natural;Productos;2;65;130
+2026-06-27;Té frío;Productos;1;50;50
+2026-06-28;Café americano;Productos;3;55;165
+2026-06-28;Café americano;Productos;1;55;55
+2026-06-28;Café americano;Productos;1;55;55
+2026-06-28;Muffin;Productos;2;45;90
+2026-06-28;Porción de pastel;Productos;1;80;80
+2026-06-28;Té caliente;Productos;3;40;120
+2026-06-29;Frappé;Productos;2;100;200
+2026-06-29;Porción de pastel;Productos;4;80;320
+2026-06-29;Sándwich;Productos;2;105;210
+2026-06-29;Sándwich;Productos;2;105;210
+2026-06-29;Té frío;Productos;1;50;50
+2026-06-30;Café helado;Productos;2;75;150
+2026-06-30;Café latte;Productos;2;80;160
+2026-06-30;Cappuccino;Productos;2;75;150
+2026-06-30;Cappuccino;Productos;1;75;75
+2026-06-30;Espresso;Productos;2;45;90
+2026-07-01;Café helado;Productos;2;75;150
+2026-07-01;Café latte;Productos;2;80;160
+2026-07-01;Café latte;Productos;2;80;160
+2026-07-01;Café latte;Productos;2;80;160
+2026-07-01;Cappuccino;Productos;2;75;150
+2026-07-02;Café latte;Productos;3;80;240
+2026-07-02;Cappuccino;Productos;1;75;75
+2026-07-02;Frappé;Productos;3;100;300
+2026-07-02;Jugo natural;Productos;2;65;130
+2026-07-03;Café americano;Productos;2;55;110
+2026-07-03;Café latte;Productos;1;80;80
+2026-07-03;Jugo natural;Productos;3;65;195
+2026-07-03;Pan dulce;Productos;2;25;50
+2026-07-04;Café helado;Productos;1;75;75
+2026-07-04;Café latte;Productos;1;80;80
+2026-07-04;Cappuccino;Productos;1;75;75
+2026-07-04;Jugo natural;Productos;2;65;130
+2026-07-04;Mocaccino;Productos;1;90;90
+2026-07-04;Té frío;Productos;2;50;100
+2026-07-05;Café latte;Productos;4;80;320
+2026-07-05;Cappuccino;Productos;2;75;150
+2026-07-05;Croissant;Productos;4;50;200
+2026-07-05;Pan dulce;Productos;2;25;50
+2026-07-05;Pan dulce;Productos;1;25;25
+2026-07-05;Té frío;Productos;1;50;50
+2026-07-06;Café helado;Productos;2;75;150
+2026-07-06;Croissant;Productos;1;50;50
+2026-07-06;Croissant;Productos;3;50;150
+2026-07-06;Mocaccino;Productos;2;90;180
+2026-07-06;Muffin;Productos;2;45;90
+2026-07-07;Café latte;Productos;2;80;160
+2026-07-07;Café latte;Productos;1;80;80
+2026-07-07;Frappé;Productos;1;100;100
+2026-07-07;Jugo natural;Productos;2;65;130
+2026-07-07;Té frío;Productos;3;50;150
+2026-07-08;Café americano;Productos;3;55;165
+2026-07-08;Café americano;Productos;2;55;110
+2026-07-08;Café latte;Productos;2;80;160
+2026-07-08;Jugo natural;Productos;2;65;130
+2026-07-08;Jugo natural;Productos;1;65;65
+2026-07-09;Café latte;Productos;3;80;240
+2026-07-09;Café latte;Productos;4;80;320
+2026-07-09;Croissant;Productos;1;50;50
+2026-07-09;Muffin;Productos;4;45;180
+2026-07-10;Cheesecake;Productos;2;95;190
+2026-07-10;Cheesecake;Productos;1;95;95
+2026-07-10;Croissant;Productos;1;50;50
+2026-07-10;Mocaccino;Productos;1;90;90
+2026-07-10;Pan dulce;Productos;1;25;25
+2026-07-11;Café latte;Productos;1;80;80
+2026-07-11;Cappuccino;Productos;2;75;150
+2026-07-11;Espresso;Productos;1;45;45
+2026-07-11;Espresso;Productos;2;45;90
+2026-07-11;Frappé;Productos;3;100;300
+2026-07-12;Café latte;Productos;1;80;80
+2026-07-12;Croissant;Productos;4;50;200
+2026-07-12;Jugo natural;Productos;1;65;65
+2026-07-12;Té caliente;Productos;1;40;40
+2026-07-13;Café latte;Productos;2;80;160
+2026-07-13;Café latte;Productos;2;80;160
+2026-07-13;Cappuccino;Productos;1;75;75
+2026-07-13;Mocaccino;Productos;4;90;360
+2026-07-13;Muffin;Productos;3;45;135
+2026-07-14;Café americano;Productos;2;55;110
+2026-07-14;Croissant;Productos;4;50;200
+2026-07-14;Frappé;Productos;2;100;200
+2026-07-14;Pan dulce;Productos;2;25;50
+2026-07-15;Café helado;Productos;4;75;300
+2026-07-15;Café latte;Productos;2;80;160
+2026-07-15;Pan dulce;Productos;2;25;50
+2026-07-15;Sándwich;Productos;3;105;315
+2026-07-15;Té frío;Productos;3;50;150
+2026-07-16;Café americano;Productos;4;55;220
+2026-07-16;Café latte;Productos;3;80;240
+2026-07-16;Pan dulce;Productos;1;25;25
+2026-07-16;Sándwich;Productos;1;105;105
+2026-07-16;Té caliente;Productos;4;40;160
+2026-07-17;Cappuccino;Productos;2;75;150
+2026-07-17;Frappé;Productos;1;100;100
+2026-07-17;Mocaccino;Productos;2;90;180
+2026-07-17;Mocaccino;Productos;1;90;90
+2026-07-17;Muffin;Productos;4;45;180
+2026-07-18;Café americano;Productos;1;55;55
+2026-07-18;Café americano;Productos;2;55;110
+2026-07-18;Café helado;Productos;4;75;300
+2026-07-18;Cappuccino;Productos;2;75;150
+2026-07-18;Pan dulce;Productos;2;25;50
+2026-07-18;Té caliente;Productos;2;40;80
+2026-07-19;Café americano;Productos;2;55;110
+2026-07-19;Café helado;Productos;1;75;75
+2026-07-19;Espresso;Productos;2;45;90
+2026-07-19;Mocaccino;Productos;1;90;90
+2026-07-19;Pan dulce;Productos;3;25;75
+2026-07-19;Sándwich;Productos;3;105;315
+2026-07-20;Croissant;Productos;3;50;150
+2026-07-20;Espresso;Productos;1;45;45
+2026-07-20;Porción de pastel;Productos;4;80;320
+2026-07-20;Sándwich;Productos;3;105;315
+2026-07-21;Café americano;Productos;2;55;110
+2026-07-21;Frappé;Productos;2;100;200
+2026-07-21;Mocaccino;Productos;2;90;180
+2026-07-21;Pan dulce;Productos;1;25;25
+2026-07-22;Café helado;Productos;2;75;150
+2026-07-22;Croissant;Productos;2;50;100
+2026-07-22;Pan dulce;Productos;4;25;100
+2026-07-22;Té frío;Productos;2;50;100
+2026-07-23;Café americano;Productos;1;55;55
+2026-07-23;Mocaccino;Productos;3;90;270
+2026-07-23;Sándwich;Productos;2;105;210
+2026-07-24;Jugo natural;Productos;3;65;195
+2026-07-24;Jugo natural;Productos;3;65;195
+2026-07-24;Pan dulce;Productos;2;25;50
+2026-07-25;Café latte;Productos;1;80;80
+2026-07-25;Café latte;Productos;2;80;160
+2026-07-25;Frappé;Productos;3;100;300
+2026-07-25;Jugo natural;Productos;1;65;65
+2026-07-25;Jugo natural;Productos;2;65;130
+2026-07-25;Té frío;Productos;2;50;100
+2026-07-26;Cappuccino;Productos;1;75;75
+2026-07-26;Croissant;Productos;2;50;100
+2026-07-26;Pan dulce;Productos;1;25;25
+2026-07-26;Porción de pastel;Productos;1;80;80
+2026-07-27;Café helado;Productos;2;75;150
+2026-07-27;Café latte;Productos;1;80;80
+2026-07-27;Cappuccino;Productos;1;75;75
+2026-07-27;Croissant;Productos;2;50;100
+2026-07-28;Café americano;Productos;1;55;55
+2026-07-28;Café americano;Productos;1;55;55
+2026-07-28;Cheesecake;Productos;2;95;190
+2026-07-28;Porción de pastel;Productos;1;80;80
+2026-07-29;Cappuccino;Productos;1;75;75
+2026-07-29;Frappé;Productos;3;100;300
+2026-07-29;Mocaccino;Productos;4;90;360
+2026-07-29;Té frío;Productos;2;50;100
+2026-07-30;Cheesecake;Productos;3;95;285
+2026-07-30;Croissant;Productos;1;50;50
+2026-07-30;Mocaccino;Productos;2;90;180
+2026-07-30;Pan dulce;Productos;4;25;100
+2026-07-31;Café helado;Productos;2;75;150
+2026-07-31;Frappé;Productos;1;100;100
+2026-07-31;Mocaccino;Productos;2;90;180
+2026-07-31;Té caliente;Productos;2;40;80
+2026-08-01;Café latte;Productos;3;80;240
+2026-08-01;Espresso;Productos;1;45;45
+2026-08-01;Frappé;Productos;4;100;400
+2026-08-01;Pan dulce;Productos;1;25;25
+2026-08-01;Porción de pastel;Productos;2;80;160
+2026-08-01;Sándwich;Productos;1;105;105
+2026-08-02;Cappuccino;Productos;1;75;75
+2026-08-02;Cheesecake;Productos;4;95;380
+2026-08-02;Pan dulce;Productos;2;25;50
+2026-08-02;Sándwich;Productos;1;105;105
+2026-08-03;Café latte;Productos;4;80;320
+2026-08-03;Espresso;Productos;1;45;45
+2026-08-03;Sándwich;Productos;2;105;210
+2026-08-03;Sándwich;Productos;3;105;315
+2026-08-04;Café helado;Productos;1;75;75
+2026-08-04;Croissant;Productos;2;50;100
+2026-08-04;Espresso;Productos;1;45;45
+2026-08-04;Frappé;Productos;1;100;100
+2026-08-04;Té frío;Productos;1;50;50
+2026-08-05;Café helado;Productos;3;75;225
+2026-08-05;Café latte;Productos;2;80;160
+2026-08-05;Jugo natural;Productos;3;65;195
+2026-08-05;Pan dulce;Productos;2;25;50
+2026-08-06;Cappuccino;Productos;2;75;150
+2026-08-06;Cheesecake;Productos;1;95;95
+2026-08-06;Jugo natural;Productos;4;65;260
+2026-08-06;Muffin;Productos;1;45;45
+2026-08-07;Café latte;Productos;4;80;320
+2026-08-07;Jugo natural;Productos;2;65;130
+2026-08-07;Muffin;Productos;2;45;90
+2026-08-08;Café americano;Productos;3;55;165
+2026-08-08;Cappuccino;Productos;3;75;225
+2026-08-08;Cappuccino;Productos;2;75;150
+2026-08-08;Croissant;Productos;3;50;150
+2026-08-08;Espresso;Productos;2;45;90
+2026-08-08;Porción de pastel;Productos;3;80;240
+2026-08-09;Café americano;Productos;1;55;55
+2026-08-09;Café americano;Productos;2;55;110
+2026-08-09;Espresso;Productos;1;45;45
+2026-08-09;Jugo natural;Productos;2;65;130
+2026-08-09;Pan dulce;Productos;1;25;25
+2026-08-09;Porción de pastel;Productos;3;80;240
+2026-08-10;Croissant;Productos;1;50;50
+2026-08-10;Espresso;Productos;4;45;180
+2026-08-10;Jugo natural;Productos;1;65;65
+2026-08-10;Porción de pastel;Productos;2;80;160
+2026-08-11;Cappuccino;Productos;3;75;225
+2026-08-11;Cappuccino;Productos;2;75;150
+2026-08-11;Sándwich;Productos;1;105;105
+2026-08-11;Té caliente;Productos;3;40;120
+2026-08-12;Cappuccino;Productos;3;75;225
+2026-08-12;Jugo natural;Productos;1;65;65
+2026-08-12;Muffin;Productos;3;45;135
+2026-08-12;Pan dulce;Productos;3;25;75
+2026-08-12;Té frío;Productos;2;50;100
+2026-08-13;Café latte;Productos;2;80;160
+2026-08-13;Café latte;Productos;2;80;160
+2026-08-13;Pan dulce;Productos;2;25;50
+2026-08-13;Té frío;Productos;1;50;50
+2026-08-14;Café americano;Productos;2;55;110
+2026-08-14;Café latte;Productos;2;80;160
+2026-08-14;Porción de pastel;Productos;3;80;240
+2026-08-14;Porción de pastel;Productos;1;80;80
+2026-08-14;Té caliente;Productos;3;40;120
+2026-08-15;Cheesecake;Productos;4;95;380
+2026-08-15;Jugo natural;Productos;2;65;130
+2026-08-15;Jugo natural;Productos;2;65;130
+2026-08-15;Muffin;Productos;1;45;45
+2026-08-15;Té caliente;Productos;2;40;80
+2026-08-16;Café americano;Productos;4;55;220
+2026-08-16;Café americano;Productos;2;55;110
+2026-08-16;Espresso;Productos;2;45;90
+2026-08-16;Frappé;Productos;2;100;200
+2026-08-16;Té caliente;Productos;2;40;80
+2026-08-17;Café latte;Productos;2;80;160
+2026-08-17;Cheesecake;Productos;2;95;190
+2026-08-17;Mocaccino;Productos;2;90;180
+2026-08-17;Porción de pastel;Productos;2;80;160
+2026-08-17;Sándwich;Productos;1;105;105
+2026-08-18;Café latte;Productos;1;80;80
+2026-08-18;Muffin;Productos;1;45;45
+2026-08-18;Pan dulce;Productos;2;25;50
+2026-08-18;Porción de pastel;Productos;1;80;80
+2026-08-18;Sándwich;Productos;1;105;105
+2026-08-19;Café americano;Productos;2;55;110
+2026-08-19;Café latte;Productos;1;80;80
+2026-08-19;Croissant;Productos;1;50;50
+2026-08-19;Pan dulce;Productos;2;25;50
+2026-08-19;Té caliente;Productos;2;40;80
+2026-08-20;Croissant;Productos;2;50;100
+2026-08-20;Frappé;Productos;2;100;200
+2026-08-20;Frappé;Productos;1;100;100
+2026-08-20;Frappé;Productos;2;100;200
+2026-08-21;Café americano;Productos;1;55;55
+2026-08-21;Café latte;Productos;1;80;80
+2026-08-21;Porción de pastel;Productos;2;80;160
+2026-08-21;Porción de pastel;Productos;1;80;80
+2026-08-22;Café americano;Productos;1;55;55
+2026-08-22;Cheesecake;Productos;1;95;95
+2026-08-22;Frappé;Productos;2;100;200
+2026-08-22;Porción de pastel;Productos;1;80;80
+2026-08-22;Sándwich;Productos;1;105;105
+2026-08-22;Sándwich;Productos;2;105;210
+2026-08-23;Café latte;Productos;3;80;240
+2026-08-23;Café latte;Productos;1;80;80
+2026-08-23;Cappuccino;Productos;2;75;150
+2026-08-23;Croissant;Productos;3;50;150
+2026-08-23;Mocaccino;Productos;1;90;90
+2026-08-23;Pan dulce;Productos;1;25;25
+2026-08-23;Pan dulce;Productos;1;25;25
+2026-08-24;Café americano;Productos;3;55;165
+2026-08-24;Café americano;Productos;2;55;110
+2026-08-24;Croissant;Productos;2;50;100
+2026-08-24;Muffin;Productos;1;45;45
+2026-08-24;Porción de pastel;Productos;2;80;160
+2026-08-25;Café americano;Productos;2;55;110
+2026-08-25;Cheesecake;Productos;2;95;190
+2026-08-25;Muffin;Productos;1;45;45
+2026-08-25;Té caliente;Productos;1;40;40
+2026-08-26;Café helado;Productos;2;75;150
+2026-08-26;Cappuccino;Productos;1;75;75
+2026-08-26;Jugo natural;Productos;1;65;65
+2026-08-26;Sándwich;Productos;1;105;105
+2026-08-27;Cappuccino;Productos;1;75;75
+2026-08-27;Frappé;Productos;1;100;100
+2026-08-27;Mocaccino;Productos;3;90;270
+2026-08-27;Té caliente;Productos;3;40;120
+2026-08-28;Café latte;Productos;1;80;80
+2026-08-28;Mocaccino;Productos;1;90;90
+2026-08-28;Mocaccino;Productos;1;90;90
+2026-08-28;Sándwich;Productos;1;105;105
+2026-08-29;Café americano;Productos;2;55;110
+2026-08-29;Café americano;Productos;1;55;55
+2026-08-29;Café helado;Productos;1;75;75
+2026-08-29;Café latte;Productos;3;80;240
+2026-08-29;Frappé;Productos;2;100;200
+2026-08-30;Cappuccino;Productos;2;75;150
+2026-08-30;Croissant;Productos;3;50;150
+2026-08-30;Espresso;Productos;3;45;135
+2026-08-30;Mocaccino;Productos;1;90;90
+2026-08-30;Pan dulce;Productos;2;25;50
+2026-08-31;Café americano;Productos;1;55;55
+2026-08-31;Café americano;Productos;1;55;55
+2026-08-31;Espresso;Productos;3;45;135
+2026-08-31;Té frío;Productos;2;50;100
+2026-09-01;Café helado;Productos;2;75;150
+2026-09-01;Café latte;Productos;1;80;80
+2026-09-01;Espresso;Productos;4;45;180
+2026-09-01;Jugo natural;Productos;1;65;65
+2026-09-01;Mocaccino;Productos;1;90;90
+2026-09-02;Café helado;Productos;1;75;75
+2026-09-02;Cheesecake;Productos;1;95;95
+2026-09-02;Porción de pastel;Productos;1;80;80
+2026-09-02;Té frío;Productos;2;50;100
+2026-09-03;Café latte;Productos;2;80;160
+2026-09-03;Espresso;Productos;1;45;45
+2026-09-03;Jugo natural;Productos;3;65;195
+2026-09-03;Pan dulce;Productos;3;25;75
+2026-09-03;Té caliente;Productos;1;40;40
+2026-09-04;Café americano;Productos;2;55;110
+2026-09-04;Café americano;Productos;2;55;110
+2026-09-04;Café americano;Productos;3;55;165
+2026-09-04;Pan dulce;Productos;1;25;25
+2026-09-04;Sándwich;Productos;1;105;105
+2026-09-05;Café latte;Productos;2;80;160
+2026-09-05;Cappuccino;Productos;1;75;75
+2026-09-05;Cappuccino;Productos;1;75;75
+2026-09-05;Muffin;Productos;1;45;45
+2026-09-06;Café americano;Productos;2;55;110
+2026-09-06;Cappuccino;Productos;3;75;225
+2026-09-06;Frappé;Productos;2;100;200
+2026-09-06;Mocaccino;Productos;1;90;90
+2026-09-06;Mocaccino;Productos;3;90;270
+2026-09-06;Porción de pastel;Productos;2;80;160
+2026-09-06;Té caliente;Productos;1;40;40
+2026-09-07;Café americano;Productos;2;55;110
+2026-09-07;Cappuccino;Productos;2;75;150
+2026-09-07;Frappé;Productos;1;100;100
+2026-09-07;Porción de pastel;Productos;1;80;80
+2026-09-08;Café latte;Productos;2;80;160
+2026-09-08;Muffin;Productos;1;45;45
+2026-09-08;Muffin;Productos;1;45;45
+2026-09-08;Pan dulce;Productos;2;25;50
+2026-09-09;Café helado;Productos;2;75;150
+2026-09-09;Mocaccino;Productos;1;90;90
+2026-09-09;Muffin;Productos;1;45;45
+2026-09-09;Pan dulce;Productos;1;25;25
+2026-09-10;Cappuccino;Productos;1;75;75
+2026-09-10;Frappé;Productos;1;100;100
+2026-09-10;Sándwich;Productos;2;105;210
+2026-09-10;Sándwich;Productos;2;105;210
+2026-09-11;Café americano;Productos;2;55;110
+2026-09-11;Café americano;Productos;2;55;110
+2026-09-11;Croissant;Productos;2;50;100
+2026-09-11;Pan dulce;Productos;3;25;75
+2026-09-11;Té frío;Productos;2;50;100
+2026-09-12;Café americano;Productos;1;55;55
+2026-09-12;Café helado;Productos;1;75;75
+2026-09-12;Espresso;Productos;2;45;90
+2026-09-12;Mocaccino;Productos;2;90;180
+2026-09-12;Pan dulce;Productos;1;25;25
+2026-09-13;Café latte;Productos;2;80;160
+2026-09-13;Cappuccino;Productos;1;75;75
+2026-09-13;Jugo natural;Productos;1;65;65
+2026-09-13;Té frío;Productos;2;50;100
+2026-09-14;Café americano;Productos;2;55;110
+2026-09-14;Pan dulce;Productos;1;25;25
+2026-09-14;Pan dulce;Productos;1;25;25
+2026-09-14;Pan dulce;Productos;2;25;50
+2026-09-14;Té caliente;Productos;1;40;40
+2026-09-15;Café helado;Productos;3;75;225
+2026-09-15;Café helado;Productos;1;75;75
+2026-09-15;Café helado;Productos;1;75;75
+2026-09-15;Porción de pastel;Productos;1;80;80
+2026-09-15;Té frío;Productos;2;50;100
+2026-09-16;Espresso;Productos;1;45;45
+2026-09-16;Jugo natural;Productos;1;65;65
+2026-09-16;Mocaccino;Productos;1;90;90
+2026-09-16;Pan dulce;Productos;1;25;25
+2026-09-17;Café americano;Productos;2;55;110
+2026-09-17;Croissant;Productos;2;50;100
+2026-09-17;Pan dulce;Productos;1;25;25
+2026-09-17;Porción de pastel;Productos;3;80;240
+2026-09-17;Sándwich;Productos;3;105;315
+2026-09-18;Café latte;Productos;2;80;160
+2026-09-18;Croissant;Productos;2;50;100
+2026-09-18;Té caliente;Productos;3;40;120
+2026-09-18;Té frío;Productos;1;50;50
+2026-09-19;Café americano;Productos;3;55;165
+2026-09-19;Café helado;Productos;3;75;225
+2026-09-19;Jugo natural;Productos;1;65;65
+2026-09-19;Muffin;Productos;2;45;90
+2026-09-19;Pan dulce;Productos;1;25;25
+2026-09-20;Cappuccino;Productos;1;75;75
+2026-09-20;Frappé;Productos;2;100;200
+2026-09-20;Pan dulce;Productos;3;25;75
+2026-09-20;Sándwich;Productos;1;105;105
+2026-09-21;Café americano;Productos;2;55;110
+2026-09-21;Café americano;Productos;3;55;165
+2026-09-21;Café latte;Productos;3;80;240
+2026-09-21;Pan dulce;Productos;1;25;25
+2026-09-22;Cheesecake;Productos;1;95;95
+2026-09-22;Espresso;Productos;3;45;135
+2026-09-22;Muffin;Productos;3;45;135
+2026-09-22;Muffin;Productos;1;45;45
+2026-09-23;Café americano;Productos;2;55;110
+2026-09-23;Café latte;Productos;4;80;320
+2026-09-23;Frappé;Productos;1;100;100
+2026-09-23;Porción de pastel;Productos;1;80;80
+2026-09-23;Té caliente;Productos;2;40;80
+2026-09-24;Cappuccino;Productos;1;75;75
+2026-09-24;Frappé;Productos;1;100;100
+2026-09-24;Porción de pastel;Productos;4;80;320
+2026-09-24;Sándwich;Productos;1;105;105
+2026-09-25;Café americano;Productos;1;55;55
+2026-09-25;Café americano;Productos;2;55;110
+2026-09-25;Café americano;Productos;1;55;55
+2026-09-25;Café latte;Productos;1;80;80
+2026-09-26;Cappuccino;Productos;1;75;75
+2026-09-26;Croissant;Productos;2;50;100
+2026-09-26;Muffin;Productos;4;45;180
+2026-09-26;Sándwich;Productos;1;105;105
+2026-09-26;Té caliente;Productos;4;40;160
+2026-09-26;Té caliente;Productos;2;40;80
+2026-09-27;Café americano;Productos;4;55;220
+2026-09-27;Café latte;Productos;3;80;240
+2026-09-27;Jugo natural;Productos;2;65;130
+2026-09-27;Sándwich;Productos;2;105;210
+2026-09-27;Té caliente;Productos;4;40;160
+2026-09-28;Croissant;Productos;3;50;150
+2026-09-28;Frappé;Productos;1;100;100
+2026-09-28;Muffin;Productos;2;45;90
+2026-09-29;Café latte;Productos;2;80;160
+2026-09-29;Cappuccino;Productos;3;75;225
+2026-09-29;Jugo natural;Productos;2;65;130
+2026-09-29;Jugo natural;Productos;1;65;65
+2026-09-29;Pan dulce;Productos;2;25;50
+2026-09-30;Cappuccino;Productos;1;75;75
+2026-09-30;Cappuccino;Productos;4;75;300
+2026-09-30;Cappuccino;Productos;3;75;225
+2026-09-30;Jugo natural;Productos;2;65;130
+2026-09-30;Sándwich;Productos;2;105;210
+2026-10-01;Frappé;Productos;3;100;300
+2026-10-01;Pan dulce;Productos;3;25;75
+2026-10-01;Pan dulce;Productos;2;25;50
+2026-10-01;Porción de pastel;Productos;1;80;80
+2026-10-02;Café americano;Productos;1;55;55
+2026-10-02;Café helado;Productos;3;75;225
+2026-10-02;Jugo natural;Productos;1;65;65
+2026-10-02;Mocaccino;Productos;2;90;180
+2026-10-02;Muffin;Productos;2;45;90
+2026-10-03;Café latte;Productos;3;80;240
+2026-10-03;Croissant;Productos;2;50;100
+2026-10-03;Croissant;Productos;1;50;50
+2026-10-03;Espresso;Productos;1;45;45
+2026-10-03;Frappé;Productos;2;100;200
+2026-10-04;Café americano;Productos;2;55;110
+2026-10-04;Café americano;Productos;3;55;165
+2026-10-04;Café helado;Productos;1;75;75
+2026-10-04;Espresso;Productos;2;45;90
+2026-10-04;Té frío;Productos;1;50;50
+2026-10-05;Café helado;Productos;1;75;75
+2026-10-05;Café latte;Productos;1;80;80
+2026-10-05;Cappuccino;Productos;3;75;225
+2026-10-06;Café americano;Productos;2;55;110
+2026-10-06;Café helado;Productos;1;75;75
+2026-10-06;Café latte;Productos;4;80;320
+2026-10-06;Muffin;Productos;4;45;180
+2026-10-06;Pan dulce;Productos;3;25;75
+2026-10-07;Cappuccino;Productos;1;75;75
+2026-10-07;Sándwich;Productos;2;105;210
+2026-10-07;Té caliente;Productos;1;40;40
+2026-10-07;Té frío;Productos;2;50;100
+2026-10-08;Café latte;Productos;4;80;320
+2026-10-08;Croissant;Productos;1;50;50
+2026-10-08;Frappé;Productos;3;100;300
+2026-10-08;Sándwich;Productos;1;105;105
+2026-10-09;Café latte;Productos;3;80;240
+2026-10-09;Cappuccino;Productos;1;75;75
+2026-10-09;Croissant;Productos;1;50;50
+2026-10-09;Mocaccino;Productos;1;90;90
+2026-10-09;Porción de pastel;Productos;1;80;80
+2026-10-10;Frappé;Productos;2;100;200
+2026-10-10;Mocaccino;Productos;1;90;90
+2026-10-10;Mocaccino;Productos;1;90;90
+2026-10-10;Pan dulce;Productos;2;25;50
+2026-10-11;Café americano;Productos;2;55;110
+2026-10-11;Croissant;Productos;3;50;150
+2026-10-11;Espresso;Productos;3;45;135
+2026-10-11;Espresso;Productos;3;45;135
+2026-10-11;Espresso;Productos;2;45;90
+2026-10-11;Mocaccino;Productos;2;90;180
+2026-10-12;Café helado;Productos;2;75;150
+2026-10-12;Cappuccino;Productos;1;75;75
+2026-10-12;Jugo natural;Productos;1;65;65
+2026-10-12;Pan dulce;Productos;1;25;25
+2026-10-12;Pan dulce;Productos;3;25;75
+2026-10-13;Café americano;Productos;1;55;55
+2026-10-13;Cappuccino;Productos;1;75;75
+2026-10-13;Croissant;Productos;2;50;100
+2026-10-13;Mocaccino;Productos;3;90;270
+2026-10-14;Cheesecake;Productos;1;95;95
+2026-10-14;Cheesecake;Productos;1;95;95
+2026-10-14;Mocaccino;Productos;2;90;180
+2026-10-14;Té caliente;Productos;2;40;80
+2026-10-15;Cheesecake;Productos;4;95;380
+2026-10-15;Mocaccino;Productos;1;90;90
+2026-10-15;Pan dulce;Productos;1;25;25
+2026-10-15;Pan dulce;Productos;1;25;25
+2026-10-16;Café latte;Productos;2;80;160
+2026-10-16;Café latte;Productos;1;80;80
+2026-10-16;Mocaccino;Productos;1;90;90
+2026-10-16;Pan dulce;Productos;1;25;25
+2026-10-16;Pan dulce;Productos;1;25;25
+2026-10-17;Café helado;Productos;1;75;75
+2026-10-17;Café latte;Productos;1;80;80
+2026-10-17;Café latte;Productos;4;80;320
+2026-10-17;Jugo natural;Productos;2;65;130
+2026-10-17;Mocaccino;Productos;2;90;180
+2026-10-17;Muffin;Productos;3;45;135
+2026-10-17;Sándwich;Productos;2;105;210
+2026-10-18;Café latte;Productos;2;80;160
+2026-10-18;Cappuccino;Productos;2;75;150
+2026-10-18;Jugo natural;Productos;1;65;65
+2026-10-18;Mocaccino;Productos;3;90;270
+2026-10-18;Mocaccino;Productos;2;90;180
+2026-10-18;Té caliente;Productos;2;40;80
+2026-10-19;Croissant;Productos;1;50;50
+2026-10-19;Espresso;Productos;2;45;90
+2026-10-19;Frappé;Productos;3;100;300
+2026-10-20;Café americano;Productos;2;55;110
+2026-10-20;Croissant;Productos;2;50;100
+2026-10-20;Jugo natural;Productos;2;65;130
+2026-10-20;Jugo natural;Productos;2;65;130
+2026-10-20;Té caliente;Productos;2;40;80
+2026-10-21;Café helado;Productos;1;75;75
+2026-10-21;Jugo natural;Productos;2;65;130
+2026-10-21;Mocaccino;Productos;2;90;180
+2026-10-21;Porción de pastel;Productos;2;80;160
+2026-10-21;Té frío;Productos;3;50;150
+2026-10-22;Café americano;Productos;3;55;165
+2026-10-22;Cappuccino;Productos;1;75;75
+2026-10-22;Croissant;Productos;1;50;50
+2026-10-22;Espresso;Productos;2;45;90
+2026-10-22;Jugo natural;Productos;3;65;195
+2026-10-23;Café helado;Productos;1;75;75
+2026-10-23;Croissant;Productos;3;50;150
+2026-10-23;Jugo natural;Productos;2;65;130
+2026-10-23;Té frío;Productos;3;50;150
+2026-10-23;Té frío;Productos;2;50;100
+2026-10-24;Café helado;Productos;2;75;150
+2026-10-24;Mocaccino;Productos;2;90;180
+2026-10-24;Mocaccino;Productos;2;90;180
+2026-10-24;Pan dulce;Productos;4;25;100
+2026-10-24;Porción de pastel;Productos;1;80;80
+2026-10-25;Café americano;Productos;2;55;110
+2026-10-25;Cappuccino;Productos;3;75;225
+2026-10-25;Cappuccino;Productos;4;75;300
+2026-10-25;Mocaccino;Productos;1;90;90
+2026-10-25;Porción de pastel;Productos;2;80;160
+2026-10-26;Café americano;Productos;1;55;55
+2026-10-26;Café americano;Productos;1;55;55
+2026-10-26;Mocaccino;Productos;3;90;270
+2026-10-26;Pan dulce;Productos;4;25;100
+2026-10-27;Café helado;Productos;1;75;75
+2026-10-27;Espresso;Productos;2;45;90
+2026-10-27;Pan dulce;Productos;2;25;50
+2026-10-27;Porción de pastel;Productos;2;80;160
+2026-10-27;Té frío;Productos;2;50;100
+2026-10-28;Café helado;Productos;2;75;150
+2026-10-28;Café helado;Productos;1;75;75
+2026-10-28;Croissant;Productos;1;50;50
+2026-10-28;Porción de pastel;Productos;1;80;80
+2026-10-28;Sándwich;Productos;1;105;105
+2026-10-29;Cappuccino;Productos;2;75;150
+2026-10-29;Cappuccino;Productos;1;75;75
+2026-10-29;Frappé;Productos;1;100;100
+2026-10-29;Mocaccino;Productos;2;90;180
+2026-10-29;Pan dulce;Productos;3;25;75
+2026-10-30;Espresso;Productos;3;45;135
+2026-10-30;Muffin;Productos;2;45;90
+2026-10-30;Pan dulce;Productos;2;25;50
+2026-10-30;Pan dulce;Productos;1;25;25
+2026-10-31;Café americano;Productos;1;55;55
+2026-10-31;Cappuccino;Productos;2;75;150
+2026-10-31;Cappuccino;Productos;2;75;150
+2026-10-31;Jugo natural;Productos;1;65;65
+2026-10-31;Mocaccino;Productos;2;90;180
+2026-10-31;Sándwich;Productos;1;105;105
+2026-10-31;Té frío;Productos;3;50;150

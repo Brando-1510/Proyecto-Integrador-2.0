@@ -1,0 +1,117 @@
+﻿Fecha;Tipo;Categoría;Descripción;Monto (C$);Método de Pago
+2026-04-30;Gasto;Alquiler;Alquiler proporcional de inicio de operaciones;350.0;Transferencia
+2026-04-30;Gasto;Compras;Compra de café, leche y azúcar;229.19;Efectivo
+2026-04-30;Gasto;Servicios básicos;Consumo inicial de energía y agua;120.0;Efectivo
+2026-04-30;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;2440.0;Tarjeta
+2026-05-01;Gasto;Alquiler;Pago mensual del local;2298.21;Transferencia
+2026-05-02;Gasto;Compras;Compra de panadería y repostería para reventa;487.99;Transferencia
+2026-05-02;Gasto;Servicios básicos;Pago de energía eléctrica;672.04;Efectivo
+2026-05-03;Gasto;Personal;Pago de apoyo de medio tiempo;2390.82;Transferencia
+2026-05-03;Gasto;Servicios básicos;Pago de agua;191.7;Efectivo
+2026-05-09;Gasto;Compras;Compra de panadería y repostería para reventa;876.7;Tarjeta
+2026-05-10;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;2945.0;Transferencia
+2026-05-12;Gasto;Transporte;Transporte para abastecimiento;180.0;Tarjeta
+2026-05-16;Ingreso;Servicios;Pedido especial de refrigerios;850.0;Tarjeta
+2026-05-17;Gasto;Compras;Compra de café, leche y azúcar;1001.47;Tarjeta
+2026-05-17;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3950.0;Efectivo
+2026-05-19;Gasto;Compras;Reposición de insumos para bebidas y alimentos;892.73;Efectivo
+2026-05-20;Gasto;Compras;Compra de panadería y repostería para reventa;200.78;Transferencia
+2026-05-24;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3680.0;Efectivo
+2026-05-27;Gasto;Compras;Compra de panadería y repostería para reventa;705.02;Tarjeta
+2026-05-28;Gasto;Mantenimiento;Mantenimiento preventivo de cafetera;450.0;Tarjeta
+2026-05-31;Gasto;Compras;Compra de café, leche y azúcar;392.82;Efectivo
+2026-05-31;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4105.0;Efectivo
+2026-06-01;Gasto;Servicios básicos;Pago de energía eléctrica;618.9;Efectivo
+2026-06-02;Gasto;Personal;Pago de apoyo de medio tiempo;2223.55;Transferencia
+2026-06-03;Gasto;Alquiler;Pago mensual del local;2157.21;Transferencia
+2026-06-04;Gasto;Servicios básicos;Pago de agua;174.34;Efectivo
+2026-06-06;Gasto;Compras;Compra de panadería y repostería para reventa;864.68;Tarjeta
+2026-06-06;Gasto;Compras;Compra de panadería y repostería para reventa;55.96;Efectivo
+2026-06-07;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3430.0;Tarjeta
+2026-06-10;Gasto;Publicidad;Impresión de menú y promociones locales;280.0;Tarjeta
+2026-06-11;Gasto;Compras;Compra de frutas, hielo y bebidas;671.36;Transferencia
+2026-06-11;Gasto;Compras;Compra de panadería y repostería para reventa;458.21;Transferencia
+2026-06-14;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4480.0;Efectivo
+2026-06-17;Gasto;Compras;Compra de panadería y repostería para reventa;86.56;Transferencia
+2026-06-18;Gasto;Compras;Compra de café, leche y azúcar;948.81;Efectivo
+2026-06-21;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3615.0;Tarjeta
+2026-06-22;Gasto;Servicios básicos;Recarga de internet del local;450.0;Efectivo
+2026-06-24;Gasto;Compras;Compra de frutas, hielo y bebidas;1087.19;Transferencia
+2026-06-25;Gasto;Compras;Reposición de insumos para bebidas y alimentos;4.7;Efectivo
+2026-06-27;Ingreso;Servicios;Servicio de café para reunión pequeña;1200.0;Tarjeta
+2026-06-28;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3720.0;Efectivo
+2026-07-01;Gasto;Compras;Compra de café, leche y azúcar;1332.32;Tarjeta
+2026-07-04;Gasto;Alquiler;Pago mensual del local;2137.42;Transferencia
+2026-07-05;Gasto;Personal;Pago de apoyo de medio tiempo;2191.76;Transferencia
+2026-07-05;Gasto;Servicios básicos;Pago de energía eléctrica;677.1;Efectivo
+2026-07-05;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4920.0;Efectivo
+2026-07-06;Gasto;Servicios básicos;Pago de agua;186.4;Efectivo
+2026-07-08;Gasto;Otros;Compra de artículos de limpieza;320.0;Transferencia
+2026-07-11;Gasto;Compras;Compra de panadería y repostería para reventa;839.17;Efectivo
+2026-07-11;Gasto;Compras;Compra de vasos, tapas y servilletas;212.86;Tarjeta
+2026-07-12;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4160.0;Efectivo
+2026-07-15;Gasto;Compras;Reposición de insumos para bebidas y alimentos;1370.58;Efectivo
+2026-07-19;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;5375.0;Tarjeta
+2026-07-23;Gasto;Compras;Compra de frutas, hielo y bebidas;98.5;Tarjeta
+2026-07-25;Gasto;Compras;Compra de panadería y repostería para reventa;960.76;Transferencia
+2026-07-25;Gasto;Mantenimiento;Revisión de refrigerador;380.0;Efectivo
+2026-07-26;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3885.0;Efectivo
+2026-07-30;Gasto;Compras;Compra de café, leche y azúcar;909.12;Efectivo
+2026-08-01;Gasto;Alquiler;Pago mensual del local;2127.99;Transferencia
+2026-08-01;Gasto;Personal;Pago de apoyo de medio tiempo;2320.81;Transferencia
+2026-08-02;Gasto;Compras;Compra de frutas, hielo y bebidas;366.24;Transferencia
+2026-08-02;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4330.0;Transferencia
+2026-08-03;Gasto;Servicios básicos;Pago de energía eléctrica;650.14;Efectivo
+2026-08-06;Gasto;Publicidad;Material promocional para redes y mostrador;250.0;Transferencia
+2026-08-06;Gasto;Servicios básicos;Pago de agua;172.54;Efectivo
+2026-08-08;Gasto;Compras;Compra de café, leche y azúcar;47.67;Efectivo
+2026-08-08;Gasto;Compras;Compra de café, leche y azúcar;1104.31;Tarjeta
+2026-08-08;Ingreso;Servicios;Pedido de bebidas para actividad;950.0;Transferencia
+2026-08-09;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4605.0;Transferencia
+2026-08-14;Gasto;Compras;Compra de vasos, tapas y servilletas;224.96;Efectivo
+2026-08-15;Gasto;Compras;Reposición de insumos para bebidas y alimentos;1032.65;Transferencia
+2026-08-16;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4250.0;Transferencia
+2026-08-18;Gasto;Compras;Compra de vasos, tapas y servilletas;1054.77;Tarjeta
+2026-08-21;Gasto;Otros;Reposición de utensilios de cocina;290.0;Transferencia
+2026-08-23;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4005.0;Tarjeta
+2026-08-27;Gasto;Compras;Compra de vasos, tapas y servilletas;1024.82;Transferencia
+2026-08-30;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3545.0;Efectivo
+2026-09-01;Gasto;Alquiler;Pago mensual del local;2129.47;Transferencia
+2026-09-01;Gasto;Compras;Compra de panadería y repostería para reventa;579.25;Efectivo
+2026-09-03;Gasto;Servicios básicos;Pago de energía eléctrica;621.1;Efectivo
+2026-09-03;Gasto;Servicios básicos;Pago de agua;179.66;Efectivo
+2026-09-04;Gasto;Personal;Pago de apoyo de medio tiempo;2428.25;Transferencia
+2026-09-04;Gasto;Transporte;Traslado de compras del negocio;160.0;Efectivo
+2026-09-06;Gasto;Compras;Compra de panadería y repostería para reventa;337.66;Tarjeta
+2026-09-06;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3740.0;Transferencia
+2026-09-09;Gasto;Compras;Compra de café, leche y azúcar;271.92;Transferencia
+2026-09-10;Gasto;Compras;Compra de café, leche y azúcar;484.92;Efectivo
+2026-09-13;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;2965.0;Efectivo
+2026-09-15;Gasto;Compras;Compra de café, leche y azúcar;979.91;Transferencia
+2026-09-17;Gasto;Impuestos;Pago de obligaciones municipales;500.0;Efectivo
+2026-09-19;Ingreso;Otros ingresos;Venta de equipo menor en desuso;600.0;Efectivo
+2026-09-20;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3275.0;Transferencia
+2026-09-26;Gasto;Compras;Compra de panadería y repostería para reventa;621.77;Transferencia
+2026-09-27;Gasto;Compras;Reposición de insumos para bebidas y alimentos;403.74;Efectivo
+2026-09-27;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4200.0;Efectivo
+2026-09-29;Gasto;Compras;Compra de panadería y repostería para reventa;1058.99;Efectivo
+2026-09-29;Gasto;Otros;Compra de bolsas y empaques;240.0;Tarjeta
+2026-10-01;Gasto;Compras;Compra de frutas, hielo y bebidas;71.77;Transferencia
+2026-10-02;Gasto;Servicios básicos;Pago de energía eléctrica;662.86;Efectivo
+2026-10-02;Gasto;Servicios básicos;Pago de agua;180.92;Efectivo
+2026-10-04;Gasto;Personal;Pago de apoyo de medio tiempo;2178.83;Transferencia
+2026-10-04;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4155.0;Tarjeta
+2026-10-05;Gasto;Alquiler;Pago mensual del local;2128.74;Transferencia
+2026-10-07;Gasto;Mantenimiento;Ajuste de molino de café;300.0;Tarjeta
+2026-10-09;Gasto;Compras;Reposición de insumos para bebidas y alimentos;1076.21;Transferencia
+2026-10-10;Ingreso;Servicios;Pedido especial de bebidas y repostería;1100.0;Transferencia
+2026-10-11;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4105.0;Efectivo
+2026-10-17;Gasto;Compras;Compra de café, leche y azúcar;1163.83;Tarjeta
+2026-10-18;Gasto;Publicidad;Promoción local de temporada;350.0;Transferencia
+2026-10-18;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4275.0;Efectivo
+2026-10-22;Gasto;Compras;Reposición de insumos para bebidas y alimentos;252.1;Efectivo
+2026-10-24;Gasto;Compras;Compra de panadería y repostería para reventa;961.39;Transferencia
+2026-10-25;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;4440.0;Efectivo
+2026-10-26;Gasto;Otros;Insumos de limpieza y desinfección;310.0;Transferencia
+2026-10-31;Gasto;Compras;Compra de café, leche y azúcar;795.42;Tarjeta
+2026-10-31;Ingreso;Ventas;Ingreso semanal por ventas de cafetería;3150.0;Efectivo

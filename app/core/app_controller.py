@@ -72,8 +72,6 @@ class AppController:
             self.createBusiness_window.close()
             self.createBusiness_window = None
         self.show_choose_business(self.current_user)
-
-        self.show_choose_business(self.current_user)
     # *Mostrar ventana de crear negocio
     def show_create_business(self):
         if self.chooseBusiness_window is not None:

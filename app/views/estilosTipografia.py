@@ -98,4 +98,40 @@ def estilos_fuentes(source_family, manrope_family):
         font-family: "{source_family}";
         font-weight: 600;
     }}
+/* =========================
+       BARRA DE MENÚS Y MENÚS DESPLEGABLES
+    ========================= */
+    QMenuBar {{
+        font-family: "{source_family}";
+        font-size: 13px;
+        background-color: transparent; /* O el color que prefieras para la barra */
+    }}
+
+    QMenuBar::item {{
+        font-family: "{source_family}";
+        background: transparent;
+        padding: 4px 10px;
+    }}
+
+    QMenuBar::item:selected {{
+        background-color: #5D38BB; /* Color de selección (puedes ajustarlo) */
+        color: #F7F7F7;
+    }}
+
+    QMenu {{
+        font-family: "{source_family}";
+        background-color: #F7F7F7;
+        color: #0E042F;
+        border: 1px solid #ccc;
+    }}
+
+    QMenu::item {{
+        font-family: "{source_family}";
+        padding: 6px 20px;
+    }}
+
+    QMenu::item:selected {{
+        background-color: #5D38BB;
+        color: #F7F7F7;
+    }}
     """

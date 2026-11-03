@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dashboard</class>
+ <widget class="QMainWindow" name="Dashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1360</width>
+    <height>699</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Dashboard{
+background-color:#f7f7f7;
+}
+#stackedWidget{
+background-color:#f7f7f7;
+}
+
+QMenuBar {
+    background-color: #F9F9FC;
+    color: #0E042F;
+    border: none;
+    padding: 5px 8px;
+    spacing: 4px;
+
+    font-size: 10pt;
+    font-weight: 500;
+}
+
+QMenuBar::item {
+    background-color: transparent;
+    padding: 7px 13px;
+    border-radius: 5px;
+    margin: 1px;
+}
+
+QMenuBar::item:selected {
+    background-color: #EAE5F7;
+    color: #5D38BB;
+}
+
+QMenuBar::item:pressed {
+    background-color: #DDD4F1;
+    color: #16094C;
+}
+
+QMenu {
+    background-color: #FFFFFF;
+    color: #0E042F;
+    border: 1px solid #E7E3EF;
+    padding: 5px;
+    font-family: &quot;Manrope&quot;;
+    font-size: 10pt;
+}
+
+QMenu::item {
+    padding: 8px 28px 8px 12px;
+    border-radius: 4px;
+}
+
+QMenu::item:selected {
+    background-color: #F0ECF9;
+    color: #5D38BB;
+}
+
+QMenu::separator {
+    height: 1px;
+    background-color: #E7E3EF;
+    margin: 5px 8px;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="Sidebar" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#Sidebar{
+background-color: #16094C;
+}
+
+/*------------------------------------------------------------------------------------
+QLabels
+---------------------------------------------------------------------------------------*/
+QLabel{
+font-size:14px;
+}
+QLabel[texto=&quot;tituloAside&quot;]{
+font-weight:bold;
+font-size:18px;
+}
+QLabel[texto=&quot;Destacado&quot;]{
+font-weight:bold;
+font-size:16px;
+}
+
+/*--------------------------------------------------------------------------------
+QPushButton 
+----------------------------------------------------------------------------------*/
+/* Estilo general para todos los botones del menú */
+QPushButton[boton=&quot;Dashboard&quot;] {
+    background-color: transparent; /* Fondo transparente por defecto */
+    color: #ffffff;               /* Texto blanco */
+    font-size: 16px;              /* Tamaño de fuente */
+    text-align: left;             /* Alinea icono y texto a la izquierda */
+    padding-left: 15px;           /* Separación con el borde izquierdo */
+    border: none;                 /* Quita el borde por defecto */
+    border-radius: 8px;           /* Bordes redondeados */
+    height: 40px;                 /* Altura del botón */
+
+}
+
+/* Efecto al pasar el cursor por encima (Hover) */
+QPushButton[boton=&quot;Dashboard&quot;]:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+/* Estado activo/seleccionado (como el botón &quot;Home&quot; morado) */
+QPushButton[boton=&quot;Dashboard&quot;]:checked, QPushButton[boton=&quot;Dashboard&quot;]:pressed {
+    background-color: #5d51f2;    /* Color morado de tu imagen */
+}
+
+/*---------------------------
+Widgets
+*------------*/
+#promotionalFrame{
+background-color: #311B6E;
+border: 2px solid rgba(161, 147, 204, 0.7);
+border-radius: 15px;
+}
+
+</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>9</number>
+       </property>
+       <property name="topMargin">
+        <number>9</number>
+       </property>
+       <property name="rightMargin">
+        <number>9</number>
+       </property>
+       <property name="bottomMargin">
+        <number>9</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="layoutHEmpresa">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="lblLogoEmpresa">
+           <property name="minimumSize">
+            <size>
+             <width>91</width>
+             <height>81</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>91</width>
+             <height>81</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="../../resources/resources.qrc">:/images/logo.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="layoutVEmpresa">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lblNombreEmpresa">
+             <property name="text">
+              <string>Finanzen</string>
+             </property>
+             <property name="styleClass" stdset="0">
+              <string>tituloPrincipal</string>
+             </property>
+             <property name="texto" stdset="0">
+              <string>tituloAside</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblDescripcionEmpresa">
+             <property name="text">
+              <string>Inteligencia financiera
+para tu negocio</string>
+             </property>
+             <property name="styleClass" stdset="0">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QWidget" name="menuContainer" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnHome">
+            <property name="text">
+             <string>Home</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/home.svg</normaloff>:/icons/menuIcons/home.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnLoadData">
+            <property name="text">
+             <string>Carga de Datos</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/load.svg</normaloff>:/icons/menuIcons/load.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnMovimientos">
+            <property name="text">
+             <string>Movimientos</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/arrows.svg</normaloff>:/icons/menuIcons/arrows.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnAnalisis">
+            <property name="text">
+             <string>Analisis</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/profitability.svg</normaloff>:/icons/menuIcons/profitability.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnRecomendaciones">
+            <property name="text">
+             <string>Recomendaciones</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/radar.svg</normaloff>:/icons/menuIcons/radar.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnInformes">
+            <property name="text">
+             <string>Informes</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/fileLight.svg</normaloff>:/icons/menuIcons/fileLight.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnConfiguracion">
+            <property name="text">
+             <string>Configuración</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/settings.svg</normaloff>:/icons/menuIcons/settings.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnMensajes">
+            <property name="text">
+             <string>Mensajes</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/email.svg</normaloff>:/icons/menuIcons/email.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnMonitoreo">
+            <property name="text">
+             <string>Monitoreo</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/monitoring.svg</normaloff>:/icons/menuIcons/monitoring.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QPushButton" name="BtnCerrarSesion">
+            <property name="text">
+             <string>Cerrar Sesión</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/leave.svg</normaloff>:/icons/menuIcons/leave.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="BtnPerfil">
+            <property name="text">
+             <string>Perfil</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../resources/resources.qrc">
+              <normaloff>:/icons/menuIcons/profile.svg</normaloff>:/icons/menuIcons/profile.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Dashboard</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="main" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#topBar{
+padding: 30px;
+background-color: #FFFEFE;
+border: 2px solid #EBECF0;
+border-radius: 20px;
+}
+
+/*----------------------------------------------------------------------
+QLabel
+------------------------------------------------------------*/
+QLabel{
+	color: #0E042F;
+	font-size: 14px;
+}
+QLabel[texto=&quot;Principal&quot;]{
+color: #0E042F;
+font-weight:bold;
+font-size: 20px;
+}</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="styleSheet">
+          <string notr="true">/*
+-----------------------------------------------------------------------------------------------------
+ScrollArea
+-----------------------------------------------------------------------------------------------------
+*/
+#scrollAreaWidgetContents {
+    background-color: transparent;
+}
+QScrollArea {
+    background-color: transparent;
+    border: none;
+	border-radius:0px;
+}
+
+/* Widget que está dentro del ScrollArea */
+/*QScrollArea &gt; QWidget &gt; QWidget {
+    background-color: #F9F9FC;
+}*/
+
+/* Scrollbar vertical */
+QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 4px 2px 4px 0px;
+}
+
+/* Parte que se puede arrastrar */
+QScrollBar::handle:vertical {
+    background-color: #C9C1D5;
+    border-radius: 4px;
+    min-height: 40px;
+}
+
+/* Al pasar el mouse */
+QScrollBar::handle:vertical:hover {
+    background-color: #A99DB8;
+}
+
+/* Ocultar botones de arriba y abajo */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* Espacio antes/después del handle */
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}</string>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1098</width>
+            <height>655</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QStackedWidget" name="stackedWidget">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <widget class="QWidget" name="page">
+              <layout class="QVBoxLayout" name="verticalLayout_7"/>
+             </widget>
+             <widget class="QWidget" name="page_2"/>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1360</width>
+     <height>44</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="actionCerrarSesion">
+    <property name="title">
+     <string>Salir</string>
+    </property>
+    <addaction name="actionCambiarNegocio"/>
+    <addaction name="actionCerrar"/>
+   </widget>
+   <widget class="QMenu" name="actionAcercaDe">
+    <property name="title">
+     <string>Acerca de Finanzen</string>
+    </property>
+    <addaction name="actionGuiaUso"/>
+    <addaction name="actionDescargar"/>
+   </widget>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="actionCargarExcel"/>
+    <addaction name="actionGenerarInforme"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="actionAcercaDe"/>
+   <addaction name="actionCerrarSesion"/>
+  </widget>
+  <action name="actionGuiaUso">
+   <property name="text">
+    <string>Guía de Uso</string>
+   </property>
+  </action>
+  <action name="actionDescargar">
+   <property name="text">
+    <string>Descargar Plantilla</string>
+   </property>
+  </action>
+  <action name="actionCambiarNegocio">
+   <property name="text">
+    <string>Cambiar de Negocio</string>
+   </property>
+  </action>
+  <action name="actionCerrar">
+   <property name="text">
+    <string>Cerrar Sesión</string>
+   </property>
+  </action>
+  <action name="actionCargarExcel">
+   <property name="text">
+    <string>Cargar Datos desde Excel</string>
+   </property>
+  </action>
+  <action name="actionGenerarInforme">
+   <property name="text">
+    <string>Generar Informe PDF</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

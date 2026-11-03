@@ -1,11 +1,11 @@
 import os
 
 from PySide6.QtWidgets import (
-    QWidget,QStackedWidget,QPushButton,QVBoxLayout,QMessageBox,QSizePolicy,
+    QWidget,QStackedWidget,QPushButton,QVBoxLayout,QMessageBox,QSizePolicy,QMainWindow
 )
-from PySide6.QtGui import QFontDatabase
+from PySide6.QtGui import QFontDatabase,QDesktopServices
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal,QUrl
 from app.core.screen_utils import calcular_tamano_pantalla
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
@@ -23,7 +23,7 @@ from app.views.profile.profile import Profile
 from app.views.dashboard.pages.emails import EmailSender
 
 
-class VentanaDashboard(QWidget):
+class VentanaDashboard(QMainWindow):
     choose_business_requested = Signal(object)
     logout_requested = Signal()
     PERMISOS_PAGINAS = {
@@ -70,20 +70,17 @@ class VentanaDashboard(QWidget):
 
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta_ui = os.path.normpath(
-            os.path.join(directorio_actual,"../../ui/dashboard/dashboard.ui",)
+            os.path.join(directorio_actual,"../../ui/dashboard/home.ui",)
         )
         loader = QUiLoader()
-        self.ui = loader.load(ruta_ui, self)
+        self.ui = loader.load(ruta_ui)
         if not self.ui:
             print(f"Error crítico: No se pudo cargar el archivo UI en: {ruta_ui}")
             return
         ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
         self.resize(ancho, alto)
         self.setMinimumSize(900, 570)
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addWidget(self.ui)
-        self.dialog_open=False
+        self.setCentralWidget(self.ui)
 
         self.stackedWidget = self.ui.findChild(QStackedWidget, "stackedWidget")
         self.btnHome = self.ui.findChild(QPushButton, "btnHome")
@@ -98,6 +95,7 @@ class VentanaDashboard(QWidget):
         self.btnPefil=self.ui.findChild(QPushButton,"BtnPerfil")
         self.btnMensaje=self.ui.findChild(QPushButton,"btnMensajes")
         self.configurar_permisos_interfaz()
+        self.menuBar()
 
         font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
         font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
@@ -303,3 +301,16 @@ class VentanaDashboard(QWidget):
             self.informes.actualizar_business(self.business)
     def actualizar_ui(self):
         self.email.actualizar_interfaz()
+    def menuBar(self):
+        self.ui.actionCambiarNegocio.triggered.connect(
+            lambda _checked=False: self.choose_business_requested.emit(self.user)
+        )
+        self.ui.actionCargarExcel.triggered.connect(self.mostrar_cargar_datos)
+        self.ui.actionCerrar.triggered.connect(self.logout_requested.emit)
+        self.ui.actionGenerarInforme.triggered.connect(self.mostrar_informes)
+        self.ui.actionGuiaUso.triggered.connect(
+            lambda: QDesktopServices.openUrl(QUrl("https://luis-hdz7.github.io/Finanzen-Web/"))
+        )
+        self.ui.actionDescargar.triggered.connect(
+            lambda: QDesktopServices.openUrl(QUrl("https://luis-hdz7.github.io/Finanzen-Web/excelTemplate.html"))
+        )
