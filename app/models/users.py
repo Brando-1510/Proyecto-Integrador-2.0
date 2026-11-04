@@ -26,22 +26,20 @@ class Users(Base):
     is_admin: Mapped[bool] = mapped_column(default=False,server_default="0",nullable=False)
     #*Relaciones
     created_businesses: Mapped[list["Business"]] = relationship(back_populates="creator")
-    business_relationships: Mapped[list["UserBusiness"]] = relationship(back_populates="user")
-    recoveries: Mapped[list["Recovery"]] = relationship(back_populates="user")
+    business_relationships: Mapped[list["UserBusiness"]] = relationship(back_populates="user",passive_deletes=True)
+    recoveries: Mapped[list["Recovery"]] = relationship(back_populates="user",passive_deletes=True)
     created_movements: Mapped[list["Movement"]] = relationship(
-        back_populates="creator",
-        foreign_keys="Movement.created_by"
+        back_populates="creator",foreign_keys="Movement.created_by",passive_deletes="all"
     )
     updated_movements: Mapped[list["Movement"]] = relationship(
         back_populates="updater",
         foreign_keys="Movement.updated_by"
     )
     created_sales: Mapped[list["Sale"]] = relationship(
-        back_populates="creator",
-        foreign_keys="Sale.created_by"
+        back_populates="creator",foreign_keys="Sale.created_by",passive_deletes="all"
     )
     updated_sales: Mapped[list["Sale"]] = relationship(
         back_populates="updater",
         foreign_keys="Sale.updated_by"
     )
-    imports: Mapped[list["Import"]] = relationship(back_populates="user")
+    imports: Mapped[list["Import"]] = relationship(back_populates="user",passive_deletes="all")

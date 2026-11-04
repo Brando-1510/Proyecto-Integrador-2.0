@@ -40,13 +40,25 @@ class Business(Base):
     start_of_operations: Mapped[date | None] = mapped_column(nullable=True)
     description: Mapped[str | None] = mapped_column(Text,nullable=True)
     logo: Mapped[str | None] = mapped_column(String(255),nullable=True)
-    creator_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False)
+    creator_id: Mapped[int] = mapped_column(
+        ForeignKey("users.user_id",ondelete="RESTRICT",onupdate="CASCADE"),nullable=False
+    )
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(),onupdate=func.now())
     #*Relaciones
-    creator: Mapped["Users"] = relationship(back_populates="created_businesses")
-    user_relationships: Mapped[list["UserBusiness"]] = relationship(back_populates="business")
-    imports: Mapped[list["Import"]] = relationship(back_populates="business")
-    movements: Mapped[list["Movement"]] = relationship(back_populates="business")
-    sales: Mapped[list["Sale"]] = relationship(back_populates="business")
-    categories: Mapped[list["Category"]] = relationship(back_populates="business")
+    creator: Mapped["Users"] = relationship(back_populates="created_businesses",passive_deletes="all")
+    user_relationships: Mapped[list["UserBusiness"]] = relationship(
+        back_populates="business",passive_deletes=True
+    )
+    imports: Mapped[list["Import"]] = relationship(
+        back_populates="business",passive_deletes=True
+    )
+    movements: Mapped[list["Movement"]] = relationship(
+        back_populates="business",passive_deletes=True
+    )
+    sales: Mapped[list["Sale"]] = relationship(
+        back_populates="business",passive_deletes=True
+    )
+    categories: Mapped[list["Category"]] = relationship(
+        back_populates="business",passive_deletes=True
+    )

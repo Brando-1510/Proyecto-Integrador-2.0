@@ -11,11 +11,13 @@ if TYPE_CHECKING:
 class Category(Base):
     __tablename__ = "categories"
     category_id: Mapped[intpk]
-    business_id: Mapped[int] = mapped_column(ForeignKey("businesses.business_id"),nullable=False)
+    business_id: Mapped[int] = mapped_column(
+        ForeignKey("businesses.business_id",ondelete="CASCADE",onupdate="CASCADE"),nullable=False
+    )
     name: Mapped[str] = mapped_column(String(100),nullable=False)
     is_system: Mapped[bool] = mapped_column(Boolean,default=False,nullable=False)
     business: Mapped["Business"] = relationship(back_populates="categories")
-    sales: Mapped[list["Sale"]] = relationship(back_populates="category")
+    sales: Mapped[list["Sale"]] = relationship(back_populates="category",passive_deletes="all")
     __table_args__ = (
         UniqueConstraint(
             "business_id",

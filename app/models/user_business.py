@@ -18,8 +18,12 @@ class Role(Enum):
 class UserBusiness(Base):
     __tablename__ = "user_business"
     user_business_id: Mapped[intpk]
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False)
-    business_id: Mapped[int] = mapped_column(ForeignKey("businesses.business_id"),nullable=False)
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.user_id",ondelete="CASCADE",onupdate="CASCADE"),nullable=False
+    )
+    business_id: Mapped[int] = mapped_column(
+        ForeignKey("businesses.business_id",ondelete="CASCADE",onupdate="CASCADE"),nullable=False
+    )
     role: Mapped[Role] = mapped_column(
         SQLEnum(
             Role,

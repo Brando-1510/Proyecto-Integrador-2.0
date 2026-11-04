@@ -40,12 +40,18 @@ class PaymentMethod(Enum):
 class Movement(Base):
     __tablename__ = "movements"
     movement_id: Mapped[intpk]
-    business_id: Mapped[int] = mapped_column(ForeignKey("businesses.business_id"),nullable=False)
-    import_id: Mapped[int] = mapped_column(ForeignKey("imports.import_id"),nullable=False)
-
-    created_by: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False)
-    updated_by: Mapped[int | None] = mapped_column(ForeignKey("users.user_id"),nullable=True)
-
+    business_id: Mapped[int] = mapped_column(
+        ForeignKey("businesses.business_id",ondelete="CASCADE",onupdate="CASCADE"),nullable=False
+    )
+    import_id: Mapped[int] = mapped_column(
+        ForeignKey("imports.import_id",ondelete="CASCADE",onupdate="CASCADE"),nullable=False
+    )
+    created_by: Mapped[int] = mapped_column(
+        ForeignKey("users.user_id",ondelete="RESTRICT",onupdate="CASCADE"),nullable=False
+    )
+    updated_by: Mapped[int | None] = mapped_column(
+        ForeignKey("users.user_id",ondelete="SET NULL",onupdate="CASCADE"),nullable=True
+    )
     date: Mapped[dt_date] = mapped_column(nullable=False)
     type: Mapped[MovementType] = mapped_column(
         SQLEnum(

@@ -14,19 +14,26 @@ if TYPE_CHECKING:
 class Import(Base):
     __tablename__ = "imports"
     import_id: Mapped[intpk]
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"),nullable=False)
-    business_id: Mapped[int] = mapped_column(ForeignKey("businesses.business_id"),nullable=False)
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.user_id",ondelete="RESTRICT",onupdate="CASCADE"),nullable=False
+    )
+    business_id: Mapped[int] = mapped_column(
+        ForeignKey("businesses.business_id",ondelete="CASCADE",onupdate="CASCADE"),nullable=False
+    )
     file_name: Mapped[str] = mapped_column(String(255),nullable=False)
     file_hash: Mapped[str] = mapped_column(String(64),nullable=False)
     imported_at: Mapped[datetime] = mapped_column(nullable=False,server_default=func.now())
     user: Mapped["Users"] = relationship(back_populates="imports")
     business: Mapped["Business"] = relationship(back_populates="imports")
-    movements: Mapped[list["Movement"]] = relationship(back_populates="import_record")
-    sales: Mapped[list["Sale"]] = relationship(back_populates="import_record")
+    movements: Mapped[list["Movement"]] = relationship(
+        back_populates="import_record",passive_deletes=True
+    )
+    sales: Mapped[list["Sale"]] = relationship(
+        back_populates="import_record",passive_deletes=True
+    )
     __table_args__ = (
         UniqueConstraint(
-            "business_id",
-"file_hash",
+            "business_id","file_hash",
             name="uq_import_business_hash"
         ),
         Index(
