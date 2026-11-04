@@ -17,7 +17,8 @@ class Profile(QObject):
         super().__init__(parent)
         self.user=user
         self.controller=controller
-        self.habilitado=False
+        self.edicion_datos = False
+        self.edicion_password = False
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta_ui = os.path.normpath(
             os.path.join(
@@ -50,23 +51,27 @@ class Profile(QObject):
             self.ui.setStyleSheet(
                 self.ui.styleSheet()+ estilos_fuentes(source[0], manrope[0])
             )
-    def _habilitar_edicion(self,*widgets):
-        if self.habilitado:
+    def _habilitar_edicion(self,estado,*widgets):
+        if estado == "datos" and self.edicion_datos:
             return
-        self.habilitado=True
+        if estado == "password" and self.edicion_password:
+            return
         respuesta=QMessageBox.question(
             self.ui,"Habilitar Edición",
             "Todos los cambios que se confirmen durante el modo de edición seran\nalmacenados permanentemente",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         if respuesta == QMessageBox.StandardButton.No:
-            self.habilitado=False
             return
         for widget in widgets:
             if isinstance(widget,(QLineEdit,QDateEdit)):
                 widget.setEnabled(True)
             else:
                 continue
+        if estado == "datos":
+            self.edicion_datos = True
+        elif estado == "password":
+            self.edicion_password = True
     def confirmacion(self):
         password, ok = QInputDialog.getText(
             self.ui,"Confirma que eres tú","Introduce tu contraseña",QLineEdit.EchoMode.Password
@@ -98,7 +103,7 @@ class Profile(QObject):
     def tab_datos(self):
         self.ui.habilitarEdicion.clicked.connect(
             lambda: self._habilitar_edicion(
-                self.ui.nombreUsuario,self.ui.email,self.ui.inputFecha
+                "datos",self.ui.nombreUsuario,self.ui.email,self.ui.inputFecha
             )
         )
         #relacionados a la fecha de nacimiento
@@ -148,15 +153,11 @@ class Profile(QObject):
     def tab_operaciones(self):
         self.ui.habilitarContrasena.clicked.connect(
             lambda: self._habilitar_edicion(
-                self.ui.contra,self.ui.confirmarContra
+                "password",self.ui.contra,self.ui.confirmarContra
             )
         )
         self.configurar_password(self.ui.contra)
         self.configurar_password(self.ui.confirmarContra)
-        #*Acciones
-        self.ui.habilitarContrasena.clicked.connect(
-            lambda: self._habilitar_edicion(self.ui.contra,self.ui.confirmarContra)
-        )
         self.ui.cambiarContrasena.clicked.connect(self.cambiarContrasena)
 
     def cambiarContrasena(self):

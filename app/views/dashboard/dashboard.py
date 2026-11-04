@@ -68,6 +68,8 @@ class VentanaDashboard(QMainWindow):
         self.report_controller=report_controller
         self.email_controller=email_controller
 
+        self.dialog_open=False
+
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta_ui = os.path.normpath(
             os.path.join(directorio_actual,"../../ui/dashboard/home.ui",)
