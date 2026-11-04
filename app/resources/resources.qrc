@@ -35,6 +35,9 @@
     <file>icons/chevronBack.svg</file>
     <file>icons/check.svg</file>
     <file>icons/X.svg</file>
+    <file>icons/openFile.svg</file>
+    <file>icons/closeFile.svg</file>
+    <file>icons/changeFile.svg</file>
     <file>icons/menuIcons/arrows.svg</file>
     <file>icons/menuIcons/fileLight.svg</file>
     <file>icons/menuIcons/home.svg</file>

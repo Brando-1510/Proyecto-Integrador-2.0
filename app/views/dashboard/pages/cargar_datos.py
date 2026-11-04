@@ -2,7 +2,7 @@ import os
 from PySide6.QtCore import QThread, Slot,Signal
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QSizePolicy, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QFileDialog, QHeaderView, QMessageBox, QSizePolicy, QMainWindow, QWidget,QVBoxLayout
 from app.models.user_business import Role
 from app.errors.import_errors import ImportErrorType
 from app.views.dashboard.dialogs.excel_errors import ExcelErrorsUI
@@ -13,6 +13,7 @@ from app.views.dashboard.table_models.sales_table_model import SalesTableModel
 from app.views.estilosTipografia import estilos_fuentes
 from app.workers.excel_import_worker import ExcelImportWorker
 from app.workers.excel_save_worker import ExcelSaveWorker
+from app.core.screen_utils import calcular_tamano_pantalla
 
 class CargarDatos(QWidget):
     importacion_exitosa = Signal()
@@ -40,16 +41,17 @@ class CargarDatos(QWidget):
 
     def _setup_ui(self):
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
-        ruta_ui = os.path.normpath(os.path.join(directorio_actual, "../../../ui/dashboard/pages/cargar_datos.ui"))
+        ruta_ui = os.path.normpath(os.path.join(directorio_actual, "../../../ui/dashboard/pages/cargar_excel.ui"))
         loader = QUiLoader()
-        self.ui = loader.load(ruta_ui, self)
+        self.ui = loader.load(ruta_ui)
         if not self.ui:
             raise RuntimeError(f"No se pudo cargar el archivo UI en: {ruta_ui}")
+        ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
+        self.resize(ancho, alto)
+        self.setMinimumSize(900, 570)
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
-        self.altura_cambiada.emit(689)
-        self.ui.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         if hasattr(self.ui, "tabWidget"):
             self.ui.tabWidget.setTabBarAutoHide(False)
             self.ui.tabWidget.tabBar().setExpanding(True)
@@ -81,10 +83,15 @@ class CargarDatos(QWidget):
                 tabla.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
 
     def _connect_signals(self):
+        #*Acciones de los botones
         self.ui.btnSeleccionarArchivo.clicked.connect(self.select_excel_file)
         self.ui.btnCambiarArchivo.clicked.connect(self.select_excel_file)
         self.ui.btnCancelar.clicked.connect(self.cancel_import)
         self.ui.btnAceptar.clicked.connect(self.save_import)
+        #*Acciones del menu
+        self.ui.actionAbrir.triggered.connect(self.select_excel_file)
+        self.ui.actionCambiar_Excel.triggered.connect(self.cambiar_importar_tool)
+        self.ui.actionCancelar_Excel.triggered.connect(self.cancelar_importacion_tool)
 
     def _reset_ui_state(self):
         self.altura_cambiada.emit(689)
@@ -187,7 +194,7 @@ class CargarDatos(QWidget):
         if hasattr(self.ui, "lblNombreArchivo"):
             self.ui.lblNombreArchivo.setText(self.selected_file_name)
         self.ui.frameArchivo.show()
-        self.altura_cambiada.emit(1000)
+        self.expandir_contenido()
         self._hide_progress()
         self._toggle_buttons(enabled=True)
     @Slot(object)
@@ -204,7 +211,7 @@ class CargarDatos(QWidget):
         QMessageBox.information(self.ui,"Importación exitosa","Los datos se guardaron correctamente.")
         self._clear_data_state()
         self.ui.frameArchivo.hide()
-        self.altura_cambiada.emit(689)
+        self.restaurar_contenido()
         self._hide_progress()
         self._toggle_buttons(enabled=True, accept_enabled=False)
 
@@ -308,7 +315,7 @@ class CargarDatos(QWidget):
         if respuesta == QMessageBox.StandardButton.Yes:
             self._clear_data_state()
             self.ui.frameArchivo.hide()
-            self.altura_cambiada.emit(689)
+            self.restaurar_contenido()
             self._hide_progress()
             self._toggle_buttons(enabled=True, accept_enabled=False)
         else:
@@ -381,3 +388,22 @@ class CargarDatos(QWidget):
         self.pending_file_name = None
         self.pending_file_path = None
         self._toggle_buttons(enabled=True, accept_enabled=False)
+
+    #*Funciones para cambiar los metodos del QToolbar
+    def cambiar_importar_tool(self):
+        if self.df_movimientos is None and self.df_ventas is None:
+            QMessageBox.information(self.ui,"Cambiar Archivo","Debe seleccionar un archivo para cambiar la importación")
+            return
+        self.select_excel_file()
+    def cancelar_importacion_tool(self):
+        if self.df_movimientos is None and self.df_ventas is None:
+            QMessageBox.information(self.ui,"Cancelar Importación","Debe seleccionar un archivo para cancelar la importación")
+            return
+        self.cancel_import()
+    def expandir_contenido(self):
+        self.setMinimumHeight(1100)
+        self.ui.setMinimumHeight(1100)
+
+    def restaurar_contenido(self):
+        self.setMinimumHeight(655)
+        self.ui.setMinimumHeight(655)

@@ -21,13 +21,20 @@ background-color:#f7f7f7;
 background-color:#f7f7f7;
 }
 
+/* =========================================
+   MENU BAR
+========================================= */
+
 QMenuBar {
-    background-color: #F9F9FC;
-    color: #0E042F;
+    background-color: #FFFFFF;
+    color: #16094C;
     border: none;
-    padding: 5px 8px;
+    border-bottom: 1px solid #E7E3EF;
+
+    padding: 3px 8px;
     spacing: 4px;
 
+    font-family: &quot;Manrope&quot;;
     font-size: 10pt;
     font-weight: 500;
 }
@@ -35,8 +42,8 @@ QMenuBar {
 QMenuBar::item {
     background-color: transparent;
     padding: 7px 13px;
+    margin: 2px;
     border-radius: 5px;
-    margin: 1px;
 }
 
 QMenuBar::item:selected {
@@ -49,11 +56,16 @@ QMenuBar::item:pressed {
     color: #16094C;
 }
 
+/* Menús desplegables */
+
 QMenu {
     background-color: #FFFFFF;
     color: #0E042F;
     border: 1px solid #E7E3EF;
+    border-radius: 6px;
+
     padding: 5px;
+
     font-family: &quot;Manrope&quot;;
     font-size: 10pt;
 }
@@ -72,8 +84,7 @@ QMenu::separator {
     height: 1px;
     background-color: #E7E3EF;
     margin: 5px 8px;
-}
-</string>
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -613,7 +624,7 @@ QScrollBar::sub-page:vertical {
             <x>0</x>
             <y>0</y>
             <width>1098</width>
-            <height>655</height>
+            <height>658</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -658,7 +669,7 @@ QScrollBar::sub-page:vertical {
      <x>0</x>
      <y>0</y>
      <width>1360</width>
-     <height>44</height>
+     <height>41</height>
     </rect>
    </property>
    <widget class="QMenu" name="actionCerrarSesion">
