@@ -15,7 +15,7 @@ class RecommendationPresenter:
     }
     PRIORITIES = {
         "alta": {
-            "text": "Prioridad Alta",
+            "text": "Crítico",
             "badge": "prioridad-alta",
         },
         "oportunidad": {

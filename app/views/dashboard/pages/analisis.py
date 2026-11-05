@@ -6,6 +6,7 @@ from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from PySide6.QtCore import Qt,Signal
 from app.utils.visualizations.analysis_charts import AnalysisCharts
+from app.utils.format_utils import FormatUtils
 
 class Analisis(QWidget):
     def __init__(self, userBusiness,controller):
@@ -77,17 +78,17 @@ class Analisis(QWidget):
         balance=resultado["comparisons"]["balance"]
         estadisticas=resultado["sales_statistics"]
         #*Ingresos tarjeta
-        self.ui.valorIngresos.setText(f"C$ {ingresos["current_value"]}")
+        self.ui.valorIngresos.setText(f"C$ {FormatUtils.format_number(ingresos['current_value'])}")
         variacion_ing=self.comparar_periodo_anterior(ingresos["percentage_variation"])
         self.establecer_color_aumento(ingresos["direction"],self.ui.estadoIngresos)
         self.ui.estadoIngresos.setText(variacion_ing)
         #*Gastos tarjeta
-        self.ui.valorGastos.setText(f"C$ {gastos["current_value"]}")
+        self.ui.valorGastos.setText(f"C$ {FormatUtils.format_number(gastos['current_value'])}")
         variacion_gas=self.comparar_periodo_anterior(gastos["percentage_variation"])
         self.establecer_color_disminucion(ingresos["direction"],self.ui.estadoGastos)
         self.ui.estadoGastos.setText(variacion_gas)
         #*Balance tarjeta
-        self.ui.valorBalance.setText(f"C$ {balance["current_value"]}")
+        self.ui.valorBalance.setText(f"C$ {FormatUtils.format_number(balance['current_value'])}")
         variacion_bal=self.comparar_periodo_anterior(balance["percentage_variation"])
         self.establecer_color_aumento(balance["direction"],self.ui.estadoBalance)
         self.ui.estadoBalance.setText(variacion_bal)
@@ -96,9 +97,9 @@ class Analisis(QWidget):
             self.ui.frameTicket.hide()
             self.ui.valorTicket.setText("No hay datos suficientes para \ncalcular la media.")
         else:
-            self.ui.valorTicket.setText(f"{estadisticas['average_ticket']:.2f}")
-        self.ui.valorTotalVentas.setText(str(estadisticas["total_sales"]))
-        self.ui.valorGeneradoVentas.setText(f"{estadisticas['total_amount']:.2f}")
+            self.ui.valorTicket.setText(f"C$ {FormatUtils.format_number(estadisticas['average_ticket'])}")
+        self.ui.valorTotalVentas.setText(str(FormatUtils.format_number(estadisticas["total_sales"])))
+        self.ui.valorGeneradoVentas.setText(f"C$ {FormatUtils.format_number(estadisticas['total_amount'])}")
 
     def hallazgos(self, resultado):
         hallazgos = resultado.get("findings", [])
@@ -124,7 +125,7 @@ class Analisis(QWidget):
             self.ui.gastosCategoriaCard.show()
             self.ui.gastosCategoria.setText(f"{hallazgo_gastos.get("title")}")
             self.ui.gastoCatDesc.setText(
-                f"{categoria} es la categoría con mayor peso en la\n estructurade costos, con un importe\n de C$ {importe:,.2f}.")
+                f"{categoria} es la categoría con mayor peso en\nla estructurade costos, con un importe\n de C$ {importe:,.2f}.")
             self.ui.gastosCatVar.setText(f"{porcentaje:.2f}% del total de gastos")
         # Variación de los gastos
         variacion_gastos = next(
@@ -141,7 +142,7 @@ class Analisis(QWidget):
                 self.ui.variacionGastosCard.show()
                 self.ui.aumentoGasto.setText(variacion_gastos.get("title"))
                 self.ui.descAumentoGasto.setText(
-                    f"Los gastos totales del período actual registraron un {direccion}\n equivalente al {str(porcentaje)}%."
+                    f"Los gastos totales del período actual\nregistraron un {direccion} equivalente al {str(porcentaje)}%."
                 )
                 self.ui.varAumentoGasto.setText(f"{porcentaje}% vs Período Anterior")
                 if direccion=="disminucion":
@@ -180,7 +181,7 @@ class Analisis(QWidget):
                 self.ui.variacionIngresosCard.show()
                 self.ui.aumentoIngresos.setText(variacion_ingresos.get("title"))
                 self.ui.aumentoDescIngresos.setText(
-                    f"Los ingresos totales del período actual registraron un {direccion}\n equivalente al {str(porcentaje)}%."
+                    f"Los ingresos totales del período actual\nregistraron un {direccion} equivalente al {str(porcentaje)}%."
                 )
                 self.ui.aumentoVarIngresos.setText(f"{porcentaje}% vs Período Anterior")
             if direccion=="aumento":

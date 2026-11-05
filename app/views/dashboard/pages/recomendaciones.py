@@ -276,9 +276,7 @@ class Recomendaciones(QWidget):
         layout_badges.addStretch()
         layout_descripcion.addLayout(layout_badges)
 
-        lbl_descripcion = QLabel(recomendacion.get("description", "No hay una descripción disponible."))
-        lbl_descripcion.setProperty("texto", "Descripcion")
-        lbl_descripcion.setWordWrap(True)
+
 
         lbl_dato = QLabel("Dato observado:")
         lbl_dato.setProperty("texto", "Destacado")
@@ -292,7 +290,6 @@ class Recomendaciones(QWidget):
         lbl_dato_observado.setProperty("texto", "Descripcion")
         lbl_dato_observado.setWordWrap(True)
 
-        layout_descripcion.addWidget(lbl_descripcion)
         layout_descripcion.addWidget(lbl_dato)
         layout_descripcion.addWidget(lbl_dato_observado)
 

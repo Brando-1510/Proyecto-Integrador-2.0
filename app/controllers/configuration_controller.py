@@ -90,6 +90,11 @@ class ConfigurationController:
                     "success":True,
                     "message": "La importación fue eliminada correctamente"
                 }
+            else:
+                return {
+                    "success": False,
+                    "message": "No se pudo eliminar la importación\nVerifique que corresponda a su negocio."
+                }
         except ValueError as e:
             return {
                 "success":False,

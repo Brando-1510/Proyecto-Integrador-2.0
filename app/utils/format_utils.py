@@ -40,3 +40,6 @@ class FormatUtils:
     @staticmethod
     def format_report_date(value: date) -> str:
         return value.strftime("%d/%m/%Y")
+    @staticmethod
+    def format_number(value: float) -> str:
+        return f"{value:,.2f}"

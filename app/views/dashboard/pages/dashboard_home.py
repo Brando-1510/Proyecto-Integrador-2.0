@@ -11,6 +11,7 @@ from app.utils.utilsUI import obtener_icono
 from PySide6.QtCore import Qt,Signal
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+from app.utils.format_utils import FormatUtils
 
 class DashboardHome(QWidget):
     def __init__(self, userBusiness,home_dashboard_controller):
@@ -68,10 +69,11 @@ class DashboardHome(QWidget):
         self.mostrar_evolucion_ventas()
 
     def cambios_ui_controller(self):
-        self.ui.lblVentasValor.setText(f"C${self.resultado['ventas']}")
-        self.ui.lblGastosValor.setText(f"C${self.resultado['gastos']}")
-        self.ui.lblIngresosValor.setText(f"C${self.resultado['ingresos']}")
-        self.ui.lblUtilidadValor.setText(f"C${self.resultado['utilidad']}")
+        ventasValor=FormatUtils.format_number(self.resultado['ventas'])
+        self.ui.lblVentasValor.setText(f"C$ {ventasValor}")
+        self.ui.lblGastosValor.setText(f"C$ {FormatUtils.format_number(self.resultado['gastos'])}")
+        self.ui.lblIngresosValor.setText(f"C$ {FormatUtils.format_number(self.resultado['ingresos'])}")
+        self.ui.lblUtilidadValor.setText(f"C$ {FormatUtils.format_number(self.resultado['utilidad'])}")
 
         for lbl in (
             self.ui.lblVentasPeriodo,
@@ -81,12 +83,8 @@ class DashboardHome(QWidget):
         ):
             lbl.setText(self.resultado["rango_fecha"])
 
-        self.movements_model.set_data(
-            self.resultado["movimientos_recientes"]
-        )
-        self.sales_model.set_data(
-            self.resultado["ventas_recientes"]
-        )
+        self.movements_model.set_data(self.resultado["movimientos_recientes"])
+        self.sales_model.set_data(self.resultado["ventas_recientes"])
 
     #Metodos para crear la gráfica
     def configurar_grafica(self):

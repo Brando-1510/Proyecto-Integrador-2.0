@@ -1,5 +1,5 @@
 import os
-from PySide6.QtWidgets import QLabel,QMessageBox
+from PySide6.QtWidgets import QLabel,QMessageBox, QWidget
 from app.errors.import_errors import ImportErrorResult
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
@@ -15,7 +15,7 @@ class ExcelErrorsUI:
         ruta_ui = os.path.normpath(
             os.path.join(
                 directorio_actual,
-                "../../../ui/dashboard/qdialog/ExcelCategories.ui",
+                "../../../ui/dashboard/qdialog/ExcelErrors.ui",
             )
         )
         loader = QUiLoader()
@@ -26,8 +26,8 @@ class ExcelErrorsUI:
         self._cargar_fuentes()
         self.llenar_scrollarea()
     def llenar_scrollarea(self):
-        layout_ventas = self.ui.scrollAreaWidgetContents.layout()
-        layout_movimientos = self.ui.scrollAreaWidgetContents_2.layout()
+        layout_ventas = self.ui.findChild(QWidget, "scrollAreaWidgetContents").layout()
+        layout_movimientos = self.ui.findChild(QWidget, "scrollAreaWidgetContents_2").layout()
         if layout_ventas is None or layout_movimientos is None:
             raise RuntimeError("Los contenedores de errores deben tener un layout.")
         self.ui.lblVentas.setVisible(not bool(self.erroresVentas))
