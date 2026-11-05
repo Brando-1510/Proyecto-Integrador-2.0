@@ -23,6 +23,7 @@ class CargarDatos(QWidget):
         self.userBusiness = userBusiness
         self.user = userBusiness.user
         self.business = userBusiness.business
+        self.ultima_ruta = os.path.expanduser("~")
         self.df_movimientos = None
         self.df_ventas = None
         self.selected_file_name = None
