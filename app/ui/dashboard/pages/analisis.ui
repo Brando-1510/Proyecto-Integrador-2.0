@@ -336,7 +336,7 @@ QComboBox QAbstractItemView::item:hover {
     <widget class="QWidget" name="widget" native="true">
      <property name="maximumSize">
       <size>
-       <width>1060</width>
+       <width>16777215</width>
        <height>150</height>
       </size>
      </property>
@@ -491,7 +491,7 @@ qproperty-alignment: AlignCenter;
     <widget class="QFrame" name="frameDistribucion">
      <property name="maximumSize">
       <size>
-       <width>1060</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -528,7 +528,7 @@ qproperty-alignment: AlignCenter;
     <widget class="QFrame" name="frameIngresosGastos">
      <property name="maximumSize">
       <size>
-       <width>1060</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -565,7 +565,7 @@ qproperty-alignment: AlignCenter;
     <widget class="QFrame" name="frameEvolucion">
      <property name="maximumSize">
       <size>
-       <width>1060</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -602,7 +602,7 @@ qproperty-alignment: AlignCenter;
     <widget class="QFrame" name="frame_7">
      <property name="maximumSize">
       <size>
-       <width>1060</width>
+       <width>16777215</width>
        <height>150</height>
       </size>
      </property>
@@ -756,7 +756,7 @@ qproperty-alignment: AlignCenter;
     <widget class="QFrame" name="frame_11">
      <property name="maximumSize">
       <size>
-       <width>1060</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>

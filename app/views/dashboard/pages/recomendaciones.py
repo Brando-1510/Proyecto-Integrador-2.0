@@ -1,6 +1,7 @@
 import os
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QMessageBox, QFrame, QSizePolicy, QHBoxLayout, QLabel, QPushButton, QGridLayout,
+    QLayout
 )
 from PySide6.QtGui import QFontDatabase, QPixmap
 from PySide6.QtUiTools import QUiLoader
@@ -239,13 +240,13 @@ class Recomendaciones(QWidget):
         card.setMaximumWidth(520)
         card.setSizePolicy(
             QSizePolicy.Policy.Preferred,
-            QSizePolicy.Policy.Minimum,
+            QSizePolicy.Policy.MinimumExpanding,
         )
 
         principal = QHBoxLayout(card)
         principal.setContentsMargins(20, 18, 20, 18)
         principal.setSpacing(24)
-
+        principal.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         # Icono de la recomendación.
         layout_icono = QVBoxLayout()
         lbl_icono = QLabel()
@@ -263,6 +264,9 @@ class Recomendaciones(QWidget):
         lbl_titulo = QLabel(recomendacion.get("title", "Recomendación financiera"))
         lbl_titulo.setProperty("texto", "Destacado")
         lbl_titulo.setWordWrap(True)
+        lbl_titulo.setSizePolicy(
+            QSizePolicy.Policy.Preferred,QSizePolicy.Policy.Minimum,
+        )
         layout_descripcion.addWidget(lbl_titulo)
 
         layout_badges = QHBoxLayout()
@@ -275,12 +279,8 @@ class Recomendaciones(QWidget):
         layout_badges.addWidget(lbl_prioridad)
         layout_badges.addStretch()
         layout_descripcion.addLayout(layout_badges)
-
-
-
         lbl_dato = QLabel("Dato observado:")
         lbl_dato.setProperty("texto", "Destacado")
-
         lbl_dato_observado = QLabel(
             recomendacion.get(
                 "observed_text",
@@ -289,7 +289,9 @@ class Recomendaciones(QWidget):
         )
         lbl_dato_observado.setProperty("texto", "Descripcion")
         lbl_dato_observado.setWordWrap(True)
-
+        lbl_dato_observado.setSizePolicy(
+            QSizePolicy.Policy.Preferred,QSizePolicy.Policy.Minimum,
+        )
         layout_descripcion.addWidget(lbl_dato)
         layout_descripcion.addWidget(lbl_dato_observado)
 
@@ -301,7 +303,10 @@ class Recomendaciones(QWidget):
             recomendacion.get("action_text", "Revisa los datos y evalúa las medidas adecuadas.")
         )
         lbl_accion_desc.setWordWrap(True)
-
+        lbl_accion_desc.setSizePolicy(
+            QSizePolicy.Policy.Preferred,
+            QSizePolicy.Policy.Minimum,
+        )
         boton_quitar = QPushButton("Quitar")
         boton_quitar.setProperty("boton", "Secundario")
         boton_quitar.clicked.connect(
@@ -315,7 +320,7 @@ class Recomendaciones(QWidget):
         layout_accion.addWidget(boton_quitar, alignment=Qt.AlignmentFlag.AlignRight)
 
         principal.addLayout(layout_icono)
-        principal.addLayout(layout_descripcion, 3)
+        principal.addLayout(layout_descripcion, 2)
         principal.addLayout(layout_accion, 2)
         return card
 

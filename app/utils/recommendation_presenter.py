@@ -145,61 +145,73 @@ class RecommendationPresenter:
         return str(valor)
 
     def _dato_g01(self, data: dict) -> str:
-        categoria = data["category"]
-        monto = self._monto(data["current_amount"])
-        variacion = self._porcentaje(data["variation_percentage"],incluir_signo=True,)
-        return f"{categoria}: {monto} ({variacion})"
+        return (
+            f'Categoría: \n'
+            f'{data["category"]}\n'
+            f'Monto actual: \n'
+            f'{self._monto(data["current_amount"])}\n'
+            f'Variación: \n'
+            f'{self._porcentaje(data["variation_percentage"], incluir_signo=True)}'
+        )
 
     def _dato_g02(self, data: dict) -> str:
         return (
-            f'Ingresos: {self._monto(data["income"])}\n'
-            f'Gastos: {self._monto(data["expenses"])}\n'
-            f'Diferencia: {self._monto(data["difference"])}'
+            f'Ingresos: \n'
+            f'{self._monto(data["income"])}\n'
+            f'Gastos: \n'
+            f'{self._monto(data["expenses"])}\n'
+            f'Diferencia: \n'
+            f'{self._monto(data["difference"])}'
         )
 
     def _dato_v01(self, data: dict) -> str:
         return (
-            f'Ventas actuales: '
+            f'Ventas actuales: \n'
             f'{self._monto(data["current_sales"])}\n'
-            f'Ventas anteriores: '
+            f'Ventas anteriores: \n'
             f'{self._monto(data["previous_sales"])}\n'
-            f'Variación: '
+            f'Variación: \n'
             f'{self._porcentaje(data["variation_percentage"])}'
         )
 
     def _dato_v02(self, data: dict) -> str:
-        variacion = self._porcentaje(data["variation_percentage"],incluir_signo=True,)
         return (
-            f'{data["product"]}: '
-            f'{self._monto(data["current_amount"])} '
-            f'({variacion})'
+            f'Producto: \n'
+            f'{data["product"]}\n'
+            f'Monto actual: \n'
+            f'{self._monto(data["current_amount"])}\n'
+            f'Variación: \n'
+            f'{self._porcentaje(data["variation_percentage"], incluir_signo=True)}'
         )
 
     def _dato_v04(self, data: dict) -> str:
-        anterior = self._cantidad(data["previous_quantity"])
-        actual = self._cantidad(data["current_quantity"])
         return (
-            f'Producto: {data["product"]}\n'
-            f'Cantidad anterior: {anterior}\n'
-            f'Cantidad actual: {actual}'
+            f'Producto: \n'
+            f'{data["product"]}\n'
+            f'Cantidad anterior: \n'
+            f'{self._cantidad(data["previous_quantity"])}\n'
+            f'Cantidad actual: \n'
+            f'{self._cantidad(data["current_quantity"])}'
         )
 
     def _dato_v06(self, data: dict) -> str:
         return (
-            f'Media diaria: '
+            f'Media diaria: \n'
             f'{self._monto(data["daily_mean"])}\n'
-            f'Coeficiente de variación: '
+            f'Coeficiente de variación: \n'
             f'{self._porcentaje(data["coefficient_variation"])}\n'
-            f'Días con ventas: {data["active_days"]} '
-            f'de {data["total_days"]}'
+            f'Días con ventas: \n'
+            f'{data["active_days"]} de {data["total_days"]}'
         )
 
     def _dato_i04(self, data: dict) -> str:
         return (
-            f'Categoría: {data["category"]}\n'
-            f'Ocurrencias: {data["occurrences"]}\n'
-            f'Importe mediano: '
+            f'Categoría: \n'
+            f'{data["category"]}\n'
+            f'Ocurrencias: \n'
+            f'{data["occurrences"]}\n'
+            f'Importe mediano: \n'
             f'{self._monto(data["median_amount"])}\n'
-            f'Intervalo promedio: '
+            f'Intervalo promedio: \n'
             f'{self._cantidad(data["average_interval_days"])} días'
         )
