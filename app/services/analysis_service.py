@@ -209,7 +209,7 @@ class AnalysisService:
         elif periodo == "Esta Semana":
             start_date, end_date = DateUtils.this_week()
         elif periodo == "Este Mes":
-            start_date, end_date = DateUtils.this_month()
+            start_date, end_date = DateUtils.previous_month()
         elif periodo == "Los Últimos 3 Meses":
             start_date, end_date = DateUtils.last_3_months()
         elif periodo == "Último Año":
