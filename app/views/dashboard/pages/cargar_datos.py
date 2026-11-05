@@ -100,13 +100,16 @@ class CargarDatos(QWidget):
         self.ui.lblEstadoImportacion.hide()
         self.ui.lblPorcentaje.hide()
 
+    #*Parte del QFileDialog
     def select_excel_file(self):
         if self._is_processing():
             return
         file_path, _ = QFileDialog.getOpenFileName(
-            self.ui, "Seleccionar archivo Excel", "", "Archivos de Excel (*.xlsx *.xls);;Todos los archivos (*)"
+            self.ui, "Seleccionar archivo Excel", self.ultima_ruta,
+            "Archivos de Excel (*.xlsx);;Todos los archivos (*)"#Se ocultaran los archivos que no cumplan con esta condicion
         )
         if file_path:
+            self.ultima_ruta = os.path.dirname(file_path)
             self.start_import(file_path)
     def start_import(self, file_path: str):
         if self._is_processing():
@@ -320,6 +323,7 @@ class CargarDatos(QWidget):
             self._toggle_buttons(enabled=True, accept_enabled=False)
         else:
             return
+    #*Retorna True si hay un proceso de importación o guardado en curso, False en caso contrario.
     def _is_processing(self) -> bool:
         return self.thread is not None and self.thread.isRunning()
 

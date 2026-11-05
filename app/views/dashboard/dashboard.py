@@ -294,15 +294,20 @@ class VentanaDashboard(QMainWindow):
     def actualizar_usuario(self, nuevo_usuario):
         if nuevo_usuario:
             self.user = nuevo_usuario
-            self.dashboard_home.actualizar_label(self.user.username)
-            self.informes.actualizar_usuario(self.user)
-            self.email.actualizar_usuario(self.user)
+            if self.dashboard_home is not None:
+                self.dashboard_home.actualizar_label(self.user.username)
+            if self.informes is not None:
+                self.informes.actualizar_usuario(self.user)
+            if self.email is not None:
+                self.email.actualizar_usuario(self.user)
     def actualizar_negocio(self,nuevo_negocio):
         if nuevo_negocio:
             self.business=nuevo_negocio
-            self.informes.actualizar_business(self.business)
+            if self.informes is not None:
+                self.informes.actualizar_business(self.business)
     def actualizar_ui(self):
-        self.email.actualizar_interfaz()
+        if self.email is not None:
+            self.email.actualizar_interfaz()
     def menuBar(self):
         self.ui.actionCambiarNegocio.triggered.connect(
             lambda _checked=False: self.choose_business_requested.emit(self.user)

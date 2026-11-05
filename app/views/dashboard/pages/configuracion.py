@@ -220,7 +220,6 @@ class Configuracion(QWidget):
             QMessageBox.information(self.ui,"Cambios guardados",resultado["message"])
             # Actualizar la referencia del negocio
             self.business = resultado["business"]
-            self._recargar_datos_informacion()
             self._desabilitar_campos()
         else:
             QMessageBox.warning(self.ui,"Error al guardar",resultado["message"])
