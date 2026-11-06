@@ -156,10 +156,6 @@ class RecommendationPresenter:
 
     def _dato_g02(self, data: dict) -> str:
         return (
-            f'Ingresos: \n'
-            f'{self._monto(data["income"])}\n'
-            f'Gastos: \n'
-            f'{self._monto(data["expenses"])}\n'
             f'Diferencia: \n'
             f'{self._monto(data["difference"])}'
         )

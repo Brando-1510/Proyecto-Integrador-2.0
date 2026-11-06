@@ -233,7 +233,7 @@ class Recomendaciones(QWidget):
     def _crear_tarjeta(self, recomendacion):
         card = QFrame()
         card.setProperty("recommendation_id", recomendacion["_ui_id"])
-        card.setObjectName("cardRecomendacion")
+        #card.setObjectName("cardRecomendacion")
         card.setFrameShape(QFrame.Shape.StyledPanel)
         card.setProperty("carta", "Dashboard")
         card.setMinimumWidth(0)
@@ -246,7 +246,7 @@ class Recomendaciones(QWidget):
         principal = QHBoxLayout(card)
         principal.setContentsMargins(20, 18, 20, 18)
         principal.setSpacing(24)
-        principal.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
+        #principal.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         # Icono de la recomendación.
         layout_icono = QVBoxLayout()
         lbl_icono = QLabel()
@@ -265,7 +265,7 @@ class Recomendaciones(QWidget):
         lbl_titulo.setProperty("texto", "Destacado")
         lbl_titulo.setWordWrap(True)
         lbl_titulo.setSizePolicy(
-            QSizePolicy.Policy.Preferred,QSizePolicy.Policy.Minimum,
+            QSizePolicy.Policy.Preferred,QSizePolicy.Policy.Preferred,
         )
         layout_descripcion.addWidget(lbl_titulo)
 
@@ -290,7 +290,7 @@ class Recomendaciones(QWidget):
         lbl_dato_observado.setProperty("texto", "Descripcion")
         lbl_dato_observado.setWordWrap(True)
         lbl_dato_observado.setSizePolicy(
-            QSizePolicy.Policy.Preferred,QSizePolicy.Policy.Minimum,
+            QSizePolicy.Policy.Preferred,QSizePolicy.Policy.Preferred,
         )
         layout_descripcion.addWidget(lbl_dato)
         layout_descripcion.addWidget(lbl_dato_observado)

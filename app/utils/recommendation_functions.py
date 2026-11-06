@@ -125,7 +125,7 @@ class RecommendationFunctions:
                 rule_code="G-02",
                 area=RecommendationFunctions.Area.EXPENSES,
                 priority=RecommendationFunctions.Priority.HIGH,
-                title="Desequilibrio entre ingresos y gastos",
+                title="Desequilibrio",
                 message=(
                     "Los gastos superan significativamente "
                     "los ingresos del período."
