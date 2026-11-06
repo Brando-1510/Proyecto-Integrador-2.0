@@ -162,10 +162,6 @@ class RecommendationPresenter:
 
     def _dato_v01(self, data: dict) -> str:
         return (
-            f'Ventas actuales: \n'
-            f'{self._monto(data["current_sales"])}\n'
-            f'Ventas anteriores: \n'
-            f'{self._monto(data["previous_sales"])}\n'
             f'Variación: \n'
             f'{self._porcentaje(data["variation_percentage"])}'
         )
