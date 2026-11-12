@@ -89,7 +89,7 @@ class AppController:
         self.dashboard_window = VentanaDashboard(
             userBusiness,self.container.home_dashboard_controller,
             self.container.consultation_controller,self.container.analysis_controller,
-            self.container.recommendation_controller,self.container.configuration_controller,
+            self.container.recommendation_service,self.container.configuration_controller,
             self.container.monitoring_controller,self.container.user_controller,
             self.container.report_controller,self.container.email_controller
         )

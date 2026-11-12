@@ -11,11 +11,12 @@ from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from app.models.user_business import Role
 
+from app.controllers.recommendations_controller import RecomendacionesController
 from app.views.dashboard.pages.dashboard_home import DashboardHome
 from app.views.dashboard.pages.cargar_datos import CargarDatos
 from app.views.dashboard.pages.analisis import Analisis
 from app.views.dashboard.pages.movimientos import Movimientos
-from app.views.dashboard.pages.recomendaciones import Recomendaciones
+from app.views.dashboard.pages.recommendations import Recomendaciones
 from app.views.dashboard.pages.informes import Informes
 from app.views.dashboard.pages.configuracion import Configuracion
 from app.views.dashboard.pages.monitoreo import Monitoreo
@@ -50,7 +51,7 @@ class VentanaDashboard(QMainWindow):
 
     def __init__(
         self,userBusiness,home_dashboard_controller,consultation_controler,analysis_controller,
-        recommendation_controller,configuration_controller,monitoring_controller,
+        ai_recommendation_service,configuration_controller,monitoring_controller,
         user_controller,report_controller,email_controller
     ):
         super().__init__()
@@ -61,7 +62,7 @@ class VentanaDashboard(QMainWindow):
         self.home_dashboard_controller = home_dashboard_controller
         self.consultation_controller = consultation_controler
         self.analysis_controller = analysis_controller
-        self.recommendation_controller = recommendation_controller
+        self.ai_recommendation_service = ai_recommendation_service
         self.configuration_controller = configuration_controller
         self.monitoring_controller=monitoring_controller
         self.user_controller=user_controller
@@ -234,7 +235,8 @@ class VentanaDashboard(QMainWindow):
         if not self.tiene_permiso("recomendaciones"):
             return
         if self.recomendaciones is None:
-            self.recomendaciones = Recomendaciones(self.userBusiness,self.recommendation_controller,)
+            self.recomendaciones = Recomendaciones(self.userBusiness)
+            self.recomendaciones_controller = RecomendacionesController(self.recomendaciones,self.ai_recommendation_service)
             self.stackedWidget.addWidget(self.recomendaciones)
         self.cambiar_vista(self.recomendaciones)
 
@@ -287,10 +289,6 @@ class VentanaDashboard(QMainWindow):
         # Actualizar análisis financiero.
         if self.analisis is not None:
             self.analisis.actualizar_interfaz()
-
-        # Actualizar recomendaciones.
-        if self.recomendaciones is not None:
-            self.recomendaciones.actualizar_interfaz()
     def actualizar_usuario(self, nuevo_usuario):
         if nuevo_usuario:
             self.user = nuevo_usuario

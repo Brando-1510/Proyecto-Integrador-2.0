@@ -12,6 +12,7 @@ from app.services.recommendation_service import RecommendationService
 from app.services.configuration_service import ConfigurationService
 from app.services.monitoring_service import MonitoringService
 from app.services.report_service import ReportService
+from app.services.aiRecommendation_service import AIRecommendationService
 
 from app.controllers.user_controller import UserController
 from app.controllers.recovery_controller import RecoveryController
@@ -25,6 +26,7 @@ from app.controllers.configuration_controller import ConfigurationController
 from app.controllers.monitoring_controller import MonitoringController
 from app.controllers.report_controller import ReportController
 from app.controllers.emails_controller import EmailController
+from app.controllers.recommendations_controller import RecomendacionesController
 
 class AppContainer:
     def __init__(self):
@@ -66,8 +68,7 @@ class AppContainer:
         self.analysis_controller = AnalysisController(self.analysis_service)
 
         #*Recommendations
-        self.recommendation_service = RecommendationService()
-        self.recommendation_controller = RecommendationController(self.recommendation_service)
+        self.recommendation_service = AIRecommendationService()
 
         #*Configuration
         self.configuration_service = ConfigurationService()

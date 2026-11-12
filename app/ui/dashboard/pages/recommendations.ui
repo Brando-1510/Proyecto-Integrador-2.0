@@ -14,7 +14,17 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QFrame[carta=&quot;Dashboard&quot;] {
+   <string notr="true">QTextBrowser {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    font-size: 14px;
+    color: #0E042F;
+    selection-background-color: #46315c; /* Opcional: color de resaltado al seleccionar texto */
+    selection-color: #ffffff;
+}
+QFrame[carta=&quot;Dashboard&quot;] {
     background-color: #FFFFFF;
     border: 1px solid #E4E0EA;
     border-radius: 12px;
@@ -102,6 +112,16 @@ QPushButton[boton=&quot;Secundario&quot;]:hover {
 
 QPushButton[boton=&quot;Secundario&quot;]:pressed {
     background-color: rgba(131, 117, 174, 0.9);
+}
+QPushButton[boton=&quot;Secundario&quot;]:disabled {
+    /* Mantiene el fondo pero con una opacidad muy baja (más transparente) */
+    background-color: rgba(161, 147, 204, 0.25); 
+    
+    /* Un color morado grisáceo y apagado */
+    color: #9C8EB9; 
+    
+    /* Opcional: elimina cualquier borde si lo hubiera, o asegura que se vea plano */
+    border: none; 
 }
 /* --- ESTILO DEL QCOMBOBOX --- */
 /* --- ESTADO BASE --- */
@@ -288,163 +308,43 @@ QComboBox QAbstractItemView::item:hover {
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget" native="true">
-     <property name="styleSheet">
-      <string notr="true">QLabel {
-    qproperty-alignment: 'AlignCenter';
-}
-</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+    <widget class="QWidget" name="widget_2" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QFrame" name="carta_prioridad">
-        <property name="styleSheet">
-         <string notr="true">#carta_prioridad {
-    background-color: #FFF2F2; /* Fondo rojo muy claro */
-    border: 1px solid #FFE3E3;  /* Borde sutil */
-    border-radius: 12px;        /* Bordes redondeados */
-}
-</string>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="generarAnalisis">
+        <property name="text">
+         <string>Generar Análisis IA</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Prioridad Alta</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Destacado</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="cantidadPrioridad">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Valor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Requieren atención</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Descripcion</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <property name="boton" stdset="0">
+         <string>Secundario</string>
+        </property>
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="carta_oportunidades">
-        <property name="styleSheet">
-         <string notr="true">#carta_oportunidades {
-    background-color: #FFFDF0; /* Fondo amarillo claro */
-    border: 1px solid #FFF7C2;  /* Borde sutil */
-    border-radius: 12px;        /* Bordes redondeados */
-}
-</string>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Oportunidades</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Destacado</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="cantidadOportunidades">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Valor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Aspectos a potenciar</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Descripcion</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="carta_informativa">
-        <property name="styleSheet">
-         <string notr="true">#carta_informativa {
-    background-color: #F4F8FF; /* Fondo azul claro */
-    border: 1px solid #E1EDFF;  /* Borde sutil */
-    border-radius: 12px;        /* Bordes redondeados */
-}
-</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <item>
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Informativas</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Destacado</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="cantidadInformativas">
-           <property name="text">
-            <string>1</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Valor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Comportamientos detectados</string>
-           </property>
-           <property name="texto" stdset="0">
-            <string>Descripcion</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -541,7 +441,9 @@ QLabel[badge=&quot;categoria&quot;] {
 QScrollArea#scrollAreaTodos,
 QScrollArea#scrollAreaVentas,
 QScrollArea#scrollAreaGastos,
-QScrollArea#scrollAreaIngresos {
+QScrollArea#scrollAreaIngresos,
+QScrollArea#scrollAreaAgente,
+QScrollArea {
     background-color: #F7F7F7;
     border: none;
 }
@@ -550,7 +452,8 @@ QScrollArea#scrollAreaIngresos {
 QWidget#scrollAreaWidgetContentsTodos,
 QWidget#scrollAreaWidgetContentsVentas,
 QWidget#scrollAreaWidgetContentsGastos,
-QWidget#scrollAreaWidgetContentsIngresos {
+QWidget#scrollAreaWidgetContentsIngresos,
+QWidget#scrollAreaWidgetContentsAgentes {
     background-color: #F7F7F7;
     border: none;
 }
@@ -599,11 +502,11 @@ QScrollBar:horizontal {
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="TodasTab">
       <attribute name="title">
-       <string>Todas</string>
+       <string>General</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <property name="leftMargin">
@@ -629,17 +532,22 @@ QScrollBar:horizontal {
             <x>0</x>
             <y>0</y>
             <width>1055</width>
-            <height>377</height>
+            <height>408</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
-            <widget class="QLabel" name="lblTodas">
+            <widget class="QTextBrowser" name="lblTodas">
              <property name="styleSheet">
-              <string notr="true">qproperty-alignment: AlignCenter;</string>
+              <string notr="true"/>
              </property>
-             <property name="text">
-              <string>No hay recomendaciones para mostrar</string>
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:15px;&quot;&gt;Generando las recomendaciones a partir del análisis IA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -654,18 +562,6 @@ QScrollBar:horizontal {
        <string>Ventas</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
        <item>
         <widget class="QScrollArea" name="scrollAreaVentas">
          <property name="widgetResizable">
@@ -676,18 +572,20 @@ QScrollBar:horizontal {
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1055</width>
-            <height>377</height>
+            <width>1037</width>
+            <height>390</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_8">
+          <layout class="QVBoxLayout" name="verticalLayout_9">
            <item>
-            <widget class="QLabel" name="lblVentas">
-             <property name="styleSheet">
-              <string notr="true">qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>No hay recomendaciones para mostrar</string>
+            <widget class="QTextBrowser" name="lblVentas">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:15px;&quot;&gt;Generando las recomendaciones a partir del análisis IA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -725,17 +623,19 @@ QScrollBar:horizontal {
             <x>0</x>
             <y>0</y>
             <width>1055</width>
-            <height>377</height>
+            <height>408</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_9">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
-            <widget class="QLabel" name="lblGasto">
-             <property name="styleSheet">
-              <string notr="true">qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>No hay recomendaciones para mostrar</string>
+            <widget class="QTextBrowser" name="lblGasto">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:15px;&quot;&gt;Generando las recomendaciones a partir del análisis IA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -749,19 +649,7 @@ QScrollBar:horizontal {
       <attribute name="title">
        <string>Ingresos</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_11">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
         <widget class="QScrollArea" name="scrollAreaIngresos">
          <property name="widgetResizable">
@@ -772,18 +660,20 @@ QScrollBar:horizontal {
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1055</width>
-            <height>377</height>
+            <width>1037</width>
+            <height>390</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12">
            <item>
-            <widget class="QLabel" name="lblIngreso">
-             <property name="styleSheet">
-              <string notr="true">qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>No hay recomendaciones para mostrar</string>
+            <widget class="QTextBrowser" name="lblIngreso">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:15px;&quot;&gt;Generando las recomendaciones a partir del análisis IA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -793,6 +683,77 @@ QScrollBar:horizontal {
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="AgenteTab">
+      <attribute name="title">
+       <string>Asistente IA</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="placeholderText">
+             <string>Realiza una pregunta</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>Realizar</string>
+            </property>
+            <property name="boton" stdset="0">
+             <string>Secundario</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="scrollAreaAgente">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContentsAgentes">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1037</width>
+            <height>326</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QTextBrowser" name="lblAgente">
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:15px;&quot;&gt;Generando las recomendaciones a partir del análisis IA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">qproperty-alignment: 'AlignHCenter | AlignVCenter';</string>
+     </property>
+     <property name="text">
+      <string>La IA puede cometer errores. Verifica la información financiera importante.</string>
+     </property>
     </widget>
    </item>
   </layout>
