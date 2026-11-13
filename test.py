@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 
 from app.ai.ai_provider import (
-    GeminiProvider,
+    AIProvider,
     AIProviderError,
     AITimeoutError,
     AIConnectionError,
@@ -16,14 +16,14 @@ def main():
     provider = None
 
     try:
-        provider = GeminiProvider()
+        provider = AIProvider()
 
         response = provider.generate(
             "Explica brevemente la importancia "
             "de controlar los gastos de un negocio."
         )
 
-        print("\nRespuesta de Gemini:\n")
+        print("\nRespuesta de AIProvider:\n")
         print(response)
 
     except AITimeoutError as error:

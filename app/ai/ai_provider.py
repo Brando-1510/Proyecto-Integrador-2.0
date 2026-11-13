@@ -20,7 +20,7 @@ class AIConnectionError(AIProviderError):
 class AIRateLimitError(AIProviderError):
     """Se excedió el límite de solicitudes permitido."""
 
-class GeminiProvider:
+class AIProvider:
     def __init__(self):
         if not settings.GEMINI_API_KEY:
             raise AIProviderError("No se ha configurado GEMINI_API_KEY.")
@@ -70,8 +70,8 @@ class GeminiProvider:
         except Exception as error:
             error_name = type(error).__name__.lower()
             if "timeout" in error_name or isinstance(error, TimeoutError):
-                logger.warning("Tiempo de espera agotado en Gemini.")
-                raise AITimeoutError("Gemini tardó demasiado en responder.") from error
+                logger.warning("Tiempo de espera agotado en AIProvider.")
+                raise AITimeoutError("AIProvider tardó demasiado en responder.") from error
             if (
                 "connect" in error_name
                 or "connection" in error_name
@@ -79,7 +79,7 @@ class GeminiProvider:
             ):
                 logger.warning("Error de conexión con Gemini.")
                 raise AIConnectionError("No se pudo establecer conexión con Gemini.") from error
-            logger.exception("Error inesperado en GeminiProvider.")
+            logger.exception("Error inesperado en AIProvider.")
             raise AIProviderError("Ocurrió un error al generar el análisis financiero.") from error
     @staticmethod
     def _handle_api_error(error: APIError):

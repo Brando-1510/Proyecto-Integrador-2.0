@@ -1,7 +1,7 @@
 import logging
 from PySide6.QtCore import QThread, Signal
 from app.services.aiRecommendation_service import AIRecommendationService
-from app.ai.ai_provider import GeminiProvider, AIProviderError
+from app.ai.ai_provider import AIProvider, AIProviderError
 logger = logging.getLogger(__name__)
 
 class AIWorker(QThread):
@@ -19,7 +19,7 @@ class AIWorker(QThread):
         provider = None
         try:
             prompt = self._prepare_prompt()
-            provider = GeminiProvider()
+            provider = AIProvider()
             response = provider.generate(prompt)
             self.result_ready.emit(response)
         except AIProviderError as error:
@@ -37,7 +37,7 @@ class AIWorker(QThread):
                     provider.close()
                 except Exception:
                     logger.exception(
-                        "No se pudo cerrar el cliente de Gemini."
+                        "No se pudo cerrar el cliente de AIProvider."
                     )
 
     def _prepare_prompt(self) -> str:
