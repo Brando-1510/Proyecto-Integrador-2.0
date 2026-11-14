@@ -16,3 +16,6 @@ GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 GEMINI_TEMPERATURE = float(os.getenv("GEMINI_TEMPERATURE", "0.3"))
 GEMINI_MAX_OUTPUT_TOKENS = int(os.getenv("GEMINI_MAX_OUTPUT_TOKENS", "2048"))
 GEMINI_TIMEOUT = int(os.getenv("GEMINI_TIMEOUT", "60000"))
+
+# Redis
+REDIS_URL = os.getenv("REDIS_URL")
