@@ -502,7 +502,7 @@ QScrollBar:horizontal {
 </string>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="TodasTab">
       <attribute name="title">
@@ -572,8 +572,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1037</width>
-            <height>390</height>
+            <width>74</width>
+            <height>77</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -622,8 +622,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1055</width>
-            <height>408</height>
+            <width>92</width>
+            <height>77</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -660,8 +660,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1037</width>
-            <height>390</height>
+            <width>74</width>
+            <height>77</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12">

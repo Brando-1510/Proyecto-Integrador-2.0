@@ -63,7 +63,7 @@ class Recomendaciones(QWidget):
             self._ocupado = ocupado
         es_asistente = self.ui.tabWidget.currentIndex() == 4
         self.ui.generarAnalisis.setEnabled(not self._ocupado and not es_asistente)
-        self.ui.pushButton.setEnabled(not self._ocupado and es_asistente)
+        self.ui.pushButton.setEnabled(not self._ocupado)
     def enviar_datos(self):
         tab_index = self.ui.tabWidget.currentIndex()
         business_id = self.business.business_id
