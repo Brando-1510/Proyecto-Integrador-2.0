@@ -45,6 +45,7 @@ PySide6_Addons==6.11.1
 PySide6_Essentials==6.11.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.3
+redis==8.1.0
 requests==2.34.2
 shiboken6==6.11.1
 six==1.17.0

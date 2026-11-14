@@ -2,7 +2,7 @@ import logging
 from google import genai
 from google.genai import types
 from google.genai.errors import APIError
-from app.config import settings
+from app.config.settings import GEMINI_API_KEY, GEMINI_MODEL, GEMINI_TEMPERATURE, GEMINI_MAX_OUTPUT_TOKENS, GEMINI_TIMEOUT
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 if not logger.handlers:
@@ -22,17 +22,17 @@ class AIRateLimitError(AIProviderError):
 
 class AIProvider:
     def __init__(self):
-        if not settings.GEMINI_API_KEY:
+        if not GEMINI_API_KEY:
             raise AIProviderError("No se ha configurado GEMINI_API_KEY.")
-        self.model = settings.GEMINI_MODEL
-        self.temperature = settings.GEMINI_TEMPERATURE
-        self.max_output_tokens = settings.GEMINI_MAX_OUTPUT_TOKENS
-        if settings.GEMINI_TIMEOUT <= 0:
+        self.model = GEMINI_MODEL
+        self.temperature = GEMINI_TEMPERATURE
+        self.max_output_tokens = GEMINI_MAX_OUTPUT_TOKENS
+        if GEMINI_TIMEOUT <= 0:
             raise ValueError("El timeout debe ser mayor que cero.")
         self.client = genai.Client(
-            api_key=settings.GEMINI_API_KEY,
+            api_key=GEMINI_API_KEY,
             http_options=types.HttpOptions(
-                timeout=settings.GEMINI_TIMEOUT,
+                timeout=GEMINI_TIMEOUT,
                 retry_options=types.HttpRetryOptions(
                     attempts=3,initial_delay=1.0,max_delay=5.0,exp_base=2.0,jitter=1.0,http_status_codes=[408, 429, 500, 502, 503, 504]
                 )
