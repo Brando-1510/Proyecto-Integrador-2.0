@@ -8,10 +8,12 @@ from app.utils.category_utils import normalize_category_name
 from app.errors.import_errors import CategoryNotFoundError
 
 class TransactionImportService:
-    def __init__(self,import_service,category_service,session_factory=SessionLocal,):
+    def __init__(self,import_service,category_service,redis_service,session_factory=SessionLocal,):
         self.session_factory = session_factory
         self.import_service = import_service
         self.category_service = category_service
+        self.redis_service = redis_service
+
     def save_import_data(
         self,user_id: int,business_id: int,file_path: str,file_name: str,df_sales: DataFrame | None,
         df_movements: DataFrame | None,categories_to_create: list[str] | None = None,
@@ -57,11 +59,13 @@ class TransactionImportService:
                 user_id=user_id,
                 movement_repository=movement_repository,
             )
-            return {
+            resultado= {
                 "import_id": import_created.import_id,
                 "file_name": import_created.file_name,
                 "business_id": import_created.business_id,
             }
+        self.redis_service.invalidate_business(business_id)
+        return resultado
 
     def _get_sales_category_map(
         self,df_sales: DataFrame | None,business_id: int,session,

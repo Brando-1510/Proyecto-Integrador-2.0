@@ -5,6 +5,11 @@ import redis
 from redis.exceptions import RedisError
 from app.config.settings import REDIS_URL
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(levelname)s - %(message)s"))
+    logger.addHandler(handler)
 
 class RedisCacheService:
     TTL_SECONDS = 86400
@@ -14,6 +19,27 @@ class RedisCacheService:
         "Ingresos",
         "Gastos"
     )
+    SAVE_IF_VERSION_MATCHES = """
+        local current_version = redis.call('GET', KEYS[1])
+        if current_version ~= ARGV[1] then
+            return 0
+        end
+        redis.call(
+            'SET',
+            KEYS[2],
+            ARGV[2],
+            'EX',
+            ARGV[3]
+        )
+        return 1
+    """
+    GET_IF_VERSION_MATCHES = """
+        local current_version = redis.call('GET', KEYS[1])
+        if current_version ~= ARGV[1] then
+            return nil
+        end
+        return redis.call('GET', KEYS[2])
+    """
     def __init__(self):
         self.client = None
         if not REDIS_URL:
@@ -81,17 +107,28 @@ class RedisCacheService:
         if self.client is None:
             return None
         try:
-            key = self._build_analysis_key(business_id,version,analysis_type,start_date,end_date)
-            cached_data = self.client.get(key)
+            version_key = f"finanzen:ai:version:{business_id}"
+            analysis_key = self._build_analysis_key(
+                business_id,
+                version,
+                analysis_type,
+                start_date,
+                end_date
+            )
+            cached_data = self.client.eval(
+                self.GET_IF_VERSION_MATCHES,
+                2,
+                version_key,
+                analysis_key,
+                str(version)
+            )
             if cached_data is None:
                 return None
             response = json.loads(cached_data)
             if not isinstance(response, str):
-                logger.warning(
-                    "La respuesta almacenada tiene un formato inválido: %s",key
-                )
+                logger.warning("La respuesta almacenada tiene un formato inválido: %s",analysis_key)
                 return None
-            logger.info("Análisis recuperado desde Redis: %s", key)
+            logger.info("Análisis recuperado desde Redis: %s", analysis_key)
             return response
         except (RedisError, ValueError, TypeError):
             logger.exception("No se pudo recuperar el análisis desde Redis.")
@@ -99,24 +136,40 @@ class RedisCacheService:
 
     #*Almacenar un análisis durante 24 horas
     def set_analysis(
-        self,business_id: int,version: int,analysis_type: str,start_date: date,end_date: date,response: str
+        self,business_id: int,version: int,analysis_type: str,start_date: date,end_date: date,
+        response: str
     ) -> bool:
         if self.client is None:
             return False
         if not isinstance(response, str) or not response.strip():
             return False
         try:
-            key = self._build_analysis_key(business_id,version,analysis_type,start_date,end_date)
-            serialized_data = json.dumps(response,ensure_ascii=False)
-            self.client.set(
-                key,serialized_data,ex=self.TTL_SECONDS
+            version_key = f"finanzen:ai:version:{business_id}"
+            analysis_key = self._build_analysis_key(
+                business_id,
+                version,
+                analysis_type,
+                start_date,
+                end_date
             )
-            logger.info("Análisis almacenado en Redis: %s", key)
-            return True
+            serialized_data = json.dumps(response,ensure_ascii=False)
+            result = self.client.eval(
+                self.SAVE_IF_VERSION_MATCHES,
+                2,
+                version_key,
+                analysis_key,
+                str(version),
+                serialized_data,
+                self.TTL_SECONDS
+            )
+            if result == 1:
+                logger.info("Análisis almacenado en Redis: %s", analysis_key)
+                return True
+            logger.info("No se almacenó el análisis porque la versión cambió. Negocio: %s",business_id)
+            return False
         except (RedisError, ValueError, TypeError):
             logger.exception("No se pudo almacenar el análisis en Redis.")
             return False
-
     #*Cerrar conexión Redis
     def close(self):
         if self.client is None:

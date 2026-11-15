@@ -13,5 +13,6 @@ if __name__ == "__main__":
     container = AppContainer()
     app_controller = AppController(container)
     app_controller.start()
+    app.aboutToQuit.connect(container.close)
     exit_code = app.exec()
     sys.exit(exit_code)

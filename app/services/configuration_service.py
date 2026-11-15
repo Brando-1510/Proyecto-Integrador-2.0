@@ -4,7 +4,8 @@ from app.models.user_business import Role
 from app.repositories.configuration_repository import ConfigurationRepository
 
 class ConfigurationService:
-    def __init__(self, session_factory=SessionLocal):
+    def __init__(self, redis_service, session_factory=SessionLocal):
+        self.redis_service = redis_service
         self.session_factory = session_factory
     #Configuracion del negocio
     def save_business_changes(
@@ -157,6 +158,7 @@ class ConfigurationService:
                 resultado = repository.delete_import(datos["business_id"],datos["import_id"],)
                 if resultado:
                     session.commit()
+                    self.redis_service.invalidate_business(datos["business_id"])
                 else:
                     session.rollback()
                 return resultado
