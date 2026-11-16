@@ -52,7 +52,7 @@ class VentanaDashboard(QMainWindow):
     def __init__(
         self,userBusiness,home_dashboard_controller,consultation_controler,analysis_controller,
         ai_recommendation_service,configuration_controller,monitoring_controller,
-        user_controller,report_controller,email_controller
+        user_controller,report_controller,email_controller,redis_service,
     ):
         super().__init__()
         self.user = userBusiness.user
@@ -68,6 +68,7 @@ class VentanaDashboard(QMainWindow):
         self.user_controller=user_controller
         self.report_controller=report_controller
         self.email_controller=email_controller
+        self.redis_service = redis_service
 
         self.dialog_open=False
 
@@ -209,7 +210,7 @@ class VentanaDashboard(QMainWindow):
         if not self.tiene_permiso("cargar_datos"):
             return
         if self.cargar_datos is None:
-            self.cargar_datos = CargarDatos(self.userBusiness)
+            self.cargar_datos = CargarDatos(self.userBusiness,self.redis_service)
             self.cargar_datos.importacion_exitosa.connect(self._actualizar_datos_tras_importacion)
             self.stackedWidget.addWidget(self.cargar_datos)
         self.cambiar_vista(self.cargar_datos)

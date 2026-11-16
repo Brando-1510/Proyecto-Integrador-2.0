@@ -334,6 +334,16 @@ QComboBox QAbstractItemView::item:hover {
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="cancelar">
+        <property name="text">
+         <string>Cancelar Análisis</string>
+        </property>
+        <property name="boton" stdset="0">
+         <string>Secundario</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -572,8 +582,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>74</width>
-            <height>77</height>
+            <width>1037</width>
+            <height>390</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -622,8 +632,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>92</width>
-            <height>77</height>
+            <width>1055</width>
+            <height>408</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -660,8 +670,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>74</width>
-            <height>77</height>
+            <width>1037</width>
+            <height>390</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12">

@@ -38,11 +38,11 @@ class Recomendaciones(QWidget):
         layout_principal.addWidget(self.ui)
         self.ui.tabWidget.currentChanged.connect(self.al_cambiar_pestaña)
         self._cargar_fuentes()
+        self.ui.cancelar.hide()
         self._ocupado = False
         self.ui.generarAnalisis.clicked.connect(self.enviar_datos)
         self.ui.pushButton.clicked.connect(self.enviar_datos)
         self.actualizar_estado_botones()
-
 
     # Configuración inicial
     def _cargar_fuentes(self):
