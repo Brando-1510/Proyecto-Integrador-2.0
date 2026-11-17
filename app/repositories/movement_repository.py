@@ -21,7 +21,7 @@ class MovementRepository:
             .where(
                 Movement.business_id==business_id,
                 Movement.date.between(start_date,end_date),
-                Movement.type=="Ingreso"
+                Movement.type == MovementType.INCOME
             )
         )
         total_income=self.session.scalar(stmt)
@@ -33,7 +33,7 @@ class MovementRepository:
             .where(
                 Movement.business_id==business_id,
                 Movement.date.between(start_date,end_date),
-                Movement.type=="Gasto"
+                Movement.type == MovementType.EXPENSE
             )
         )
         total_expenses=self.session.scalar(stmt)
@@ -76,7 +76,6 @@ class MovementRepository:
             .order_by(func.sum(Movement.amount).desc())
         )
         return self.session.execute(stmt).all()
-
 
     def get_movement_evolution(self,business_id: int,start_date: date,end_date: date,
     ):

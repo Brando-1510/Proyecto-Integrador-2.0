@@ -80,11 +80,11 @@
                 </table>
             </div>
             <!-- Gráfica de distribución -->
-            <div class="gastos-grafica gastos-grafica-pastel">
+            <div class="gastos-grafica gastos-grafica-barras">
                 {% if grafica_categorias_gastos %}
                     <img
                         src="{{ grafica_categorias_gastos }}"
-                        alt="Distribución porcentual de gastos por categoría"
+                        alt="Montos de gastos por categoría"
                     >
                 {% else %}
                     <p class="grafica-vacia">
@@ -218,7 +218,7 @@
         min-width: 0;
     }
     /* Gráfica debajo de la tabla */
-    .gastos-grafica-pastel {
+    .gastos-grafica-barras {
         width: 100%;
         height: 190pt;
         min-width: 0;

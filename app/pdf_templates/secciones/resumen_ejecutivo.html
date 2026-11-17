@@ -1,0 +1,23 @@
+<section class="report-section executive-summary page-break">
+    <p class="eyebrow">FINANZEN / VISIÓN GENERAL</p>
+    <h2 class="section-title">Resumen ejecutivo</h2>
+    <p>Principales indicadores del período <strong>{{ periodo_inicio }} — {{ periodo_fin }}</strong>.</p>
+    <div class="executive-metrics">
+        <div class="summary-metric"><span>Ingresos registrados</span><strong>{{ resumen.ingresos }}</strong></div>
+        <div class="summary-metric"><span>Gastos registrados</span><strong>{{ resumen.gastos }}</strong></div>
+        <div class="summary-metric"><span>Saldo de movimientos</span><strong>{{ resumen.saldo_movimientos }}</strong></div>
+        <div class="summary-metric"><span>Ventas registradas</span><strong>{{ resumen.ventas }}</strong></div>
+    </div>
+    <div class="highlight">
+        <strong>{{ resumen.ventas_realizadas }}</strong> ventas registradas durante el período.
+        <p class="text-muted small-note">Las ventas y los ingresos por movimientos son fuentes distintas.
+        No se suman automáticamente para calcular ingresos totales ni se interpreta el saldo de
+        movimientos como utilidad contable.</p>
+    </div>
+    <h3>Lectura rápida</h3>
+    <ul class="finding-list">
+        {% for insight in hallazgos[:3] %}
+            <li>{{ insight }}</li>
+        {% endfor %}
+    </ul>
+</section>

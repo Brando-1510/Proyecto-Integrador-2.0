@@ -18,7 +18,7 @@ from app.core.screen_utils import calcular_tamano_pantalla
 class CargarDatos(QWidget):
     importacion_exitosa = Signal()
     altura_cambiada = Signal(int)
-    def __init__(self, userBusiness, parent=None):
+    def __init__(self, userBusiness,redis_service, parent=None):
         super().__init__(parent)
         self.userBusiness = userBusiness
         self.user = userBusiness.user
@@ -31,6 +31,7 @@ class CargarDatos(QWidget):
         self.pending_file_name = None
         self.pending_file_path = None
         self.thread = None
+        self.redis_service = redis_service
         self.worker = None
         self._categories_to_create_pending = None
         self._categories_dialog_open = False
@@ -161,6 +162,7 @@ class CargarDatos(QWidget):
             df_sales=self.df_ventas,
             df_movements=self.df_movimientos,
             categories_to_create=categories_to_create,
+            redis_service=self.redis_service,
         )
         self.worker.moveToThread(self.thread)
         self.thread.started.connect(self.worker.run)

@@ -14,7 +14,7 @@ class ExcelSaveWorker(QObject):
     message = Signal(str)
     def __init__(
         self,user_id: int,business_id: int,file_path: str,file_name: str,df_sales,
-        df_movements,categories_to_create: list[str] | None = None,
+        df_movements,redis_service,categories_to_create: list[str] | None = None,
     ):
         super().__init__()
         self.user_id = user_id
@@ -28,7 +28,7 @@ class ExcelSaveWorker(QObject):
         self.category_service = CategoryService(session_factory=SessionLocal)
         self.transaction_service = TransactionImportService(
             import_service=self.import_service,category_service=self.category_service,
-            session_factory=SessionLocal,
+            redis_service=redis_service,session_factory=SessionLocal,
         )
     @Slot()
     def run(self):

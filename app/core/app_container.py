@@ -8,10 +8,11 @@ from app.services.transaction_import_service import TransactionImportService
 from app.services.home_dashboard_service import HomeDashboardService
 from app.services.consultation_service import ConsultationService
 from app.services.analysis_service import AnalysisService
-from app.services.recommendation_service import RecommendationService
 from app.services.configuration_service import ConfigurationService
 from app.services.monitoring_service import MonitoringService
 from app.services.report_service import ReportService
+from app.services.aiRecommendation_service import AIRecommendationService
+from app.services.redisCacheService import RedisCacheService
 
 from app.controllers.user_controller import UserController
 from app.controllers.recovery_controller import RecoveryController
@@ -20,7 +21,6 @@ from app.controllers.business_controller import BusinessController
 from app.controllers.home_dashboard_controller import HomeDashboardController
 from app.controllers.consultation_controller import ConsultationController
 from app.controllers.analysis_controller import AnalysisController
-from app.controllers.recommendation_controller import RecommendationController
 from app.controllers.configuration_controller import ConfigurationController
 from app.controllers.monitoring_controller import MonitoringController
 from app.controllers.report_controller import ReportController
@@ -28,6 +28,9 @@ from app.controllers.emails_controller import EmailController
 
 class AppContainer:
     def __init__(self):
+        #*Redis Cache
+        self.redis_cache_service = RedisCacheService()
+
         #*UserBusiness
         self.userBusiness_service = UserBusinessService()
         self.userBusiness_controller = ChooseBusinessController(self.userBusiness_service)
@@ -51,6 +54,7 @@ class AppContainer:
 
         self.transaction_import_service = TransactionImportService(
             import_service=self.import_service,category_service=self.category_service,
+            redis_service=self.redis_cache_service,
         )
 
         #*Home Dashboard
@@ -66,11 +70,10 @@ class AppContainer:
         self.analysis_controller = AnalysisController(self.analysis_service)
 
         #*Recommendations
-        self.recommendation_service = RecommendationService()
-        self.recommendation_controller = RecommendationController(self.recommendation_service)
+        self.recommendation_service = AIRecommendationService(cache_service=self.redis_cache_service)
 
         #*Configuration
-        self.configuration_service = ConfigurationService()
+        self.configuration_service = ConfigurationService(redis_service=self.redis_cache_service)
         self.configuration_controller = ConfigurationController(self.configuration_service)
 
         #*Monitoring
@@ -80,3 +83,7 @@ class AppContainer:
         #*Reportes
         self.report_service=ReportService()
         self.report_controller=ReportController(self.report_service)
+
+    def close(self):
+        self.report_controller.shutdown()
+        self.redis_cache_service.close()

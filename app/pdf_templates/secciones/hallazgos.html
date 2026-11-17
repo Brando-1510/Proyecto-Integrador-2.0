@@ -1,0 +1,11 @@
+<section class="report-section findings-section">
+    <h2 class="section-title">Hallazgos principales</h2>
+    <p class="text-muted">Observaciones automáticas elaboradas a partir de los registros financieros disponibles.</p>
+    <ol class="finding-list">
+        {% for item in hallazgos %}
+            <li>{{ item }}</li>
+        {% else %}
+            <li>Sin hallazgos para el período seleccionado.</li>
+        {% endfor %}
+    </ol>
+</section>

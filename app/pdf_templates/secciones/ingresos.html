@@ -76,11 +76,11 @@
                 </table>
             </div>
             <!-- Gráfica debajo de la tabla -->
-            <div class="ingresos-grafica ingresos-grafica-pastel">
+            <div class="ingresos-grafica ingresos-grafica-barras">
                 {% if grafica_categorias_ingresos %}
                     <img
                         src="{{ grafica_categorias_ingresos }}"
-                        alt="Distribución de ingresos por categoría"
+                        alt="Montos de ingresos por categoría"
                     >
                 {% else %}
                     <p class="grafica-vacia">
@@ -214,7 +214,7 @@
         width: 100%;
         min-width: 0;
     }
-    .ingresos-grafica-pastel {
+    .ingresos-grafica-barras {
         width: 100%;
         height: 190pt;
         min-width: 0;

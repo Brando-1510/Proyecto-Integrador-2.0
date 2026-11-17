@@ -73,6 +73,7 @@ class SaleRepository:
             .where(
                 Sale.business_id == business_id,
                 Sale.date.between(start_date, end_date),
+                Category.business_id == business_id,
             )
             .group_by(Category.category_id, Category.name)
             .order_by(func.sum(Sale.total).desc())
@@ -80,12 +81,12 @@ class SaleRepository:
         result=self.session.execute(stmt).all()
         return result
 
-    def get_sales_by_product(self,business_id: int,start_date: date,end_date: date,):
+    def get_sales_by_product(
+        self, business_id: int, start_date: date, end_date: date,
+        limit: int | None = None,
+    ):
         stmt = (
-            select(
-                Sale.product_service,
-                func.sum(Sale.total).label("total"),
-            )
+            select(Sale.product_service, func.sum(Sale.total).label("total"))
             .where(
                 Sale.business_id == business_id,
                 Sale.date.between(start_date, end_date),
@@ -93,6 +94,10 @@ class SaleRepository:
             .group_by(Sale.product_service)
             .order_by(func.sum(Sale.total).desc())
         )
+        if limit is not None:
+            if limit < 1:
+                raise ValueError("El límite debe ser positivo.")
+            stmt = stmt.limit(limit)
         return self.session.execute(stmt).all()
 
     def get_sales_count(self,business_id: int,start_date: date,end_date: date,):
