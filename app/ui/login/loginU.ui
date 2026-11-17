@@ -191,6 +191,65 @@ Panel de recuperación
 QStackedWidget {
     background-color: #F4F5F7;
     border-radius: 20px;
+}
+
+/*
+-----------------------------------------------------------------------------------------------------
+CheckBox
+-----------------------------------------------------------------------------------------------------
+*/
+
+QCheckBox {
+    spacing: 8px; /* Espacio entre la cajita y el texto */
+    font-size: 14px;
+    color: #0E042F;
+}
+
+/* --- ESTADO BASE (CAJITA) --- */
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    background-color: #F8F9FA;
+    border: 2px solid #D1D5DB;
+    border-radius: 4px;
+}
+
+/* --- HOVER --- */
+
+QCheckBox::indicator:hover {
+    border: 2px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CHECKED (SELECCIONADO) --- */
+
+QCheckBox::indicator:checked {
+    background-color: #5D38BB;
+    border: 2px solid #5D38BB;
+     image: url(:/icons/checkIcon.svg); 
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #744BCC;
+    border: 2px solid #744BCC;
+}
+
+/* --- FOCUS --- */
+
+QCheckBox:focus {
+    color: #5D38BB;
+}
+
+/* --- DISABLED --- */
+
+QCheckBox:disabled {
+    color: #9CA3AF;
+}
+
+QCheckBox::indicator:disabled {
+    background-color: #E5E7EB;
+    border: 2px solid #D1D5DB;
 }</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -474,6 +533,13 @@ border-radius: 20px;</string>
              </spacer>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxRecordar">
+            <property name="text">
+             <string>Recordar Mi Contraseña</string>
+            </property>
+           </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="createAccountLayout">
