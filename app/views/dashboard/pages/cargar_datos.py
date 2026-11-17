@@ -146,7 +146,7 @@ class CargarDatos(QWidget):
         if respuesta != QMessageBox.StandardButton.Yes:
             return
         self._start_save_worker()
-
+# una parte de hilos
     def _start_save_worker(self,categories_to_create: list[str] | None = None,):
         if self._is_processing():
             return
