@@ -1,24 +1,24 @@
-
 {% extends "base_reporte.html" %}
 
-{% block titulo %}
-    Reporte financiero - {{ negocio }}
-{% endblock %}
+{% block titulo %}{{ titulo_reporte }} — {{ negocio }}{% endblock %}
 
 {% block contenido %}
-
     {% include "secciones/portada.html" %}
 
+    {% if tipo_reporte == "general" %}
+        {% include "secciones/resumen_ejecutivo.html" %}
+    {% endif %}
     {% if tipo_reporte in ("general", "ventas") %}
         {% include "secciones/ventas.html" %}
     {% endif %}
-
     {% if tipo_reporte in ("general", "ingresos") %}
         {% include "secciones/ingresos.html" %}
     {% endif %}
-
     {% if tipo_reporte in ("general", "gastos") %}
         {% include "secciones/gastos.html" %}
     {% endif %}
 
+    {% include "secciones/comparativa.html" %}
+    {% include "secciones/hallazgos.html" %}
+    {% include "secciones/notas.html" %}
 {% endblock %}

@@ -1,0 +1,29 @@
+<section class="report-section comparison-section page-break">
+    <p class="eyebrow">FINANZEN / EVOLUCIÓN</p>
+    <h2 class="section-title">Comparación con el período anterior</h2>
+    <p>Período anterior equivalente: <strong>{{ periodo_anterior_inicio }} — {{ periodo_anterior_fin }}</strong>.</p>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Indicador</th>
+                <th class="amount">Actual</th>
+                <th class="amount">Anterior</th>
+                <th class="amount">Variación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in comparaciones %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td class="amount">{{ item.actual }}</td>
+                    <td class="amount">{{ item.anterior }}</td>
+                    <td class="amount">{{ item.variacion }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="4">No hay indicadores comparables.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="small-note">La variación porcentual se calcula respecto del valor absoluto
+    del período anterior. Cuando la base anterior es cero, se indica «No comparable».</p>
+</section>

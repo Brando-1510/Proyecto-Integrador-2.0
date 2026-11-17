@@ -85,4 +85,5 @@ class AppContainer:
         self.report_controller=ReportController(self.report_service)
 
     def close(self):
+        self.report_controller.shutdown()
         self.redis_cache_service.close()
