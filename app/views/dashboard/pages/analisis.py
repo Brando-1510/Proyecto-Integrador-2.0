@@ -154,6 +154,36 @@ class Analisis(QWidget):
         widget.update()
 
     @staticmethod
+    def obtener_tono_hallazgo(tipo: str, datos: dict) -> str:
+        if tipo in (
+            "expense_category",
+            "income_category",
+            "sales_category"
+        ):
+            return "neutro"
+        if tipo == "expense_variation":
+            variacion = datos["absolute_variation"]
+            if variacion < 0:
+                return "bueno"
+            if variacion > 0:
+                return "atencion"
+            return "neutro"
+        if tipo == "income_variation":
+            variacion = datos["absolute_variation"]
+            if variacion > 0:
+                return "bueno"
+            if variacion < 0:
+                return "atencion"
+            return "neutro"
+        if tipo == "sales_variability":
+            return (
+                "considerar"
+                if datos.get("classification") == "Variabilidad Alta"
+                else "neutro"
+            )
+        return "neutro"
+
+    @staticmethod
     def _compare_text(comp):
         percentage = comp["percentage_variation"]
         absolute = comp["absolute_variation"]
@@ -196,6 +226,8 @@ class Analisis(QWidget):
                 continue
             card = getattr(self.ui, self.FINDING_CARDS[kind])
             info = finding.get("data", {})
+            tono = self.obtener_tono_hallazgo(kind, info)
+            self._set_property(card, "carta", tono)
             title = finding.get("title", "")
             description = finding.get("description", "")
             percentage = info.get("percentage")
@@ -217,13 +249,11 @@ class Analisis(QWidget):
                 self.ui.descAumentoGasto.setText(description)
                 self.ui.varAumentoGasto.setText("Variación porcentual no disponible" if variation is None
                                             else f"{variation:+.2f}% vs período anterior")
-                self._set_property(card, "carta", "bueno" if info.get("direction") == "Disminución" else "normal")
             elif kind == "income_variation":
                 self.ui.aumentoIngresos.setText(title)
                 self.ui.aumentoDescIngresos.setText(description)
                 self.ui.aumentoVarIngresos.setText("Variación porcentual no disponible" if variation is None
                                                 else f"{variation:+.2f}% vs período anterior")
-                self._set_property(card, "carta", "bueno" if info.get("direction") == "Aumento" else "normal")
             elif kind == "sales_variability":
                 self.ui.coefVarTitulo.setText(title)
                 self.ui.coefVarDesc.setText(description)
