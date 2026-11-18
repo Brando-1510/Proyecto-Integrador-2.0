@@ -63,3 +63,4 @@ weasyprint==70.0
 webencodings==0.6.1
 websockets==17.4
 zopfli==0.4.3
+keyring==25.7.0

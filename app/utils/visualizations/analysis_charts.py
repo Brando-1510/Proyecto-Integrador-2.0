@@ -1,16 +1,17 @@
-
+#Gráficas Matplotlib/Qt del módulo Análisis
 from collections import defaultdict
-from datetime import date,datetime
-from PySide6.QtWidgets import QVBoxLayout, QSizePolicy
+from datetime import date, datetime, timedelta
+from calendar import monthrange
+
 import matplotlib.dates as mdates
 import matplotlib.ticker as mticker
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
-from PySide6.QtWidgets import QVBoxLayout
+from PySide6.QtWidgets import QVBoxLayout, QSizePolicy
+
 
 class AnalysisCharts:
-    #*Gestiona las gráficas del módulo de análisis financiero
-    def __init__(self,frame_ingresos_gastos,frame_distribucion,frame_evolucion,):
+    def __init__(self, frame_ingresos_gastos, frame_distribucion, frame_evolucion):
         self.frame_ingresos_gastos = frame_ingresos_gastos
         self.frame_distribucion = frame_distribucion
         self.frame_evolucion = frame_evolucion
@@ -24,260 +25,137 @@ class AnalysisCharts:
         if layout is None:
             layout = QVBoxLayout(frame)
             layout.setContentsMargins(8, 8, 8, 8)
-        figura = Figure(figsize=(8, 4))
-        canvas = FigureCanvasQTAgg(figura)
+        canvas = FigureCanvasQTAgg(Figure(figsize=(7, 3.5), dpi=100))
         layout.addWidget(canvas)
-        frame.setSizePolicy(
-            QSizePolicy.Policy.Expanding,
-            QSizePolicy.Policy.Fixed
-        )
-        frame.setMinimumHeight(400)
+        frame.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        frame.setFixedHeight(350)
         return canvas
 
     @staticmethod
-    def _formatear_monto(valor):
-        return f"C$ {valor:,.2f}"
+    def _convertir_fecha(value):
+        if isinstance(value, datetime):
+            return value.date()
+        if isinstance(value, date):
+            return value
+        if isinstance(value, str):
+            return date.fromisoformat(value + "-01" if len(value) == 7 else value)
+        raise ValueError("Fecha de gráfico inválida")
+
     @staticmethod
-    def _mostrar_sin_datos(ax, mensaje="No hay datos para este período"):
-        ax.clear()
-        ax.text(
-            0.5,
-            0.5,
-            mensaje,
-            ha="center",
-            va="center",
-            transform=ax.transAxes,
-            color="#777777",
-            fontsize=10,
-        )
-        ax.set_axis_off()
+    def _series(datos, inicio, fin):
+        """Rellena intervalos sin movimientos como cero, sin inventar operaciones."""
+        monthly = (fin - inicio).days + 1 > 31
+        values = defaultdict(lambda: [0.0, 0.0])
+        for item in datos:
+            f = AnalysisCharts._convertir_fecha(item["interval"])
+            key = f.replace(day=1) if monthly else f
+            values[key][0] += float(item["income"])
+            values[key][1] += float(item["expenses"])
+        if not values:
+            return [], [], [], monthly
+        current = inicio.replace(day=1) if monthly else inicio
+        end = fin.replace(day=1) if monthly else fin
+        dates, income, expenses = [], [], []
+        while current <= end:
+            dates.append(current)
+            inc, exp = values[current]
+            income.append(inc)
+            expenses.append(exp)
+            if monthly:
+                current = (current.replace(day=28) + timedelta(days=4)).replace(day=1)
+            else:
+                current += timedelta(days=1)
+        return dates, income, expenses, monthly
+
+    @staticmethod
+    def _empty(ax, message):
+        ax.text(0.5, 0.5, message, ha="center", va="center", transform=ax.transAxes,
+                fontsize=10, color="#777777")
+        ax.axis("off")
+
+    @staticmethod
+    def _money_axis(ax):
+        ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"C$ {x:,.0f}"))
+        ax.grid(axis="y", alpha=0.18)
+        ax.set_axisbelow(True)
+
+    @staticmethod
+    def _finish(canvas):
+        canvas.figure.tight_layout(pad=1.5)
+        canvas.draw_idle()
+
+    def mostrar_vacio(self, message="Sin datos para mostrar"):
+        for canvas in (self.canvas_ingresos_gastos, self.canvas_distribucion, self.canvas_evolucion):
+            canvas.figure.clear()
+            self._empty(canvas.figure.add_subplot(111), message)
+            self._finish(canvas)
+
     def actualizar(self, resultado):
-        #*Actualiza las tres gráficas a partir del resultado devuelto por AnalysisService.
-        periodo = resultado["period"]
-        inicio = self._convertir_fecha(periodo["start_date"])
-        fin = self._convertir_fecha(periodo["end_date"])
-        rendimiento = resultado["charts"]["financial_performance"]
-        gastos = resultado["categories"]["expenses"]
-        self.graficar_ingresos_gastos(rendimiento, inicio, fin)
-        self.graficar_distribucion_gastos(gastos)
-        self.graficar_evolucion_balance(rendimiento, inicio, fin)
-        self.graficar_distribucion_gastos(gastos)
-        self.graficar_evolucion_balance(rendimiento, inicio, fin)
+        period = resultado["period"]
+        inicio = self._convertir_fecha(period["start_date"])
+        fin = self._convertir_fecha(period["end_date"])
+        performance = resultado["charts"]["financial_performance"]
+        expenses = resultado["categories"]["expenses"]
+        self.graficar_ingresos_gastos(performance, inicio, fin)
+        self.graficar_distribucion_gastos(expenses)
+        self.graficar_evolucion_balance(performance, inicio, fin)
 
     def graficar_ingresos_gastos(self, datos, inicio, fin):
         canvas = self.canvas_ingresos_gastos
-        figura = canvas.figure
-        figura.clear()
-        ax = figura.add_subplot(111)
-        if not datos:
-            self._mostrar_sin_datos(ax)
-            self._ajustar_altura(self.frame_ingresos_gastos,tiene_datos=False,)
-            figura.tight_layout()
-            canvas.draw()
-            return
-        self._ajustar_altura(self.frame_ingresos_gastos,tiene_datos=True,)
-        # Agrupar por mes cuando el período supera 31 días.
-        agrupados = defaultdict(lambda: {"income": 0.0, "expenses": 0.0})
-        for item in datos:
-            intervalo = self._convertir_fecha(item["interval"])
-            if (fin - inicio).days + 1 > 31:
-                clave = intervalo.replace(day=1)
-            else:
-                clave = intervalo
-            agrupados[clave]["income"] += float(item["income"])
-            agrupados[clave]["expenses"] += float(item["expenses"])
-        fechas = sorted(agrupados)
-        ingresos = [agrupados[f]["income"] for f in fechas]
-        gastos = [agrupados[f]["expenses"] for f in fechas]
-        posiciones = list(range(len(fechas)))
-        ancho = 0.38
-        ax.bar(
-            [p - ancho / 2 for p in posiciones],
-            ingresos,
-            width=ancho,
-            label="Ingresos",
-            color="#2E9D68",
-        )
-        ax.bar(
-            [p + ancho / 2 for p in posiciones],
-            gastos,
-            width=ancho,
-            label="Gastos",
-            color="#E35D6A",
-        )
-        ax.set_xticks(posiciones)
-        ax.set_xticklabels(
-            [f.strftime("%d/%m") if len(fechas) <= 10
-             else f.strftime("%d/%m") if (fin - inicio).days <= 31
-             else f.strftime("%b %Y")
-             for f in fechas],
-            rotation=35,
-            ha="right",
-        )
-        ax.set_ylabel("Monto (C$)")
-        ax.yaxis.set_major_formatter(
-            mticker.FuncFormatter(
-                lambda valor, _: f"C$ {valor:,.0f}"
-            )
-        )
-        ax.grid(axis="y", alpha=0.2)
-        ax.set_axisbelow(True)
-        ax.legend(frameon=False)
-
-        figura.tight_layout()
-        canvas.draw()
+        canvas.figure.clear()
+        ax = canvas.figure.add_subplot(111)
+        fechas, ingresos, gastos, monthly = self._series(datos, inicio, fin)
+        if not fechas:
+            self._empty(ax, "Sin ingresos ni gastos en este período")
+        else:
+            xs = list(range(len(fechas)))
+            w = 0.38
+            ax.bar([x - w / 2 for x in xs], ingresos, width=w, label="Ingresos", color="#2E9D68")
+            ax.bar([x + w / 2 for x in xs], gastos, width=w, label="Gastos", color="#E35D6A")
+            step = max(1, (len(xs) + 9) // 10)
+            ticks = xs[::step]
+            ax.set_xticks(ticks, [fechas[i].strftime("%b %Y" if monthly else "%d/%m") for i in ticks],
+                            rotation=35, ha="right")
+            ax.set_ylabel("Monto (C$)")
+            self._money_axis(ax)
+            ax.legend(frameon=False)
+        self._finish(canvas)
 
     def graficar_distribucion_gastos(self, datos):
         canvas = self.canvas_distribucion
-        figura = canvas.figure
-        figura.clear()
-        ax = figura.add_subplot(111)
-
-        categorias = [item["category"] for item in datos]
-        montos = [float(item["amount"]) for item in datos]
-
-        # Excluir importes nulos o negativos de la dona.
-        pares = [
-            (categoria, monto)
-            for categoria, monto in zip(categorias, montos)
-            if monto > 0
-        ]
-
+        canvas.figure.clear()
+        ax = canvas.figure.add_subplot(111)
+        pares = [(str(x["category"]), float(x["amount"])) for x in datos if float(x["amount"]) > 0]
         if not pares:
-            self._mostrar_sin_datos(ax, "No hay gastos para distribuir")
-            self._ajustar_altura(self.frame_distribucion,tiene_datos=False,)
-            figura.tight_layout()
-            canvas.draw()
-            return
-        self._ajustar_altura(self.frame_distribucion,tiene_datos=True,)
-
-        categorias, montos = zip(*pares)
-
-        wedges, _, porcentajes = ax.pie(
-            montos,
-            startangle=90,
-            counterclock=False,
-            autopct=lambda porcentaje: (f"{porcentaje:.1f}%" if porcentaje >= 5 else ""),
-            pctdistance=0.78,
-            wedgeprops={
-                "width": 0.42,
-                "edgecolor": "white",
-                "linewidth": 2,
-            },
-        )
-
-        ax.legend(
-            wedges,
-            [
-                f"{categoria} — {self._formatear_monto(monto)}"
-                for categoria, monto in zip(categorias, montos)
-            ],
-            loc="lower center",
-            bbox_to_anchor=(0.5, -0.08),
-            frameon=False,
-            fontsize=8,
-        )
-
-        ax.set_aspect("equal")
-
-        figura.tight_layout()
-        canvas.draw()
+            self._empty(ax, "Sin gastos para distribuir")
+        else:
+            categorias, montos = zip(*pares)
+            slices, _, _ = ax.pie(montos, startangle=90, counterclock=False,
+                                    autopct=lambda p: f"{p:.1f}%" if p >= 5 else "",
+                                    pctdistance=0.78,
+                                    wedgeprops={"width": 0.42, "edgecolor": "white", "linewidth": 2})
+            ax.legend(slices, [f"{cat} — C$ {amount:,.2f}" for cat, amount in pares],
+                        loc="lower center", bbox_to_anchor=(0.5, -0.12), frameon=False, fontsize=8)
+            ax.set_aspect("equal")
+        self._finish(canvas)
 
     def graficar_evolucion_balance(self, datos, inicio, fin):
         canvas = self.canvas_evolucion
-        figura = canvas.figure
-        figura.clear()
-        ax = figura.add_subplot(111)
-
-        if not datos:
-            self._mostrar_sin_datos(ax)
-            self._ajustar_altura(self.frame_evolucion,tiene_datos=False,)
-            figura.tight_layout()
-            canvas.draw()
-            return
-        self._ajustar_altura(self.frame_evolucion,tiene_datos=True,)
-
-        agrupados = defaultdict(lambda: {"income": 0.0, "expenses": 0.0})
-
-        for item in datos:
-            intervalo = self._convertir_fecha(item["interval"])
-            if (fin - inicio).days + 1 > 31:
-                clave = intervalo.replace(day=1)
-            else:
-                clave = intervalo
-            agrupados[clave]["income"] += float(item["income"])
-            agrupados[clave]["expenses"] += float(item["expenses"])
-        fechas = sorted(agrupados)
-        balances = [
-            agrupados[f]["income"] - agrupados[f]["expenses"]
-            for f in fechas
-        ]
-
-        ax.plot(
-            fechas,
-            balances,
-            color="#4776D0",
-            linewidth=2,
-            marker="o",
-            markersize=4,
-        )
-
-        ax.axhline(
-            y=0,
-            color="#777777",
-            linewidth=1,
-            linestyle="--",
-        )
-
-        ax.fill_between(
-            fechas,
-            balances,
-            0,
-            where=[valor >= 0 for valor in balances],
-            interpolate=True,
-            color="#2E9D68",
-            alpha=0.12,
-        )
-        ax.fill_between(
-            fechas,
-            balances,
-            0,
-            where=[valor < 0 for valor in balances],
-            interpolate=True,
-            color="#E35D6A",
-            alpha=0.12,
-        )
-
-        if (fin - inicio).days + 1 <= 31:
-            ax.xaxis.set_major_formatter(mdates.DateFormatter("%d/%m"))
+        canvas.figure.clear()
+        ax = canvas.figure.add_subplot(111)
+        fechas, ingresos, gastos, monthly = self._series(datos, inicio, fin)
+        if not fechas:
+            self._empty(ax, "Sin movimientos para calcular balances")
         else:
-            ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
-
-        ax.set_ylabel("Balance (C$)")
-        ax.yaxis.set_major_formatter(
-            mticker.FuncFormatter(lambda valor, _: f"C$ {valor:,.0f}")
-        )
-        ax.grid(axis="y", alpha=0.2)
-        ax.set_axisbelow(True)
-
-        figura.autofmt_xdate(rotation=35)
-        figura.tight_layout()
-        canvas.draw()
-
-    @staticmethod
-    def _convertir_fecha(valor):
-        if isinstance(valor, datetime):
-            return valor.date()
-        if isinstance(valor, date):
-            return valor
-        if isinstance(valor, str):
-            # Intervalo mensual: YYYY-MM
-            if len(valor) == 7:
-                return date.fromisoformat(f"{valor}-01")
-            # Fecha completa: YYYY-MM-DD
-            return date.fromisoformat(valor)
-        raise TypeError(f"Tipo de fecha no válido: {type(valor).__name__}")
-    def _ajustar_altura(self, frame, tiene_datos):
-        altura = 700 if tiene_datos else 150
-        frame.setMinimumHeight(altura)
-        frame.setMaximumHeight(altura)
+            balances = [inc - exp for inc, exp in zip(ingresos, gastos)]
+            ax.plot(fechas, balances, color="#4776D0", linewidth=2, marker="o", markersize=3)
+            ax.axhline(0, color="#777777", linewidth=1, linestyle="--")
+            ax.fill_between(fechas, balances, 0, where=[v >= 0 for v in balances],
+                            color="#2E9D68", alpha=0.12)
+            ax.fill_between(fechas, balances, 0, where=[v < 0 for v in balances],
+                            color="#E35D6A", alpha=0.12)
+            ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y" if monthly else "%d/%m"))
+            ax.set_ylabel("Balance del intervalo (C$)")
+            self._money_axis(ax)
+            canvas.figure.autofmt_xdate(rotation=35)
+        self._finish(canvas)

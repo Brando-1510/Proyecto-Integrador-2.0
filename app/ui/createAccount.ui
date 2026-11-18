@@ -626,7 +626,7 @@ QCheckBox::indicator:disabled {
          <item>
           <widget class="QCheckBox" name="checkBoxRecordar">
            <property name="text">
-            <string>Recordar Mi Contraseña</string>
+            <string>Recordar mi cuenta en este dispositivo</string>
            </property>
           </widget>
          </item>

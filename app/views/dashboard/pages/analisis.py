@@ -1,255 +1,235 @@
 import os
-from PySide6.QtWidgets import QWidget,QVBoxLayout,QMessageBox
+from datetime import date
+from PySide6.QtCore import Qt, QDate, QTimer, QThreadPool, QSignalBlocker, Slot
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QMessageBox
 from PySide6.QtGui import QFontDatabase
 from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
-from PySide6.QtCore import Qt,Signal
 from app.utils.visualizations.analysis_charts import AnalysisCharts
 from app.utils.format_utils import FormatUtils
+from app.workers.analysis_worker import AnalysisWorker
 
 class Analisis(QWidget):
-    def __init__(self, userBusiness,controller):
+    FINDING_CARDS = {
+        "expense_category": "gastosCategoriaCard",
+        "expense_variation": "variacionGastosCard",
+        "income_category": "categoriaIngresosCard",
+        "income_variation": "variacionIngresosCard",
+        "sales_category": "categoriaVentasCard",
+        "sales_variability": "variabilidadVentasCard",
+    }
+    def __init__(self, userBusiness, controller):
         super().__init__()
+        self.userBusiness = userBusiness
         self.user = userBusiness.user
         self.business = userBusiness.business
-        self.userBusiness = userBusiness
-        self.controller=controller
-        #*OBTENER DIRECTORIO ACTUAL
-        directorio_actual = os.path.dirname(os.path.abspath(__file__))
-        #*CARGAR ARCHIVO .UI
-        ruta_ui = os.path.normpath(os.path.join(
-            directorio_actual,"../../../ui/dashboard/pages/analisis.ui"))
-        loader = QUiLoader()
-        self.ui = loader.load(ruta_ui, self)
+        self.controller = controller
+        path = os.path.normpath(
+            os.path.join(os.path.dirname(__file__),"../../../ui/dashboard/pages/analisis.ui")
+        )
+        self.ui = QUiLoader().load(path, self)
         if not self.ui:
-            print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
-            return
+            raise RuntimeError(f"No se pudo cargar la interfaz de Análisis: {path}")
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
-        self.ui.lblIndicacion.hide()
-        self.ocultar_card()
-        self.charts = AnalysisCharts(
-        frame_ingresos_gastos=self.ui.frameIngresosGastos,frame_distribucion=self.ui.frameDistribucion,
-        frame_evolucion=self.ui.frameEvolucion,
-        )
-        self._cargar_fuentes()
-        #*Cambios en la interfaz
+        self.charts = AnalysisCharts(self.ui.frameIngresosGastos, self.ui.frameDistribucion,self.ui.frameEvolucion)
+        self._load_fonts()
+        self._pool = QThreadPool.globalInstance()
+        self._running = False
+        self._pending = False
+        self._active_worker = None
+        self._timer = QTimer(self)
+        self._timer.setSingleShot(True)
+        self._timer.setInterval(260)
+        self._timer.timeout.connect(self.actualizar_interfaz)
         self.ui.lblPersonalizar.hide()
         self.ui.contenedorFechas.hide()
-        # Conectar el cambio de selección en los QComboBox para activar o desactivar la visibilidad
-        self.ui.periodo.currentTextChanged.connect(self.mostrar_dateEdits)
-        #* llenar los datos proveniente del controller
+        self.ui.lblIndicacion.hide()
+        self.ocultar_card()
+        today = QDate.currentDate()
+        with QSignalBlocker(self.ui.rangoInicio), QSignalBlocker(self.ui.rangoFinal):
+            self.ui.rangoInicio.setCalendarPopup(True)
+            self.ui.rangoFinal.setCalendarPopup(True)
+            self.ui.rangoInicio.setMaximumDate(today)
+            self.ui.rangoFinal.setMaximumDate(today)
+            self.ui.rangoInicio.setDate(QDate(today.year(), today.month(), 1))
+            self.ui.rangoFinal.setDate(today)
+        self.ui.periodo.currentTextChanged.connect(self._on_period_changed)
+        self.ui.rangoInicio.dateChanged.connect(self._on_date_changed)
+        self.ui.rangoFinal.dateChanged.connect(self._on_date_changed)
         self.actualizar_interfaz()
-        self.ui.periodo.currentTextChanged.connect(self.actualizar_interfaz)
-    def _cargar_fuentes(self):
-        font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
-        font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-        if font_id_manrope == -1 or font_id_source == -1:
-            return
-        manrope = QFontDatabase.applicationFontFamilies(font_id_manrope)
-        source = QFontDatabase.applicationFontFamilies(font_id_source)
-        if manrope and source:
-            self.ui.setStyleSheet(
-                self.ui.styleSheet()+ estilos_fuentes(source[0], manrope[0])
-            )
-    def mostrar_dateEdits(self):
-        es_personalizado=(self.ui.periodo.currentText()=="Personalizado")
-        self.ui.lblPersonalizar.setVisible(es_personalizado)
-        self.ui.contenedorFechas.setVisible(es_personalizado)
+
+    def _load_fonts(self):
+        font1 = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
+        font2 = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
+        if font1 >= 0 and font2 >= 0:
+            a = QFontDatabase.applicationFontFamilies(font1)
+            b = QFontDatabase.applicationFontFamilies(font2)
+            if a and b:
+                self.ui.setStyleSheet(self.ui.styleSheet() + estilos_fuentes(b[0], a[0]))
+
+    def _on_period_changed(self, *_):
+        custom = self.ui.periodo.currentText() == "Personalizado"
+        self.ui.lblPersonalizar.setVisible(custom)
+        self.ui.contenedorFechas.setVisible(custom)
+        self._timer.start()
+
+    def _on_date_changed(self, *_):
+        if self.ui.periodo.currentText() == "Personalizado":
+            self._timer.start()
+
     def recolectar_datos(self):
-        datos={}
-        periodo = self.ui.periodo.currentText()
-        datos["business_id"]=self.business.business_id
-        datos["rol"]=self.userBusiness.role
-        datos["periodo"]=periodo
-        if periodo=="Personalizado":
-            datos["rango_inicio"] = self.ui.rangoInicio.date().toPython()
-            datos["rango_final"] = self.ui.rangoFinal.date().toPython()
-        return datos
-    def enviar_datos(self):
-        datos=self.recolectar_datos()
-        resultado=self.controller.analyze_period(datos)
-        return resultado
-    def llenar_datos_tarjetas(self,resultado):
-        ingresos=resultado["comparisons"]["income"]
-        gastos=resultado["comparisons"]["expenses"]
-        balance=resultado["comparisons"]["balance"]
-        estadisticas=resultado["sales_statistics"]
-        #*Ingresos tarjeta
-        self.ui.valorIngresos.setText(f"C$ {FormatUtils.format_number(ingresos['current_value'])}")
-        variacion_ing=self.comparar_periodo_anterior(ingresos["percentage_variation"])
-        self.establecer_color_aumento(ingresos["direction"],self.ui.estadoIngresos)
-        self.ui.estadoIngresos.setText(variacion_ing)
-        #*Gastos tarjeta
-        self.ui.valorGastos.setText(f"C$ {FormatUtils.format_number(gastos['current_value'])}")
-        variacion_gas=self.comparar_periodo_anterior(gastos["percentage_variation"])
-        self.establecer_color_disminucion(ingresos["direction"],self.ui.estadoGastos)
-        self.ui.estadoGastos.setText(variacion_gas)
-        #*Balance tarjeta
-        self.ui.valorBalance.setText(f"C$ {FormatUtils.format_number(balance['current_value'])}")
-        variacion_bal=self.comparar_periodo_anterior(balance["percentage_variation"])
-        self.establecer_color_aumento(balance["direction"],self.ui.estadoBalance)
-        self.ui.estadoBalance.setText(variacion_bal)
-        #*Ticket Promedio
-        if estadisticas["average_ticket"] is None:
-            self.ui.frameTicket.hide()
-            self.ui.valorTicket.setText("No hay datos suficientes para \ncalcular la media.")
-        else:
-            self.ui.valorTicket.setText(f"C$ {FormatUtils.format_number(estadisticas['average_ticket'])}")
-        self.ui.valorTotalVentas.setText(str(FormatUtils.format_number(estadisticas["total_sales"])))
-        self.ui.valorGeneradoVentas.setText(f"C$ {FormatUtils.format_number(estadisticas['total_amount'])}")
+        data = {"business_id": self.business.business_id, "user_id": self.user.user_id,
+                "periodo": self.ui.periodo.currentText()}
+        if data["periodo"] == "Personalizado":
+            data["rango_inicio"] = self.ui.rangoInicio.date().toPython()
+            data["rango_final"] = self.ui.rangoFinal.date().toPython()
+        return data
 
-    def hallazgos(self, resultado):
-        hallazgos = resultado.get("findings", [])
-        if not hallazgos:
+    def actualizar_interfaz(self, *_):
+        self._timer.stop()
+        if self._running:
+            self._pending = True
+            return
+        self._start_request()
+
+    def _start_request(self):
+        self._running = True
+        self._pending = False
+        self.ui.lblIndicacion.setText("Analizando datos...")
+        self.ui.lblIndicacion.show()
+        self._query_in_progress = self.recolectar_datos()
+        worker = AnalysisWorker(self.controller, self._query_in_progress)
+        self._active_worker = worker
+        worker.signals.finished.connect(self._on_finished)
+        self._pool.start(worker)
+
+    @Slot(object)
+    def _on_finished(self, result):
+        self._running = False
+        self._active_worker = None
+        if self._pending or self.recolectar_datos() != self._query_in_progress:
+            self._timer.stop()
+            self._start_request()
+            return
+        is_success = isinstance(result, dict) and bool(result.get("success"))
+        self._clear_state(clear_charts=not is_success)
+        if not is_success:
+            message = result.get("message", "Ocurrió un error al analizar los datos") if isinstance(result, dict) else "Respuesta inválida"
+            self.ui.lblIndicacion.setText(message)
+            QMessageBox.warning(self.ui, "Error al cargar Análisis", message)
+            return
+        self.llenar_datos_tarjetas(result)
+        self.charts.actualizar(result)
+        self.hallazgos(result)
+        if not result.get("has_data"):
+            self.ui.lblIndicacion.setText("No hay registros financieros para el período seleccionado.")
             self.ui.lblIndicacion.show()
-            #self.ui.gastosCategoriaCard.hide()
-            return
+        elif result.get("findings"):
+            self.ui.lblIndicacion.hide()
+        else:
+            self.ui.lblIndicacion.setText("Sin hallazgos relevantes en este período.")
+            self.ui.lblIndicacion.show()
 
-        #*Hallazgos relacionados a gastos.
-        # Categoría que representa el mayor porcentaje.
-        hallazgo_gastos = next(
-            (
-                h for h in hallazgos
-                if h.get("type") == "expense_category"
-            ), None
-        )
-        if hallazgo_gastos:
-            datos = hallazgo_gastos.get("data", {})
-            categorias = datos.get("categories", [])
-            categoria = categorias[0] if categorias else "Sin categoría"
-            porcentaje = datos.get("percentage", 0)
-            importe = datos.get("amount", 0)
-            self.ui.gastosCategoriaCard.show()
-            self.ui.gastosCategoria.setText(f"{hallazgo_gastos.get("title")}")
-            self.ui.gastoCatDesc.setText(
-                f"{categoria} es la categoría con mayor peso en\nla estructurade costos, con un importe\n de C$ {importe:,.2f}.")
-            self.ui.gastosCatVar.setText(f"{porcentaje:.2f}% del total de gastos")
-        # Variación de los gastos
-        variacion_gastos = next(
-            (
-                h for h in hallazgos
-                if h.get("type") == "expense_variation"
-            ), None
-        )
-        if variacion_gastos:
-            datos=variacion_gastos.get("data",{})
-            porcentaje=datos.get("percentage_variation",0)
-            direccion= "aumento" if datos["direction"]=="Aumento" else "descenso"
-            if porcentaje is not None:
-                self.ui.variacionGastosCard.show()
-                self.ui.aumentoGasto.setText(variacion_gastos.get("title"))
-                self.ui.descAumentoGasto.setText(
-                    f"Los gastos totales del período actual\nregistraron un {direccion} equivalente al {str(porcentaje)}%."
-                )
-                self.ui.varAumentoGasto.setText(f"{porcentaje}% vs Período Anterior")
-                if direccion=="disminucion":
-                    self.ui.variacionGastosCard.setProperty("carta","bueno")
-        #*Hallazgos relacionados a ingresos
-        #Categoria que representa el mayor porcentaje
-        hallazgo_ingresos = next(
-            (
-                h for h in hallazgos
-                if h.get("type") == "income_category"
-            ), None
-        )
-        if hallazgo_ingresos:
-            datos = hallazgo_ingresos.get("data", {})
-            categorias = datos.get("categories", [])
-            categoria = categorias[0] if categorias else "Sin categoría"
-            porcentaje = datos.get("percentage", 0)
-            importe = datos.get("amount", 0)
-            self.ui.categoriaIngresosCard.show()
-            self.ui.ingresosCategoria.setText(f"{hallazgo_ingresos.get("title")}")
-            self.ui.ingresosCatDesc.setText(
-                f"{categoria} es la categoría con mayor peso en la\n estructurade ingresos, con un importe\n de C$ {importe:,.2f}.")
-            self.ui.ingresosCatVar.setText(f"{porcentaje:.2f}% del total de ingresos")
-        #Variación de los ingresos
-        variacion_ingresos = next(
-            (
-                h for h in hallazgos
-                if h.get("type") == "income_variation"
-            ), None
-        )
-        if variacion_ingresos:
-            datos=variacion_ingresos.get("data",{})
-            porcentaje=datos.get("percentage_variation",0)
-            direccion= "aumento" if datos["direction"]=="Aumento" else "descenso"
-            if porcentaje is not None:
-                self.ui.variacionIngresosCard.show()
-                self.ui.aumentoIngresos.setText(variacion_ingresos.get("title"))
-                self.ui.aumentoDescIngresos.setText(
-                    f"Los ingresos totales del período actual\nregistraron un {direccion} equivalente al {str(porcentaje)}%."
-                )
-                self.ui.aumentoVarIngresos.setText(f"{porcentaje}% vs Período Anterior")
-            if direccion=="aumento":
-                self.ui.variacionIngresosCard.setProperty("carta","bueno")
-        #*Hallazgos relacionados a las ventas
-        #Mayor categoria
-        hallazgo_ventas = next(
-            (
-                h for h in hallazgos
-                if h.get("type") == "sales_category"
-            ), None
-        )
-        if hallazgo_ventas:
-            datos = hallazgo_ventas.get("data", {})
-            categorias = datos.get("categories", [])
-            categoria = categorias[0] if categorias else "Sin categoría"
-            porcentaje = datos.get("percentage", 0)
-            importe = datos.get("amount", 0)
-            self.ui.categoriaVentasCard.show()
-            self.ui.ventasCat.setText(f"{hallazgo_ventas.get("title")}")
-            self.ui.ventasDesc.setText(
-                f"{categoria} es la categoría más vendida \ncon un importe de C$ {importe:,.2f}.")
-            self.ui.ventasVar.setText(f"{porcentaje:.2f}% del total de ventas")
-        #variabilidad de las ventas
-        variablilidad_ventas=next(
-            (
-                h for h in hallazgos
-                if h.get("type")=="sales_variability"
-            ),None
-        )
-        if variablilidad_ventas:
-            datos=variablilidad_ventas.get("data",{})
-            self.ui.variabilidadVentasCard.show()
-            cv=str(datos.get("coefficient_variation"))
-            self.ui.coefVarTitulo.setText(f"{variablilidad_ventas.get("title")}")
-            self.ui.coefVarDesc.setText(
-                f"Las ventas presentan una variabilidad del\n{cv}% con respecto a la media"
-            )
-            self.ui.variacionClasificacion.setText(f"Clasificación: {datos.get("classification")}")
+    def _clear_state(self, clear_charts=False):
+        self.ocultar_card()
+        self.ui.lblIndicacion.hide()
+        self.ui.frameTicket.show()
+        for name in ("valorIngresos", "valorGastos", "valorBalance", "valorTicket", "valorTotalVentas", "valorGeneradoVentas"):
+            getattr(self.ui, name).setText("—")
+        for name in ("estadoIngresos", "estadoGastos", "estadoBalance"):
+            label = getattr(self.ui, name)
+            label.clear()
+            self._set_property(label, "texto", "Neutro")
+        if clear_charts:
+            self.charts.mostrar_vacio()
 
+    @staticmethod
+    def _set_property(widget, name, value):
+        widget.setProperty(name, value)
+        widget.style().unpolish(widget)
+        widget.style().polish(widget)
+        widget.update()
 
-    def actualizar_interfaz(self):
-        resultado=self.enviar_datos()
-        if not resultado["success"]:
-            QMessageBox.warning(self.ui,"Error al Cargar Datos",resultado["message"])
-            return
-        self.llenar_datos_tarjetas(resultado)
-        self.charts.actualizar(resultado)
-        self.hallazgos(resultado)
-    def comparar_periodo_anterior(self,valor):
-        if valor is None:
-            return "No se puede establecer comparación\n con período anterior"
-        return f"▲ {valor}% vs Período Anterior"
-    def establecer_color_aumento(self,direccion,lbl):
-        if direccion == "Aumento":
-            lbl.setProperty("texto","Positivo")
-        elif direccion=="Disminución":
-            lbl.setProperty("texto","Negativo")
-    def establecer_color_disminucion(self,direccion,lbl):
-        if direccion == "Aumento":
-            lbl.setProperty("texto","Negativo")
-        elif direccion=="Disminución":
-            lbl.setProperty("texto","Positivo")
+    @staticmethod
+    def _compare_text(comp):
+        percentage = comp["percentage_variation"]
+        absolute = comp["absolute_variation"]
+        if absolute == 0:
+            return "Sin cambio vs período anterior"
+        symbol = "▲" if absolute > 0 else "▼"
+        if percentage is None:
+            return f"{symbol} C$ {abs(absolute):,.2f} vs período anterior"
+        return f"{symbol} {abs(percentage):.2f}% vs período anterior"
+
+    def _style_comparison(self, name, comparison, expense=False):
+        label = getattr(self.ui, name)
+        direction = comparison["direction"]
+        if direction in ("Sin cambio",):
+            status = "Neutro"
+        elif expense:
+            status = "Negativo" if direction == "Aumento" else "Positivo"
+        else:
+            status = "Positivo" if direction in ("Aumento", "Mejora") else "Negativo"
+        self._set_property(label, "texto", status)
+        label.setText(self._compare_text(comparison))
+
+    def llenar_datos_tarjetas(self, result):
+        comps = result["comparisons"]
+        stats = result["sales_statistics"]
+        for key, label in (("income", "valorIngresos"), ("expenses", "valorGastos"), ("balance", "valorBalance")):
+            getattr(self.ui, label).setText(FormatUtils.format_currency(comps[key]["current_value"]))
+        self._style_comparison("estadoIngresos", comps["income"])
+        self._style_comparison("estadoGastos", comps["expenses"], expense=True)
+        self._style_comparison("estadoBalance", comps["balance"])
+        self.ui.valorTicket.setText("Sin ventas" if stats["average_ticket"] is None
+                            else FormatUtils.format_currency(stats["average_ticket"]))
+        self.ui.valorTotalVentas.setText(str(stats["total_sales"]))
+        self.ui.valorGeneradoVentas.setText(FormatUtils.format_currency(stats["total_amount"]))
+
+    def hallazgos(self, result):
+        for finding in result.get("findings", []):
+            kind = finding.get("type")
+            if kind not in self.FINDING_CARDS:
+                continue
+            card = getattr(self.ui, self.FINDING_CARDS[kind])
+            info = finding.get("data", {})
+            title = finding.get("title", "")
+            description = finding.get("description", "")
+            percentage = info.get("percentage")
+            variation = info.get("percentage_variation")
+            if kind == "expense_category":
+                self.ui.gastosCategoria.setText(title)
+                self.ui.gastoCatDesc.setText(description)
+                self.ui.gastosCatVar.setText(f"{percentage:.2f}% del total de gastos")
+            elif kind == "income_category":
+                self.ui.ingresosCategoria.setText(title)
+                self.ui.ingresosCatDesc.setText(description)
+                self.ui.ingresosCatVar.setText(f"{percentage:.2f}% del total de ingresos")
+            elif kind == "sales_category":
+                self.ui.ventasCat.setText(title)
+                self.ui.ventasDesc.setText(description)
+                self.ui.ventasVar.setText(f"{percentage:.2f}% del total de ventas")
+            elif kind == "expense_variation":
+                self.ui.aumentoGasto.setText(title)
+                self.ui.descAumentoGasto.setText(description)
+                self.ui.varAumentoGasto.setText("Variación porcentual no disponible" if variation is None
+                                            else f"{variation:+.2f}% vs período anterior")
+                self._set_property(card, "carta", "bueno" if info.get("direction") == "Disminución" else "normal")
+            elif kind == "income_variation":
+                self.ui.aumentoIngresos.setText(title)
+                self.ui.aumentoDescIngresos.setText(description)
+                self.ui.aumentoVarIngresos.setText("Variación porcentual no disponible" if variation is None
+                                                else f"{variation:+.2f}% vs período anterior")
+                self._set_property(card, "carta", "bueno" if info.get("direction") == "Aumento" else "normal")
+            elif kind == "sales_variability":
+                self.ui.coefVarTitulo.setText(title)
+                self.ui.coefVarDesc.setText(description)
+                self.ui.variacionClasificacion.setText(f"Clasificación: {info.get('classification') or 'No determinada'}")
+            card.show()
+
     def ocultar_card(self):
-        for card in (
-            self.ui.gastosCategoriaCard,self.ui.variacionGastosCard,self.ui.categoriaIngresosCard,
-            self.ui.variacionIngresosCard,self.ui.categoriaVentasCard,self.ui.variabilidadVentasCard
-        ):
-            card.hide()
-
-
+        for name in self.FINDING_CARDS.values():
+            getattr(self.ui, name).hide()

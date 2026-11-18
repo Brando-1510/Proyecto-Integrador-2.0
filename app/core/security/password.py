@@ -1,5 +1,5 @@
 from argon2 import PasswordHasher
-from argon2.exceptions import VerifyMismatchError
+from argon2.exceptions import VerifyMismatchError, VerificationError, InvalidHashError
 
 _password_hasher = PasswordHasher()
 
@@ -13,5 +13,5 @@ class HashPassword:
         #*Verifica si una contraseña coincide con su hash.
         try:
             return _password_hasher.verify(password_hash, password)
-        except VerifyMismatchError:
+        except (VerifyMismatchError, VerificationError, InvalidHashError):
             return False

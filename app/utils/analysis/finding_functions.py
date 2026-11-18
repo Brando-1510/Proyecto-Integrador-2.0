@@ -24,7 +24,7 @@ class FindingFunctions:
         if relevant is None:
             title = "Variación de gastos no determinada"
             description = (
-                f"Los gastos presentan una {direction.lower()} "
+                f"Los gastos presentan una\n {direction.lower()} "
                 f"de {FindingFunctions._format_amount(abs(absolute))}. "
                 "No se puede determinar la relevancia porcentual "
                 "del cambio porque la variación porcentual "
@@ -46,11 +46,11 @@ class FindingFunctions:
                 else "Disminución relevante de gastos"
             )
             description = (
-                f"Los gastos registraron una {direction.lower()} "
+                f"Los gastos registraron una {direction.lower()} \n"
                 f"de {FindingFunctions._format_amount(abs(absolute))}, "
                 f"equivalente al "
-                f"{FindingFunctions._format_percentage(percentage)}. "
-                "El cambio alcanza el umbral de relevancia definido."
+                f"{FindingFunctions._format_percentage(percentage)}. \n"
+                "El cambio alcanza el umbral de relevancia\n definido."
             )
         return {
             "type": "expense_variation",
@@ -79,19 +79,19 @@ class FindingFunctions:
             title = "Variación de ingresos no determinada"
             description = (
                 f"Los ingresos presentan una {direction.lower()} "
-                f"de {FindingFunctions._format_amount(abs(absolute))}. "
+                f"de {FindingFunctions._format_amount(abs(absolute))}. \n"
                 "No se puede determinar la relevancia porcentual "
-                "del cambio porque la variación porcentual "
+                "del cambio porque la variación porcentual \n"
                 "no está disponible."
             )
         elif not relevant:
             title = "Variación de ingresos no relevante"
             description = (
                 f"Los ingresos registraron una {direction.lower()} "
-                f"de {FindingFunctions._format_amount(abs(absolute))}, "
+                f"de {FindingFunctions._format_amount(abs(absolute))}, \n"
                 f"equivalente al "
                 f"{FindingFunctions._format_percentage(percentage)}. "
-                "El cambio no alcanza el umbral de relevancia definido."
+                "El cambio no alcanza\n el umbral de relevancia definido."
             )
         else:
             title = (
@@ -101,10 +101,10 @@ class FindingFunctions:
             )
             description = (
                 f"Los ingresos registraron una {direction.lower()} "
-                f"de {FindingFunctions._format_amount(abs(absolute))}, "
+                f"de {FindingFunctions._format_amount(abs(absolute))}, \n"
                 f"equivalente al "
                 f"{FindingFunctions._format_percentage(percentage)}. "
-                "El cambio alcanza el umbral de relevancia definido."
+                "El cambio alcanza el\n umbral de relevancia definido."
             )
         return {
             "type": "income_variation",
@@ -133,12 +133,12 @@ class FindingFunctions:
                 "No fue posible determinar la variabilidad de las ventas con los datos disponibles."
             )
         else:
-            title = f"Variabilidad de ventas: {classification.lower()}"
+            title = f"Variabilidad de ventas: \n{classification.lower()}"
             description = (
-                f"Las ventas presentan una {classification.lower()}, "
-                f"con un coeficiente de variación del {cv:.2f}%. "
+                f"Las ventas presentan una \n{classification.lower()}, "
+                f"con un coeficiente de \nvariación del {cv:.2f}%."
                 f"La media de ventas es "
-                f"{FindingFunctions._format_amount(mean)} y la "
+                f"{FindingFunctions._format_amount(mean)} y la \n"
                 f"desviación estándar es "
                 f"{FindingFunctions._format_amount(std)}."
             )
@@ -224,8 +224,8 @@ class FindingFunctions:
         amount = result["amount"]
         percentage = result["percentage"]
         description = (
-            f"{category_text} representa el "
-            f"{FindingFunctions._format_percentage(percentage)} del total de "
+            f"{category_text} representa el"
+            f"{FindingFunctions._format_percentage(percentage)} del total \nde"
             f"{amount_label}, con un importe de C$ "
             f"{FindingFunctions._format_amount(amount)}."
         )

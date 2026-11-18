@@ -1,4 +1,5 @@
 from app.services.user_services import UserService
+from app.services.remembered_accounts_service import RememberedAccountsService
 from app.services.recovery_services import RecoveryService
 from app.services.user_business_service import UserBusinessService
 from app.services.business_service import BusinessService
@@ -39,6 +40,7 @@ class AppContainer:
         #*User
         self.user_service = UserService()
         self.user_controller = UserController(self.user_service)
+        self.remembered_accounts_service = RememberedAccountsService()
 
         #*Business
         self.business_service = BusinessService()
