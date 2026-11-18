@@ -46,7 +46,7 @@ class FindingFunctions:
                 else "Disminución relevante de gastos"
             )
             description = (
-                f"Los gastos registraron una {direction.lower()} \n"
+                f"Los gastos registraron una \n{direction.lower()} \n"
                 f"de {FindingFunctions._format_amount(abs(absolute))}, "
                 f"equivalente al "
                 f"{FindingFunctions._format_percentage(percentage)}. \n"
@@ -100,7 +100,7 @@ class FindingFunctions:
                 else "Disminución relevante de ingresos"
             )
             description = (
-                f"Los ingresos registraron una {direction.lower()} "
+                f"Los ingresos registraron una \n{direction.lower()}"
                 f"de {FindingFunctions._format_amount(abs(absolute))}, \n"
                 f"equivalente al "
                 f"{FindingFunctions._format_percentage(percentage)}. "
@@ -137,8 +137,8 @@ class FindingFunctions:
             description = (
                 f"Las ventas presentan una \n{classification.lower()}, "
                 f"con un coeficiente de \nvariación del {cv:.2f}%."
-                f"La media de ventas es "
-                f"{FindingFunctions._format_amount(mean)} y la \n"
+                f"La media de ventas es\n "
+                f"{FindingFunctions._format_amount(mean)} y la"
                 f"desviación estándar es "
                 f"{FindingFunctions._format_amount(std)}."
             )
