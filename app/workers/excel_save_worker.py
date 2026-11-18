@@ -69,6 +69,13 @@ class ExcelSaveWorker(QObject):
                     missing_categories=e.missing_categories,
                 )
             )
+        except PermissionError as e:
+            self.error.emit(
+                ImportErrorResult(
+                    error_type=ImportErrorType.ACCESS_DENIED,
+                    message=str(e),
+                )
+            )
         except ValueError as e:
             error_message = str(e)
             self.error.emit(

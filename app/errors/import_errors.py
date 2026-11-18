@@ -6,6 +6,7 @@ class ImportErrorType(Enum):
     CATEGORY_NOT_FOUND = "category_not_found"
     INVALID_FILE = "invalid_file"
     INVALID_DATA = "invalid_data"
+    ACCESS_DENIED = "access_denied"
     DATABASE_ERROR = "database_error"
     UNKNOWN = "unknown"
 

@@ -207,6 +207,7 @@ class Configuracion(QWidget):
             return
         resultado = self.controller.save_business_changes(
             business_id=self.business.business_id,
+            actor_user_id=self.user.user_id,
             business_name=cambios.get("business_name"),
             type_of_business=cambios.get("type_of_business"),
             description=cambios.get("description"),
@@ -268,7 +269,8 @@ class Configuracion(QWidget):
             QMessageBox.warning(self.ui,"Acción Inválida","Debe seleccionar un usuario de la tabla")
             return
         resultado=self.controller.link_user(
-            self.business.business_id,self.ui.lblCorreo.text(),self.ui.lblRol.text()
+            self.business.business_id,self.ui.lblCorreo.text(),
+            self.ui.lblRol.text(),self.user.user_id
         )
         if resultado["success"]:
             QMessageBox.information(self.ui,"Éxito",resultado["message"])
@@ -277,7 +279,10 @@ class Configuracion(QWidget):
         QMessageBox.warning(self.ui,"No se pudo realizar la acción",resultado["message"])
     #*Ver usuarios
     def _ver_usuarios(self):
-        usuarios=self.controller.get_users(self.ui.buscarEmpleadoAgregar.text().strip())
+        usuarios=self.controller.get_users(
+            self.ui.buscarEmpleadoAgregar.text().strip(),
+            self.business.business_id,self.user.user_id
+        )
         populate_table(self.ui.verUsuarios,usuarios["usuarios"])
     #*Función que maneja esa tab
     def eliminar_empleado_tab(self):
@@ -292,7 +297,7 @@ class Configuracion(QWidget):
     #*ver empleados
     def _ver_empleados(self,lbl,tabla):
         empleados=self.controller.get_employees(
-            lbl.text().strip(),self.business.business_id
+            lbl.text().strip(),self.business.business_id,self.user.user_id
         )
         populate_table(tabla,empleados["empleados"])
     #
@@ -301,7 +306,7 @@ class Configuracion(QWidget):
             QMessageBox.warning(self.ui,"Acción Inválida","Debe seleccionar un usuario de la tabla")
             return
         resultado=self.controller.unlink_user(
-            self.business.business_id,self.ui.correo.text()
+            self.business.business_id,self.ui.correo.text(),self.user.user_id
         )
         if resultado["success"]:
             QMessageBox.information(self.ui,"Éxito",resultado["message"])
@@ -328,7 +333,9 @@ class Configuracion(QWidget):
         )
         if respuesta == QMessageBox.StandardButton.Yes:
             importacion=int(self.ui.idImportacion.text())
-            resultado=self.controller.delete_import(self.business.business_id,importacion)
+            resultado=self.controller.delete_import(
+                self.business.business_id,importacion,self.user.user_id
+            )
             if resultado["success"]:
                 QMessageBox.information(self.ui,"Éxito",resultado["message"])
                 return

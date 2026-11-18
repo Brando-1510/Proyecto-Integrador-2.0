@@ -2,6 +2,7 @@ from app.database.connection import SessionLocal
 from app.models.business import TypeOfBusiness
 from app.models.user_business import Role
 from app.repositories.configuration_repository import ConfigurationRepository
+from app.core.security.authorization import AuthorizationService
 
 class ConfigurationService:
     def __init__(self, redis_service, session_factory=SessionLocal):
@@ -12,10 +13,14 @@ class ConfigurationService:
         self,business_id: int,business_name: str | None = None,type_of_business: TypeOfBusiness | None = None,
         description: str | None = None,categories_to_add: list[str] | None = None,
         categories_to_delete: list[int] | None = None,
+        actor_user_id: int | None = None,
     ):
         with self.session_factory() as session:
             repository = ConfigurationRepository(session)
             try:
+                AuthorizationService.require_manage(
+                    session, actor_user_id=actor_user_id, business_id=business_id
+                )
                 # Normalizar valores opcionales.
                 categories_to_add = categories_to_add or []
                 categories_to_delete = categories_to_delete or []
@@ -70,7 +75,7 @@ class ConfigurationService:
                     "business": business_actualizado,
                     "message": ("Información del negocio actualizada correctamente."),
                 }
-            except ValueError as e:
+            except (ValueError, PermissionError) as e:
                 session.rollback()
                 return {
                     "success": False,
@@ -88,12 +93,20 @@ class ConfigurationService:
     #* Consultad de usuarios y empleados
     def get_users(self, datos):
         with self.session_factory() as session:
+            AuthorizationService.require_manage(
+                session, actor_user_id=datos.get('actor_user_id'),
+                business_id=datos.get('business_id'),
+            )
             repository = ConfigurationRepository(session)
             if datos["tipo"] == "correo":
                 return repository.get_users(email=datos["texto"])
             return repository.get_users(name=datos["texto"])
     def get_employees(self, datos):
         with self.session_factory() as session:
+            AuthorizationService.require_manage(
+                session, actor_user_id=datos.get('actor_user_id'),
+                business_id=datos.get('business_id'),
+            )
             repository = ConfigurationRepository(session)
             if datos["tipos"] == "correo":
                 return repository.get_employees(business_id=datos["business_id"],email=datos["texto"],)
@@ -104,6 +117,10 @@ class ConfigurationService:
         with self.session_factory() as session:
             repository = ConfigurationRepository(session)
             try:
+                AuthorizationService.require_manage(
+                    session, actor_user_id=datos.get('actor_user_id'),
+                    business_id=datos.get('business_id'),
+                )
                 user_id = repository.get_user_id(datos["correo"])
                 if not user_id:
                     raise ValueError("No existe un correo vinculado a ese usuario.")
@@ -131,6 +148,10 @@ class ConfigurationService:
         with self.session_factory() as session:
             repository = ConfigurationRepository(session)
             try:
+                AuthorizationService.require_manage(
+                    session, actor_user_id=datos.get('actor_user_id'),
+                    business_id=datos.get('business_id'),
+                )
                 user_id = repository.get_user_id(datos["correo"])
                 if not user_id:
                     raise ValueError("No existe un correo vinculado a ese usuario.")
@@ -155,6 +176,10 @@ class ConfigurationService:
         with self.session_factory() as session:
             repository = ConfigurationRepository(session)
             try:
+                AuthorizationService.require_manage(
+                    session, actor_user_id=datos.get('actor_user_id'),
+                    business_id=datos.get('business_id'),
+                )
                 resultado = repository.delete_import(datos["business_id"],datos["import_id"],)
                 if resultado:
                     session.commit()
@@ -169,8 +194,12 @@ class ConfigurationService:
         with self.session_factory() as session:
             repository = ConfigurationRepository(session)
             try:
+                AuthorizationService.require_manage(
+                    session, actor_user_id=datos.get('actor_user_id'),
+                    business_id=datos.get('business_id'),
+                )
                 if not repository.is_creator(
-                    datos["user_id"],
+                    datos["actor_user_id"],
                     datos["business_id"],
                 ):
                     raise ValueError("Solo el creador puede eliminar el negocio.")

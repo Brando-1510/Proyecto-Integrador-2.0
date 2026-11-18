@@ -6,6 +6,7 @@ from app.repositories.sale_repository import SaleRepository
 from app.repositories.movement_repository import MovementRepository
 from app.utils.category_utils import normalize_category_name
 from app.errors.import_errors import CategoryNotFoundError
+from app.core.security.authorization import AuthorizationService
 
 class TransactionImportService:
     def __init__(self,import_service,category_service,redis_service,session_factory=SessionLocal,):
@@ -24,6 +25,13 @@ class TransactionImportService:
             raise ValueError("No hay datos para guardar en la importación.")
 
         with self.session_factory.begin() as session:
+            current_role = AuthorizationService.require_import(
+                session, actor_user_id=user_id, business_id=business_id
+            )
+            if categories_to_create and current_role not in AuthorizationService.MANAGERS:
+                raise PermissionError(
+                    "Solo un gerente o administrador puede crear categorías durante la importación."
+                )
             sale_repository = SaleRepository(session)
             movement_repository = MovementRepository(session)
             if categories_to_create:
