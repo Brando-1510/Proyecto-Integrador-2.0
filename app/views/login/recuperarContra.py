@@ -12,9 +12,10 @@ from PySide6.QtSvg import QSvgRenderer
 renderer = QSvgRenderer(":/icons/person.svg")
 
 class VentanaRecuperarContra(QWidget):
-    def __init__(self,recovery_controller):
+    def __init__(self,recovery_controller, remembered_accounts=None):
         super().__init__()
         self.controller=recovery_controller
+        self.remembered_accounts=remembered_accounts
         self.email_thread=None
         #* OBTENER DIRECTORIO ACTUAL
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
@@ -109,18 +110,23 @@ class VentanaRecuperarContra(QWidget):
 
     def cambiarContrasena(self):
         if not V.tienen_contenido(
-            self.ui.inputCambiarContra.text().strip(),
-            self.ui.inputConfirmarContra.text().strip()
+            self.ui.inputCambiarContra,
+            self.ui.inputConfirmarContra
         ):
             QMessageBox.critical(self.ui,"Error","Debe llenar el campo necesario")
             return
-        password = self.ui.inputCambiarContra.text().strip()
-        password_confirmar = self.ui.inputConfirmarContra.text().strip()
-        VD.evaluar_contrasena(self.ui, password)
+        password = self.ui.inputCambiarContra.text()
+        password_confirmar = self.ui.inputConfirmarContra.text()
+        if not VD.evaluar_contrasena(self.ui, password):
+            return
         if not VD.comparar_contraseñas(self.ui,password,password_confirmar):
             return
         result = self.controller.change_password(self.recovery,password)
         if result["success"]:
+            if self.remembered_accounts and hasattr(self, "email"):
+                updated = self.remembered_accounts.update_if_remembered(self.email, password)
+                if not updated.success:
+                    QMessageBox.warning(self.ui, "Credencial local", updated.message)
             QMessageBox.information(self.ui,"Éxito",result["message"])
             self.close()
         else:

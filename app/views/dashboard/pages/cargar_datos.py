@@ -231,7 +231,7 @@ class CargarDatos(QWidget):
                 self._toggle_buttons(enabled=True, accept_enabled=True)
                 return
             #*Solo el gerente puede autorizar la creación.
-            if self.userBusiness.role != Role.MANAGER:
+            if self.userBusiness.role not in (Role.MANAGER, Role.ADMIN):
                 QMessageBox.warning(
                     self.ui,
                     "Categorías no encontradas",
@@ -300,6 +300,8 @@ class CargarDatos(QWidget):
             QMessageBox.warning(self.ui, "Categoría no encontrada", error.message)
         elif error.error_type == ImportErrorType.INVALID_DATA:
             QMessageBox.warning(self.ui, "Datos inválidos", error.message)
+        elif error.error_type == ImportErrorType.ACCESS_DENIED:
+            QMessageBox.warning(self.ui, "Permiso denegado", error.message)
         elif error.error_type == ImportErrorType.DATABASE_ERROR:
             QMessageBox.critical(self.ui, "Error al guardar", error.message)
         else:

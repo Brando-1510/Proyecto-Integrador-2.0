@@ -13,10 +13,11 @@ from app.controllers.user_controller import UserController
 class Profile(QObject):
     login_requested=Signal
     user_changed=Signal(object)
-    def __init__(self,user:Users,controller:UserController, parent=None):
+    def __init__(self,user:Users,controller:UserController, remembered_accounts=None, parent=None):
         super().__init__(parent)
         self.user=user
         self.controller=controller
+        self.remembered_accounts = remembered_accounts
         self.edicion_datos = False
         self.edicion_password = False
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
@@ -76,9 +77,8 @@ class Profile(QObject):
         password, ok = QInputDialog.getText(
             self.ui,"Confirma que eres tú","Introduce tu contraseña",QLineEdit.EchoMode.Password
         )
-        if not ok or not password.strip():
+        if not ok or not password:
             return False
-        password = password.strip()
         resultado = self.controller.verify_user(self.user.email, password)
         if not resultado.get("success", False):
             QMessageBox.warning(self.ui, "Error", resultado.get("message", "Contraseña incorrecta"))
@@ -144,8 +144,18 @@ class Profile(QObject):
             fecha=cambios.get("fecha")
         )
         if resultado["success"]:
+            old_email = self.datos_originales["email"]
+            updated = resultado.get("usuario")
+            if "email" in cambios and self.remembered_accounts:
+                migration = self.remembered_accounts.rename(old_email, cambios["email"])
+                if not migration.success:
+                    QMessageBox.warning(self.ui, "Credencial local", migration.message)
+            if updated:
+                self.user = updated
+                self.datos_originales = {"nombre": updated.username,
+                                        "email": updated.email, "fecha": updated.birth_date}
             QMessageBox.information(self.ui,"Cambios guardados",resultado["message"])
-            self.user_changed.emit(resultado.get("usuario"))
+            self.user_changed.emit(updated)
         else:
             QMessageBox.warning(self.ui,"Error al guardar",resultado["message"])
 
@@ -162,19 +172,23 @@ class Profile(QObject):
 
     def cambiarContrasena(self):
         if not ValidadoresUI.tienen_contenido(
-            self.ui.contra.text().strip(),
-            self.ui.confirmarContra.text().strip()
+            self.ui.contra,
+            self.ui.confirmarContra
         ):
             QMessageBox.critical(self.ui,"Error","Debe llenar el campo necesario")
             return
-        password = self.ui.contra.text().strip()
-        password_confirmar = self.ui.confirmarContra.text().strip()
+        password = self.ui.contra.text()
+        password_confirmar = self.ui.confirmarContra.text()
         if not ValidadoresDatos.evaluar_contrasena(self.ui, password):
             return
         if not ValidadoresDatos.comparar_contraseñas(self.ui,password,password_confirmar):
             return
         result = self.controller.change_password(self.user.user_id,password)
         if result["success"]:
+            if self.remembered_accounts:
+                stored = self.remembered_accounts.update_if_remembered(self.user.email, password)
+                if not stored.success:
+                    QMessageBox.warning(self.ui, "Credencial local", stored.message)
             QMessageBox.information(self.ui,"Éxito",result["message"])
             return
         else:

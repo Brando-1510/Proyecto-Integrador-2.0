@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1094</width>
-    <height>2000</height>
+    <height>3000</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -871,7 +871,18 @@ QFrame[carta=&quot;considerar&quot;] QLabel[tipo=&quot;capsula&quot;] {
     border-color: #FED48C;
     color: #B27000;
 }
+QFrame[carta=&quot;neutro&quot;] {
+    background-color: #F8F5F8;
+    border: 1px solid #E3DCE4;
+    border-radius: 8px;
+}
 
+QFrame[carta=&quot;neutro&quot;] QLabel[tipo=&quot;capsula&quot;] {
+    background-color: #F1EAF2;
+    border: 1px solid #D8C9DB;
+    color: #60305F;
+    border-radius: 10px;
+}
 </string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_6">

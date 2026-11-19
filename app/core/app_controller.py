@@ -25,7 +25,7 @@ class AppController:
         if self.create_account_window is not None:
             self.create_account_window.hide()
         if self.login_window is None:
-            self.login_window = VentanaLogin(self.container.user_controller)
+            self.login_window = VentanaLogin(self.container.user_controller, self.container.remembered_accounts_service)
             self.login_window.crear_cuenta_requested.connect(self.show_create_account)
             self.login_window.recuperar_contrasena_requested.connect(self.show_recovery)
             self.login_window.login_successful.connect(self.show_choose_business)
@@ -36,7 +36,7 @@ class AppController:
         if self.login_window is not None:
             self.login_window.hide()
         if self.create_account_window is None:
-            self.create_account_window = VentanaCrearCuenta(self.container.user_controller)
+            self.create_account_window = VentanaCrearCuenta(self.container.user_controller, self.container.remembered_accounts_service)
             self.create_account_window.volver_login_requested.connect(self.show_login)
             self.create_account_window.register_successful.connect(self.show_choose_business)
         self.create_account_window.show()
@@ -44,7 +44,7 @@ class AppController:
     #*Recuperar Contraseña
     def show_recovery(self):
         if self.recovery_window is None:
-            self.recovery_window = VentanaRecuperarContra(self.container.recovery_controller)
+            self.recovery_window = VentanaRecuperarContra(self.container.recovery_controller, self.container.remembered_accounts_service)
         self.recovery_window.show()
 
     #*Escoger un negocio
@@ -93,6 +93,7 @@ class AppController:
             self.container.monitoring_controller,self.container.user_controller,
             self.container.report_controller,self.container.email_controller,
             self.container.redis_cache_service,
+            self.container.remembered_accounts_service,
         )
         self.dashboard_window.logout_requested.connect(self.logout)
         self.dashboard_window.choose_business_requested.connect(

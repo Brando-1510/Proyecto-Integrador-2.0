@@ -52,7 +52,7 @@ class VentanaDashboard(QMainWindow):
     def __init__(
         self,userBusiness,home_dashboard_controller,consultation_controler,analysis_controller,
         ai_recommendation_service,configuration_controller,monitoring_controller,
-        user_controller,report_controller,email_controller,redis_service,
+        user_controller,report_controller,email_controller,redis_service,remembered_accounts_service=None,
     ):
         super().__init__()
         self.user = userBusiness.user
@@ -66,6 +66,7 @@ class VentanaDashboard(QMainWindow):
         self.configuration_controller = configuration_controller
         self.monitoring_controller=monitoring_controller
         self.user_controller=user_controller
+        self.remembered_accounts_service=remembered_accounts_service
         self.report_controller=report_controller
         self.email_controller=email_controller
         self.redis_service = redis_service
@@ -192,7 +193,7 @@ class VentanaDashboard(QMainWindow):
     def mostrar_perfil(self):
         if not self.dialog_open:
             self.dialog_open=True
-            dialog=Profile(self.user,self.user_controller)
+            dialog=Profile(self.user,self.user_controller,self.remembered_accounts_service)
             if not dialog.autorizado:
                 dialog.ui.close()
                 self.dialog_open = False

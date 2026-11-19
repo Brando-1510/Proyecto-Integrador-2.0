@@ -2,7 +2,7 @@ from app.models.sale import Sale
 from app.models.movement import Movement
 from app.models.category import Category
 from app.models.movement import MovementType
-from sqlalchemy import select,func,case,desc
+from sqlalchemy import select,func,case,desc,cast,Numeric
 from typing import List, Tuple
 from decimal import Decimal
 from datetime import date
@@ -100,7 +100,8 @@ class AnalysisRepository:
         stmt=(
             select(
                 func.count(Sale.sale_id).label("TotalVentas"),
-                func.coalesce(func.sum(Sale.total),0).label("SumaTotalVentas")
+                func.coalesce(func.sum(Sale.total),0).label("SumaTotalVentas"),
+                func.coalesce(func.sum(cast(Sale.total * Sale.total, Numeric(28, 4))),0).label("SumaCuadrados")
             )
             .where(
                 Sale.business_id==business_id,

@@ -141,6 +141,65 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
     background: transparent;
     outline: none;
 }
+/*
+-----------------------------------------------------------------------------------------------------
+CheckBox
+-----------------------------------------------------------------------------------------------------
+*/
+
+QCheckBox {
+    spacing: 8px; /* Espacio entre la cajita y el texto */
+    font-size: 14px;
+    color: #0E042F;
+}
+
+/* --- ESTADO BASE (CAJITA) --- */
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    background-color: #F8F9FA;
+    border: 2px solid #D1D5DB;
+    border-radius: 4px;
+}
+
+/* --- HOVER --- */
+
+QCheckBox::indicator:hover {
+    border: 2px solid #9CA3AF;
+    background-color: #F3F4F6;
+}
+
+/* --- CHECKED (SELECCIONADO) --- */
+
+QCheckBox::indicator:checked {
+    background-color: #5D38BB;
+    border: 2px solid #5D38BB;
+    /* Puedes usar una imagen/icono personalizado para la palomita (check) o dejar que Qt dibuje una por defecto */
+    /* image: url(:/icons/check.png); */
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #744BCC;
+    border: 2px solid #744BCC;
+}
+
+/* --- FOCUS --- */
+
+QCheckBox:focus {
+    color: #5D38BB;
+}
+
+/* --- DISABLED --- */
+
+QCheckBox:disabled {
+    color: #9CA3AF;
+}
+
+QCheckBox::indicator:disabled {
+    background-color: #E5E7EB;
+    border: 2px solid #D1D5DB;
+}
    </string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -563,6 +622,13 @@ QPushButton[boton=&quot;BotonTexto&quot;]:focus {
             </spacer>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxRecordar">
+           <property name="text">
+            <string>Recordar mi cuenta en este dispositivo</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

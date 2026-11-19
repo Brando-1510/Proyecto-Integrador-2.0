@@ -22,7 +22,7 @@ class ValidadoresUI:
         return True
 
 class ValidadoresDatos:
-    EMAIL_PATTERN = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+    EMAIL_PATTERN = r"^[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}$"
     @classmethod
     def validar_correo(cls,correo: str) -> bool:
         correo = correo.strip()

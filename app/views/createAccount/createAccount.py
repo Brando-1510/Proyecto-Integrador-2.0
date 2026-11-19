@@ -1,126 +1,92 @@
 import os
-from PySide6.QtWidgets import QWidget,QLineEdit,QMessageBox
-from PySide6.QtGui import QFontDatabase
-from PySide6.QtUiTools import QUiLoader
 from PySide6 import QtCore
-from PySide6.QtGui import QIcon,QAction
 from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QWidget, QLineEdit, QMessageBox, QVBoxLayout
+from PySide6.QtGui import QFontDatabase, QIcon, QAction
+from PySide6.QtUiTools import QUiLoader
 from app.generated import resources_rc
 from app.views.estilosTipografia import estilos_fuentes
 from app.core.screen_utils import calcular_tamano_pantalla
-from PySide6.QtWidgets import QVBoxLayout
-#Importaciones de la clase Validators (validan cosas)
 from app.utils.validators import ValidadoresUI as V, ValidadoresDatos as VD
-#Importaciones para el hash de contraseñas
-from app.core.security.password import HashPassword as hp
-
-from PySide6.QtSvg import QSvgRenderer
-renderer = QSvgRenderer(":/icons/person.svg")
 
 class VentanaCrearCuenta(QWidget):
     volver_login_requested = Signal()
     register_successful = Signal(object)
-    def __init__(self,user_controller):
+    def __init__(self, user_controller, remembered_accounts=None):
         super().__init__()
-        self.controller=user_controller
-        #* OBTENER DIRECTORIO ACTUAL
-        directorio_actual = os.path.dirname(os.path.abspath(__file__))
-
-        #* CARGAR ARCHIVO .UI
-        ruta_ui = os.path.normpath(os.path.join(directorio_actual,"../../ui/createAccount.ui"))
-        loader = QUiLoader()
-        self.ui = loader.load(ruta_ui,self)
-
+        self.controller = user_controller
+        self.remembered_accounts = remembered_accounts
+        path = os.path.normpath(os.path.join(os.path.dirname(__file__), "../../ui/createAccount.ui"))
+        self.ui = QUiLoader().load(path, self)
         if not self.ui:
-            print(f"Error crítico: No se pudo cargar el archivo UI en:\n"f"{ruta_ui}")
-            return
-        ancho, alto = calcular_tamano_pantalla(0.8, 0.8)
-        self.resize(ancho, alto)
+            raise RuntimeError(f"No se pudo cargar la interfaz Crear Cuenta: {path}")
+        width, height = calcular_tamano_pantalla(0.8, 0.8)
+        self.resize(width, height)
         self.setMinimumSize(900, 570)
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self.ui)
-        self._cargar_fuentes()
-
-        #* CAMBIANDO LOS INPUTS
-        #relacionado a las contraseñas
-        self.configurar_password(self.ui.inputContrasena)
-        self.configurar_password(self.ui.inputContrasenaConfirmar)
-        #relacionados a la fecha de nacimiento
-        hoy = QtCore.QDate.currentDate()
-        fecha_maxima = hoy.addYears(-18)
+        self._load_fonts()
+        self._setup_password(self.ui.inputContrasena)
+        self._setup_password(self.ui.inputContrasenaConfirmar)
+        today = QtCore.QDate.currentDate()
+        limit = today.addYears(-18)
         self.ui.inputFecha.setCalendarPopup(True)
-        self.ui.inputFecha.setMaximumDate(fecha_maxima)
-        self.ui.inputFecha.setDate(fecha_maxima)
-
-        #*CONECTAR LAS ACCIONES
+        self.ui.inputFecha.setMaximumDate(limit)
+        self.ui.inputFecha.setDate(limit)
+        self.ui.checkBoxRecordar.setText("Recordar mi cuenta en este dispositivo")
+        self.ui.checkBoxRecordar.setChecked(False)
         self.ui.BtnCrearCuenta.clicked.connect(self.guardar)
         self.ui.BtnLogin.clicked.connect(self.volver_login_requested.emit)
-
-        #* MOSTRAR VENTANA
         self.showMaximized()
 
-    def _cargar_fuentes(self):
-        font_id_manrope = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
-        font_id_source = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
-        if font_id_manrope == -1 or font_id_source == -1:
-            return
-        manrope = QFontDatabase.applicationFontFamilies(font_id_manrope)
-        source = QFontDatabase.applicationFontFamilies(font_id_source)
-        if manrope and source:
-            self.ui.setStyleSheet(
-                self.ui.styleSheet()+ estilos_fuentes(source[0], manrope[0])
-            )
-    def configurar_password(self, input_password):
-        input_password.setEchoMode(QLineEdit.EchoMode.Password)
-        accion_ojo = QAction(input_password)
-        accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
-        accion_ojo.setCheckable(True)
-        input_password.addAction(accion_ojo,
-            QLineEdit.ActionPosition.TrailingPosition)
-        def cambiar_visibilidad(activado):
-            if activado:
-                input_password.setEchoMode(QLineEdit.EchoMode.Normal)
-                accion_ojo.setIcon(QIcon(":/icons/closeEye.svg"))
-            else:
-                input_password.setEchoMode(QLineEdit.EchoMode.Password)
-                accion_ojo.setIcon(QIcon(":/icons/openEye.svg"))
-        accion_ojo.toggled.connect(cambiar_visibilidad)
+    def _load_fonts(self):
+        a = QFontDatabase.addApplicationFont(":/fonts/Manrope-Regular.ttf")
+        b = QFontDatabase.addApplicationFont(":/fonts/SourceSans3-Regular.ttf")
+        if a >= 0 and b >= 0:
+            fa, fb = QFontDatabase.applicationFontFamilies(a), QFontDatabase.applicationFontFamilies(b)
+            if fa and fb:
+                self.ui.setStyleSheet(self.ui.styleSheet() + estilos_fuentes(fb[0], fa[0]))
+
+    @staticmethod
+    def _setup_password(line_edit):
+        line_edit.setEchoMode(QLineEdit.EchoMode.Password)
+        eye = QAction(line_edit)
+        eye.setIcon(QIcon(":/icons/openEye.svg"))
+        eye.setCheckable(True)
+        line_edit.addAction(eye, QLineEdit.ActionPosition.TrailingPosition)
+        def toggle(visible):
+            line_edit.setEchoMode(QLineEdit.EchoMode.Normal if visible else QLineEdit.EchoMode.Password)
+            eye.setIcon(QIcon(":/icons/closeEye.svg" if visible else ":/icons/openEye.svg"))
+        eye.toggled.connect(toggle)
+
     def guardar(self):
-        if not V.tienen_contenido(
-            self.ui.inputNombre,self.ui.inputCorreo,
-            self.ui.inputContrasena,self.ui.inputContrasenaConfirmar
-        ):
-            QMessageBox.critical(self.ui, "Error", "Debe llenar todos los campos para Crear la Cuenta")
+        if not V.tienen_contenido(self.ui.inputNombre, self.ui.inputCorreo,
+                        self.ui.inputContrasena, self.ui.inputContrasenaConfirmar):
+            QMessageBox.warning(self.ui, "Campos obligatorios", "Debes completar todos los campos.")
             return
-        if not VD.validar_correo(self.ui.inputCorreo.text()):
-            QMessageBox.critical(self.ui, "Error", "El Correo no cumple con un formato correcto")
+        name = self.ui.inputNombre.text().strip()
+        email = self.ui.inputCorreo.text().strip().casefold()
+        password = self.ui.inputContrasena.text()  # Preservar caracteres exactos.
+        password2 = self.ui.inputContrasenaConfirmar.text()
+        if not VD.validar_correo(email) or not VD.validar_nombre(self.ui, name):
+            if not VD.validar_correo(email):
+                QMessageBox.warning(self.ui, "Correo inválido", "Introduce un correo electrónico válido.")
             return
-        if not VD.validar_nombre(self.ui,self.ui.inputNombre.text().strip()):
+        if not VD.evaluar_contrasena(self.ui, password):
             return
-        password = self.ui.inputContrasena.text().strip()
-        password_confirmar = self.ui.inputContrasenaConfirmar.text().strip()
-        if not VD.evaluar_contrasena(self.ui,password):
+        if not VD.comparar_contraseñas(self.ui, password, password2):
             return
-        if not VD.comparar_contraseñas(self.ui,password,password_confirmar):
+        self.ui.BtnCrearCuenta.setEnabled(False)
+        try:
+            result = self.controller.register_user(name, email, self.ui.inputFecha.date().toPython(), password)
+        finally:
+            self.ui.BtnCrearCuenta.setEnabled(True)
+        if not result.get("success"):
+            QMessageBox.warning(self.ui, "Error al registrar", result.get("message", "Error inesperado"))
             return
-        name=self.ui.inputNombre.text().strip()
-        email=self.ui.inputCorreo.text().strip()
-        date = self.ui.inputFecha.date().toPython()
-        password_hash=hp.hash_password(password)
-        result=self.controller.register_user(
-            name,email,date,password_hash
-        )
-        if result["success"]:
-            QMessageBox.information(
-                self.ui,
-                "Éxito",
-                result["message"]
-            )
-            self.register_successful.emit(result["user"])
-        else:
-            QMessageBox.warning(
-                self.ui,
-                "Error",
-                result["message"]
-            )
+        if self.ui.checkBoxRecordar.isChecked() and self.remembered_accounts:
+            stored = self.remembered_accounts.remember(result["user"].email, password)
+            if not stored.success:
+                QMessageBox.warning(self.ui, "Cuenta creada", "Se creó la cuenta, pero no se pudieron recordar las credenciales. " + stored.message)
+        self.register_successful.emit(result["user"])

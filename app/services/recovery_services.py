@@ -2,6 +2,7 @@ from app.database.connection import SessionLocal
 from app.models.recovery import Recovery
 from app.utils.recoveryCode import generar_codigo_recuperacion
 from app.core.security.password import HashPassword as hp
+from app.core.security.account_validation import normalize_email, validate_new_password
 from app.repositories.recovery_repository import RecoveryRepository
 from app.repositories.user_repository import UserRepository
 
@@ -12,7 +13,7 @@ class RecoveryService:
         with self.session_factory.begin() as session:
             recovery_repository = RecoveryRepository(session)
             user_repository = UserRepository(session)
-            user = user_repository.get_by_email(email)
+            user = user_repository.get_by_email(normalize_email(email))
             if not user:
                 raise ValueError("Si el correo está registrado, recibirás un código.")
             # Invalidar recuperaciones anteriores.
@@ -43,6 +44,7 @@ class RecoveryService:
             return recovery
 
     def reset_password(self,recovery: Recovery,new_password: str):
+        validate_new_password(new_password)
         with self.session_factory.begin() as session:
             recovery_repository = RecoveryRepository(session)
             user_repository = UserRepository(session)

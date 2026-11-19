@@ -21,3 +21,4 @@ __pycache__/
 
 #Archivo de prueba
 prueba.py
+.finanzen_patch_backups/
