@@ -16,6 +16,7 @@
 
     <!-- Iconos añadidos -->
     <file>icons/star.svg</file>
+    <file>icons/nuevosIconos/profile.svg</file>
     <file>icons/exclamationMarkBlue.svg</file>
     <file>icons/exclamationMarkRed.svg</file>
     <file>icons/person.svg</file>
