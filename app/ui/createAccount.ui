@@ -175,6 +175,7 @@ QCheckBox::indicator:hover {
 QCheckBox::indicator:checked {
     background-color: #5D38BB;
     border: 2px solid #5D38BB;
+image: url(:/icons/checkIcon.svg); 
     /* Puedes usar una imagen/icono personalizado para la palomita (check) o dejar que Qt dibuje una por defecto */
     /* image: url(:/icons/check.png); */
 }

@@ -67,6 +67,7 @@ class BusinessService:
                 ]
                 categories_created = (category_repository.create_many(categories))
                 session.flush()
+                session.refresh(business_created,attribute_names=["categories"])
                 result = {
                     "success": True,
                     "business": business_created,
